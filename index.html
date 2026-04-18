@@ -421,11 +421,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Menú mobile -->
 <div class="nav-mobile" id="navMobile">
-  <button onclick="irSeccion('como-funciona');cerrarMenu()">Cómo Funciona</button>
-  <button onclick="irSeccion('premios');cerrarMenu()">Premios</button>
-  <button onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
-  <button onclick="mostrarAnalisis()">🔐 Análisis Premium</button>
-  <button class="cta-mobile" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela</button>
+  <button onclick="cerrarMenu();irSeccion('como-funciona')">Cómo Funciona</button>
+  <button onclick="cerrarMenu();irSeccion('premios')">Premios</button>
+  <button onclick="cerrarMenu();mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
+  <button onclick="cerrarMenu();mostrarAnalisis()">🔐 Análisis Premium</button>
+  <button class="cta-mobile" onclick="cerrarMenu();mostrarRegistro()">⚽ Registrar mi Quiniela</button>
 </div>
 
 <!-- ══════════════════════════════════════
@@ -664,7 +664,6 @@ function mostrarLanding() {
 
 function mostrarAnalisis() {
   window.location.href = 'analisis.html';
-  cerrarMenu();
 }
 
 function mostrarRegistro() {
@@ -679,7 +678,6 @@ function mostrarRegistro() {
     document.getElementById('iframe-registro').src = URL_REGISTRO;
     iframesLoaded.registro = true;
   }
-  cerrarMenu();
 }
 
 function mostrarSeguimiento() {
@@ -694,7 +692,6 @@ function mostrarSeguimiento() {
     document.getElementById('iframe-seguimiento').src = URL_SEGUIMIENTO;
     iframesLoaded.seguimiento = true;
   }
-  cerrarMenu();
 }
 
 function irSeccion(id) {
@@ -707,10 +704,18 @@ function irSeccion(id) {
 
 // ── Menú mobile ──
 function toggleMenu() {
-  document.getElementById('navMobile').classList.toggle('open');
+  var m = document.getElementById('navMobile');
+  if (m.classList.contains('open')) {
+    cerrarMenu();
+  } else {
+    m.classList.add('open');
+    m.style.display = 'flex';
+  }
 }
 function cerrarMenu() {
-  document.getElementById('navMobile').classList.remove('open');
+  var m = document.getElementById('navMobile');
+  m.classList.remove('open');
+  m.style.display = 'none';
 }
 
 // ── Reveal on scroll ──
