@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>QuinielaPro Fut — Análisis Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+html { scroll-behavior: smooth; }
+
+html, body {
+  background: #06080A;
+  color: #F0F4F8;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+:root {
+  --verde:  #00FF87;
+  --verde2: #00CC6A;
+  --negro:  #06080A;
+  --card:   #0E1318;
+  --card2:  #141A21;
+  --borde:  #1E2830;
+  --borde2: #26333D;
+  --texto:  #F0F4F8;
+  --muted:  #8A9BB0;
+  --muted2: #5A6B7A;
+  --oro:    #FFD84D;
+  --rojo:   #FF4D6A;
+  --azul:   #4AB8FF;
+}
+
+/* ── HEADER ── */
+header {
+  background: rgba(6,8,10,0.97);
+  border-bottom: 2px solid var(--oro);
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.header-logo em { color: var(--verde); font-style: normal; }
+
+.header-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,216,77,0.12);
+  border: 1px solid rgba(255,216,77,0.4);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+}
+.gold-dot {
+  width: 7px; height: 7px;
+  background: var(--oro);
+  border-radius: 50%;
+  animation: pulseAnim 1.8s infinite;
+}
+
+/* ── PANTALLA CLAVE ── */
+#pantallaClaveWrap {
+  min-height: calc(100vh - 62px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,216,77,0.05) 0%, transparent 70%);
+}
+
+.clave-box {
+  background: var(--card);
+  border: 1px solid var(--borde);
+  border-top: 3px solid var(--oro);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+.clave-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+
+.clave-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.05em;
+  color: var(--oro);
+  margin-bottom: 0.5rem;
+}
+
+.clave-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.clave-input {
+  width: 100%;
+  background: var(--card2);
+  border: 1.5px solid var(--borde2);
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texto);
+  text-align: center;
+  letter-spacing: 0.1em;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 1rem;
+}
+.clave-input:focus {
+  border-color: var(--oro);
+  box-shadow: 0 0 0 3px rgba(255,216,77,0.12);
+}
+.clave-input::placeholder { color: var(--muted2); font-weight: 500; }
+
+.btn-entrar {
+  width: 100%;
+  background: linear-gradient(135deg, var(--oro), #FFC107);
+  color: var(--negro);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(255,216,77,0.25);
+}
+.btn-entrar:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,216,77,0.4); }
+.btn-entrar:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.aviso-error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(255,77,106,0.1);
+  border: 1px solid var(--rojo);
+  color: var(--rojo);
+  display: none;
+}
+
+.clave-promo {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0,255,135,0.05);
+  border: 1px solid rgba(0,255,135,0.15);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.clave-promo strong { color: var(--verde); }
+
+/* ── PANTALLA ANÁLISIS ── */
+#pantallaAnalisis {
+  display: none;
+  padding: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+.analisis-header {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.analisis-jornada {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 0.5rem;
+}
+
+.analisis-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  letter-spacing: 0.04em;
+  color: var(--texto);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+.analisis-title em { color: var(--oro); font-style: normal; }
+
+.analisis-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── LEYENDA ── */
+.leyenda {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.ley-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.ley-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.ley-local  { background: var(--verde); }
+.ley-empate { background: var(--oro); }
+.ley-visita { background: var(--azul); }
+
+/* ── GRID PARTIDOS ── */
+.partidos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1rem;
+}
+
+.partido-card {
+  background: var(--card);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.partido-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+
+.pc-header {
+  background: var(--card2);
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--borde);
+}
+.pc-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--muted2);
+}
+.pc-equipos {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--texto);
+  text-align: center;
+  flex: 1;
+  margin: 0 0.75rem;
+}
+.pc-equipos .vs { color: var(--muted2); font-size: 0.8rem; margin: 0 0.3rem; }
+
+/* ── MOMIOS ── */
+.pc-momios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--borde);
+  border-bottom: 1px solid var(--borde);
+}
+.momio-item {
+  background: var(--card);
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  position: relative;
+}
+.momio-item.fav { background: var(--card2); }
+.momio-item.fav::after {
+  content: '★';
+  position: absolute;
+  top: 3px; right: 5px;
+  font-size: 0.65rem;
+  color: var(--oro);
+}
+.momio-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 0.3rem;
+}
+.momio-pct {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.momio-l { color: var(--verde); }
+.momio-e { color: var(--oro); }
+.momio-v { color: var(--azul); }
+.momio-bar-wrap {
+  height: 3px;
+  background: var(--borde);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.3rem;
+}
+.momio-bar { height: 100%; border-radius: 2px; transition: width 1s ease; }
+.bar-l { background: var(--verde); }
+.bar-e { background: var(--oro); }
+.bar-v { background: var(--azul); }
+
+/* ── INFO ── */
+.pc-info {
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.83rem;
+}
+.info-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.4; }
+.info-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 0.1rem;
+}
+.info-val { color: var(--texto); font-weight: 500; line-height: 1.5; }
+.info-val.pending { color: var(--muted2); font-style: italic; }
+
+/* ── FOOTER ── */
+.analisis-footer {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+}
+.analisis-footer p { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+.btn-cerrar-sesion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid var(--borde2);
+  color: var(--muted);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-cerrar-sesion:hover { border-color: var(--rojo); color: var(--rojo); }
+
+/* ── LOADING ── */
+.loading-screen {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.big-spinner {
+  width: 48px; height: 48px;
+  border: 3px solid rgba(255,216,77,0.15);
+  border-top-color: var(--oro);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+.loading-screen p {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* ── SPINNER ── */
+.spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(0,0,0,0.2);
+  border-top-color: var(--negro);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulseAnim { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(1.5);} }
+@keyframes fadeIn { from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;} }
+.fade-in { animation: fadeIn 0.4s ease both; }
+
+/* ── MOBILE ── */
+@media(max-width:600px) {
+  .partidos-grid { grid-template-columns: 1fr; }
+  .pc-equipos { font-size: 0.95rem; }
+  .momio-pct { font-size: 1.3rem; }
+  header { padding: 0.75rem 1rem; }
+  #pantallaAnalisis { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo" onclick="window.location.href='https://quinielaprofut.com'">
+    Quiniela<em>Pro</em>Fut
+  </div>
+  <div class="header-badge">
+    <div class="gold-dot"></div>
+    Análisis Premium
+  </div>
+</header>
+
+<!-- PANTALLA CLAVE -->
+<div id="pantallaClaveWrap">
+  <div class="clave-box fade-in">
+    <div class="clave-icon">🔐</div>
+    <div class="clave-title">Acceso Premium</div>
+    <p class="clave-desc">Ingresa tu clave de suscriptor para ver el análisis completo — momios, clima, bajas y noticias clave de cada partido.</p>
+
+    <input
+      class="clave-input"
+      type="password"
+      id="inputClave"
+      placeholder="Tu clave aquí..."
+      maxlength="30"
+      onkeydown="if(event.key==='Enter') verificarClave()"
+      autocomplete="off"
+    />
+
+    <button class="btn-entrar" id="btnEntrar" onclick="verificarClave()">
+      🔓 ENTRAR AL ANÁLISIS
+    </button>
+
+    <div class="aviso-error" id="avisoError"></div>
+
+    <div class="clave-promo">
+      ¿No tienes clave aún?<br>
+      <strong>Suscríbete por $50 MXN/jornada</strong> y recibe el análisis completo antes del cierre.<br>
+      Escríbenos al WhatsApp para activar tu acceso.
+    </div>
+  </div>
+</div>
+
+<!-- PANTALLA ANÁLISIS -->
+<div id="pantallaAnalisis">
+  <div class="analisis-header fade-in">
+    <div class="analisis-jornada" id="analisisJornada">⚽ Cargando...</div>
+    <h1 class="analisis-title">Análisis <em>Pro</em><br>de la Jornada</h1>
+    <p class="analisis-desc">Datos clave para tomar la mejor decisión en cada partido. Información actualizada antes del cierre.</p>
+  </div>
+
+  <div class="leyenda fade-in">
+    <div class="ley-item"><div class="ley-dot ley-local"></div>Local favorito</div>
+    <div class="ley-item"><div class="ley-dot ley-empate"></div>Empate probable</div>
+    <div class="ley-item"><div class="ley-dot ley-visita"></div>Visita favorita</div>
+    <div class="ley-item">★ Pronóstico más probable</div>
+  </div>
+
+  <div class="partidos-grid" id="partidosGrid">
+    <div class="loading-screen">
+      <div class="big-spinner"></div>
+      <p>Cargando análisis...</p>
+    </div>
+  </div>
+
+  <div class="analisis-footer fade-in">
+    <p>
+      📊 Los porcentajes son momios implícitos basados en casas de apuestas.<br>
+      No garantizan el resultado — úsalos como referencia para tu estrategia.<br>
+      <strong style="color:var(--texto)">QuinielaPro Fut no es responsable de decisiones basadas en este análisis.</strong>
+    </p>
+    <button class="btn-cerrar-sesion" onclick="cerrarSesion()">🔒 Cerrar sesión</button>
+  </div>
+</div>
+
+<script>
+// ── URL de tu Web App GAS ──
+var GAS_URL = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
+
+function verificarClave() {
+  var clave = document.getElementById('inputClave').value.trim();
+  var aviso = document.getElementById('avisoError');
+  var btn   = document.getElementById('btnEntrar');
+
+  aviso.style.display = 'none';
+
+  if (!clave) {
+    mostrarError('Escribe tu clave de acceso.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>VERIFICANDO...';
+
+  // Llamar al GAS como API via fetch
+  var url = GAS_URL + '?action=analisis&clave=' + encodeURIComponent(clave);
+
+  fetch(url)
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.innerHTML = '🔓 ENTRAR AL ANÁLISIS';
+
+      if (data.estado === 'CLAVE_INVALIDA') {
+        mostrarError('❌ Clave incorrecta. Verifica con QuinielaPro Fut.');
+        document.getElementById('inputClave').value = '';
+        return;
+      }
+      if (data.estado !== 'OK') {
+        mostrarError('Error del sistema. Intenta de nuevo.');
+        return;
+      }
+
+      // Mostrar análisis
+      document.getElementById('pantallaClaveWrap').style.display = 'none';
+      document.getElementById('pantallaAnalisis').style.display  = 'block';
+      document.getElementById('analisisJornada').textContent = '⚽ ' + (data.jornada || 'Jornada activa');
+      renderPartidos(data.partidos || []);
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.innerHTML = '🔓 ENTRAR AL ANÁLISIS';
+      mostrarError('Error de conexión. Intenta de nuevo.');
+    });
+}
+
+function renderPartidos(partidos) {
+  var grid = document.getElementById('partidosGrid');
+  if (!partidos.length) {
+    grid.innerHTML = '<p style="text-align:center;color:var(--muted);padding:3rem;">No hay análisis disponible aún.</p>';
+    return;
+  }
+
+  var html = '';
+  partidos.forEach(function(p, i) {
+    var lNum = parseFloat(p.momioL) || 0;
+    var eNum = parseFloat(p.momioE) || 0;
+    var vNum = parseFloat(p.momioV) || 0;
+    var max  = Math.max(lNum, eNum, vNum);
+    var total = lNum + eNum + vNum;
+    var barL = total > 0 ? Math.round((lNum/total)*100) : 33;
+    var barE = total > 0 ? Math.round((eNum/total)*100) : 33;
+    var barV = total > 0 ? Math.round((vNum/total)*100) : 34;
+    var mL = p.momioL !== '—' ? p.momioL + '%' : '—';
+    var mE = p.momioE !== '—' ? p.momioE + '%' : '—';
+    var mV = p.momioV !== '—' ? p.momioV + '%' : '—';
+
+    html += '<div class="partido-card fade-in" style="animation-delay:' + (i*0.04) + 's">';
+    html += '<div class="pc-header">';
+    html += '<span class="pc-num">P' + p.id + '</span>';
+    html += '<div class="pc-equipos">' + esc(p.local) + ' <span class="vs">vs</span> ' + esc(p.visitante) + '</div>';
+    html += '</div>';
+    html += '<div class="pc-momios">';
+    html += momio('LOCAL',  mL, 'momio-l', 'bar-l', barL, lNum===max&&max>0);
+    html += momio('EMPATE', mE, 'momio-e', 'bar-e', barE, eNum===max&&max>0);
+    html += momio('VISITA', mV, 'momio-v', 'bar-v', barV, vNum===max&&max>0);
+    html += '</div>';
+    html += '<div class="pc-info">';
+    html += infoRow('🌤️', 'Clima', p.clima);
+    html += infoRow('🚑', 'Bajas confirmadas', p.bajas);
+    html += infoRow('📰', 'Noticia clave', p.noticia);
+    html += '</div></div>';
+  });
+
+  grid.innerHTML = html;
+}
+
+function momio(label, val, colorCls, barCls, barW, esFav) {
+  return '<div class="momio-item' + (esFav?' fav':'') + '">' +
+    '<div class="momio-label">' + label + '</div>' +
+    '<div class="momio-pct ' + colorCls + '">' + val + '</div>' +
+    '<div class="momio-bar-wrap"><div class="momio-bar ' + barCls + '" style="width:' + barW + '%"></div></div>' +
+    '</div>';
+}
+
+function infoRow(icon, label, val) {
+  var empty = !val || val === '—';
+  return '<div class="info-row">' +
+    '<span class="info-icon">' + icon + '</span>' +
+    '<div><div class="info-label">' + label + '</div>' +
+    '<div class="info-val' + (empty?' pending':'') + '">' + (empty ? 'Sin datos aún' : esc(val)) + '</div>' +
+    '</div></div>';
+}
+
+function cerrarSesion() {
+  document.getElementById('pantallaAnalisis').style.display  = 'none';
+  document.getElementById('pantallaClaveWrap').style.display = 'flex';
+  document.getElementById('inputClave').value = '';
+  document.getElementById('avisoError').style.display = 'none';
+}
+
+function mostrarError(msg) {
+  var aviso = document.getElementById('avisoError');
+  aviso.textContent = msg;
+  aviso.style.display = 'block';
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
