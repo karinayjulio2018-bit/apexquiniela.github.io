@@ -10,466 +10,710 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WKGS2XRL');</script>
-<!-- End Google Tag Manager -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-a { color: inherit; text-decoration: none; }
-html { scroll-behavior: smooth; }
+*{box-sizing:border-box;margin:0;padding:0;}
+a{color:inherit;text-decoration:none;}
+html{scroll-behavior:smooth;}
 
-/* ── FORCE DARK BACKGROUND ALWAYS ── */
-html, body {
-  background-color: #06080A !important;
-  color: #F0F4F8 !important;
-}
-
-/* ── NAV FORCE COLORS ── */
-nav {
-  background: rgba(6,8,10,0.97) !important;
-  border-bottom: 1px solid #1E2830 !important;
-}
-nav .logo { color: #F0F4F8 !important; }
-nav .logo em { color: #00FF87 !important; }
-nav .nav-links a, nav .nav-links button {
-  color: #8A9BB0 !important;
-}
-nav .nav-links a:hover, nav .nav-links button:hover {
-  color: #F0F4F8 !important;
-}
-nav .nav-btn-cta {
-  background: #00FF87 !important;
-  color: #06080A !important;
+/* ── TEMA OSCURO (default / noche) ── */
+:root{
+  --verde:#00FF87;
+  --verde2:#00CC6A;
+  --negro:#06080A;
+  --card:#0E1318;
+  --card2:#141A21;
+  --borde:#1E2830;
+  --borde2:#26333D;
+  --texto:#F0F4F8;
+  --muted:#8A9BB0;
+  --muted2:#5A6B7A;
+  --oro:#FFD84D;
+  --rojo:#FF4D6A;
+  --glow:rgba(0,255,135,0.15);
+  --nav-bg:rgba(6,8,10,0.92);
+  --shimmer:rgba(0,255,135,0.03);
 }
 
-/* ── HERO FORCE ── */
-.hero-title { color: #F0F4F8 !important; }
-.hero-title .v { color: #00FF87 !important; }
-.hero-title .o { color: #FFD84D !important; }
-.hero-tag { color: #00FF87 !important; }
-.hero-desc { color: #8A9BB0 !important; }
-.hero-desc strong { color: #F0F4F8 !important; }
-
-/* ── MOBILE NAV ── */
-.nav-mobile {
-  background: rgba(6,8,10,0.99) !important;
-}
-.nav-mobile button, .nav-mobile a {
-  color: #8A9BB0 !important;
-}
-.nav-mobile .cta-mobile {
-  background: #00FF87 !important;
-  color: #06080A !important;
-}
-
-/* ── HAMBURGER ── */
-.hamburger span { background: #8A9BB0 !important; }
-
-:root {
-  --verde:  #00FF87;
-  --verde2: #00CC6A;
-  --negro:  #06080A;
-  --card:   #0E1318;
-  --card2:  #141A21;
-  --borde:  #1E2830;
-  --borde2: #26333D;
-  --texto:  #F0F4F8;
-  --muted:  #8A9BB0;
-  --muted2: #5A6B7A;
-  --oro:    #FFD84D;
-  --rojo:   #FF4D6A;
+/* ── TEMA CLARO (día) ── */
+:root.dia{
+  --negro:#F5F7FA;
+  --card:#FFFFFF;
+  --card2:#EEF1F5;
+  --borde:#D8DEE8;
+  --borde2:#C4CDD8;
+  --texto:#0D1B2A;
+  --muted:#4A5568;
+  --muted2:#718096;
+  --nav-bg:rgba(245,247,250,0.95);
+  --shimmer:rgba(0,200,100,0.04);
+  --verde:#009955;
+  --verde2:#007740;
+  --oro:#C8860A;
+  --rojo:#D63650;
+  --glow:rgba(0,153,85,0.1);
 }
 
-body {
-  background: var(--negro);
-  color: var(--texto);
-  font-family: 'Outfit', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
+html,body{
+  background:var(--negro) !important;
+  color:var(--texto) !important;
+  font-family:'Outfit',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  transition:background 0.4s ease, color 0.4s ease;
 }
 
 /* ── VISTAS ── */
-.vista { display: none; }
-.vista.activa { display: block; }
+.vista{display:none;}
+.vista.activa{display:block;}
 
-/* ── NAV ── */
-nav {
-  position: fixed; top:0; left:0; right:0; z-index:999;
-  display:flex; align-items:center; justify-content:space-between;
-  padding: 0.85rem 2rem;
-  background: rgba(6,8,10,0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--borde);
+/* ══════════════════════════
+   NAV
+══════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.85rem 2rem;
+  background:var(--nav-bg);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--borde);
+  transition:background 0.4s,border-color 0.4s;
 }
-.logo { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:0.06em; color:var(--texto); cursor:pointer; }
-.logo em { color:var(--verde); font-style:normal; }
-.nav-links { display:flex; gap:2rem; list-style:none; align-items:center; }
-.nav-links a, .nav-links button {
-  font-size:0.8rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
-  color:var(--muted); background:none; border:none; cursor:pointer;
-  transition:color 0.2s; font-family:'Outfit',sans-serif;
-}
-.nav-links a:hover, .nav-links button:hover { color:var(--texto); }
-.nav-btn-cta {
-  background:var(--verde) !important; color:var(--negro) !important;
-  padding:0.45rem 1.3rem; border-radius:6px; font-weight:700 !important;
-}
-.nav-btn-cta:hover { background:var(--verde2) !important; }
-
-/* ── HAMBURGER MOBILE ── */
-.hamburger {
-  display:none; flex-direction:column; gap:5px;
-  background:none; border:none; cursor:pointer; padding:4px;
-}
-.hamburger span { width:22px; height:2px; background:var(--muted); border-radius:2px; transition:0.2s; }
-
-.nav-mobile {
-  display:none; position:fixed; top:60px; left:0; right:0; z-index:998;
-  background:rgba(6,8,10,0.98); border-bottom:1px solid var(--borde);
-  padding:1.5rem 2rem; flex-direction:column; gap:1rem;
-}
-.nav-mobile.open { display:flex; }
-.nav-mobile button, .nav-mobile a {
-  font-size:1rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
-  color:var(--muted); background:none; border:none; cursor:pointer;
-  padding:0.5rem 0; text-align:left; border-bottom:1px solid var(--borde);
+.btn-tema{
+  background:none;border:1px solid var(--borde2);
+  border-radius:20px;padding:0.3rem 0.75rem;
+  font-size:0.88rem;cursor:pointer;
+  transition:all 0.2s;color:var(--muted);
+  display:flex;align-items:center;gap:0.3rem;
   font-family:'Outfit',sans-serif;
 }
-.nav-mobile .cta-mobile {
-  background:var(--verde); color:var(--negro); padding:0.8rem 1.5rem;
-  border-radius:8px; text-align:center; font-weight:700; border:none;
+.btn-tema:hover{border-color:var(--verde);color:var(--verde);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--texto);cursor:pointer;transition:color 0.3s;}
+.logo em{color:var(--verde);font-style:normal;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
+.nav-links a,.nav-links button{
+  font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);background:none;border:none;cursor:pointer;
+  transition:color 0.2s;font-family:'Outfit',sans-serif;
+}
+.nav-links a:hover,.nav-links button:hover{color:var(--texto);}
+.nav-btn-cta{
+  background:var(--verde) !important;color:#06080A !important;
+  padding:0.45rem 1.3rem;border-radius:6px;font-weight:700 !important;
+  transition:all 0.2s !important;
+}
+.nav-btn-cta:hover{background:var(--verde2) !important;transform:translateY(-1px);}
+
+/* hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--muted);border-radius:2px;transition:0.2s;}
+.nav-mobile{
+  display:none;position:fixed;top:60px;left:0;right:0;z-index:998;
+  background:var(--nav-bg);border-bottom:1px solid var(--borde);
+  padding:1.5rem 2rem;flex-direction:column;gap:1rem;
+  backdrop-filter:blur(24px);
+}
+.nav-mobile.open{display:flex;}
+.nav-mobile button,.nav-mobile a{
+  font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);background:none;border:none;cursor:pointer;
+  padding:0.5rem 0;text-align:left;border-bottom:1px solid var(--borde);
+  font-family:'Outfit',sans-serif;
+}
+.nav-mobile .cta-mobile{
+  background:var(--verde);color:#06080A;padding:0.8rem 1.5rem;
+  border-radius:8px;text-align:center;font-weight:700;border:none;
 }
 
-/* ══════════════════════════════════════
-   VISTA LANDING
-══════════════════════════════════════ */
-#hero {
-  min-height:100vh; display:flex; align-items:center;
-  padding:7rem 2rem 5rem; position:relative; overflow:hidden;
+/* ══════════════════════════
+   HERO 3D
+══════════════════════════ */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:7rem 2rem 5rem;position:relative;overflow:hidden;
 }
-.hero-glow {
-  position:absolute; width:700px; height:700px; border-radius:50%;
-  background:radial-gradient(circle, rgba(0,255,135,0.07) 0%, transparent 70%);
-  top:-100px; right:-200px; pointer-events:none;
+
+/* fondo animado 3D */
+.hero-bg-3d{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
 }
-.hero-glow2 {
-  position:absolute; width:400px; height:400px; border-radius:50%;
-  background:radial-gradient(circle, rgba(61,139,255,0.05) 0%, transparent 70%);
-  bottom:0; left:-100px; pointer-events:none;
+.orb{
+  position:absolute;border-radius:50%;filter:blur(80px);
+  animation:orbFloat 8s ease-in-out infinite;
 }
-.hero-hex {
-  position:absolute; inset:0; pointer-events:none; opacity:0.025;
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(0,255,135,0.1) 0%,transparent 70%);top:-150px;right:-200px;animation-delay:0s;}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(61,139,255,0.07) 0%,transparent 70%);bottom:-100px;left:-100px;animation-delay:-3s;}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,216,77,0.06) 0%,transparent 70%);top:40%;left:40%;animation-delay:-5s;}
+
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(30px,-20px) scale(1.05);}
+  66%{transform:translate(-20px,30px) scale(0.95);}
+}
+
+/* grid hexagonal */
+.hero-hex{
+  position:absolute;inset:0;pointer-events:none;opacity:0.03;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33z' fill='none' stroke='%2300FF87' stroke-width='1'/%3E%3Cpath d='M28 100L0 84V51l28-17 28 17v33z' fill='none' stroke='%2300FF87' stroke-width='1'/%3E%3C/svg%3E");
 }
-.hero-content { position:relative; z-index:2; max-width:660px; }
-.hero-tag {
-  display:inline-flex; align-items:center; gap:0.6rem;
-  background:rgba(0,255,135,0.08); border:1px solid rgba(0,255,135,0.2);
-  color:var(--verde); font-size:0.75rem; font-weight:700;
-  letter-spacing:0.15em; text-transform:uppercase;
-  padding:0.4rem 1rem; border-radius:100px; margin-bottom:2rem;
+
+.hero-content{position:relative;z-index:2;max-width:660px;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);
+  color:#00FF87;font-size:0.75rem;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  padding:0.4rem 1rem;border-radius:100px;margin-bottom:2rem;
   animation:fadeUp 0.5s ease both;
 }
-.pdot { width:7px; height:7px; background:var(--verde); border-radius:50%; animation:pulseAnim 1.8s infinite; }
-.hero-title {
+.pdot{width:7px;height:7px;background:#00FF87;border-radius:50%;animation:pulseAnim 1.8s infinite;}
+.hero-title{
   font-family:'Bebas Neue',sans-serif;
   font-size:clamp(4rem,10vw,7.5rem);
-  line-height:0.9; letter-spacing:0.02em; color:var(--texto);
-  margin-bottom:1.75rem; animation:fadeUp 0.6s ease 0.1s both;
+  line-height:0.9;letter-spacing:0.02em;color:#F0F4F8;
+  margin-bottom:1.75rem;animation:fadeUp 0.6s ease 0.1s both;
 }
-.hero-title .v { color:var(--verde); }
-.hero-title .o { color:var(--oro); }
-.hero-desc {
-  font-size:1.1rem; color:var(--muted); max-width:500px;
-  margin-bottom:2.5rem; line-height:1.8; animation:fadeUp 0.6s ease 0.2s both;
+.hero-title .v{color:#00FF87;}
+.hero-title .o{color:#FFD84D;}
+.hero-desc{
+  font-size:1.1rem;color:#8A9BB0;max-width:500px;
+  margin-bottom:1.5rem;line-height:1.8;animation:fadeUp 0.6s ease 0.2s both;
 }
-.hero-desc strong { color:var(--texto); font-weight:600; }
-.hero-btns { display:flex; gap:1rem; flex-wrap:wrap; animation:fadeUp 0.6s ease 0.3s both; }
+.hero-desc strong{color:#F0F4F8;font-weight:600;}
 
-/* ── BOTONES PRINCIPALES ── */
-.btn-v {
-  display:inline-flex; align-items:center; gap:0.6rem;
-  background:var(--verde); color:var(--negro);
-  font-size:0.95rem; font-weight:700; padding:0.9rem 2rem; border-radius:8px;
-  border:none; cursor:pointer; transition:all 0.2s;
-  box-shadow:0 0 30px rgba(0,255,135,0.2);
+/* pill de referido en hero */
+.hero-referido{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:rgba(255,216,77,0.06);border:1px solid rgba(255,216,77,0.25);
+  border-radius:10px;padding:0.75rem 1.25rem;margin-bottom:2rem;
+  animation:fadeUp 0.6s ease 0.25s both;
 }
-.btn-v:hover { background:var(--verde2); transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,255,135,0.35); }
+.hero-referido .ref-icon{font-size:1.4rem;flex-shrink:0;}
+.hero-referido .ref-text{font-size:0.88rem;color:#FFD84D;font-weight:600;line-height:1.4;}
+.hero-referido .ref-text span{color:#F0F4F8;}
 
-.btn-o {
-  display:inline-flex; align-items:center; gap:0.6rem;
-  background:transparent; color:var(--texto);
-  font-size:0.95rem; font-weight:600; padding:0.9rem 2rem; border-radius:8px;
-  border:1px solid var(--borde2); cursor:pointer; transition:all 0.2s;
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.3s both;}
+
+/* ── BOTONES ── */
+.btn-v{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:var(--verde);color:var(--negro);
+  font-size:0.95rem;font-weight:700;padding:0.9rem 2rem;border-radius:8px;
+  border:none;cursor:pointer;transition:all 0.2s;
+  box-shadow:0 0 30px rgba(0,255,135,0.25);
 }
-.btn-o:hover { border-color:var(--verde); color:var(--verde); }
-
-/* ── STATS ── */
-.stats-bar {
-  background:var(--card); border-top:1px solid var(--borde); border-bottom:1px solid var(--borde);
-  display:grid; grid-template-columns:repeat(4,1fr);
+.btn-v:hover{background:var(--verde2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,135,0.4);}
+.btn-o{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:transparent;color:var(--texto);
+  font-size:0.95rem;font-weight:600;padding:0.9rem 2rem;border-radius:8px;
+  border:1px solid var(--borde2);cursor:pointer;transition:all 0.2s;
 }
-.stat { padding:2rem 1.5rem; text-align:center; border-right:1px solid var(--borde); }
-.stat:last-child { border-right:none; }
-.stat-n { font-family:'Bebas Neue',sans-serif; font-size:3.2rem; line-height:1; color:var(--verde); display:block; }
-.stat-l { font-size:0.72rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-top:0.3rem; display:block; }
+.btn-o:hover{border-color:var(--verde);color:var(--verde);}
 
-/* ── SECCIONES ── */
-.sec { padding:5rem 2rem; max-width:1120px; margin:0 auto; }
-.chip { display:inline-block; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--verde); background:rgba(0,255,135,0.08); border:1px solid rgba(0,255,135,0.15); padding:0.3rem 0.9rem; border-radius:100px; margin-bottom:1rem; }
-.stitle { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.4rem,5vw,3.8rem); line-height:1; letter-spacing:0.02em; color:var(--texto); margin-bottom:1rem; }
-.sdesc { font-size:1rem; color:var(--muted); max-width:500px; line-height:1.8; margin-bottom:3rem; }
+/* ══════════════════════════
+   STATS BAR 3D
+══════════════════════════ */
+.stats-bar{
+  background:var(--card);
+  border-top:1px solid rgba(0,255,135,0.1);
+  border-bottom:1px solid rgba(0,255,135,0.1);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  position:relative;overflow:hidden;
+}
+.stats-bar::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(0,255,135,0.03),transparent);
+  animation:shimmer 4s linear infinite;
+}
+@keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+.stat{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(--borde);position:relative;}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;line-height:1;color:var(--verde);display:block;}
+.stat-l{font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;display:block;}
 
-/* ── STEPS ── */
-.steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1px; background:var(--borde); border:1px solid var(--borde); border-radius:12px; overflow:hidden; }
-.step { background:var(--card); padding:2.5rem 2rem; position:relative; transition:background 0.2s; }
-.step:hover { background:var(--card2); }
-.step-bg { font-family:'Bebas Neue',sans-serif; font-size:6rem; line-height:1; color:rgba(0,255,135,0.05); position:absolute; top:0.5rem; right:1rem; pointer-events:none; }
-.step-icon { font-size:2.2rem; margin-bottom:1.25rem; }
-.step h3 { font-size:1rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--texto); margin-bottom:0.6rem; }
-.step p { font-size:0.9rem; color:var(--muted); line-height:1.7; }
+/* ══════════════════════════
+   SECCIONES
+══════════════════════════ */
+.sec{padding:5rem 2rem;max-width:1120px;margin:0 auto;}
+.chip{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.15);padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:1rem;}
+.stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1;letter-spacing:0.02em;color:var(--texto);margin-bottom:1rem;}
+.sdesc{font-size:1rem;color:var(--muted);max-width:500px;line-height:1.8;margin-bottom:3rem;}
 
-/* ── LIGAS ── */
-.ligas { display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:2rem; }
-.liga { display:flex; align-items:center; gap:0.5rem; background:var(--card); border:1px solid var(--borde2); border-radius:8px; padding:0.6rem 1.2rem; font-size:0.88rem; font-weight:600; color:var(--texto); transition:all 0.2s; cursor:default; }
-.liga:hover,.liga.on { border-color:var(--verde); color:var(--verde); background:rgba(0,255,135,0.05); }
+/* ══════════════════════════
+   GANADORES — NUEVA SECCIÓN
+══════════════════════════ */
+.ganadores-section{
+  background:linear-gradient(180deg,var(--negro) 0%,rgba(0,255,135,0.02) 50%,var(--negro) 100%);
+  border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);
+}
+.ganadores-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;margin-top:2.5rem;
+}
+.ganador-card{
+  position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(255,216,77,0.2);
+  background:linear-gradient(135deg,var(--card) 0%,rgba(255,216,77,0.04) 100%);
+  padding:2rem;
+  transform-style:preserve-3d;
+  transition:transform 0.4s ease,box-shadow 0.4s ease;
+  cursor:default;
+}
+.ganador-card:hover{
+  transform:perspective(800px) rotateX(-3deg) rotateY(3deg) translateY(-6px);
+  box-shadow:0 20px 60px rgba(255,216,77,0.15);
+}
+.ganador-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 40%,rgba(255,216,77,0.06) 100%);
+  pointer-events:none;
+}
+.ganador-badge{
+  position:absolute;top:0;right:0;
+  background:var(--oro);color:var(--negro);
+  font-size:0.62rem;font-weight:800;letter-spacing:0.1em;
+  padding:0.3rem 0.9rem;border-bottom-left-radius:8px;
+}
+.ganador-trophy{font-size:2.5rem;margin-bottom:1rem;}
+.ganador-nombre{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--oro);letter-spacing:0.05em;line-height:1;margin-bottom:0.25rem;}
+.ganador-alias{font-size:0.8rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;}
+.ganador-premio{
+  font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--verde);
+  line-height:1;margin-bottom:0.5rem;
+}
+.ganador-meta{font-size:0.8rem;color:var(--muted2);display:flex;align-items:center;gap:0.5rem;}
+.ganador-dot{width:6px;height:6px;background:var(--verde);border-radius:50%;animation:pulseAnim 2s infinite;}
 
-/* ── TRACKING PREVIEW ── */
-.tbox { background:var(--card); border:1px solid var(--borde); border-radius:12px; overflow:hidden; margin-top:3rem; }
-.thead { background:var(--card2); padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--borde); }
-.thead-t { font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--texto); }
-.live { display:flex; align-items:center; gap:0.5rem; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--verde); }
-.ldot { width:8px; height:8px; background:var(--verde); border-radius:50%; animation:pulseAnim 1.5s infinite; }
-.trow { display:grid; grid-template-columns:2.5rem 1fr repeat(6,2.4rem) 3rem; align-items:center; padding:0.7rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.85rem; transition:background 0.15s; }
-.trow:hover { background:rgba(255,255,255,0.02); }
-.trow:last-child { border-bottom:none; }
-.trow.hdr { font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted2); background:rgba(0,0,0,0.3); }
-.rk { font-weight:800; font-size:0.9rem; }
-.r1{color:var(--oro);} .r2{color:#C0C0C0;} .r3{color:#CD7F32;} .r4{color:var(--muted);}
-.cell { width:2rem; height:2rem; border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:800; margin:0 auto; }
+/* historial tabla */
+.historial{
+  margin-top:2rem;background:var(--card);border:1px solid var(--borde);
+  border-radius:12px;overflow:hidden;
+}
+.historial-row{
+  display:grid;grid-template-columns:2rem 1fr auto auto;
+  align-items:center;gap:1rem;padding:0.85rem 1.5rem;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  font-size:0.88rem;transition:background 0.15s;
+}
+.historial-row:last-child{border-bottom:none;}
+.historial-row:hover{background:rgba(255,255,255,0.02);}
+.historial-row.hdr{
+  font-size:0.68rem;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--muted2);
+  background:rgba(0,0,0,0.3);
+}
+.h-pos{font-weight:800;color:var(--oro);}
+.h-nombre{font-weight:600;color:var(--texto);}
+.h-aciertos{
+  background:rgba(0,255,135,0.08);color:var(--verde);
+  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;
+  padding:0.1rem 0.6rem;border-radius:5px;
+  border:1px solid rgba(0,255,135,0.15);text-align:center;
+}
+.h-premio{font-weight:700;color:var(--oro);font-size:0.9rem;}
+
+/* ══════════════════════════
+   STEPS 3D
+══════════════════════════ */
+.steps{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.step{
+  background:var(--card);border:1px solid var(--borde);
+  border-radius:16px;padding:2.5rem 2rem;
+  position:relative;overflow:hidden;
+  transform-style:preserve-3d;
+  transition:transform 0.4s ease,box-shadow 0.4s ease,border-color 0.3s;
+}
+.step:hover{
+  transform:perspective(600px) rotateX(-4deg) translateY(-8px);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(0,255,135,0.2);
+  border-color:rgba(0,255,135,0.3);
+}
+.step::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--verde),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.step:hover::after{opacity:1;}
+.step-bg{font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.04);position:absolute;top:0.5rem;right:1rem;pointer-events:none;}
+.step-icon{font-size:2.2rem;margin-bottom:1.25rem;}
+.step h3{font-size:1rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--texto);margin-bottom:0.6rem;}
+.step p{font-size:0.9rem;color:var(--muted);line-height:1.7;}
+
+/* ══════════════════════════
+   LIGAS
+══════════════════════════ */
+.ligas{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem;}
+.liga{
+  display:flex;align-items:center;gap:0.5rem;
+  background:var(--card);border:1px solid var(--borde2);
+  border-radius:8px;padding:0.6rem 1.2rem;
+  font-size:0.88rem;font-weight:600;color:var(--texto);
+  transition:all 0.2s;cursor:default;
+}
+.liga:hover,.liga.on{border-color:var(--verde);color:var(--verde);background:rgba(0,255,135,0.05);}
+
+/* ══════════════════════════
+   TRACKING PREVIEW
+══════════════════════════ */
+.tbox{
+  background:var(--card);border:1px solid var(--borde);
+  border-radius:16px;overflow:hidden;margin-top:3rem;
+  box-shadow:0 0 0 1px rgba(0,255,135,0.05),0 40px 80px rgba(0,0,0,0.4);
+}
+.thead{background:var(--card2);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--borde);}
+.thead-t{font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--texto);}
+.live{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--verde);}
+.ldot{width:8px;height:8px;background:var(--verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
+.trow{display:grid;grid-template-columns:2.5rem 1fr repeat(6,2.4rem) 3rem;align-items:center;padding:0.7rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.85rem;transition:background 0.15s;}
+.trow:hover{background:rgba(255,255,255,0.02);}
+.trow:last-child{border-bottom:none;}
+.trow.hdr{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted2);background:rgba(0,0,0,0.3);}
+.rk{font-weight:800;font-size:0.9rem;}
+.r1{color:var(--oro);}.r2{color:#C0C0C0;}.r3{color:#CD7F32;}.r4{color:var(--muted);}
+.cell{width:2rem;height:2rem;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;margin:0 auto;}
 .ok{background:rgba(0,255,135,0.12);color:var(--verde);}
 .fail{background:rgba(255,77,106,0.12);color:var(--rojo);}
 .pend{background:rgba(255,255,255,0.04);color:var(--muted2);}
-.pts { background:rgba(0,255,135,0.08); color:var(--verde); font-family:'Bebas Neue',sans-serif; font-size:1.15rem; text-align:center; border-radius:5px; padding:0.1rem 0.3rem; border:1px solid rgba(0,255,135,0.15); }
-.pname { font-weight:500; color:var(--texto); }
+.pts{background:rgba(0,255,135,0.08);color:var(--verde);font-family:'Bebas Neue',sans-serif;font-size:1.15rem;text-align:center;border-radius:5px;padding:0.1rem 0.3rem;border:1px solid rgba(0,255,135,0.15);}
+.pname{font-weight:500;color:var(--texto);}
 
-/* ── PREMIOS ── */
-.pgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; margin-top:3rem; }
-.pcard { background:var(--negro); border:1px solid var(--borde2); border-radius:12px; padding:2.5rem 2rem; position:relative; overflow:hidden; transition:transform 0.2s,box-shadow 0.2s; }
-.pcard:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.4); }
-.pcard.top { border-color:rgba(255,216,77,0.4); background:linear-gradient(135deg,var(--negro) 60%,rgba(255,216,77,0.04)); }
-.pcard.top::after { content:'★ TOP PREMIO'; position:absolute; top:0; right:0; background:var(--oro); color:var(--negro); font-size:0.62rem; font-weight:800; letter-spacing:0.1em; padding:0.3rem 0.9rem; border-bottom-left-radius:8px; }
-.plabel { font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.75rem; }
-.pnum { font-family:'Bebas Neue',sans-serif; font-size:4rem; line-height:1; color:var(--verde); margin-bottom:0.5rem; }
-.pcard.top .pnum { color:var(--oro); }
-.psub { font-size:0.85rem; color:var(--muted); }
+/* ══════════════════════════
+   PREMIOS 3D
+══════════════════════════ */
+.premio-principal{
+  background:linear-gradient(135deg,var(--negro) 0%,rgba(255,216,77,0.06) 100%);
+  border:2px solid rgba(255,216,77,0.5);border-radius:20px;
+  padding:3rem 2rem;text-align:center;margin-bottom:1.5rem;
+  position:relative;overflow:hidden;
+  transform-style:preserve-3d;
+  transition:transform 0.5s ease,box-shadow 0.5s ease;
+}
+.premio-principal:hover{
+  transform:perspective(1000px) rotateX(-2deg) translateY(-8px);
+  box-shadow:0 30px 80px rgba(255,216,77,0.2),0 0 0 1px rgba(255,216,77,0.4);
+}
+.premio-principal::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(255,216,77,0.03) 60deg,transparent 120deg);
+  animation:rotateConic 8s linear infinite;pointer-events:none;
+}
+@keyframes rotateConic{to{transform:rotate(360deg);}}
 
-/* ── TESTIMONIALES ── */
-.tgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:1.5rem; margin-top:3rem; }
-.tcard { background:var(--card); border:1px solid var(--borde); border-radius:12px; padding:2rem; position:relative; transition:border-color 0.2s; }
-.tcard:hover { border-color:var(--borde2); }
-.tq { font-family:'Bebas Neue',sans-serif; font-size:6rem; line-height:1; color:rgba(0,255,135,0.07); position:absolute; top:0; right:1.5rem; pointer-events:none; }
-.stars { color:var(--oro); font-size:0.85rem; margin-bottom:1rem; }
-.tcard p { font-size:0.95rem; color:var(--muted); line-height:1.75; margin-bottom:1.5rem; position:relative; z-index:1; }
-.tauthor { display:flex; align-items:center; gap:0.75rem; }
-.ava { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--borde2),var(--card2)); border:1px solid var(--borde2); display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:1.1rem; color:var(--verde); flex-shrink:0; }
-.aname { font-size:0.9rem; font-weight:700; color:var(--texto); }
-.ameta { font-size:0.75rem; color:var(--muted2); margin-top:0.1rem; }
+/* promo referido mejorada */
+.promo-referido{
+  background:linear-gradient(135deg,rgba(0,255,135,0.04) 0%,rgba(0,255,135,0.08) 100%);
+  border:2px solid rgba(0,255,135,0.3);border-radius:16px;
+  padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.promo-referido:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(0,255,135,0.12);
+}
+.promo-badge{
+  background:var(--verde);color:var(--negro);
+  font-size:0.65rem;font-weight:800;letter-spacing:0.1em;
+  padding:0.2rem 0.7rem;border-radius:100px;
+  display:inline-block;margin-bottom:0.5rem;
+}
 
-/* ── CTA ── */
-.cta-wrap { background:linear-gradient(135deg,var(--card) 0%,rgba(0,255,135,0.03) 100%); border-top:1px solid var(--borde); border-bottom:1px solid var(--borde); }
-.cta-inner { max-width:700px; margin:0 auto; text-align:center; padding:7rem 2rem; }
-.cta-inner .stitle { font-size:clamp(2.8rem,7vw,5rem); }
-.cta-inner .sdesc { margin:1.5rem auto 3rem; max-width:480px; }
+/* ══════════════════════════
+   TESTIMONIALES 3D
+══════════════════════════ */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-top:3rem;}
+.tcard{
+  background:var(--card);border:1px solid var(--borde);
+  border-radius:16px;padding:2rem;position:relative;
+  transition:transform 0.4s ease,border-color 0.3s,box-shadow 0.4s;
+  transform-style:preserve-3d;
+}
+.tcard:hover{
+  transform:perspective(600px) rotateX(-3deg) rotateY(2deg) translateY(-6px);
+  border-color:rgba(0,255,135,0.2);
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);
+}
+.tq{font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.06);position:absolute;top:0;right:1.5rem;pointer-events:none;}
+.stars{color:var(--oro);font-size:0.85rem;margin-bottom:1rem;}
+.tcard p{font-size:0.95rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem;position:relative;z-index:1;}
+.tauthor{display:flex;align-items:center;gap:0.75rem;}
+.ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--borde2),var(--card2));border:1px solid var(--borde2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--verde);flex-shrink:0;}
+.aname{font-size:0.9rem;font-weight:700;color:var(--texto);}
+.ameta{font-size:0.75rem;color:var(--muted2);margin-top:0.1rem;}
 
-/* ── BOTONES CTA REGISTRO / SEGUIMIENTO ── */
-.cta-btns { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem; }
+/* ══════════════════════════
+   CTA FINAL
+══════════════════════════ */
+.cta-wrap{
+  background:linear-gradient(135deg,var(--card) 0%,rgba(0,255,135,0.03) 100%);
+  border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);
+}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center;padding:7rem 2rem;}
+.cta-inner .stitle{font-size:clamp(2.8rem,7vw,5rem);}
+.cta-inner .sdesc{margin:1.5rem auto 3rem;max-width:480px;}
+.cta-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
 
-.btn-registro {
-  display:inline-flex; align-items:center; gap:0.75rem;
-  background:var(--verde); color:var(--negro);
-  font-family:'Outfit',sans-serif; font-size:1rem; font-weight:800;
-  padding:1.1rem 2.5rem; border-radius:10px; border:none; cursor:pointer;
-  transition:all 0.2s; box-shadow:0 4px 24px rgba(0,255,135,0.3);
+.btn-registro{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:var(--verde);color:var(--negro);
+  font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;
+  padding:1.1rem 2.5rem;border-radius:10px;border:none;cursor:pointer;
+  transition:all 0.2s;box-shadow:0 4px 24px rgba(0,255,135,0.3);
   letter-spacing:0.04em;
 }
-.btn-registro:hover { background:var(--verde2); transform:translateY(-3px); box-shadow:0 10px 32px rgba(0,255,135,0.45); }
+.btn-registro:hover{background:var(--verde2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,255,135,0.45);}
 
-.btn-seguimiento {
-  display:inline-flex; align-items:center; gap:0.75rem;
-  background:transparent; color:var(--texto);
-  font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700;
-  padding:1.1rem 2.5rem; border-radius:10px;
-  border:2px solid var(--borde2); cursor:pointer;
-  transition:all 0.2s;
+.btn-seguimiento{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:transparent;color:var(--texto);
+  font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;
+  padding:1.1rem 2.5rem;border-radius:10px;
+  border:2px solid var(--borde2);cursor:pointer;
+  transition:all 0.2s;letter-spacing:0.04em;
 }
-.btn-seguimiento:hover { border-color:var(--oro); color:var(--oro); transform:translateY(-2px); }
+.btn-seguimiento:hover{border-color:var(--verde);color:var(--verde);transform:translateY(-2px);}
 
-.trust { display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; margin-top:2.5rem; }
-.ti { display:flex; align-items:center; gap:0.4rem; font-size:0.8rem; font-weight:600; color:var(--muted); }
-.ti span { font-size:1rem; }
+.trust{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.ti{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--muted);font-weight:500;}
 
-/* ── FOOTER ── */
-footer { background:var(--negro); border-top:1px solid var(--borde); padding:2.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
-.flogo { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:0.06em; color:var(--texto); }
-.flogo em { color:var(--verde); font-style:normal; }
-footer p { font-size:0.8rem; color:var(--muted2); }
-
-/* ══════════════════════════════════════
-   VISTA IFRAME (Registro / Seguimiento)
-══════════════════════════════════════ */
-#vista-registro, #vista-seguimiento {
-  position:fixed; inset:0; z-index:900;
-  display:none; flex-direction:column;
+/* ══════════════════════════
+   FOOTER
+══════════════════════════ */
+footer{
+  background:var(--negro);border-top:1px solid var(--borde);
+  padding:3rem 2rem;text-align:center;
 }
-#vista-registro.activa, #vista-seguimiento.activa {
-  display:flex;
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(--texto);}
+.flogo em{color:var(--verde);font-style:normal;}
+footer p{font-size:0.82rem;color:var(--muted2);margin-top:0.75rem;}
+
+/* ══════════════════════════
+   IFRAMES
+══════════════════════════ */
+#vista-registro,#vista-seguimiento,#vista-analisis{
+  display:none;flex-direction:column;height:100vh;
 }
-
-.iframe-topbar {
-  position:relative; z-index:901;
-  background:rgba(6,8,10,0.97);
-  border-bottom:2px solid var(--verde);
-  padding:0.6rem 1.5rem;
-  display:flex; align-items:center; gap:1rem;
-  flex-shrink:0;
+.iframe-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.85rem 1.5rem;background:rgba(6,8,10,0.97);
+  border-bottom:1px solid var(--borde);flex-shrink:0;
 }
-.iframe-topbar.seguimiento-bar { border-bottom-color:var(--oro); }
-
-.btn-back-home {
-  display:flex; align-items:center; gap:0.5rem;
-  background:var(--card); border:1px solid var(--borde2);
-  color:var(--muted); font-size:0.78rem; font-weight:700;
-  letter-spacing:0.08em; text-transform:uppercase;
-  padding:0.45rem 1rem; border-radius:6px; cursor:pointer;
-  font-family:'Outfit',sans-serif; transition:all 0.2s;
-  flex-shrink:0;
+.btn-back-home{
+  background:none;border:1px solid var(--borde2);color:var(--muted);
+  font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;
+  cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;
 }
-.btn-back-home:hover { border-color:var(--verde); color:var(--verde); }
+.btn-back-home:hover{border-color:var(--verde);color:var(--verde);}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(--texto);}
+.topbar-title em{color:var(--verde);font-style:normal;}
+.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.3rem 0.8rem;border-radius:100px;}
+.ldot-sm{width:6px;height:6px;background:var(--verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
+.iframe-main{flex:1;border:none;width:100%;background:var(--negro);}
+.seguimiento-bar{border-bottom-color:var(--oro);}
+.oro{color:var(--oro)!important;}
+.ldot-sm.oro{background:var(--oro);}
 
-.topbar-title {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.2rem; letter-spacing:0.1em; color:var(--texto);
-  flex:1;
-}
-.topbar-title em { color:var(--verde); font-style:normal; }
-.topbar-title.oro em { color:var(--oro); }
+/* ══════════════════════════
+   ANIMACIONES
+══════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulseAnim{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.85);}}
 
-.topbar-badge {
-  display:flex; align-items:center; gap:0.4rem;
-  font-size:0.7rem; font-weight:700; letter-spacing:0.12em;
-  text-transform:uppercase; color:var(--verde);
-}
-.topbar-badge.oro { color:var(--oro); }
-.ldot-sm { width:6px; height:6px; background:var(--verde); border-radius:50%; animation:pulseAnim 1.5s infinite; flex-shrink:0; }
-.ldot-sm.oro { background:var(--oro); }
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
 
-.iframe-main {
-  flex:1; width:100%; border:none;
-  background:var(--negro);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
-@keyframes pulseAnim { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(1.5);} }
-.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.6s ease,transform 0.6s ease; }
-.reveal.in { opacity:1; transform:translateY(0); }
-
-/* ── MOBILE ── */
+/* ══════════════════════════
+   RESPONSIVE
+══════════════════════════ */
 @media(max-width:768px){
-  nav { padding:0.85rem 1.25rem; }
-  .nav-links { display:none; }
-  .hamburger { display:flex; }
-  .stats-bar { grid-template-columns:repeat(2,1fr); }
-  .stat { border-right:none; border-bottom:1px solid var(--borde); }
-  .stat:nth-child(odd) { border-right:1px solid var(--borde); }
-  .stat:last-child { border-bottom:none; }
-  .trow { grid-template-columns:2rem 1fr repeat(4,2rem) 2.5rem; padding:0.6rem 1rem; font-size:0.78rem; }
-  .trow>*:nth-child(7),.trow>*:nth-child(8) { display:none; }
-  footer { flex-direction:column; text-align:center; }
-  .cta-btns { flex-direction:column; align-items:center; }
-  .btn-registro, .btn-seguimiento { width:100%; justify-content:center; }
-  .iframe-topbar { padding:0.5rem 1rem; gap:0.6rem; }
-  .topbar-title { font-size:1rem; }
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .stat:nth-child(2){border-right:none;}
+  .stat:nth-child(3){border-top:1px solid var(--borde);}
+  .trow{grid-template-columns:2rem 1fr repeat(4,2rem) 2.5rem;}
+  .trow .cell:nth-child(6),.trow .cell:nth-child(7){display:none;}
+  .hero-referido{flex-direction:column;align-items:flex-start;gap:0.5rem;}
+  .historial-row{grid-template-columns:2rem 1fr auto;}
+  .historial-row .h-aciertos{display:none;}
 }
 </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKGS2XRL"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
-<!-- ══════════════════════════════════════
-     NAV PRINCIPAL
-══════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="navPrincipal">
-  <span class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</span>
+  <div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
   <ul class="nav-links">
-    <li><button onclick="irSeccion('como-funciona')">Cómo Funciona</button></li>
+    <li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
+    <li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
     <li><button onclick="irSeccion('premios')">Premios</button></li>
-    <li><button onclick="mostrarSeguimiento()">📊 Seguimiento</button></li>
-    <li><button onclick="mostrarAnalisis()">🔐 Análisis Pro</button></li>
-    <li><button class="nav-btn-cta" onclick="mostrarRegistro()">⚽ Registrarme</button></li>
+    <li><button onclick="mostrarSeguimiento()">En Vivo</button></li>
+    <li><button class="btn-tema" id="btnTema" onclick="toggleTema()" title="Cambiar tema">🌙</button></li>
+    <li><button class="nav-btn-cta" onclick="mostrarRegistro()">⚽ Jugar Ahora</button></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="btn-tema" id="btnTemaMobile" onclick="toggleTema()" title="Cambiar tema">🌙</button>
+    <button class="hamburger" id="hambBtn" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
-
-<!-- Menú mobile -->
 <div class="nav-mobile" id="navMobile">
-  <button onclick="cerrarMenu();irSeccion('como-funciona')">Cómo Funciona</button>
-  <button onclick="cerrarMenu();irSeccion('premios')">Premios</button>
-  <button onclick="cerrarMenu();mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
-  <button onclick="cerrarMenu();mostrarAnalisis()">🔐 Análisis Premium</button>
-  <button class="cta-mobile" onclick="cerrarMenu();mostrarRegistro()">⚽ Registrar mi Quiniela</button>
+  <button onclick="irSeccion('ganadores');cerrarMenu()">Ganadores</button>
+  <button onclick="irSeccion('como-funciona');cerrarMenu()">Cómo funciona</button>
+  <button onclick="irSeccion('premios');cerrarMenu()">Premios</button>
+  <button onclick="mostrarSeguimiento();cerrarMenu()">En Vivo</button>
+  <button class="cta-mobile" onclick="mostrarRegistro();cerrarMenu()">⚽ Jugar Ahora — $100 MXN</button>
 </div>
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════════════════════════
      VISTA LANDING
-══════════════════════════════════════ -->
+═══════════════════════════════════ -->
 <div id="vista-landing" class="vista activa">
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-glow2"></div>
+    <div class="hero-bg-3d">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
     <div class="hero-hex"></div>
     <div class="hero-content">
-      <div class="hero-tag"><div class="pdot"></div>Jornada Inaugural — Activa ahora</div>
-      <h1 class="hero-title">La<br>Quiniela<br>Más <span class="v">Pro</span><br>de <span class="o">México</span></h1>
-      <p class="hero-desc">Predice resultados de <strong>Liga MX, Premier League, Champions League</strong> y más. Compite con dobles y triples, gana dinero y vive el fut como nunca.</p>
+      <div class="hero-tag"><div class="pdot"></div>Jornada Activa — Inscripciones Abiertas</div>
+      <h1 class="hero-title">
+        <span class="v">Quiniela</span><br>
+        <span class="o">Pro</span> Fut
+      </h1>
+      <p class="hero-desc">
+        Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.
+      </p>
+
+      <!-- PROMO REFERIDO — visible desde el hero -->
+      <div class="hero-referido">
+        <div class="ref-icon">🎁</div>
+        <div class="ref-text">
+          <strong>Invita 1 amigo que pague</strong> y obtén <span style="color:#FFD84D;font-weight:800;">$20 de descuento</span> en tu próxima jornada
+        </div>
+      </div>
+
       <div class="hero-btns">
-        <button class="btn-v" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela</button>
-        <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Seguimiento</button>
+        <button class="btn-v" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
+        <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
       </div>
     </div>
   </section>
 
   <!-- STATS -->
   <div class="stats-bar">
-    <div class="stat"><span class="stat-n" data-to="847">0</span><span class="stat-l">Jugadores activos</span></div>
-    <div class="stat"><span class="stat-n">$100</span><span class="stat-l">Precio por quiniela</span></div>
-    <div class="stat"><span class="stat-n">$1,200</span><span class="stat-l">Premio promedio MXN</span></div>
-    <div class="stat"><span class="stat-n">5</span><span class="stat-l">Ligas incluidas</span></div>
+    <div class="stat"><span class="stat-n" data-to="17">0</span><span class="stat-l">Jornadas Jugadas</span></div>
+    <div class="stat"><span class="stat-n" data-to="880" style="color:var(--oro)">0</span><span class="stat-l">Premio Actual $MXN</span></div>
+    <div class="stat"><span class="stat-n" data-to="8">0</span><span class="stat-l">Jugadores Activos</span></div>
+    <div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
+  </div>
+
+  <!-- ══ GANADORES REALES — NUEVA SECCIÓN ══ -->
+  <div class="ganadores-section" id="ganadores">
+    <section class="sec">
+      <span class="chip reveal">Ganadores Reales</span>
+      <h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
+      <p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
+
+      <div class="ganadores-grid">
+        <!-- Ganador jornada actual -->
+        <div class="ganador-card reveal">
+          <div class="ganador-badge">🏆 JORNADA 17</div>
+          <div class="ganador-trophy">🥇</div>
+          <div class="ganador-nombre">KAKAROTTO</div>
+          <div class="ganador-alias">Mark Overmars</div>
+          <div class="ganador-premio">$880</div>
+          <div class="ganador-meta"><div class="ganador-dot"></div>9 aciertos · 60% · Jornada 17</div>
+        </div>
+        <!-- Ganadores jornada anterior -->
+        <div class="ganador-card reveal">
+          <div class="ganador-badge">🏆 JORNADA 16</div>
+          <div class="ganador-trophy">🥇</div>
+          <div class="ganador-nombre">Perkys & Chino</div>
+          <div class="ganador-alias">Eduardo P. · Jugador Verificado</div>
+          <div class="ganador-premio">$400 c/u</div>
+          <div class="ganador-meta"><div class="ganador-dot"></div>Empate en 1er lugar · $400 cada uno</div>
+        </div>
+      </div>
+
+      <!-- Historial compacto -->
+      <div class="historial reveal" style="margin-top:2.5rem;">
+        <div class="historial-row hdr">
+          <span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span>
+        </div>
+        <div class="historial-row">
+          <span class="h-pos">🥇</span>
+          <span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span>
+          <span class="h-aciertos">9</span>
+          <span class="h-premio">$880</span>
+        </div>
+        <div class="historial-row">
+          <span class="h-pos">🥇</span>
+          <span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span>
+          <span class="h-aciertos">—</span>
+          <span class="h-premio">$400</span>
+        </div>
+        <div class="historial-row">
+          <span class="h-pos">🥇</span>
+          <span class="h-nombre">Chino <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span>
+          <span class="h-aciertos">—</span>
+          <span class="h-premio">$400</span>
+        </div>
+        <div class="historial-row" style="opacity:0.4;">
+          <span class="h-pos" style="color:var(--muted);">—</span>
+          <span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span>
+          <span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span>
+          <span class="h-premio" style="color:var(--verde);">$???</span>
+        </div>
+      </div>
+
+    </section>
   </div>
 
   <!-- CÓMO FUNCIONA -->
-  <div id="como-funciona" style="background:var(--card);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
-    <div class="sec">
+  <div style="background:var(--negro);">
+    <section class="sec" id="como-funciona">
       <span class="chip reveal">El Proceso</span>
       <h2 class="stitle reveal">Así de fácil<br>es participar</h2>
       <p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
       <div class="steps">
-        <div class="step reveal"><div class="step-bg">01</div><div class="step-icon">⚽</div><h3>Entra al formulario</h3><p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p></div>
-        <div class="step reveal"><div class="step-bg">02</div><div class="step-icon">🔀</div><h3>Juega con Dobles y Triples</h3><p>Marca 2 o 3 opciones por partido para multiplicar tu boleta. Más riesgo, más premio.</p></div>
-        <div class="step reveal"><div class="step-bg">03</div><div class="step-icon">📊</div><h3>Sigue tu posición en vivo</h3><p>Ranking actualizado en tiempo real conforme caen los resultados.</p></div>
-        <div class="step reveal"><div class="step-bg">04</div><div class="step-icon">🏆</div><h3>Cobra tu premio</h3><p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p></div>
+        <div class="step reveal">
+          <div class="step-bg">01</div>
+          <div class="step-icon">⚽</div>
+          <h3>Entra al formulario</h3>
+          <p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-bg">02</div>
+          <div class="step-icon">🔀</div>
+          <h3>Juega con Dobles y Triples</h3>
+          <p>Marca 2 o 3 opciones por partido para multiplicar tu boleta. Más riesgo, más premio.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-bg">03</div>
+          <div class="step-icon">📊</div>
+          <h3>Sigue tu posición en vivo</h3>
+          <p>Ranking actualizado en tiempo real conforme caen los resultados.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-bg">04</div>
+          <div class="step-icon">🏆</div>
+          <h3>Cobra tu premio</h3>
+          <p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 
   <!-- LIGAS -->
@@ -495,15 +739,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones de todos los jugadores.</p>
       <div class="tbox reveal">
         <div class="thead">
-          <span class="thead-t">Jornada Inaugural — Seguimiento Live</span>
+          <span class="thead-t">Jornada en Curso — Seguimiento Live</span>
           <span class="live"><div class="ldot"></div>En Vivo</span>
         </div>
         <div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
-        <div class="trow"><span class="rk r1">1</span><span class="pname">ElCharro99</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell pend">—</div><div class="pts">5</div></div>
-        <div class="trow"><span class="rk r2">2</span><span class="pname">NaranjaMec</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">3</div></div>
-        <div class="trow"><span class="rk r3">3</span><span class="pname">GolazoJRT</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell pend">—</div><div class="pts">3</div></div>
-        <div class="trow"><span class="rk r4">4</span><span class="pname">TacticaFC</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">2</div></div>
-        <div class="trow" style="opacity:0.5"><span class="rk r4">5</span><span class="pname">MrPenalti</span><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">2</div></div>
+        <div class="trow"><span class="rk r1">1</span><span class="pname">KAKAROTTO</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">5</div></div>
+        <div class="trow"><span class="rk r2">2</span><span class="pname">CHINICUIL</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">4</div></div>
+        <div class="trow"><span class="rk r3">3</span><span class="pname">HIJM</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">4</div></div>
+        <div class="trow"><span class="rk r4">4</span><span class="pname">MR_HAPPY</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">3</div></div>
+        <div class="trow" style="opacity:0.5"><span class="rk r4">5</span><span class="pname">A_P_E_X</span><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">2</div></div>
       </div>
       <div style="text-align:center;margin-top:2rem;">
         <button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button>
@@ -518,8 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="stitle reveal">El ganador<br><span style="color:var(--oro)">se lleva todo</span></h2>
       <p class="sdesc reveal">Una quiniela. Un campeón. El pozo completo de la jornada directo al mejor pronóstico.</p>
 
-      <!-- Tarjeta principal ganador -->
-      <div class="reveal" style="background:linear-gradient(135deg,var(--negro) 0%,rgba(255,216,77,0.06) 100%);border:2px solid rgba(255,216,77,0.5);border-radius:16px;padding:3rem 2rem;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden;">
+      <div class="premio-principal reveal">
         <div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
         <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
         <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);letter-spacing:0.05em;">EL POZO</div>
@@ -531,12 +774,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- Promo referidos -->
-      <div class="reveal" style="background:linear-gradient(135deg,rgba(0,255,135,0.04) 0%,rgba(0,255,135,0.08) 100%);border:2px solid rgba(0,255,135,0.3);border-radius:16px;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+      <!-- PROMO REFERIDO ACTUALIZADA -->
+      <div class="promo-referido reveal">
         <div style="font-size:3.5rem;flex-shrink:0;">🎁</div>
         <div style="flex:1;min-width:220px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);letter-spacing:0.05em;line-height:1;margin-bottom:0.5rem;">INVITA 3 AMIGOS<br>Y JUEGAS GRATIS</div>
-          <div style="font-size:0.9rem;color:var(--muted);line-height:1.6;">Consigue que 3 amigos se registren y paguen su quiniela en la misma jornada y <strong style="color:var(--texto)">la tuya no te cuesta nada.</strong> Más amigos, más pozo, más emoción.</div>
+          <div class="promo-badge">NUEVO</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);letter-spacing:0.05em;line-height:1;margin-bottom:0.5rem;">INVITA 1 AMIGO<br>Y OBTÉN $20 OFF</div>
+          <div style="font-size:0.9rem;color:var(--muted);line-height:1.6;">Consigue que un amigo se registre y pague su quiniela y <strong style="color:var(--texto)">tú obtienes $20 de descuento</strong> en tu próxima jornada. Sin límite de veces.</div>
         </div>
         <button class="btn-v" onclick="mostrarRegistro()" style="flex-shrink:0;">⚽ Participar</button>
       </div>
@@ -564,12 +808,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">jornada activa</span></h2>
       <p class="sdesc reveal">Inscripción directa en el sitio. Pronósticos, dobles, triples, boleta descargable y seguimiento en vivo — todo en un solo lugar.</p>
       <div class="cta-btns reveal">
-        <button class="btn-registro" onclick="mostrarRegistro()">
-          ⚽ Registrar mi Quiniela — $100 MXN
-        </button>
-        <button class="btn-seguimiento" onclick="mostrarSeguimiento()">
-          📊 Ver Seguimiento en Vivo
-        </button>
+        <button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button>
+        <button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
       </div>
       <div class="trust reveal">
         <div class="ti"><span>🔒</span> Pago seguro</div>
@@ -589,28 +829,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </div><!-- /vista-landing -->
 
-<!-- ══════════════════════════════════════
-     VISTA REGISTRO (iframe GAS)
-══════════════════════════════════════ -->
+<!-- VISTA REGISTRO -->
 <div id="vista-registro">
   <div class="iframe-topbar">
     <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
     <div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Registro</div>
     <div class="topbar-badge"><div class="ldot-sm"></div>Jornada Activa</div>
   </div>
-  <iframe
-    id="iframe-registro"
-    class="iframe-main"
-    src=""
-    title="Registro de Quiniela"
-    allow="clipboard-write"
-    loading="lazy">
-  </iframe>
+  <iframe id="iframe-registro" class="iframe-main" src="" title="Registro de Quiniela" allow="clipboard-write" loading="lazy"></iframe>
 </div>
 
-<!-- ══════════════════════════════════════
-     VISTA ANÁLISIS PREMIUM (iframe GAS)
-══════════════════════════════════════ -->
+<!-- VISTA ANÁLISIS -->
 <div id="vista-analisis">
   <div class="iframe-topbar" style="border-bottom-color:var(--oro);">
     <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
@@ -619,139 +848,157 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ldot-sm" style="background:var(--oro);"></div>Exclusivo
     </div>
   </div>
-  <iframe
-    id="iframe-analisis"
-    class="iframe-main"
-    src=""
-    title="Análisis Premium"
-    loading="lazy">
-  </iframe>
+  <iframe id="iframe-analisis" class="iframe-main" src="" title="Análisis Premium" loading="lazy"></iframe>
 </div>
+
+<!-- VISTA SEGUIMIENTO -->
 <div id="vista-seguimiento">
   <div class="iframe-topbar seguimiento-bar">
     <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
     <div class="topbar-title oro">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Seguimiento</div>
     <div class="topbar-badge oro"><div class="ldot-sm oro"></div>En Vivo</div>
   </div>
-  <iframe
-    id="iframe-seguimiento"
-    class="iframe-main"
-    src=""
-    title="Seguimiento en Vivo"
-    loading="lazy">
-  </iframe>
+  <iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" loading="lazy"></iframe>
 </div>
 
 <script>
-// ── URLs de tu Web App ──
 var URL_REGISTRO    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
 var URL_ANALISIS    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=analisis';
+var iframesLoaded = { registro:false, seguimiento:false, analisis:false };
 
-var iframesLoaded = { registro: false, seguimiento: false, analisis: false };
+// ══════════════════════════
+// TEMA DÍA / NOCHE
+// ══════════════════════════
+var temaManual = false; // ¿el usuario lo cambió manualmente?
 
-// ── Navegación ──
-function mostrarLanding() {
-  document.getElementById('vista-landing').classList.add('activa');
-  document.getElementById('vista-landing').style.display = 'block';
-  document.getElementById('vista-registro').style.display = 'none';
-  document.getElementById('vista-seguimiento').style.display = 'none';
-  document.getElementById('vista-analisis').style.display = 'none';
-  document.getElementById('navPrincipal').style.display = 'flex';
-  window.scrollTo(0, 0);
-  document.title = 'QuinielaPro Fut — La Quiniela Más Pro de México';
+function esDeDia(){
+  var h = new Date().getHours();
+  return h >= 7 && h < 19; // 7am - 7pm = día
 }
 
-function mostrarAnalisis() {
-  window.location.href = 'analisis.html';
-}
-
-function mostrarRegistro() {
-  document.getElementById('vista-landing').style.display = 'none';
-  document.getElementById('vista-seguimiento').style.display = 'none';
-  document.getElementById('vista-registro').style.display = 'flex';
-  document.getElementById('navPrincipal').style.display = 'none';
-  document.title = 'QuinielaPro Fut — Registrar Quiniela';
-
-  // Cargar iframe solo la primera vez
-  if (!iframesLoaded.registro) {
-    document.getElementById('iframe-registro').src = URL_REGISTRO;
-    iframesLoaded.registro = true;
-  }
-}
-
-function mostrarSeguimiento() {
-  document.getElementById('vista-landing').style.display = 'none';
-  document.getElementById('vista-registro').style.display = 'none';
-  document.getElementById('vista-seguimiento').style.display = 'flex';
-  document.getElementById('navPrincipal').style.display = 'none';
-  document.title = 'QuinielaPro Fut — Seguimiento en Vivo';
-
-  // Cargar iframe solo la primera vez
-  if (!iframesLoaded.seguimiento) {
-    document.getElementById('iframe-seguimiento').src = URL_SEGUIMIENTO;
-    iframesLoaded.seguimiento = true;
-  }
-}
-
-function irSeccion(id) {
-  mostrarLanding();
-  setTimeout(function() {
-    var el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  }, 100);
-}
-
-// ── Menú mobile ──
-function toggleMenu() {
-  var m = document.getElementById('navMobile');
-  if (m.classList.contains('open')) {
-    cerrarMenu();
+function aplicarTema(dia){
+  var html = document.documentElement;
+  var btns = document.querySelectorAll('#btnTema, #btnTemaMobile');
+  if(dia){
+    html.classList.add('dia');
+    btns.forEach(function(b){ b.textContent = '🌙'; b.title = 'Modo noche'; });
   } else {
+    html.classList.remove('dia');
+    btns.forEach(function(b){ b.textContent = '☀️'; b.title = 'Modo día'; });
+  }
+}
+
+function toggleTema(){
+  temaManual = true;
+  var esDia = document.documentElement.classList.contains('dia');
+  aplicarTema(!esDia);
+  localStorage.setItem('qpf-tema', !esDia ? 'dia' : 'noche');
+}
+
+// Al cargar: revisa localStorage o usa la hora
+(function(){
+  var guardado = localStorage.getItem('qpf-tema');
+  if(guardado){
+    aplicarTema(guardado === 'dia');
+  } else {
+    aplicarTema(esDeDia());
+  }
+})();
+
+// Actualizar tema automáticamente cada hora si no fue cambiado manualmente
+setInterval(function(){
+  if(!temaManual){ aplicarTema(esDeDia()); }
+}, 60 * 60 * 1000);
+
+// ══════════════════════════
+// NAVEGACIÓN
+// ══════════════════════════
+function mostrarLanding(){
+  document.getElementById('vista-landing').classList.add('activa');
+  document.getElementById('vista-landing').style.display='block';
+  document.getElementById('vista-registro').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='none';
+  document.getElementById('vista-analisis').style.display='none';
+  document.getElementById('navPrincipal').style.display='flex';
+  window.scrollTo(0,0);
+  document.title='QuinielaPro Fut — La Quiniela Más Pro de México';
+}
+function mostrarAnalisis(){ window.location.href='analisis.html'; }
+function mostrarRegistro(){
+  document.getElementById('vista-landing').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='none';
+  document.getElementById('vista-registro').style.display='flex';
+  document.getElementById('navPrincipal').style.display='none';
+  document.title='QuinielaPro Fut — Registrar Quiniela';
+  if(!iframesLoaded.registro){ document.getElementById('iframe-registro').src=URL_REGISTRO; iframesLoaded.registro=true; }
+}
+function mostrarSeguimiento(){
+  document.getElementById('vista-landing').style.display='none';
+  document.getElementById('vista-registro').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='flex';
+  document.getElementById('navPrincipal').style.display='none';
+  document.title='QuinielaPro Fut — Seguimiento en Vivo';
+  if(!iframesLoaded.seguimiento){ document.getElementById('iframe-seguimiento').src=URL_SEGUIMIENTO; iframesLoaded.seguimiento=true; }
+}
+function irSeccion(id){
+  mostrarLanding();
+  setTimeout(function(){ var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); },100);
+}
+
+// ══════════════════════════
+// MENÚ HAMBURGER — FIX
+// ══════════════════════════
+var menuAbierto = false;
+function toggleMenu(){
+  var m = document.getElementById('navMobile');
+  menuAbierto = !menuAbierto;
+  if(menuAbierto){
     m.classList.add('open');
     m.style.display = 'flex';
+  } else {
+    cerrarMenu();
   }
 }
-function cerrarMenu() {
+function cerrarMenu(){
   var m = document.getElementById('navMobile');
   m.classList.remove('open');
   m.style.display = 'none';
+  menuAbierto = false;
 }
 
-// ── Reveal on scroll ──
-var io = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e, i) {
-    if (e.isIntersecting) {
-      setTimeout(function(){ e.target.classList.add('in'); }, i * 70);
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+// ══════════════════════════
+// REVEAL ON SCROLL
+// ══════════════════════════
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e,i){ if(e.isIntersecting){ setTimeout(function(){e.target.classList.add('in');},i*70); io.unobserve(e.target); } });
+},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 
-// ── Count up ──
-function countUp(el, to, dur) {
-  dur = dur || 1800;
-  var n = 0, step = to / (dur / 16);
-  var t = setInterval(function() {
-    n += step;
-    if (n >= to) { el.textContent = to; clearInterval(t); return; }
-    el.textContent = Math.floor(n);
-  }, 16);
+// COUNT UP
+function countUp(el,to,dur){
+  dur=dur||1800;var n=0,step=to/(dur/16);
+  var t=setInterval(function(){ n+=step; if(n>=to){el.textContent=to;clearInterval(t);return;} el.textContent=Math.floor(n); },16);
 }
-var cio = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) { countUp(e.target, +e.target.dataset.to); cio.unobserve(e.target); }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('[data-to]').forEach(function(el){ cio.observe(el); });
+var cio=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){countUp(e.target,+e.target.dataset.to);cio.unobserve(e.target);} });
+},{threshold:0.5});
+document.querySelectorAll('[data-to]').forEach(function(el){cio.observe(el);});
 
-// ── Liga chips ──
-document.querySelectorAll('.liga').forEach(function(c) {
-  c.addEventListener('click', function() {
-    document.querySelectorAll('.liga').forEach(function(x){ x.classList.remove('on'); });
-    c.classList.add('on');
+// LIGA CHIPS
+document.querySelectorAll('.liga').forEach(function(c){
+  c.addEventListener('click',function(){ document.querySelectorAll('.liga').forEach(function(x){x.classList.remove('on');}); c.classList.add('on'); });
+});
+
+// 3D CARD TILT
+document.querySelectorAll('.ganador-card,.step,.tcard').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-0.5;
+    var y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform='perspective(600px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg) translateY(-6px)';
   });
+  card.addEventListener('mouseleave',function(){ card.style.transform=''; });
 });
 </script>
 </body>
