@@ -1,1886 +1,1137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<meta charset="UTF-8">
-<base target="_top">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<title>QUINIELA PRO FUT</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QuinielaPro Fut — La Quiniela Más Pro de México</title>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WKGS2XRL');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-/* ══════════════════════════════════════════════
-   VARIABLES
-══════════════════════════════════════════════ */
-:root {
-  --bg: #04090d;
-  --surface: #081018;
-  --surface2: #0c1820;
-  --border: #132030;
-  --border2: #1a2d40;
-  --verde: #00e676;
-  --verde2: #00b050;
-  --verde-glow: rgba(0,230,118,0.15);
-  --oro: #ffd600;
-  --oro2: #e6c000;
-  --oro-dim: rgba(255,214,0,0.1);
-  --rojo: #ff3b5c;
-  --azul: #4fc3f7;
-  --texto: #e8f4ff;
-  --muted: #4a6a80;
-  --muted2: #2a4050;
-  --font-head: 'Bebas Neue', sans-serif;
-  --font-cond: 'Barlow Condensed', sans-serif;
-  --font-body: 'Barlow', sans-serif;
-  --radius: 10px;
-  --shadow: 0 8px 40px rgba(0,0,0,0.7);
-}
-:root.dia {
-  --bg: #f0f8ff;
-  --surface: #ffffff;
-  --surface2: #eaf4fb;
-  --border: #c0ddf0;
-  --border2: #a0c8e0;
-  --verde: #007a40;
-  --verde2: #005530;
-  --verde-glow: rgba(0,122,64,0.1);
-  --oro: #c05000;
-  --oro2: #a03800;
-  --oro-dim: rgba(192,80,0,0.08);
-  --rojo: #c0392b;
-  --azul: #0077aa;
-  --texto: #071828;
-  --muted: #3a6070;
-  --muted2: #8ab0c0;
-  --shadow: 0 4px 20px rgba(0,0,0,0.1);
+*{box-sizing:border-box;margin:0;padding:0;}
+a{color:inherit;text-decoration:none;}
+html{scroll-behavior:smooth;}
+
+/* ── TEMA OSCURO (default / noche) ── */
+:root{
+  --verde:#00FF87;
+  --verde2:#00CC6A;
+  --negro:#06080A;
+  --card:#0E1318;
+  --card2:#141A21;
+  --borde:#1E2830;
+  --borde2:#26333D;
+  --texto:#F0F4F8;
+  --muted:#8A9BB0;
+  --muted2:#5A6B7A;
+  --oro:#FFD84D;
+  --rojo:#FF4D6A;
+  --glow:rgba(0,255,135,0.15);
+  --nav-bg:rgba(6,8,10,0.92);
+  --shimmer:rgba(0,255,135,0.03);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--texto);
-  min-height: 100vh;
-  padding-bottom: 110px;
-  transition: background 0.4s, color 0.4s;
+/* ── TEMA CLARO (día) ── */
+:root.dia{
+  --negro:#F5F7FA;
+  --card:#FFFFFF;
+  --card2:#EEF1F5;
+  --borde:#D8DEE8;
+  --borde2:#C4CDD8;
+  --texto:#0D1B2A;
+  --muted:#4A5568;
+  --muted2:#718096;
+  --nav-bg:rgba(245,247,250,0.95);
+  --shimmer:rgba(0,200,100,0.04);
+  --verde:#009955;
+  --verde2:#007740;
+  --oro:#C8860A;
+  --rojo:#D63650;
+  --glow:rgba(0,153,85,0.1);
 }
 
-.hidden { display: none !important; }
-.card { max-width: 600px; margin: 0 auto; padding: 0 14px; }
-.fade-in { animation: fadeIn 0.35s ease both; }
-@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
-@keyframes pop { from { transform:scale(0); opacity:0; } to { transform:scale(1); opacity:1; } }
-@keyframes spin { to { transform:rotate(360deg); } }
-@keyframes pulseGreen { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.6);} }
-.spinner { display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.2);border-top-color:currentColor;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px; }
-
-/* ══════════════════════════════════════════════
-   HERO — NUEVA SECCIÓN 0 con lead form
-══════════════════════════════════════════════ */
-.hero-wrap {
-  background: linear-gradient(160deg, #04120a 0%, #030810 100%);
-  border-bottom: 2px solid var(--verde);
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-}
-.hero-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,230,118,0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(255,214,0,0.05) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  max-width: 800px;
-  margin: 0 auto;
-  min-height: 100vh;
-  padding: 0;
-}
-@media (max-width: 680px) {
-  .hero-grid { grid-template-columns: 1fr; min-height: auto; }
-  .hero-right-col { border-left: none !important; border-top: 1px solid var(--border2); }
+html,body{
+  background:var(--negro) !important;
+  color:var(--texto) !important;
+  font-family:'Outfit',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  transition:background 0.4s ease, color 0.4s ease;
 }
 
-/* Columna izquierda — info */
-.hero-left-col {
-  padding: 48px 32px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-}
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(0,230,118,0.08);
-  border: 1px solid rgba(0,230,118,0.25);
-  color: var(--verde);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 100px;
-  margin-bottom: 20px;
-  width: fit-content;
-}
-.hero-dot { width:6px;height:6px;background:var(--verde);border-radius:50%;animation:pulseGreen 1.6s infinite; }
-.hero-title {
-  font-family: var(--font-head);
-  font-size: clamp(44px, 8vw, 80px);
-  line-height: 0.88;
-  letter-spacing: 2px;
-  color: #e8f4ff;
-  margin-bottom: 16px;
-}
-.hero-title .v { color: var(--verde); display: block; }
-.hero-title .o { color: var(--oro); display: block; }
-.hero-sub {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 24px;
-  max-width: 320px;
-}
-.hero-sub strong { color: var(--texto); }
+/* ── VISTAS ── */
+.vista{display:none;}
+.vista.activa{display:block;}
 
-/* Stats en hero */
-.hero-stats {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
+/* ══════════════════════════
+   NAV
+══════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.85rem 2rem;
+  background:var(--nav-bg);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--borde);
+  transition:background 0.4s,border-color 0.4s;
 }
-.hstat {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border2);
-  border-radius: 8px;
-  padding: 10px 16px;
-  text-align: center;
-  min-width: 80px;
+.btn-tema{
+  background:none;border:1px solid var(--borde2);
+  border-radius:20px;padding:0.3rem 0.75rem;
+  font-size:0.88rem;cursor:pointer;
+  transition:all 0.2s;color:var(--muted);
+  display:flex;align-items:center;gap:0.3rem;
+  font-family:'Outfit',sans-serif;
 }
-.hstat-val {
-  font-family: var(--font-head);
-  font-size: 24px;
-  color: var(--verde);
-  line-height: 1;
+.btn-tema:hover{border-color:var(--verde);color:var(--verde);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--texto);cursor:pointer;transition:color 0.3s;}
+.logo em{color:var(--verde);font-style:normal;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
+.nav-links a,.nav-links button{
+  font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);background:none;border:none;cursor:pointer;
+  transition:color 0.2s;font-family:'Outfit',sans-serif;
 }
-.hstat-val.oro { color: var(--oro); }
-.hstat-lbl {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 2px;
+.nav-links a:hover,.nav-links button:hover{color:var(--texto);}
+.nav-btn-cta{
+  background:var(--verde) !important;color:#06080A !important;
+  padding:0.45rem 1.3rem;border-radius:6px;font-weight:700 !important;
+  transition:all 0.2s !important;
+}
+.nav-btn-cta:hover{background:var(--verde2) !important;transform:translateY(-1px);}
+
+/* hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--muted);border-radius:2px;transition:0.2s;}
+.nav-mobile{
+  display:none;position:fixed;top:60px;left:0;right:0;z-index:998;
+  background:var(--nav-bg);border-bottom:1px solid var(--borde);
+  padding:1.5rem 2rem;flex-direction:column;gap:1rem;
+  backdrop-filter:blur(24px);
+}
+.nav-mobile.open{display:flex;}
+.nav-mobile button,.nav-mobile a{
+  font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);background:none;border:none;cursor:pointer;
+  padding:0.5rem 0;text-align:left;border-bottom:1px solid var(--borde);
+  font-family:'Outfit',sans-serif;
+}
+.nav-mobile .cta-mobile{
+  background:var(--verde);color:#06080A;padding:0.8rem 1.5rem;
+  border-radius:8px;text-align:center;font-weight:700;border:none;
 }
 
-/* Partidos preview en hero */
-.hero-partidos-preview {
-  background: rgba(0,0,0,0.2);
-  border: 1px solid var(--border2);
-  border-radius: 10px;
-  overflow: hidden;
+/* ══════════════════════════
+   HERO 3D
+══════════════════════════ */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:7rem 2rem 5rem;position:relative;overflow:hidden;
 }
-.hpp-header {
-  padding: 8px 12px;
-  background: rgba(0,230,118,0.06);
-  border-bottom: 1px solid var(--border2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.hero-grid-main{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+  align-items:center;
+  width:100%;
+  max-width:1120px;
+  margin:0 auto;
+  position:relative;z-index:2;
 }
-.hpp-title {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--verde);
+@media(max-width:780px){
+  .hero-grid-main{grid-template-columns:1fr;}
+  .hero-lead-col{display:none;}
 }
-.hpp-live {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--verde);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+/* ── LEAD FORM CARD ── */
+.lead-form-card{
+  background:var(--card);
+  border:1px solid var(--verde);
+  border-radius:14px;
+  padding:2rem 2.25rem;
+  box-shadow:0 10px 40px rgba(0,255,135,0.12);
+  animation:fadeUp 0.6s ease 0.4s both;
 }
-.hpp-row {
-  display: grid;
-  grid-template-columns: 1fr 40px 40px 40px;
-  gap: 4px;
-  padding: 7px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  align-items: center;
-}
-.hpp-row:last-child { border-bottom: none; }
-.hpp-match { font-size: 11px; font-weight: 600; color: var(--texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hpp-momio {
-  font-family: var(--font-cond);
-  font-size: 13px;
-  font-weight: 800;
-  text-align: center;
-  border-radius: 4px;
-  padding: 2px 0;
-}
-.hpp-momio.best { background: rgba(0,230,118,0.12); color: var(--verde); }
-.hpp-momio.mid { background: rgba(255,214,0,0.08); color: var(--oro); }
-.hpp-momio.low { color: var(--muted); }
-.hpp-more {
-  padding: 7px 12px;
-  text-align: center;
-  font-size: 10px;
-  color: var(--muted);
-  font-weight: 600;
-  background: rgba(0,0,0,0.15);
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.hpp-more:hover { color: var(--verde); }
+.lf-live{display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;}
+.lf-live-txt{color:var(--verde);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+.lf-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--texto);line-height:1;margin-bottom:0.5rem;}
+.lf-title span{color:var(--verde);}
+.lf-desc{color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.6;}
+.lf-label{display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.4rem;text-transform:uppercase;}
+.lf-input{width:100%;background:var(--negro);border:1px solid var(--borde);color:var(--texto);padding:0.85rem 1rem;border-radius:8px;outline:none;font-family:'Outfit',sans-serif;font-size:1rem;transition:border-color 0.25s;-webkit-appearance:none;}
+.lf-input:focus{border-color:var(--verde);}
+.lf-input::placeholder{color:var(--muted2);}
+.lf-group{margin-bottom:1rem;}
+.btn-lf-submit{width:100%;background:var(--verde);color:var(--negro);font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;padding:1rem;border:none;border-radius:8px;cursor:pointer;transition:background 0.2s,transform 0.1s;box-shadow:0 4px 0 var(--verde2),0 8px 24px rgba(0,255,135,0.25);margin-top:4px;}
+.btn-lf-submit:hover{background:var(--verde2);}
+.btn-lf-submit:active{transform:translateY(2px);}
+.btn-lf-submit:disabled{opacity:0.5;cursor:not-allowed;}
+.lf-divider{display:flex;align-items:center;gap:8px;margin:14px 0;}
+.lf-divider span{font-size:11px;color:var(--muted);white-space:nowrap;}
+.lf-divider::before,.lf-divider::after{content:'';flex:1;height:1px;background:var(--borde);}
+.btn-lf-jugar{width:100%;background:rgba(255,216,77,0.1);color:var(--oro);font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1.5px;padding:0.9rem;border:1.5px solid rgba(255,216,77,0.4);border-radius:8px;cursor:pointer;transition:all 0.2s;}
+.btn-lf-jugar:hover{background:rgba(255,216,77,0.18);border-color:var(--oro);}
+.lf-privacy{font-size:0.7rem;color:var(--muted2);text-align:center;margin-top:10px;line-height:1.5;}
+.lf-success{display:none;text-align:center;padding:1.5rem 0;}
+.lf-success-icon{font-size:48px;margin-bottom:10px;}
+.lf-success-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);margin-bottom:6px;}
+.lf-success-text{font-size:0.88rem;color:var(--muted);line-height:1.6;}
+.btn-lf-success-jugar{margin-top:16px;width:100%;background:rgba(255,216,77,0.1);color:var(--oro);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1.5px;padding:0.85rem;border:1.5px solid rgba(255,216,77,0.4);border-radius:8px;cursor:pointer;transition:all 0.2s;}
+.btn-lf-success-jugar:hover{background:rgba(255,216,77,0.18);}
 
-/* Columna derecha — formulario */
-.hero-right-col {
-  padding: 48px 32px 40px;
-  border-left: 1px solid var(--border2);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-  background: rgba(0,0,0,0.15);
+/* fondo animado 3D */
+.hero-bg-3d{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
 }
-.lead-title {
-  font-family: var(--font-head);
-  font-size: 28px;
-  letter-spacing: 1px;
-  color: var(--texto);
-  line-height: 1.1;
-  margin-bottom: 6px;
+.orb{
+  position:absolute;border-radius:50%;filter:blur(80px);
+  animation:orbFloat 8s ease-in-out infinite;
 }
-.lead-title span { color: var(--verde); }
-.lead-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-.lead-input-wrap { margin-bottom: 14px; }
-.lead-label {
-  display: block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-.lead-input {
-  width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border2);
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--texto);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  -webkit-appearance: none;
-}
-.lead-input:focus {
-  border-color: var(--verde);
-  box-shadow: 0 0 0 3px rgba(0,230,118,0.1);
-}
-.lead-input::placeholder { color: var(--muted2); font-weight: 500; }
-.btn-lead {
-  width: 100%;
-  background: var(--verde);
-  color: #020a0e;
-  font-family: var(--font-cond);
-  font-size: 18px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 14px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-  box-shadow: 0 4px 0 var(--verde2), 0 8px 24px rgba(0,230,118,0.25);
-  margin-top: 4px;
-}
-.btn-lead:hover { background: #00cc60; }
-.btn-lead:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--verde2); }
-.btn-lead:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.lead-divider {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 16px 0;
-}
-.lead-divider span { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; }
-.lead-divider::before, .lead-divider::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
-.btn-jugar-ya {
-  width: 100%;
-  background: var(--oro-dim);
-  color: var(--oro);
-  font-family: var(--font-cond);
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 12px;
-  border: 1.5px solid rgba(255,214,0,0.4);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-jugar-ya:hover { background: rgba(255,214,0,0.15); border-color: var(--oro); }
-.lead-success {
-  display: none;
-  text-align: center;
-  padding: 24px 0;
-}
-.lead-success-icon { font-size: 48px; margin-bottom: 12px; }
-.lead-success-title {
-  font-family: var(--font-head);
-  font-size: 28px;
-  color: var(--verde);
-  margin-bottom: 8px;
-}
-.lead-success-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.lead-privacy {
-  font-size: 10px;
-  color: var(--muted2);
-  text-align: center;
-  margin-top: 12px;
-  line-height: 1.5;
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(0,255,135,0.1) 0%,transparent 70%);top:-150px;right:-200px;animation-delay:0s;}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(61,139,255,0.07) 0%,transparent 70%);bottom:-100px;left:-100px;animation-delay:-3s;}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,216,77,0.06) 0%,transparent 70%);top:40%;left:40%;animation-delay:-5s;}
+
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(30px,-20px) scale(1.05);}
+  66%{transform:translate(-20px,30px) scale(0.95);}
 }
 
-/* ══════════════════════════════════════════════
-   PAGE 1 — DATOS
-══════════════════════════════════════════════ */
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px 18px;
-  margin-bottom: 14px;
-  box-shadow: var(--shadow);
+/* grid hexagonal */
+.hero-hex{
+  position:absolute;inset:0;pointer-events:none;opacity:0.03;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33z' fill='none' stroke='%2300FF87' stroke-width='1'/%3E%3Cpath d='M28 100L0 84V51l28-17 28 17v33z' fill='none' stroke='%2300FF87' stroke-width='1'/%3E%3C/svg%3E");
 }
-.section-title {
-  font-family: var(--font-cond);
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--oro);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.section-title::after { content:''; flex:1; height:1px; background:var(--border); }
 
-.field-label {
-  display: block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 7px;
+.hero-content{position:relative;z-index:2;max-width:660px;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);
+  color:#00FF87;font-size:0.75rem;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  padding:0.4rem 1rem;border-radius:100px;margin-bottom:2rem;
+  animation:fadeUp 0.5s ease both;
 }
-.field-input {
-  width: 100%;
-  background: var(--surface2);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 13px 15px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--texto);
-  outline: none;
-  transition: border-color .2s, box-shadow .2s;
+.pdot{width:7px;height:7px;background:#00FF87;border-radius:50%;animation:pulseAnim 1.8s infinite;}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,10vw,7.5rem);
+  line-height:0.9;letter-spacing:0.02em;color:#F0F4F8;
+  margin-bottom:1.75rem;animation:fadeUp 0.6s ease 0.1s both;
 }
-.field-input:focus {
-  border-color: var(--oro);
-  box-shadow: 0 0 0 3px var(--oro-dim);
+.hero-title .v{color:#00FF87;}
+.hero-title .o{color:#FFD84D;}
+.hero-desc{
+  font-size:1.1rem;color:#8A9BB0;max-width:500px;
+  margin-bottom:1.5rem;line-height:1.8;animation:fadeUp 0.6s ease 0.2s both;
 }
-.field-input::placeholder { color: var(--muted); font-weight: 500; }
-.field-group { margin-bottom: 14px; }
+.hero-desc strong{color:#F0F4F8;font-weight:600;}
 
-.alias-panel {
-  background: var(--oro-dim);
-  border: 1.5px solid var(--oro);
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
+/* pill de referido en hero */
+.hero-referido{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:rgba(255,216,77,0.06);border:1px solid rgba(255,216,77,0.25);
+  border-radius:10px;padding:0.75rem 1.25rem;margin-bottom:2rem;
+  animation:fadeUp 0.6s ease 0.25s both;
 }
-.alias-title {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: var(--oro);
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.alias-desc { font-size: 11px; color: rgba(255,214,0,0.6); margin-bottom: 12px; line-height: 1.5; font-weight: 600; }
+.hero-referido .ref-icon{font-size:1.4rem;flex-shrink:0;}
+.hero-referido .ref-text{font-size:0.88rem;color:#FFD84D;font-weight:600;line-height:1.4;}
+.hero-referido .ref-text span{color:#F0F4F8;}
 
-/* Stats row */
-.stats-row { display:flex;gap:8px;margin-bottom:14px; }
-.stat-box { flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px;text-align:center; }
-.stat-val { font-family:var(--font-head);font-size:22px;color:var(--oro);letter-spacing:1px; }
-.stat-lbl { font-size:9px;font-weight:800;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-top:2px; }
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.3s both;}
 
-/* Tabla costos */
-.tabla-costos { background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px; }
-.tabla-costos-titulo { background:var(--oro-dim);border-bottom:2px solid var(--oro);padding:11px 16px;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--oro);display:flex;justify-content:space-between;align-items:center; }
-.tabla-costos-titulo button { background:var(--surface);border:1px solid var(--border);color:var(--oro);font-size:11px;font-weight:800;cursor:pointer;padding:4px 10px;border-radius:6px;letter-spacing:1px;transition:.15s;font-family:var(--font-body); }
-.tabla-matrix { width:100%;border-collapse:collapse;font-family:var(--font-body); }
-.tabla-matrix th { padding:8px 6px;text-align:center;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid var(--border); }
-.tabla-matrix th.th-dobles { color:var(--muted);background:var(--surface2);text-align:left;padding-left:12px; }
-.tabla-matrix th.th-triple { color:var(--verde);background:rgba(0,230,118,0.04); }
-.tabla-matrix td { padding:9px 6px;text-align:center;border-top:1px solid var(--border);font-size:13px; }
-.tabla-matrix td:first-child { text-align:left;padding-left:12px;background:var(--surface2);color:var(--oro);font-weight:900;font-family:var(--font-cond);font-size:14px;letter-spacing:1px;white-space:nowrap; }
-.tabla-matrix tr:hover td { background:var(--surface); }
-.tabla-matrix .tc-price { font-family:var(--font-head);font-size:15px;letter-spacing:.5px;color:var(--texto); }
-.tabla-matrix .tc-base { color:var(--oro); }
-.tabla-matrix .tc-mid { color:#f0a020; }
-.tabla-matrix .tc-high { color:#e06010; }
-.tabla-matrix .tc-max { color:var(--rojo); }
-.tabla-nota { padding:8px 14px;font-size:10px;font-weight:700;color:var(--muted);border-top:1px solid var(--border);text-align:center;line-height:1.5; }
+/* ── BOTONES ── */
+.btn-v{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:var(--verde);color:var(--negro);
+  font-size:0.95rem;font-weight:700;padding:0.9rem 2rem;border-radius:8px;
+  border:none;cursor:pointer;transition:all 0.2s;
+  box-shadow:0 0 30px rgba(0,255,135,0.25);
+}
+.btn-v:hover{background:var(--verde2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,135,0.4);}
+.btn-o{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:transparent;color:var(--texto);
+  font-size:0.95rem;font-weight:600;padding:0.9rem 2rem;border-radius:8px;
+  border:1px solid var(--borde2);cursor:pointer;transition:all 0.2s;
+}
+.btn-o:hover{border-color:var(--verde);color:var(--verde);}
 
-/* ══════════════════════════════════════════════
-   SECCIÓN PARTIDOS CON MOMIOS (visible antes de registrar)
-══════════════════════════════════════════════ */
-#seccionMomios {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 14px;
+/* ══════════════════════════
+   STATS BAR 3D
+══════════════════════════ */
+.stats-bar{
+  background:var(--card);
+  border-top:1px solid rgba(0,255,135,0.1);
+  border-bottom:1px solid rgba(0,255,135,0.1);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  position:relative;overflow:hidden;
 }
-.momios-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-bottom: none;
-  border-radius: 14px 14px 0 0;
+.stats-bar::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(0,255,135,0.03),transparent);
+  animation:shimmer 4s linear infinite;
 }
-.momios-title {
-  font-family: var(--font-cond);
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--verde);
-}
-.momios-badge {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  padding: 3px 8px;
-  border-radius: 6px;
-}
-.momios-cols {
-  display: grid;
-  grid-template-columns: 22px 1fr 46px 46px 46px;
-  gap: 0;
-  padding: 6px 14px;
-  background: var(--surface2);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-}
-.mc-head {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: center;
-}
-.mc-head:nth-child(2) { text-align: left; }
-.momio-partido-row {
-  display: grid;
-  grid-template-columns: 22px 1fr 46px 46px 46px;
-  gap: 0;
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-top: none;
-  align-items: center;
-  background: var(--surface);
-  transition: background 0.15s;
-  cursor: pointer;
-}
-.momio-partido-row:hover { background: var(--surface2); }
-.momio-partido-row:last-child { border-radius: 0 0 14px 14px; }
-.mp-num {
-  font-family: var(--font-head);
-  font-size: 14px;
-  color: var(--muted2);
-}
-.mp-teams { overflow: hidden; }
-.mp-local {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--texto);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.mp-vs { font-size: 9px; color: var(--muted2); margin: 1px 0; }
-.mp-visit {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.mp-momio {
-  text-align: center;
-  font-family: var(--font-cond);
-  font-size: 14px;
-  font-weight: 800;
-  border-radius: 5px;
-  padding: 4px 2px;
-  margin: 0 2px;
-}
-.mp-momio.best { background: rgba(0,230,118,0.12); color: var(--verde); border: 1px solid rgba(0,230,118,0.2); }
-.mp-momio.mid { background: rgba(255,214,0,0.08); color: var(--oro); border: 1px solid rgba(255,214,0,0.15); }
-.mp-momio.low { color: var(--muted); background: rgba(255,255,255,0.02); border: 1px solid transparent; }
-.momios-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  background: rgba(0,230,118,0.04);
-  border: 1px solid rgba(0,230,118,0.2);
-  border-top: none;
-  border-radius: 0 0 14px 14px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--verde);
-  cursor: pointer;
-  transition: background 0.2s;
-  margin-bottom: 20px;
-}
-.momios-cta:hover { background: rgba(0,230,118,0.08); }
+@keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+.stat{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(--borde);position:relative;}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;line-height:1;color:var(--verde);display:block;}
+.stat-l{font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;display:block;}
 
-/* ══════════════════════════════════════════════
-   BOTONES
-══════════════════════════════════════════════ */
-.btn {
-  width:100%;padding:15px;border:none;border-radius:var(--radius);
-  font-family:var(--font-head);font-size:20px;letter-spacing:2px;
-  cursor:pointer;transition:transform .1s,box-shadow .1s,opacity .2s;
-  text-transform:uppercase;position:relative;overflow:hidden;
+/* ══════════════════════════
+   SECCIONES
+══════════════════════════ */
+.sec{padding:5rem 2rem;max-width:1120px;margin:0 auto;}
+.chip{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.15);padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:1rem;}
+.stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1;letter-spacing:0.02em;color:var(--texto);margin-bottom:1rem;}
+.sdesc{font-size:1rem;color:var(--muted);max-width:500px;line-height:1.8;margin-bottom:3rem;}
+
+/* ══════════════════════════
+   GANADORES — NUEVA SECCIÓN
+══════════════════════════ */
+.ganadores-section{
+  background:linear-gradient(180deg,var(--negro) 0%,rgba(0,255,135,0.02) 50%,var(--negro) 100%);
+  border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);
 }
-.btn:active { transform:translateY(3px);box-shadow:none !important; }
-.btn:disabled { opacity:.45;cursor:not-allowed;transform:none !important; }
-.btn-gold {
-  background:linear-gradient(135deg,var(--oro),var(--oro2));
-  color:#060a0e;
-  box-shadow:0 5px 0 #a07000,0 8px 20px var(--oro-dim);
+.ganadores-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;margin-top:2.5rem;
 }
-.btn-green {
-  background:linear-gradient(135deg,var(--verde),#00c47a);
-  color:#020a0e;
-  box-shadow:0 5px 0 var(--verde2),0 8px 20px var(--verde-glow);
+.ganador-card{
+  position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(255,216,77,0.2);
+  background:linear-gradient(135deg,var(--card) 0%,rgba(255,216,77,0.04) 100%);
+  padding:2rem;
+  transform-style:preserve-3d;
+  transition:transform 0.4s ease,box-shadow 0.4s ease;
+  cursor:default;
 }
-.btn-ghost { background:var(--surface2);color:var(--muted);border:1.5px solid var(--border);box-shadow:none;font-size:16px; }
-.btn-ghost:hover { border-color:var(--muted);color:var(--texto); }
-.btn-sm { padding:10px 18px;font-size:15px;width:auto; }
-
-/* ══════════════════════════════════════════════
-   AVISOS
-══════════════════════════════════════════════ */
-.aviso { border-radius:var(--radius);padding:12px 14px;font-size:13px;font-weight:700;margin-bottom:14px;display:none; }
-.aviso.show-error { display:block;background:rgba(255,59,92,.1);border:1.5px solid var(--rojo);color:#ff8591; }
-.aviso.show-ok { display:block;background:rgba(0,230,118,.08);border:1.5px solid var(--verde);color:var(--verde); }
-.aviso.show-warn { display:block;background:rgba(255,214,0,.08);border:1.5px solid var(--oro);color:var(--oro); }
-
-/* ══════════════════════════════════════════════
-   PAGE 2 — STICKY HEADER
-══════════════════════════════════════════════ */
-.page2-sticky-header {
-  position:sticky;top:0;z-index:200;
-  background:var(--bg);border-bottom:2px solid var(--oro);
-  box-shadow:0 4px 20px rgba(0,0,0,.4);
-  padding:3px 0 0;
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+.ganador-card:hover{
+  transform:perspective(800px) rotateX(-3deg) rotateY(3deg) translateY(-6px);
+  box-shadow:0 20px 60px rgba(255,216,77,0.15);
 }
-.p2h-top { display:flex;align-items:center;gap:6px;padding:0 0 3px; }
-.p2h-alias-wrap { flex-shrink:0; }
-.p2h-lbl { font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;line-height:1; }
-.p2h-alias { font-family:var(--font-head);font-size:20px;color:var(--oro);letter-spacing:1.5px;line-height:1; }
-.p2h-progreso { flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0; }
-.p2h-prog-nums { font-family:var(--font-head);font-size:14px;letter-spacing:1px;color:var(--texto);line-height:1; }
-.p2h-prog-nums .prog-actual { color:var(--verde);font-size:20px; }
-.p2h-prog-bar { width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden; }
-.p2h-prog-fill { height:100%;background:var(--verde);border-radius:2px;transition:width .2s ease; }
-.p2h-prog-lbl { font-size:8px;font-weight:800;letter-spacing:1px;color:var(--muted);text-transform:uppercase; }
-.p2h-right { text-align:right;flex-shrink:0; }
-.p2h-num { font-family:var(--font-head);font-size:20px;color:var(--texto);line-height:1; }
-.p2h-combos {
-  display:flex;align-items:center;gap:0;
-  background:var(--surface2);border:1px solid var(--border);
-  border-radius:8px;margin-bottom:5px;overflow:hidden;height:28px;
+.ganador-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 40%,rgba(255,216,77,0.06) 100%);
+  pointer-events:none;
 }
-.p2h-combo-item { flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 6px;height:100%;transition:background .15s; }
-.p2h-combo-sep { width:1px;height:20px;background:var(--border);flex-shrink:0; }
-.p2h-combo-ico { font-size:12px;line-height:1; }
-.p2h-combo-val { font-family:var(--font-head);font-size:14px;line-height:1;color:var(--texto);letter-spacing:1px;transition:color .2s; }
-.p2h-combo-max { font-size:9px;font-weight:800;color:var(--muted);letter-spacing:.5px;line-height:1; }
-.p2h-combo-lbl { font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted); }
-.p2h-precio { font-size:15px !important; }
-.p2h-combo-item.has-d .p2h-combo-val { color:var(--oro); }
-.p2h-combo-item.has-t .p2h-combo-val { color:var(--verde); }
-.p2h-combo-item .p2h-precio { color:var(--verde);font-size:18px; }
-.p2h-combo-item.over .p2h-combo-val { color:var(--rojo) !important;animation:pulseRed .7s infinite alternate; }
-@keyframes pulseRed { from{opacity:1;}to{opacity:.5;} }
-.p2h-alerta { background:rgba(255,59,92,.12);border:1.5px solid var(--rojo);border-radius:var(--radius);padding:8px 12px;font-size:12px;font-weight:800;color:var(--rojo);margin-bottom:8px;text-align:center;letter-spacing:.3px;animation:slideDown .25s ease; }
-@keyframes slideDown { from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;} }
-
-/* ══════════════════════════════════════════════
-   PARTIDOS
-══════════════════════════════════════════════ */
-.quinielas-nav { display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center; }
-.q-tab { background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:8px 16px;font-family:var(--font-body);font-size:12px;font-weight:800;color:var(--muted);cursor:pointer;transition:.15s;white-space:nowrap; }
-.q-tab.active { background:var(--oro-dim);border-color:var(--oro);color:var(--oro); }
-.q-tab.done { border-color:var(--verde);color:var(--verde);background:rgba(0,230,118,.06); }
-.q-tab.done::after { content:' ✓'; }
-.btn-add-q { background:var(--surface2);border:1.5px dashed var(--border);border-radius:var(--radius);padding:8px 14px;font-size:20px;color:var(--muted);cursor:pointer;line-height:1;transition:.15s; }
-.btn-add-q:hover { border-color:var(--oro);color:var(--oro); }
-.btn-remove-q { background:none;border:none;color:var(--rojo);cursor:pointer;font-size:15px;padding:0 0 0 4px;vertical-align:middle;opacity:.7; }
-.btn-remove-q:hover { opacity:1; }
-.btn-borrar-todo { background:rgba(255,59,92,.1);border:1px solid rgba(255,59,92,.35);color:var(--rojo);font-family:var(--font-body);font-size:11px;font-weight:800;padding:6px 10px;border-radius:var(--radius);cursor:pointer;white-space:nowrap;transition:.15s;flex-shrink:0; }
-.btn-borrar-todo:hover { background:rgba(255,59,92,.2);border-color:var(--rojo); }
-
-.match-row { display:grid;grid-template-columns:24px 1fr;gap:8px;padding:13px 0;border-bottom:1px solid var(--border);align-items:center; }
-.match-row:last-child { border-bottom:none;padding-bottom:4px; }
-.match-num { font-family:var(--font-head);font-size:18px;color:var(--muted);text-align:center; }
-.match-inner { display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:5px;align-items:center; }
-.team-name { font-size:12px;font-weight:800;text-transform:uppercase;color:var(--texto);line-height:1.3;letter-spacing:.2px; }
-.team-name.right { text-align:right; }
-.btn-opt { width:40px;height:40px;border:1.5px solid var(--border);background:var(--surface2);border-radius:8px;cursor:pointer;font-family:var(--font-head);font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:.12s;-webkit-tap-highlight-color:transparent;user-select:none; }
-.btn-opt:hover { border-color:var(--oro);color:var(--texto); }
-.btn-opt.sel-L { background:rgba(0,230,118,.15);border-color:var(--verde);color:var(--verde);box-shadow:0 3px 0 rgba(0,230,118,.3);transform:translateY(-2px); }
-.btn-opt.sel-E { background:rgba(255,214,0,.15);border-color:var(--oro);color:var(--oro);box-shadow:0 3px 0 rgba(255,214,0,.3);transform:translateY(-2px); }
-.btn-opt.sel-V { background:rgba(79,195,247,.2);border-color:var(--azul);color:var(--azul);box-shadow:0 3px 0 rgba(79,195,247,.3);transform:translateY(-2px); }
-.match-badge { display:inline-block;font-size:8px;font-weight:800;padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle;letter-spacing:1px; }
-.badge-doble { background:rgba(255,214,0,.15);color:var(--oro);border:1px solid rgba(255,214,0,.3); }
-.badge-triple { background:rgba(255,59,92,.15);color:#f87171;border:1px solid rgba(255,59,92,.3); }
-
-/* ══════════════════════════════════════════════
-   BARRA FLOTANTE
-══════════════════════════════════════════════ */
-#barraCalc { position:fixed;bottom:0;left:0;right:0;background:rgba(8,16,24,.97);border-top:2px solid var(--oro);backdrop-filter:blur(10px);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;z-index:999;box-shadow:0 -8px 30px rgba(0,0,0,.6); }
-.barra-info { flex:1;min-width:0; }
-.barra-label { font-size:9px;font-weight:800;letter-spacing:2px;color:var(--oro);text-transform:uppercase; }
-.barra-precio { font-family:var(--font-head);font-size:28px;letter-spacing:1px;color:var(--verde);line-height:1;transition:color .2s; }
-.barra-precio.incomplete { color:var(--muted); }
-.barra-detalle { font-size:10px;color:var(--muted);font-weight:600;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-
-/* ══════════════════════════════════════════════
-   PAGE 3 — PAGO
-══════════════════════════════════════════════ */
-.clabe-box { background:var(--oro-dim);border:2px solid var(--oro);border-radius:12px;padding:18px;text-align:center;margin-bottom:16px; }
-.clabe-banco { font-size:11px;font-weight:800;letter-spacing:2px;color:var(--oro);text-transform:uppercase;margin-bottom:6px; }
-.clabe-num { font-family:var(--font-head);font-size:clamp(20px,5vw,28px);letter-spacing:3px;color:var(--texto);word-break:break-all;margin-bottom:6px; }
-.clabe-nombre { font-size:14px;font-weight:800;color:var(--muted); }
-.clabe-total { font-family:var(--font-head);font-size:36px;color:var(--verde);letter-spacing:2px;margin-top:10px; }
-.btn-copy { background:none;border:1px solid var(--oro);color:var(--oro);font-family:var(--font-body);font-size:11px;font-weight:800;padding:5px 12px;border-radius:6px;cursor:pointer;margin-top:8px;letter-spacing:1px;transition:.15s; }
-.btn-copy:hover { background:var(--oro-dim); }
-
-.resumen-lista { margin-bottom:16px; }
-.resumen-item { background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center; }
-.resumen-alias { font-family:var(--font-head);font-size:18px;color:var(--oro);letter-spacing:1px; }
-.resumen-detalle { font-size:11px;color:var(--muted);font-weight:600;margin-top:2px; }
-.resumen-costo { font-family:var(--font-head);font-size:22px;color:var(--verde); }
-
-.upload-box { background:var(--surface2);border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;margin-bottom:14px;transition:border-color .2s; }
-.upload-box:hover { border-color:var(--oro); }
-.upload-icon { font-size:40px;margin-bottom:8px; }
-.upload-title { font-size:14px;font-weight:800;color:var(--oro);margin-bottom:5px; }
-.upload-desc { font-size:11px;color:var(--muted);margin-bottom:12px;font-weight:600; }
-.upload-box input[type="file"] { background:var(--surface);color:var(--muted);padding:8px;border-radius:8px;width:100%;font-size:13px;border:1px solid var(--border);margin-bottom:12px; }
-
-.btn-wa { display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#25D366;color:#fff;border:none;border-radius:var(--radius);font-family:var(--font-head);font-size:20px;letter-spacing:2px;cursor:pointer;box-shadow:0 5px 0 #128c3e;transition:.1s;text-decoration:none;text-transform:uppercase;margin-bottom:10px; }
-.btn-wa:active { transform:translateY(3px);box-shadow:none; }
-.btn-wa svg { width:22px;height:22px;fill:white;flex-shrink:0; }
-
-/* Reto panel */
-.reto-panel { background:var(--surface2);border:1.5px solid var(--border);border-top:3px solid var(--verde);border-radius:12px;padding:16px 14px;margin-top:0;text-align:center; }
-.reto-paso-label { font-size:10px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;text-align:center; }
-.reto-titulo { font-family:var(--font-head);font-size:20px;letter-spacing:2px;color:var(--oro);margin-bottom:4px; }
-.reto-sub { font-size:12px;color:var(--muted);font-weight:700;margin-bottom:14px;line-height:1.5; }
-.reto-msg-box { background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:12px;text-align:left; }
-.reto-msg-box strong { color:var(--texto); }
-.btn-wa-reto { display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:var(--radius);font-family:var(--font-head);font-size:18px;letter-spacing:2px;cursor:pointer;box-shadow:0 4px 0 #128c3e;text-decoration:none;text-transform:uppercase;margin-bottom:8px;transition:.1s; }
-.btn-wa-reto:active { transform:translateY(3px);box-shadow:none; }
-.btn-copy-reto { display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:9px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:12px;font-weight:800;cursor:pointer;letter-spacing:1px;transition:.15s; }
-.btn-copy-reto:hover { background:var(--surface2);color:var(--texto); }
-.reto-hint { font-size:10px;color:var(--muted);margin-top:8px;font-weight:600; }
-.reto-divider { height:1px;background:var(--border);margin:14px 0; }
-
-/* Total box */
-.total-box { background:var(--surface);border:2px solid var(--verde);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px; }
-.total-box .tl { font-size:11px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:4px; }
-.total-box .tv { font-family:var(--font-head);font-size:44px;color:var(--verde);letter-spacing:2px; }
-.total-box .ts { font-size:11px;color:var(--muted);font-weight:600; }
-
-/* OCR */
-.ocr-panel { margin:10px 0 12px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border); }
-.ocr-preview-wrap { background:#000;max-height:180px;overflow:hidden;display:flex;align-items:center;justify-content:center; }
-.ocr-preview-wrap img { max-width:100%;max-height:180px;object-fit:contain;display:block; }
-.ocr-status { padding:11px 14px;font-size:12px;font-weight:700;text-align:center;line-height:1.5; }
-.ocr-ok { background:rgba(0,230,118,.1);border-top:2px solid var(--verde);color:var(--verde); }
-.progreso-subida { display:none;margin:10px 0 8px; }
-.progreso-label { font-size:12px;font-weight:800;color:var(--oro);text-align:center;margin-bottom:6px;letter-spacing:.5px; }
-.progreso-track { width:100%;height:8px;background:var(--border);border-radius:4px;overflow:hidden; }
-.progreso-fill { height:100%;width:0%;background:var(--oro);border-radius:4px;transition:width .4s ease,background .3s; }
-
-/* ══════════════════════════════════════════════
-   SUCCESS / FINAL
-══════════════════════════════════════════════ */
-.success-page { text-align:center;padding:40px 16px; }
-.success-icon { font-size:90px;display:block;margin-bottom:16px;animation:pop .5s cubic-bezier(.18,.89,.32,1.28) both; }
-.success-title { font-family:var(--font-head);font-size:42px;color:var(--verde);letter-spacing:2px;margin-bottom:10px; }
-.success-sub { color:var(--muted);font-size:14px;font-weight:600;line-height:1.6;margin-bottom:24px; }
-.divider { height:1px;background:var(--border);margin:16px 0; }
-
-/* BOLETA */
-#boletaRenderContainer { position:fixed;left:-9999px;top:80px;z-index:-1;pointer-events:none;width:380px; }
-.boleta-modal { position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center; }
-.boleta-backdrop { position:absolute;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(6px); }
-.boleta-box { position:relative;z-index:1;background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:18px;max-width:420px;width:calc(100% - 28px);max-height:92vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.7); }
-.boleta-box-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border); }
-.boleta-box-title { font-family:var(--font-head);font-size:20px;letter-spacing:2px;color:var(--oro); }
-.boleta-close-btn { background:var(--surface2);border:1px solid var(--border);color:var(--texto);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center; }
-.boleta-img-wrap { border-radius:10px;overflow:hidden;margin-bottom:14px;background:#0f172a;text-align:center; }
-.boleta-img-wrap img { max-width:100%;display:block;margin:0 auto; }
-.boleta-hint { font-size:11px;color:var(--muted);text-align:center;margin:8px 0;font-weight:600; }
-.btn-boleta-item { width:100%;margin-top:10px;background:linear-gradient(135deg,var(--oro),var(--oro2));border:none;border-radius:12px;padding:16px 14px;font-family:var(--font-head);font-size:20px;font-weight:900;color:#fff;cursor:pointer;letter-spacing:1px;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 5px 0 #a07000,0 8px 20px rgba(255,214,0,.3);animation:pulsoboleta 1.8s ease-in-out infinite; }
-@keyframes pulsoboleta { 0%{transform:scale(1);box-shadow:0 5px 0 #a07000,0 8px 20px rgba(255,214,0,.3);}50%{transform:scale(1.02);box-shadow:0 5px 0 #a07000,0 14px 30px rgba(255,214,0,.55);}100%{transform:scale(1);box-shadow:0 5px 0 #a07000,0 8px 20px rgba(255,214,0,.3);} }
-
-.despedida-screen { text-align:center;padding:40px 20px;animation:fadeIn .4s ease both; }
-.despedida-icon { font-size:80px;display:block;margin-bottom:16px; }
-.despedida-titulo { font-family:var(--font-head);font-size:38px;letter-spacing:3px;color:var(--verde);margin-bottom:12px; }
-.despedida-msg { font-size:16px;font-weight:700;color:var(--texto);line-height:1.6;margin-bottom:8px; }
-.despedida-sub { font-size:13px;color:var(--muted);font-weight:600;margin-bottom:24px; }
-
-/* RESPONSIVE */
-@media (max-width:600px) {
-  .hero-left-col, .hero-right-col { padding: 32px 20px; }
-  .hero-title { font-size: clamp(40px,10vw,70px); }
-  .card { padding:0 12px; }
+.ganador-badge{
+  position:absolute;top:0;right:0;
+  background:var(--oro);color:var(--negro);
+  font-size:0.62rem;font-weight:800;letter-spacing:0.1em;
+  padding:0.3rem 0.9rem;border-bottom-left-radius:8px;
 }
-@media (min-width:600px) {
-  .hero-left-col, .hero-right-col { padding: 56px 40px; }
-  .field-input { padding:14px 18px;font-size:16px; }
-  .btn { font-size:22px;padding:17px; }
-  .btn-opt { width:42px;height:42px; }
+.ganador-trophy{font-size:2.5rem;margin-bottom:1rem;}
+.ganador-nombre{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--oro);letter-spacing:0.05em;line-height:1;margin-bottom:0.25rem;}
+.ganador-alias{font-size:0.8rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;}
+.ganador-premio{
+  font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--verde);
+  line-height:1;margin-bottom:0.5rem;
 }
-@media (min-width:900px) {
-  .btn-opt { width:46px;height:46px; }
-  #barraCalc { padding:12px 32px; }
-  .barra-precio { font-size:32px; }
+.ganador-meta{font-size:0.8rem;color:var(--muted2);display:flex;align-items:center;gap:0.5rem;}
+.ganador-dot{width:6px;height:6px;background:var(--verde);border-radius:50%;animation:pulseAnim 2s infinite;}
+
+/* historial tabla */
+.historial{
+  margin-top:2rem;background:var(--card);border:1px solid var(--borde);
+  border-radius:12px;overflow:hidden;
+}
+.historial-row{
+  display:grid;grid-template-columns:2rem 1fr auto auto;
+  align-items:center;gap:1rem;padding:0.85rem 1.5rem;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  font-size:0.88rem;transition:background 0.15s;
+}
+.historial-row:last-child{border-bottom:none;}
+.historial-row:hover{background:rgba(255,255,255,0.02);}
+.historial-row.hdr{
+  font-size:0.68rem;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--muted2);
+  background:rgba(0,0,0,0.3);
+}
+.h-pos{font-weight:800;color:var(--oro);}
+.h-nombre{font-weight:600;color:var(--texto);}
+.h-aciertos{
+  background:rgba(0,255,135,0.08);color:var(--verde);
+  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;
+  padding:0.1rem 0.6rem;border-radius:5px;
+  border:1px solid rgba(0,255,135,0.15);text-align:center;
+}
+.h-premio{font-weight:700;color:var(--oro);font-size:0.9rem;}
+
+/* ══════════════════════════
+   STEPS 3D
+══════════════════════════ */
+.steps{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.step{
+  background:var(--card);border:1px solid var(--borde);
+  border-radius:16px;padding:2.5rem 2rem;
+  position:relative;overflow:hidden;
+  transform-style:preserve-3d;
+  transition:transform 0.4s ease,box-shadow 0.4s ease,border-color 0.3s;
+}
+.step:hover{
+  transform:perspective(600px) rotateX(-4deg) translateY(-8px);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(0,255,135,0.2);
+  border-color:rgba(0,255,135,0.3);
+}
+.step::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--verde),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.step:hover::after{opacity:1;}
+.step-bg{font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.04);position:absolute;top:0.5rem;right:1rem;pointer-events:none;}
+.step-icon{font-size:2.2rem;margin-bottom:1.25rem;}
+.step h3{font-size:1rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--texto);margin-bottom:0.6rem;}
+.step p{font-size:0.9rem;color:var(--muted);line-height:1.7;}
+
+/* ══════════════════════════
+   LIGAS
+══════════════════════════ */
+.ligas{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem;}
+.liga{
+  display:flex;align-items:center;gap:0.5rem;
+  background:var(--card);border:1px solid var(--borde2);
+  border-radius:8px;padding:0.6rem 1.2rem;
+  font-size:0.88rem;font-weight:600;color:var(--texto);
+  transition:all 0.2s;cursor:default;
+}
+.liga:hover,.liga.on{border-color:var(--verde);color:var(--verde);background:rgba(0,255,135,0.05);}
+
+/* ══════════════════════════
+   TRACKING PREVIEW
+══════════════════════════ */
+.tbox{
+  background:var(--card);border:1px solid var(--borde);
+  border-radius:16px;overflow:hidden;margin-top:3rem;
+  box-shadow:0 0 0 1px rgba(0,255,135,0.05),0 40px 80px rgba(0,0,0,0.4);
+}
+.thead{background:var(--card2);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--borde);}
+.thead-t{font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--texto);}
+.live{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--verde);}
+.ldot{width:8px;height:8px;background:var(--verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
+.trow{display:grid;grid-template-columns:2.5rem 1fr repeat(6,2.4rem) 3rem;align-items:center;padding:0.7rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.85rem;transition:background 0.15s;}
+.trow:hover{background:rgba(255,255,255,0.02);}
+.trow:last-child{border-bottom:none;}
+.trow.hdr{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted2);background:rgba(0,0,0,0.3);}
+.rk{font-weight:800;font-size:0.9rem;}
+.r1{color:var(--oro);}.r2{color:#C0C0C0;}.r3{color:#CD7F32;}.r4{color:var(--muted);}
+.cell{width:2rem;height:2rem;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;margin:0 auto;}
+.ok{background:rgba(0,255,135,0.12);color:var(--verde);}
+.fail{background:rgba(255,77,106,0.12);color:var(--rojo);}
+.pend{background:rgba(255,255,255,0.04);color:var(--muted2);}
+.pts{background:rgba(0,255,135,0.08);color:var(--verde);font-family:'Bebas Neue',sans-serif;font-size:1.15rem;text-align:center;border-radius:5px;padding:0.1rem 0.3rem;border:1px solid rgba(0,255,135,0.15);}
+.pname{font-weight:500;color:var(--texto);}
+
+/* ══════════════════════════
+   PREMIOS 3D
+══════════════════════════ */
+.premio-principal{
+  background:linear-gradient(135deg,var(--negro) 0%,rgba(255,216,77,0.06) 100%);
+  border:2px solid rgba(255,216,77,0.5);border-radius:20px;
+  padding:3rem 2rem;text-align:center;margin-bottom:1.5rem;
+  position:relative;overflow:hidden;
+  transform-style:preserve-3d;
+  transition:transform 0.5s ease,box-shadow 0.5s ease;
+}
+.premio-principal:hover{
+  transform:perspective(1000px) rotateX(-2deg) translateY(-8px);
+  box-shadow:0 30px 80px rgba(255,216,77,0.2),0 0 0 1px rgba(255,216,77,0.4);
+}
+.premio-principal::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(255,216,77,0.03) 60deg,transparent 120deg);
+  animation:rotateConic 8s linear infinite;pointer-events:none;
+}
+@keyframes rotateConic{to{transform:rotate(360deg);}}
+
+/* promo referido mejorada */
+.promo-referido{
+  background:linear-gradient(135deg,rgba(0,255,135,0.04) 0%,rgba(0,255,135,0.08) 100%);
+  border:2px solid rgba(0,255,135,0.3);border-radius:16px;
+  padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.promo-referido:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(0,255,135,0.12);
+}
+.promo-badge{
+  background:var(--verde);color:var(--negro);
+  font-size:0.65rem;font-weight:800;letter-spacing:0.1em;
+  padding:0.2rem 0.7rem;border-radius:100px;
+  display:inline-block;margin-bottom:0.5rem;
+}
+
+/* ══════════════════════════
+   TESTIMONIALES 3D
+══════════════════════════ */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-top:3rem;}
+.tcard{
+  background:var(--card);border:1px solid var(--borde);
+  border-radius:16px;padding:2rem;position:relative;
+  transition:transform 0.4s ease,border-color 0.3s,box-shadow 0.4s;
+  transform-style:preserve-3d;
+}
+.tcard:hover{
+  transform:perspective(600px) rotateX(-3deg) rotateY(2deg) translateY(-6px);
+  border-color:rgba(0,255,135,0.2);
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);
+}
+.tq{font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.06);position:absolute;top:0;right:1.5rem;pointer-events:none;}
+.stars{color:var(--oro);font-size:0.85rem;margin-bottom:1rem;}
+.tcard p{font-size:0.95rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem;position:relative;z-index:1;}
+.tauthor{display:flex;align-items:center;gap:0.75rem;}
+.ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--borde2),var(--card2));border:1px solid var(--borde2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--verde);flex-shrink:0;}
+.aname{font-size:0.9rem;font-weight:700;color:var(--texto);}
+.ameta{font-size:0.75rem;color:var(--muted2);margin-top:0.1rem;}
+
+/* ══════════════════════════
+   CTA FINAL
+══════════════════════════ */
+.cta-wrap{
+  background:linear-gradient(135deg,var(--card) 0%,rgba(0,255,135,0.03) 100%);
+  border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);
+}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center;padding:7rem 2rem;}
+.cta-inner .stitle{font-size:clamp(2.8rem,7vw,5rem);}
+.cta-inner .sdesc{margin:1.5rem auto 3rem;max-width:480px;}
+.cta-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+
+.btn-registro{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:var(--verde);color:var(--negro);
+  font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;
+  padding:1.1rem 2.5rem;border-radius:10px;border:none;cursor:pointer;
+  transition:all 0.2s;box-shadow:0 4px 24px rgba(0,255,135,0.3);
+  letter-spacing:0.04em;
+}
+.btn-registro:hover{background:var(--verde2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,255,135,0.45);}
+
+.btn-seguimiento{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:transparent;color:var(--texto);
+  font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;
+  padding:1.1rem 2.5rem;border-radius:10px;
+  border:2px solid var(--borde2);cursor:pointer;
+  transition:all 0.2s;letter-spacing:0.04em;
+}
+.btn-seguimiento:hover{border-color:var(--verde);color:var(--verde);transform:translateY(-2px);}
+
+.trust{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.ti{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--muted);font-weight:500;}
+
+/* ══════════════════════════
+   FOOTER
+══════════════════════════ */
+footer{
+  background:var(--negro);border-top:1px solid var(--borde);
+  padding:3rem 2rem;text-align:center;
+}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(--texto);}
+.flogo em{color:var(--verde);font-style:normal;}
+footer p{font-size:0.82rem;color:var(--muted2);margin-top:0.75rem;}
+
+/* ══════════════════════════
+   IFRAMES
+══════════════════════════ */
+#vista-registro,#vista-seguimiento,#vista-analisis{
+  display:none;flex-direction:column;height:100vh;
+}
+.iframe-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.85rem 1.5rem;background:rgba(6,8,10,0.97);
+  border-bottom:1px solid var(--borde);flex-shrink:0;
+}
+.btn-back-home{
+  background:none;border:1px solid var(--borde2);color:var(--muted);
+  font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;
+  cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;
+}
+.btn-back-home:hover{border-color:var(--verde);color:var(--verde);}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(--texto);}
+.topbar-title em{color:var(--verde);font-style:normal;}
+.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.3rem 0.8rem;border-radius:100px;}
+.ldot-sm{width:6px;height:6px;background:var(--verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
+.iframe-main{flex:1;border:none;width:100%;background:var(--negro);}
+.seguimiento-bar{border-bottom-color:var(--oro);}
+.oro{color:var(--oro)!important;}
+.ldot-sm.oro{background:var(--oro);}
+
+/* ══════════════════════════
+   ANIMACIONES
+══════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulseAnim{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.85);}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ══════════════════════════
+   RESPONSIVE
+══════════════════════════ */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .stat:nth-child(2){border-right:none;}
+  .stat:nth-child(3){border-top:1px solid var(--borde);}
+  .trow{grid-template-columns:2rem 1fr repeat(4,2rem) 2.5rem;}
+  .trow .cell:nth-child(6),.trow .cell:nth-child(7){display:none;}
+  .hero-referido{flex-direction:column;align-items:flex-start;gap:0.5rem;}
+  .historial-row{grid-template-columns:2rem 1fr auto;}
+  .historial-row .h-aciertos{display:none;}
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════
-     SECCIÓN 0 — HERO CON LEAD FORM + PARTIDOS
-════════════════════════════════════════════════ -->
-<div class="hero-wrap" id="heroSection">
-  <div class="hero-grid">
-
-    <!-- IZQUIERDA: Info + Stats + Partidos preview -->
-    <div class="hero-left-col">
-      <div class="hero-badge">
-        <span class="hero-dot"></span>
-        <span id="heroBadgeText">Jornada activa</span>
-      </div>
-
-      <h1 class="hero-title">
-        <span class="v">Quiniela</span>
-        <span class="o">Pro</span>
-        Fut
-      </h1>
-
-      <p class="hero-sub">
-        <strong>Predice los partidos</strong>, compite contra todos y gana el pozo. Dobles, triples y seguimiento en vivo.
-      </p>
-
-      <div class="hero-stats">
-        <div class="hstat">
-          <div class="hstat-val" id="hstatJugadores">—</div>
-          <div class="hstat-lbl">Jugadores</div>
-        </div>
-        <div class="hstat">
-          <div class="hstat-val oro" id="hstatPozo">$0</div>
-          <div class="hstat-lbl">Pozo est.</div>
-        </div>
-        <div class="hstat">
-          <div class="hstat-val" id="hstatDesde">$100</div>
-          <div class="hstat-lbl">Desde</div>
-        </div>
-      </div>
-
-      <!-- PARTIDOS PREVIEW con momios -->
-      <div class="hero-partidos-preview" id="heroPartidosPreview">
-        <div class="hpp-header">
-          <span class="hpp-title">⚽ Partidos &amp; Momios</span>
-          <span class="hpp-live"><span class="hero-dot"></span>Esta jornada</span>
-        </div>
-        <div id="hppRows">
-          <div class="hpp-row" style="padding:14px 12px;justify-content:center;">
-            <span class="spinner" style="color:var(--verde)"></span>
-            <span style="font-size:12px;color:var(--muted);margin-left:8px;">Cargando partidos...</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DERECHA: Lead Form -->
-    <div class="hero-right-col" id="heroRightCol">
-      <div id="leadFormWrap">
-        <div class="lead-title">Únete a la<br><span>próxima jornada</span></div>
-        <p class="lead-desc">Deja tu nombre y WhatsApp. Te avisamos cuando abran los pronósticos. Sin spam, puro fútbol. 🔥</p>
-
-        <div class="lead-input-wrap">
-          <label class="lead-label">Nombre o alias</label>
-          <input class="lead-input" type="text" id="leadNombre" placeholder="Ej. El Chino" autocomplete="nickname">
-        </div>
-        <div class="lead-input-wrap">
-          <label class="lead-label">WhatsApp (10 dígitos)</label>
-          <input class="lead-input" type="tel" id="leadWA" placeholder="55 1234 5678" maxlength="14"
-            oninput="this.value=this.value.replace(/[^0-9 ]/g,'')">
-        </div>
-
-        <button class="btn-lead" id="btnLead" onclick="capturarLead()">
-          📲 Avísenme cuando abra
-        </button>
-
-        <div class="lead-divider"><span>o si ya quieres jugar</span></div>
-
-        <button class="btn-jugar-ya" onclick="scrollAlRegistro()">
-          ⚽ Registrar mi Quiniela — $100
-        </button>
-
-        <p class="lead-privacy">🔒 Tus datos son privados. Solo se usan para avisarte de la quiniela.</p>
-      </div>
-
-      <div class="lead-success" id="leadSuccess">
-        <div class="lead-success-icon">✅</div>
-        <div class="lead-success-title">¡Ya quedaste!</div>
-        <p class="lead-success-text">En cuanto abra la siguiente jornada te mandamos un WhatsApp. ¡Mucha suerte! 🏆</p>
-        <button class="btn-jugar-ya" style="margin-top:20px;" onclick="scrollAlRegistro()">
-          ⚽ También quiero jugar esta jornada
-        </button>
-      </div>
-    </div>
-
+<!-- NAV -->
+<nav id="navPrincipal">
+  <div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
+  <ul class="nav-links">
+    <li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
+    <li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
+    <li><button onclick="irSeccion('premios')">Premios</button></li>
+    <li><button onclick="mostrarSeguimiento()">En Vivo</button></li>
+    <li><button class="btn-tema" id="btnTema" onclick="toggleTema()" title="Cambiar tema">🌙</button></li>
+    <li><button class="nav-btn-cta" onclick="mostrarRegistro()">⚽ Jugar Ahora</button></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="btn-tema" id="btnTemaMobile" onclick="toggleTema()" title="Cambiar tema">🌙</button>
+    <button class="hamburger" id="hambBtn" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <button onclick="irSeccion('ganadores');cerrarMenu()">Ganadores</button>
+  <button onclick="irSeccion('como-funciona');cerrarMenu()">Cómo funciona</button>
+  <button onclick="irSeccion('premios');cerrarMenu()">Premios</button>
+  <button onclick="mostrarSeguimiento();cerrarMenu()">En Vivo</button>
+  <button class="cta-mobile" onclick="mostrarRegistro();cerrarMenu()">⚽ Jugar Ahora — $100 MXN</button>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     SECCIÓN MOMIOS COMPLETA (scroll, visible al bajar)
-════════════════════════════════════════════════ -->
-<div id="seccionMomios" style="padding-top:20px;display:none;">
-  <div class="momios-header">
-    <span class="momios-title">📊 Análisis completo — momios y tendencias</span>
-    <span class="momios-badge" id="momiosBadge">Esta jornada</span>
-  </div>
-  <div class="momios-cols">
-    <span class="mc-head">#</span>
-    <span class="mc-head">Partido</span>
-    <span class="mc-head">L</span>
-    <span class="mc-head">E</span>
-    <span class="mc-head">V</span>
-  </div>
-  <div id="momiosFilas"><!-- se llena con JS --></div>
-  <div class="momios-cta" onclick="scrollAlRegistro()">
-    ⚽ ¿Ya viste los momios? ¡Registra tu quiniela ahora! →
-  </div>
-</div>
+<!-- ═══════════════════════════════════
+     VISTA LANDING
+═══════════════════════════════════ -->
+<div id="vista-landing" class="vista activa">
 
-<!-- ════════════════════════════════════════════════
-     PAGE 1 — DATOS DEL JUGADOR
-════════════════════════════════════════════════ -->
-<div id="page1" class="card fade-in" style="padding-top:20px;" id="registroSection">
-  <div class="stats-row" id="statsRow" style="display:none;">
-    <div class="stat-box"><div class="stat-val" id="statJornada" style="font-size:clamp(12px,3vw,18px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">—</div><div class="stat-lbl">Jornada</div></div>
-    <div class="stat-box"><div class="stat-val" id="statJugadores">—</div><div class="stat-lbl">Jugadores</div></div>
-    <div class="stat-box"><div class="stat-val" id="statPrecio">$100</div><div class="stat-lbl">Desde</div></div>
-  </div>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-3d">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <div class="hero-hex"></div>
 
-  <div class="tabla-costos">
-    <div class="tabla-costos-titulo">
-      💰 TABLA DE COSTOS (cargando...)
-      <button onclick="toggleTabla()" id="btnTabla">▼ VER</button>
-    </div>
-    <div id="tablaCostosBody" class="hidden">
-      <div style="overflow-x:auto;">
-        <table class="tabla-matrix" id="tablaMatriz">
-          <thead>
-            <tr>
-              <th class="th-dobles">🔀 DOBLES ↓ · 🎲 TRIPLES →</th>
-              <th class="th-triple">0 Triples</th>
-              <th class="th-triple">1 Triple</th>
-              <th class="th-triple">2 Triples</th>
-            </tr>
-          </thead>
-          <tbody id="tablaMatrizBody">
-            <tr><td colspan="4" style="text-align:center;padding:16px;color:var(--muted);font-size:12px;">Cargando precios...</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="tabla-nota" id="tablaNotaPrecio">⚡ Fórmula: BASE × 2<sup>dobles</sup> × 3<sup>triples</sup></div>
-    </div>
-  </div>
+    <div class="hero-grid-main">
 
-  <div class="panel" id="panelDatos">
-    <div class="section-title">👤 Tus Datos</div>
-    <div id="aviso1" class="aviso"></div>
-    <div class="field-group">
-      <label class="field-label">WhatsApp (10 dígitos)</label>
-      <input class="field-input" type="tel" id="whatsapp" placeholder="Ej. 7471234567"
-        maxlength="10" inputmode="numeric" required
-        oninput="this.value=this.value.replace(/\D/g,'').substring(0,10); onWhatsappInput(this.value)">
-    </div>
-    <div class="field-group">
-      <label class="field-label">Nombre completo</label>
-      <input class="field-input" type="text" id="nombre" placeholder="Ej. Julio César" autocomplete="name">
-    </div>
-    <div class="alias-panel">
-      <div class="alias-title">🎟️ Alias de Jugador</div>
-      <div class="alias-desc">Tu apodo único para esta jornada. Solo letras, números y guion bajo. Ej: APEX_PRO</div>
-      <input class="field-input" type="text" id="alias" placeholder="Tu alias aquí"
-        maxlength="20" autocomplete="off" style="border-color:rgba(255,214,0,.4);"
-        oninput="this.value=this.value.toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,'')">
-    </div>
-    <button class="btn btn-gold" id="btnIniciar" onclick="validarIngreso()">ARMAR MI JUGADA ⚽</button>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════
-     PAGE 2 — SELECCIÓN DE PARTIDOS
-════════════════════════════════════════════════ -->
-<div id="page2" class="hidden fade-in">
-  <div id="page2Header" class="page2-sticky-header">
-    <div class="card">
-      <div class="p2h-top">
-        <div class="p2h-alias-wrap">
-          <div class="p2h-lbl">Jugador</div>
-          <div id="bannerAlias" class="p2h-alias">—</div>
-        </div>
-        <div class="p2h-progreso">
-          <div class="p2h-prog-nums">
-            <span class="prog-actual" id="cntPartidos">0</span><span id="cntPartidosTotal">/0</span>
-          </div>
-          <div class="p2h-prog-bar"><div class="p2h-prog-fill" id="cntProgFill" style="width:0%"></div></div>
-          <div class="p2h-prog-lbl">Partidos seleccionados</div>
-        </div>
-        <div class="p2h-right">
-          <div class="p2h-lbl">Quinielas</div>
-          <div id="bannerNumQ" class="p2h-num">1</div>
-        </div>
-      </div>
-      <div class="p2h-combos" id="p2hCombos">
-        <div class="p2h-combo-item" id="cntDobles">
-          <span class="p2h-combo-ico">🔀</span>
-          <span class="p2h-combo-val" id="cntDoblesVal">0</span>
-          <span class="p2h-combo-max">/3</span>
-          <span class="p2h-combo-lbl">Dobles</span>
-        </div>
-        <div class="p2h-combo-sep"></div>
-        <div class="p2h-combo-item" id="cntTriples">
-          <span class="p2h-combo-ico">🎲</span>
-          <span class="p2h-combo-val" id="cntTriplesVal">0</span>
-          <span class="p2h-combo-max">/2</span>
-          <span class="p2h-combo-lbl">Triples</span>
-        </div>
-        <div class="p2h-combo-sep"></div>
-        <div class="p2h-combo-item">
-          <span class="p2h-combo-ico">💰</span>
-          <span class="p2h-combo-val p2h-precio" id="cntPrecio">$0</span>
-          <span class="p2h-combo-lbl">Esta quiniela</span>
-        </div>
-      </div>
-      <div id="p2hAlerta" class="p2h-alerta hidden"></div>
-      <div class="p2h-tabs">
-        <div id="aviso2" class="aviso" style="margin-bottom:4px;"></div>
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-          <div class="quinielas-nav" id="quinielasNav" style="flex:1;margin-bottom:0;"></div>
-          <button class="btn-borrar-todo" onclick="borrarTodosPartidos()">🗑️ Borrar todo</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="padding-top:4px;">
-    <div class="panel" style="padding:8px 14px;">
-      <div id="partidosContainer">
-        <p style="text-align:center;color:var(--muted);font-size:13px;font-weight:700;padding:20px 0;">
-          <span class="spinner"></span> Cargando partidos...
+      <!-- IZQUIERDA — contenido original intacto -->
+      <div class="hero-content">
+        <div class="hero-tag"><div class="pdot"></div>Jornada Activa — Inscripciones Abiertas</div>
+        <h1 class="hero-title">
+          <span class="v">Quiniela</span><br>
+          <span class="o">Pro</span> Fut
+        </h1>
+        <p class="hero-desc">
+          Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.
         </p>
+
+        <!-- PROMO REFERIDO — visible desde el hero -->
+        <div class="hero-referido">
+          <div class="ref-icon">🎁</div>
+          <div class="ref-text">
+            <strong>Invita 1 amigo que pague</strong> y obtén <span style="color:#FFD84D;font-weight:800;">$20 de descuento</span> en tu próxima jornada
+          </div>
+        </div>
+
+        <div class="hero-btns">
+          <button class="btn-v" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
+          <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
+        </div>
+      </div>
+
+      <!-- DERECHA — Formulario de captación de leads -->
+      <div class="hero-lead-col">
+        <div class="lead-form-card">
+
+          <div id="lfFormWrap">
+            <div class="lf-live">
+              <div class="pdot"></div>
+              <span class="lf-live-txt">Próxima jornada abierta</span>
+            </div>
+            <div class="lf-title">Únete a la<br><span>siguiente ronda</span></div>
+            <p class="lf-desc">Deja tu nombre y WhatsApp. Te avisamos cuando abran los pronósticos. Sin spam, puro fútbol. 🔥</p>
+
+            <div class="lf-group">
+              <label class="lf-label">Nombre o alias</label>
+              <input class="lf-input" type="text" id="lfNombre" placeholder="Ej. El Chino" autocomplete="nickname">
+            </div>
+            <div class="lf-group">
+              <label class="lf-label">WhatsApp (10 dígitos)</label>
+              <input class="lf-input" type="tel" id="lfWA" placeholder="55 1234 5678" maxlength="14"
+                oninput="this.value=this.value.replace(/[^0-9 ]/g,'')">
+            </div>
+
+            <button class="btn-lf-submit" id="btnLfSubmit" onclick="capturarLead()">
+              📲 AVÍSENME CUANDO ABRA
+            </button>
+
+            <div class="lf-divider"><span>o si ya quieres jugar</span></div>
+
+            <button class="btn-lf-jugar" onclick="mostrarRegistro()">
+              ⚽ REGISTRAR MI QUINIELA — $100
+            </button>
+
+            <p class="lf-privacy">🔒 Tus datos son privados. Solo se usan para avisarte de la quiniela.</p>
+          </div>
+
+          <div class="lf-success" id="lfSuccess">
+            <div class="lf-success-icon">✅</div>
+            <div class="lf-success-title">¡Ya quedaste!</div>
+            <p class="lf-success-text">En cuanto abra la siguiente jornada te mandamos un WhatsApp con todos los detalles. ¡Mucha suerte! 🏆</p>
+            <button class="btn-lf-success-jugar" onclick="mostrarRegistro()">
+              ⚽ También quiero jugar esta jornada
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-n" data-to="17">0</span><span class="stat-l">Jornadas Jugadas</span></div>
+    <div class="stat"><span class="stat-n" data-to="880" style="color:var(--oro)">0</span><span class="stat-l">Premio Actual $MXN</span></div>
+    <div class="stat"><span class="stat-n" data-to="8">0</span><span class="stat-l">Jugadores Activos</span></div>
+    <div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
+  </div>
+
+  <!-- ══ GANADORES REALES — NUEVA SECCIÓN ══ -->
+  <div class="ganadores-section" id="ganadores">
+    <section class="sec">
+      <span class="chip reveal">Ganadores Reales</span>
+      <h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
+      <p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
+
+      <div class="ganadores-grid">
+        <!-- Ganador jornada actual -->
+        <div class="ganador-card reveal">
+          <div class="ganador-badge">🏆 JORNADA 17</div>
+          <div class="ganador-trophy">🥇</div>
+          <div class="ganador-nombre">KAKAROTTO</div>
+          <div class="ganador-alias">Mark Overmars</div>
+          <div class="ganador-premio">$880</div>
+          <div class="ganador-meta"><div class="ganador-dot"></div>9 aciertos · 60% · Jornada 17</div>
+        </div>
+        <!-- Ganadores jornada anterior -->
+        <div class="ganador-card reveal">
+          <div class="ganador-badge">🏆 JORNADA 16</div>
+          <div class="ganador-trophy">🥇</div>
+          <div class="ganador-nombre">Perkys & Chino</div>
+          <div class="ganador-alias">Eduardo P. · Jugador Verificado</div>
+          <div class="ganador-premio">$400 c/u</div>
+          <div class="ganador-meta"><div class="ganador-dot"></div>Empate en 1er lugar · $400 cada uno</div>
+        </div>
+      </div>
+
+      <!-- Historial compacto -->
+      <div class="historial reveal" style="margin-top:2.5rem;">
+        <div class="historial-row hdr">
+          <span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span>
+        </div>
+        <div class="historial-row">
+          <span class="h-pos">🥇</span>
+          <span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span>
+          <span class="h-aciertos">9</span>
+          <span class="h-premio">$880</span>
+        </div>
+        <div class="historial-row">
+          <span class="h-pos">🥇</span>
+          <span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span>
+          <span class="h-aciertos">—</span>
+          <span class="h-premio">$400</span>
+        </div>
+        <div class="historial-row">
+          <span class="h-pos">🥇</span>
+          <span class="h-nombre">Chino <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span>
+          <span class="h-aciertos">—</span>
+          <span class="h-premio">$400</span>
+        </div>
+        <div class="historial-row" style="opacity:0.4;">
+          <span class="h-pos" style="color:var(--muted);">—</span>
+          <span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span>
+          <span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span>
+          <span class="h-premio" style="color:var(--verde);">$???</span>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- CÓMO FUNCIONA -->
+  <div style="background:var(--negro);">
+    <section class="sec" id="como-funciona">
+      <span class="chip reveal">El Proceso</span>
+      <h2 class="stitle reveal">Así de fácil<br>es participar</h2>
+      <p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-bg">01</div>
+          <div class="step-icon">⚽</div>
+          <h3>Entra al formulario</h3>
+          <p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-bg">02</div>
+          <div class="step-icon">🔀</div>
+          <h3>Juega con Dobles y Triples</h3>
+          <p>Marca 2 o 3 opciones por partido para multiplicar tu boleta. Más riesgo, más premio.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-bg">03</div>
+          <div class="step-icon">📊</div>
+          <h3>Sigue tu posición en vivo</h3>
+          <p>Ranking actualizado en tiempo real conforme caen los resultados.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-bg">04</div>
+          <div class="step-icon">🏆</div>
+          <h3>Cobra tu premio</h3>
+          <p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- LIGAS -->
+  <section class="sec" id="ligas">
+    <span class="chip reveal">Cobertura</span>
+    <h2 class="stitle reveal">Todas las ligas<br>que importan</h2>
+    <p class="sdesc reveal">Cada jornada incluye los mejores partidos de las competencias más importantes del mundo.</p>
+    <div class="ligas reveal">
+      <div class="liga on">🇲🇽 Liga MX</div>
+      <div class="liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</div>
+      <div class="liga">🌍 Champions League</div>
+      <div class="liga">🇪🇸 LaLiga</div>
+      <div class="liga">🇩🇪 Bundesliga</div>
+      <div class="liga">🌎 Copa MX</div>
+    </div>
+  </section>
+
+  <!-- SEGUIMIENTO PREVIEW -->
+  <div style="background:var(--card);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
+    <section class="sec" id="seguimiento-prev">
+      <span class="chip reveal">En Tiempo Real</span>
+      <h2 class="stitle reveal">Sigue el ranking<br>mientras pasa</h2>
+      <p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones de todos los jugadores.</p>
+      <div class="tbox reveal">
+        <div class="thead">
+          <span class="thead-t">Jornada en Curso — Seguimiento Live</span>
+          <span class="live"><div class="ldot"></div>En Vivo</span>
+        </div>
+        <div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
+        <div class="trow"><span class="rk r1">1</span><span class="pname">KAKAROTTO</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">5</div></div>
+        <div class="trow"><span class="rk r2">2</span><span class="pname">CHINICUIL</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">4</div></div>
+        <div class="trow"><span class="rk r3">3</span><span class="pname">HIJM</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">4</div></div>
+        <div class="trow"><span class="rk r4">4</span><span class="pname">MR_HAPPY</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">3</div></div>
+        <div class="trow" style="opacity:0.5"><span class="rk r4">5</span><span class="pname">A_P_E_X</span><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">2</div></div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- PREMIOS -->
+  <div style="background:var(--card2);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
+    <section class="sec" id="premios">
+      <span class="chip reveal">Premio</span>
+      <h2 class="stitle reveal">El ganador<br><span style="color:var(--oro)">se lleva todo</span></h2>
+      <p class="sdesc reveal">Una quiniela. Un campeón. El pozo completo de la jornada directo al mejor pronóstico.</p>
+
+      <div class="premio-principal reveal">
+        <div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
+        <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);letter-spacing:0.05em;">EL POZO</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--oro);letter-spacing:0.1em;opacity:0.8;margin-bottom:1rem;">COMPLETO</div>
+        <div style="font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.7;">El jugador con más aciertos al final de la jornada gana <strong style="color:var(--texto)">el pozo completo acumulado</strong>. Puedes ver en tiempo real cuánto vale el pozo en la pantalla de seguimiento.</div>
+        <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.25);border-radius:8px;padding:0.75rem 1.5rem;">
+          <span style="font-size:1.2rem;">🤝</span>
+          <span style="font-size:0.82rem;color:#FF8FA3;font-weight:600;line-height:1.5;">En caso de empate en el primer lugar,<br>el pozo se divide a partes iguales entre los ganadores.</span>
+        </div>
+      </div>
+
+      <!-- PROMO REFERIDO ACTUALIZADA -->
+      <div class="promo-referido reveal">
+        <div style="font-size:3.5rem;flex-shrink:0;">🎁</div>
+        <div style="flex:1;min-width:220px;">
+          <div class="promo-badge">NUEVO</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);letter-spacing:0.05em;line-height:1;margin-bottom:0.5rem;">INVITA 1 AMIGO<br>Y OBTÉN $20 OFF</div>
+          <div style="font-size:0.9rem;color:var(--muted);line-height:1.6;">Consigue que un amigo se registre y pague su quiniela y <strong style="color:var(--texto)">tú obtienes $20 de descuento</strong> en tu próxima jornada. Sin límite de veces.</div>
+        </div>
+        <button class="btn-v" onclick="mostrarRegistro()" style="flex-shrink:0;">⚽ Participar</button>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- TESTIMONIALES -->
+  <div style="background:var(--card);border-top:1px solid var(--borde);">
+    <section class="sec" id="testimonios">
+      <span class="chip reveal">La Comunidad Habla</span>
+      <h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
+      <div class="tgrid">
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Llevo 3 jornadas seguidas en el top 3. El seguimiento en vivo es lo que más me gusta, ves cómo vas subiendo conforme pasan los partidos.</p><div class="tauthor"><div class="ava">EL</div><div><div class="aname">ElCharro99</div><div class="ameta">Ganador Jornada 14 y 16</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>El formulario de dobles y triples es una chulada. Puedes hacer varias quinielas y armar diferentes estrategias en la misma jornada.</p><div class="tauthor"><div class="ava">NM</div><div><div class="aname">NaranjaMec</div><div class="ameta">Jugador desde la Jornada 8</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo. Así da confianza meter la lana.</p><div class="tauthor"><div class="ava">GJ</div><div><div class="aname">GolazoJRT</div><div class="ameta">Jugador recurrente</div></div></div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-wrap" id="registro-cta">
+    <div class="cta-inner">
+      <span class="chip reveal">¿Listo?</span>
+      <h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">jornada activa</span></h2>
+      <p class="sdesc reveal">Inscripción directa en el sitio. Pronósticos, dobles, triples, boleta descargable y seguimiento en vivo — todo en un solo lugar.</p>
+      <div class="cta-btns reveal">
+        <button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button>
+        <button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
+      </div>
+      <div class="trust reveal">
+        <div class="ti"><span>🔒</span> Pago seguro</div>
+        <div class="ti"><span>⚡</span> Resultados en tiempo real</div>
+        <div class="ti"><span>🏆</span> Premios garantizados</div>
+        <div class="ti"><span>📱</span> 100% desde el celular</div>
       </div>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="flogo">Quiniela<em>Pro</em>Fut</span>
+    <p>© 2026 quinielaprofut.com — Todos los derechos reservados</p>
+    <p>contacto@quinielaprofut.com</p>
+  </footer>
+
+</div><!-- /vista-landing -->
+
+<!-- VISTA REGISTRO -->
+<div id="vista-registro">
+  <div class="iframe-topbar">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Registro</div>
+    <div class="topbar-badge"><div class="ldot-sm"></div>Jornada Activa</div>
+  </div>
+  <iframe id="iframe-registro" class="iframe-main" src="" title="Registro de Quiniela" allow="clipboard-write" loading="lazy"></iframe>
 </div>
 
-<div id="barraCalc" class="hidden">
-  <div class="barra-info">
-    <div class="barra-label">Total a pagar:</div>
-    <div class="barra-precio incomplete" id="barraTotal">$0</div>
-    <div class="barra-detalle" id="barraDetalle">Selecciona tus partidos</div>
+<!-- VISTA ANÁLISIS -->
+<div id="vista-analisis">
+  <div class="iframe-topbar" style="border-bottom-color:var(--oro);">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title" style="color:var(--texto);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; <span style="color:var(--oro);">Análisis Premium</span></div>
+    <div class="topbar-badge" style="color:var(--oro);background:rgba(255,216,77,0.1);border-color:rgba(255,216,77,0.3);">
+      <div class="ldot-sm" style="background:var(--oro);"></div>Exclusivo
+    </div>
   </div>
-  <button class="btn btn-green btn-sm" id="btnConfirmar" onclick="enviarQuinielas()">CONFIRMAR ✓</button>
+  <iframe id="iframe-analisis" class="iframe-main" src="" title="Análisis Premium" loading="lazy"></iframe>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     PAGE 3 — RESUMEN Y PAGO
-════════════════════════════════════════════════ -->
-<div id="page3" class="card hidden fade-in">
-  <div class="hero-wrap" style="min-height:auto;padding:0;margin-bottom:14px;">
-    <div style="padding:28px 20px 20px;text-align:center;position:relative;z-index:2;">
-      <div class="hero-badge" style="margin:0 auto 12px;">✅ Jugada Registrada</div>
-      <h2 style="font-family:var(--font-head);font-size:clamp(32px,8vw,48px);color:var(--texto);letter-spacing:2px;line-height:1;margin-bottom:8px;">¡YA ESTÁS!</h2>
-      <p style="color:var(--muted);font-size:14px;font-weight:600;">Solo falta tu pago para confirmar tu lugar.</p>
-    </div>
+<!-- VISTA SEGUIMIENTO -->
+<div id="vista-seguimiento">
+  <div class="iframe-topbar seguimiento-bar">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title oro">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Seguimiento</div>
+    <div class="topbar-badge oro"><div class="ldot-sm oro"></div>En Vivo</div>
   </div>
-
-  <div class="panel">
-    <div class="section-title">📋 Tus Quinielas</div>
-    <div id="resumenLista" class="resumen-lista"></div>
-    <div class="total-box">
-      <div class="tl">Total a Depositar</div>
-      <div class="tv" id="totalAPagar">$0</div>
-      <div class="ts" id="totalDetalle">—</div>
-    </div>
-    <div id="listaBoletas" style="display:none;"></div>
-  </div>
-
-  <div class="panel" id="retoPage3Panel" style="display:none;">
-    <div class="reto-paso-label">📄 PASO 1 — Guarda tu boleta</div>
-    <div id="retoBoletaWrap"></div>
-    <div class="reto-divider"></div>
-    <div class="reto-paso-label">📲 PASO 2 — Reta a un amigo</div>
-    <div class="reto-panel">
-      <div class="reto-titulo">¿Le atinas más que yo? 😤</div>
-      <div class="reto-sub">Tu quiniela ya está registrada.<br>Mientras haces tu pago, reta a alguien a competir contigo.</div>
-      <div class="reto-msg-box" id="retoMsgPreview"></div>
-      <a class="btn-wa-reto" id="retoWaBtn" href="#" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        ENVIAR RETO POR WHATSAPP
-      </a>
-      <button class="btn-copy-reto" onclick="copiarMensajeRetoPag3()">📋 <span id="retoCopyLabel">Copiar mensaje</span></button>
-      <p class="reto-hint">📸 Adjunta la imagen de tu boleta al enviar el reto</p>
-    </div>
-  </div>
-
-  <div class="panel">
-    <div class="section-title">🏦 Datos de Pago</div>
-    <div class="clabe-box">
-      <div class="clabe-banco" id="clabeNombreBanco">BBVA</div>
-      <div class="clabe-num" id="clabeNumero">— — — — — —</div>
-      <div class="clabe-nombre" id="clabeNombre">Cargando...</div>
-      <div class="clabe-total" id="clabeMonto">$0</div>
-      <button class="btn-copy" onclick="copiarClabe()">📋 Copiar CLABE</button>
-    </div>
-  </div>
-
-  <input type="hidden" id="costoTotalEsperado" value="0">
-
-  <div class="panel">
-    <div class="section-title">📸 Comprobante de Pago</div>
-    <div id="aviso3" class="aviso"></div>
-    <div class="upload-box">
-      <div class="upload-icon">🧾</div>
-      <div class="upload-title">Sube tu captura de transferencia</div>
-      <div class="upload-desc">
-        Foto o captura de pantalla de tu transferencia. Máx 10MB.<br>
-        <span style="font-size:10px;color:var(--verde);font-weight:800;">✦ El sistema verifica automáticamente el monto.</span>
-      </div>
-      <input type="file" id="archivoPago" accept="image/*" onchange="onArchivoSeleccionado(this)" style="margin-bottom:10px;">
-      <div id="ocrPanel" class="ocr-panel hidden">
-        <div class="ocr-preview-wrap"><img id="ocrPreviewImg" src="" alt="Comprobante"></div>
-        <div class="ocr-status ocr-ok" id="ocrStatus">✅ Imagen lista — puedes subir tu comprobante</div>
-      </div>
-      <div class="progreso-subida" id="progresoSubida">
-        <div class="progreso-label" id="progresoLabel">Preparando...</div>
-        <div class="progreso-track"><div class="progreso-fill" id="progresoFill"></div></div>
-      </div>
-      <button class="btn btn-gold" id="btnSubir" onclick="subirComprobante()" disabled style="margin-top:10px;opacity:.5;">📤 SUBIR COMPROBANTE</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════ PAGE FINAL ════ -->
-<div id="pageFinal" class="card hidden fade-in">
-  <div class="panel success-page">
-    <span class="success-icon">🏆</span>
-    <div class="success-title">¡LISTO!</div>
-    <p class="success-sub">Tu pago fue recibido y tus quinielas están activas.<br>¡Mucha suerte! 🍀⚽</p>
-    <a id="btnWA" class="btn-wa" href="#" target="_blank" style="margin-bottom:16px;">
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      RETA A UN AMIGO
-    </a>
-    <div id="boletasGuardadas" style="margin-top:14px;"></div>
-    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-      <button class="btn btn-ghost" onclick="reiniciar()" style="flex:1;min-width:140px;">🔄 NUEVA JUGADA</button>
-      <button class="btn btn-ghost" onclick="mostrarDespedida()" style="flex:1;min-width:140px;border-color:var(--verde);color:var(--verde);">✅ FINALIZAR</button>
-    </div>
-  </div>
-</div>
-
-<!-- OFF-SCREEN RENDER -->
-<div id="boletaRenderContainer"></div>
-
-<!-- MODAL BOLETA -->
-<div id="boletaModal" class="boleta-modal hidden">
-  <div class="boleta-backdrop" onclick="cerrarBoleta()"></div>
-  <div class="boleta-box">
-    <div class="boleta-box-header">
-      <div class="boleta-box-title">🎟️ TU BOLETA</div>
-      <button class="boleta-close-btn" onclick="cerrarBoleta()">✕</button>
-    </div>
-    <div class="boleta-img-wrap"><img id="boletaImgEl" src="" alt="Boleta"></div>
-    <p class="boleta-hint">📱 En celular: mantén presionada la imagen para guardarla</p>
-    <a id="boletaDownloadLink" class="btn btn-gold" download="Boleta_QPF.png"
-      style="display:block;text-align:center;text-decoration:none;padding:14px;font-size:18px;">
-      💾 DESCARGAR IMAGEN
-    </a>
-    <button class="btn btn-ghost" onclick="cerrarBoleta()" style="margin-top:8px;">✕ Cerrar</button>
-  </div>
+  <iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" loading="lazy"></iframe>
 </div>
 
 <script>
-// ════════════════════════════════════════════════════
-//  QUINIELA PRO FUT — Index.html JS
-//  v3.0 — Hero Lead Form + Momios Preview integrado
-// ════════════════════════════════════════════════════
+var URL_REGISTRO    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
+var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
+var URL_ANALISIS    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=analisis';
+var iframesLoaded = { registro:false, seguimiento:false, analisis:false };
 
-// ─── TEMA DÍA / NOCHE ────────────────────────────────
-(function(){
+// ══════════════════════════
+// TEMA DÍA / NOCHE
+// ══════════════════════════
+var temaManual = false; // ¿el usuario lo cambió manualmente?
+
+function esDeDia(){
   var h = new Date().getHours();
-  if(h>=7 && h<20){ document.documentElement.classList.add('dia'); }
+  return h >= 7 && h < 19; // 7am - 7pm = día
+}
+
+function aplicarTema(dia){
+  var html = document.documentElement;
+  var btns = document.querySelectorAll('#btnTema, #btnTemaMobile');
+  if(dia){
+    html.classList.add('dia');
+    btns.forEach(function(b){ b.textContent = '🌙'; b.title = 'Modo noche'; });
+  } else {
+    html.classList.remove('dia');
+    btns.forEach(function(b){ b.textContent = '☀️'; b.title = 'Modo día'; });
+  }
+}
+
+function toggleTema(){
+  temaManual = true;
+  var esDia = document.documentElement.classList.contains('dia');
+  aplicarTema(!esDia);
+  localStorage.setItem('qpf-tema', !esDia ? 'dia' : 'noche');
+}
+
+// Al cargar: revisa localStorage o usa la hora
+(function(){
+  var guardado = localStorage.getItem('qpf-tema');
+  if(guardado){
+    aplicarTema(guardado === 'dia');
+  } else {
+    aplicarTema(esDeDia());
+  }
 })();
 
-// ─── LEAD FORM ───────────────────────────────────────
-// ← CAMBIA ESTA URL por la de tu Web App
-var LEAD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
-// ← CAMBIA este número (521 + 10 dígitos)
-var ADMIN_WA = '5217471193095';
+// Actualizar tema automáticamente cada hora si no fue cambiado manualmente
+setInterval(function(){
+  if(!temaManual){ aplicarTema(esDeDia()); }
+}, 60 * 60 * 1000);
+
+// ══════════════════════════
+// NAVEGACIÓN
+// ══════════════════════════
+function mostrarLanding(){
+  document.getElementById('vista-landing').classList.add('activa');
+  document.getElementById('vista-landing').style.display='block';
+  document.getElementById('vista-registro').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='none';
+  document.getElementById('vista-analisis').style.display='none';
+  document.getElementById('navPrincipal').style.display='flex';
+  window.scrollTo(0,0);
+  document.title='QuinielaPro Fut — La Quiniela Más Pro de México';
+}
+function mostrarAnalisis(){ window.location.href='analisis.html'; }
+function mostrarRegistro(){
+  document.getElementById('vista-landing').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='none';
+  document.getElementById('vista-registro').style.display='flex';
+  document.getElementById('navPrincipal').style.display='none';
+  document.title='QuinielaPro Fut — Registrar Quiniela';
+  if(!iframesLoaded.registro){ document.getElementById('iframe-registro').src=URL_REGISTRO; iframesLoaded.registro=true; }
+}
+function mostrarSeguimiento(){
+  document.getElementById('vista-landing').style.display='none';
+  document.getElementById('vista-registro').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='flex';
+  document.getElementById('navPrincipal').style.display='none';
+  document.title='QuinielaPro Fut — Seguimiento en Vivo';
+  if(!iframesLoaded.seguimiento){ document.getElementById('iframe-seguimiento').src=URL_SEGUIMIENTO; iframesLoaded.seguimiento=true; }
+}
+function irSeccion(id){
+  mostrarLanding();
+  setTimeout(function(){ var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); },100);
+}
+
+// ══════════════════════════
+// MENÚ HAMBURGER — FIX
+// ══════════════════════════
+var menuAbierto = false;
+function toggleMenu(){
+  var m = document.getElementById('navMobile');
+  menuAbierto = !menuAbierto;
+  if(menuAbierto){
+    m.classList.add('open');
+    m.style.display = 'flex';
+  } else {
+    cerrarMenu();
+  }
+}
+function cerrarMenu(){
+  var m = document.getElementById('navMobile');
+  m.classList.remove('open');
+  m.style.display = 'none';
+  menuAbierto = false;
+}
+
+// ══════════════════════════
+// REVEAL ON SCROLL
+// ══════════════════════════
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e,i){ if(e.isIntersecting){ setTimeout(function(){e.target.classList.add('in');},i*70); io.unobserve(e.target); } });
+},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+// COUNT UP
+function countUp(el,to,dur){
+  dur=dur||1800;var n=0,step=to/(dur/16);
+  var t=setInterval(function(){ n+=step; if(n>=to){el.textContent=to;clearInterval(t);return;} el.textContent=Math.floor(n); },16);
+}
+var cio=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){countUp(e.target,+e.target.dataset.to);cio.unobserve(e.target);} });
+},{threshold:0.5});
+document.querySelectorAll('[data-to]').forEach(function(el){cio.observe(el);});
+
+// LIGA CHIPS
+document.querySelectorAll('.liga').forEach(function(c){
+  c.addEventListener('click',function(){ document.querySelectorAll('.liga').forEach(function(x){x.classList.remove('on');}); c.classList.add('on'); });
+});
+
+// ══════════════════════════
+// LEAD FORM — Captación de prospectos
+// ══════════════════════════
+// ← CAMBIA por la URL de tu Web App de Apps Script
+var LEAD_SCRIPT_URL = 'TU_URL_APPS_SCRIPT_AQUI';
+// ← CAMBIA por tu número (521 + 10 dígitos, sin espacios)
+var ADMIN_WA_NUM = '521XXXXXXXXXX';
 
 function capturarLead() {
-  var nombre  = (document.getElementById('leadNombre').value || '').trim();
-  var wa      = (document.getElementById('leadWA').value || '').replace(/\D/g,'').trim();
-  var btn     = document.getElementById('btnLead');
-  if (!nombre) { document.getElementById('leadNombre').focus(); return; }
-  if (wa.length < 10) { document.getElementById('leadWA').focus(); return; }
+  var nombre = (document.getElementById('lfNombre').value || '').trim();
+  var wa     = (document.getElementById('lfWA').value || '').replace(/\D/g, '').trim();
+  var btn    = document.getElementById('btnLfSubmit');
+
+  if (!nombre) { document.getElementById('lfNombre').focus(); return; }
+  if (wa.length < 10) { document.getElementById('lfWA').focus(); return; }
 
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>PROCESANDO...';
+  btn.textContent = 'PROCESANDO...';
 
-  // Enviar a Apps Script → CLIENTES PENDIENTES
+  // Enviar a Apps Script → hoja CLIENTES PENDIENTES
   fetch(LEAD_SCRIPT_URL, {
-    method: 'POST', mode: 'no-cors',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({ accion:'guardarLead', nombre:nombre, whatsapp:wa, fuente:'index_hero' })
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ accion: 'guardarLead', nombre: nombre, whatsapp: wa, fuente: 'landing_hero' })
   }).catch(function(){});
 
-  // Evento GTM
-  if(window.dataLayer) window.dataLayer.push({ event:'generate_lead', lead_source:'index_hero', lead_name:nombre });
+  // Evento Google Tag Manager / Analytics
+  if (window.dataLayer) {
+    window.dataLayer.push({ event: 'generate_lead', lead_source: 'landing_hero', lead_name: nombre });
+  }
 
-  // Mostrar éxito
-  setTimeout(function(){
-    document.getElementById('leadFormWrap').style.display = 'none';
-    document.getElementById('leadSuccess').style.display = 'block';
-
-    // Abrir WA con los datos
-    var msg = encodeURIComponent('⚽ Hola! Quiero que me avisen de la próxima Quiniela Pro Fut\n\nNombre: '+nombre+'\nWhatsApp: '+wa);
-    window.open('https://wa.me/'+ADMIN_WA+'?text='+msg, '_blank');
+  // Mostrar confirmación y abrir WhatsApp
+  setTimeout(function() {
+    document.getElementById('lfFormWrap').style.display = 'none';
+    document.getElementById('lfSuccess').style.display  = 'block';
+    var msg = encodeURIComponent('⚽ Hola, quiero que me avisen de la próxima Quiniela Pro Fut!\n\nNombre: ' + nombre + '\nWhatsApp: ' + wa);
+    window.open('https://wa.me/' + ADMIN_WA_NUM + '?text=' + msg, '_blank');
   }, 900);
 }
-
-function scrollAlRegistro() {
-  var el = document.getElementById('panelDatos');
-  if(el) el.scrollIntoView({ behavior:'smooth', block:'start' });
-}
-
-// ─── ESTADO GLOBAL ───────────────────────────────────
-var PRECIO_BASE = 15;
-var userData = { nombre:'', whatsapp:'' };
-var aliasBase = '';
-var partidosGlobal = [];
-var analisisGlobal = {};
-var numPartidos = 0;
-var datosPago = { clabe:'', nombre:'', banco:'' };
-var quinielas = [];
-var quinielaActiva = 0;
-var resultadoGuardado = null;
-
-// ─── INIT ─────────────────────────────────────────────
-google.script.run
-  .withSuccessHandler(function(data){
-    if(!data) return;
-    if(data.boleto) PRECIO_BASE = Number(data.boleto)||15;
-    if(data.nombreJornada){
-      document.getElementById('statJornada').textContent = data.nombreJornada;
-      document.getElementById('heroBadgeText').textContent = '⚡ '+data.nombreJornada;
-      document.getElementById('momiosBadge').textContent = data.nombreJornada;
-    }
-    rellenarTablaPrecios(Number(data.boleto)||15);
-    if(data.total!==undefined){
-      document.getElementById('statJugadores').textContent = data.total;
-      document.getElementById('hstatJugadores').textContent = data.total;
-    }
-    var pozo = Math.floor((data.total||0)*(data.boleto||15)*0.80);
-    document.getElementById('hstatPozo').textContent = '$'+pozo.toLocaleString('es-MX');
-    document.getElementById('hstatDesde').textContent = '$'+(data.boleto||100);
-    document.getElementById('statPrecio').textContent = '$'+PRECIO_BASE;
-    document.getElementById('statsRow').style.display = 'flex';
-  })
-  .withFailureHandler(function(){})
-  .getEstadisticas();
-
-// Cargar partidos para preview hero y sección momios
-google.script.run
-  .withSuccessHandler(function(partidos){
-    if(!partidos || !partidos.length) return;
-    partidosGlobal = partidos;
-    numPartidos = partidos.length;
-    renderHeroPartidos(partidos);
-    renderSeccionMomios(partidos);
-  })
-  .withFailureHandler(function(){})
-  .getPartidos();
-
-// ─── RENDER HERO PARTIDOS PREVIEW ─────────────────────
-function renderHeroPartidos(partidos) {
-  var container = document.getElementById('hppRows');
-  // Mostrar primeros 5, con link "ver todos"
-  var mostrar = partidos.slice(0, 5);
-  var html = mostrar.map(function(p){
-    var aGlobal = analisisGlobal[p.id] || {};
-    var mL = Number(aGlobal.momioL||0), mE = Number(aGlobal.momioE||0), mV = Number(aGlobal.momioV||0);
-    var max = Math.max(mL,mE,mV);
-    var clL = mL===max&&mL>0?'best':(mL>25?'mid':'low');
-    var clE = mE===max&&mE>0?'best':(mE>25?'mid':'low');
-    var clV = mV===max&&mV>0?'best':(mV>25?'mid':'low');
-    return '<div class="hpp-row">'+
-      '<div class="hpp-match">'+escapeHtml(p.local)+' vs '+escapeHtml(p.visitante)+'</div>'+
-      '<div class="hpp-momio '+clL+'">'+(mL||'—')+'</div>'+
-      '<div class="hpp-momio '+clE+'">'+(mE||'—')+'</div>'+
-      '<div class="hpp-momio '+clV+'">'+(mV||'—')+'</div>'+
-      '</div>';
-  }).join('');
-  if(partidos.length>5){
-    html += '<div class="hpp-more" onclick="document.getElementById(\'seccionMomios\').scrollIntoView({behavior:\'smooth\'})">'+
-      '+ '+(partidos.length-5)+' partidos más — Ver análisis completo ↓</div>';
-  }
-  container.innerHTML = html;
-  // Ahora intentar cargar análisis
-  cargarAnalisisHero();
-}
-
-function cargarAnalisisHero() {
-  // Intentar cargar hoja ANALISIS vía getAnalisis con clave vacía para momios solo
-  // Como la clave puede requerirse, cargamos via función separada si existe
-  // Por ahora usamos getEstadisticas que ya tenemos; los momios se mostrarán vacíos
-  // hasta que el jugador se registre. Si quieres mostrarlos abiertos, 
-  // crea una función getPartidosConMomios() en Codigo.gs sin clave.
-}
-
-function renderSeccionMomios(partidos) {
-  var sec = document.getElementById('seccionMomios');
-  var filas = document.getElementById('momiosFilas');
-  var html = '';
-  partidos.forEach(function(p,i){
-    var a = analisisGlobal[p.id]||{};
-    var mL = Number(a.momioL||0), mE = Number(a.momioE||0), mV = Number(a.momioV||0);
-    var max = Math.max(mL,mE,mV);
-    var clL = mL===max&&mL>0?'best':(mL>25?'mid':'low');
-    var clE = mE===max&&mE>0?'best':(mE>25?'mid':'low');
-    var clV = mV===max&&mV>0?'best':(mV>25?'mid':'low');
-    var isLast = i===partidos.length-1;
-    html += '<div class="momio-partido-row'+(isLast?' last-row':'')+'" onclick="scrollAlRegistro()">'+
-      '<span class="mp-num">'+(i+1)+'</span>'+
-      '<div class="mp-teams">'+
-        '<div class="mp-local">'+escapeHtml(p.local)+'</div>'+
-        '<div class="mp-vs">vs</div>'+
-        '<div class="mp-visit">'+escapeHtml(p.visitante)+'</div>'+
-      '</div>'+
-      '<div class="mp-momio '+clL+'">'+(mL||'—')+'</div>'+
-      '<div class="mp-momio '+clE+'">'+(mE||'—')+'</div>'+
-      '<div class="mp-momio '+clV+'">'+(mV||'—')+'</div>'+
-      '</div>';
-  });
-  filas.innerHTML = html;
-  sec.style.display = 'block';
-}
-
-// ─── TABLA COSTOS ─────────────────────────────────────
-function toggleTabla(){
-  var body = document.getElementById('tablaCostosBody');
-  var btn = document.getElementById('btnTabla');
-  if(body.classList.contains('hidden')){ body.classList.remove('hidden'); btn.textContent='▲ Ocultar'; }
-  else{ body.classList.add('hidden'); btn.textContent='▼ Ver'; }
-}
-
-// ════════════════════════════════════════════════════
-//  PAGE 1 — Validar ingreso
-// ════════════════════════════════════════════════════
-function validarIngreso(){
-  var n=document.getElementById('nombre').value.trim();
-  var w=document.getElementById('whatsapp').value.trim();
-  var al=document.getElementById('alias').value.trim();
-  var av=document.getElementById('aviso1');
-  limpiarAviso(av);
-  if(!n){mostrarAviso(av,'error','Escribe tu nombre completo.');return;}
-  if(!w||!/^\d{10}$/.test(w)){mostrarAviso(av,'error','El WhatsApp debe ser exactamente 10 dígitos.');return;}
-  if(!al||al.length<3){mostrarAviso(av,'error','El alias debe tener al menos 3 caracteres.');return;}
-  userData.nombre=n; userData.whatsapp=w; aliasBase=al;
-  var btn=document.getElementById('btnIniciar');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>VERIFICANDO...';
-  google.script.run
-    .withSuccessHandler(resultadoVerificacion)
-    .withFailureHandler(function(){ btn.disabled=false; btn.textContent='ARMAR MI JUGADA ⚽'; mostrarAviso(av,'error','Error de conexión. Intenta de nuevo.'); })
-    .verificarAlias(al,w);
-}
-
-function resultadoVerificacion(res){
-  var av=document.getElementById('aviso1');
-  var btn=document.getElementById('btnIniciar');
-  if(res.estado==='ALIAS_DUPLICADO'){ btn.disabled=false; btn.textContent='ARMAR MI JUGADA ⚽'; mostrarAviso(av,'error','❌ Ese alias ya está en uso. Elige otro.'); return; }
-  if(res.estado==='CERRADO'){ btn.disabled=false; btn.textContent='ARMAR MI JUGADA ⚽'; mostrarAviso(av,'error','🔒 La quiniela está cerrada por el momento.'); return; }
-  document.getElementById('heroSection').classList.add('hidden');
-  document.getElementById('seccionMomios').style.display='none';
-  document.getElementById('page1').classList.add('hidden');
-  document.getElementById('page2').classList.remove('hidden');
-  document.getElementById('barraCalc').classList.remove('hidden');
-  document.getElementById('bannerAlias').textContent=aliasBase;
-  quinielas=[]; quinielaActiva=0; agregarQuiniela();
-  if(numPartidos>0){ renderTabs(); renderPartidos(); actualizarBarraTotal(); }
-  else {
-    google.script.run
-      .withSuccessHandler(initPartidos)
-      .withFailureHandler(function(){ mostrarAviso(document.getElementById('aviso2'),'error','Error al cargar partidos.'); })
-      .getPartidos();
-  }
-}
-
-// ════════════════════════════════════════════════════
-//  QUINIELAS MÚLTIPLES
-// ════════════════════════════════════════════════════
-function agregarQuiniela(){
-  if(quinielas.length>0){
-    var na=prompt('Alias para la quiniela '+(quinielas.length+1)+':',aliasBase+'_'+(quinielas.length+1));
-    if(!na)return;
-    na=na.trim().toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,'');
-    if(na.length<3){alert('Alias muy corto.');return;}
-    quinielas.push({selecciones:{},alias:na});
-  } else { quinielas.push({selecciones:{},alias:aliasBase}); }
-  quinielaActiva=quinielas.length-1;
-  if(numPartidos>0) inicializarSelecciones(quinielaActiva);
-  renderTabs();
-  if(numPartidos>0) renderPartidos();
-  actualizarBarraTotal();
-  document.getElementById('bannerNumQ').textContent=quinielas.length;
-}
-
-function eliminarQuiniela(idx){ if(quinielas.length<=1)return; quinielas.splice(idx,1); if(quinielaActiva>=quinielas.length)quinielaActiva=quinielas.length-1; renderTabs(); renderPartidos(); actualizarBarraTotal(); document.getElementById('bannerNumQ').textContent=quinielas.length; }
-function activarTab(idx){ quinielaActiva=idx; renderTabs(); renderPartidos(); actualizarBarraTotal(); }
-
-function renderTabs(){
-  var nav=document.getElementById('quinielasNav'); nav.innerHTML='';
-  quinielas.forEach(function(q,i){
-    var alias=getAliasQ(i); var completa=estaCompleta(i);
-    var tab=document.createElement('div');
-    tab.className='q-tab'+(i===quinielaActiva?' active':'')+(completa?' done':'');
-    tab.innerHTML=escapeHtml(alias);
-    if(quinielas.length>1){ var btnX=document.createElement('button'); btnX.className='btn-remove-q'; btnX.textContent='×'; btnX.onclick=(function(ix){return function(e){e.stopPropagation();eliminarQuiniela(ix);};})(i); tab.appendChild(btnX); }
-    tab.addEventListener('click',(function(ix){return function(){activarTab(ix);};})(i));
-    nav.appendChild(tab);
-  });
-  var addBtn=document.createElement('button'); addBtn.className='btn-add-q'; addBtn.textContent='+'; addBtn.title='Agregar quiniela'; addBtn.onclick=agregarQuiniela; nav.appendChild(addBtn);
-}
-
-function getAliasQ(idx){ if(quinielas[idx]&&quinielas[idx].alias)return quinielas[idx].alias; return quinielas.length===1?aliasBase:aliasBase+'-'+(idx+1); }
-function estaCompleta(qIdx){ if(numPartidos===0)return false; var sel=quinielas[qIdx].selecciones; for(var i=0;i<numPartidos;i++){if(!sel[i]||sel[i].length===0)return false;} return true; }
-
-// ════════════════════════════════════════════════════
-//  PARTIDOS
-// ════════════════════════════════════════════════════
-function initPartidos(partidos){ partidosGlobal=partidos||[]; numPartidos=partidosGlobal.length; quinielas.forEach(function(_,i){inicializarSelecciones(i);}); renderTabs(); renderPartidos(); actualizarBarraTotal(); }
-function inicializarSelecciones(qIdx){ for(var i=0;i<numPartidos;i++){if(!quinielas[qIdx].selecciones[i])quinielas[qIdx].selecciones[i]=[];} }
-
-function renderPartidos(){
-  var container=document.getElementById('partidosContainer'); container.innerHTML='';
-  if(numPartidos===0){ container.innerHTML='<p style="text-align:center;color:var(--muted);font-size:13px;font-weight:700;padding:20px 0;">No hay partidos cargados.</p>'; return; }
-  var sel=quinielas[quinielaActiva].selecciones;
-  partidosGlobal.forEach(function(p,i){
-    var row=document.createElement('div'); row.className='match-row';
-    var selArr=sel[i]||[];
-    var clsL=selArr.indexOf('LOCAL')>-1?' sel-L':'';
-    var clsE=selArr.indexOf('EMPATE')>-1?' sel-E':'';
-    var clsV=selArr.indexOf('VISITANTE')>-1?' sel-V':'';
-    var badge='';
-    if(selArr.length===2) badge='<span class="match-badge badge-doble">DOBLE</span>';
-    if(selArr.length===3) badge='<span class="match-badge badge-triple">TRIPLE</span>';
-    row.innerHTML='<div class="match-num">'+(i+1)+'</div>'+
-      '<div><div class="match-inner">'+
-      '<div class="team-name">'+escapeHtml(p.local)+'</div>'+
-      '<button class="btn-opt'+clsL+'" onclick="toggleSel('+quinielaActiva+','+i+',\'LOCAL\',this)">L</button>'+
-      '<button class="btn-opt'+clsE+'" onclick="toggleSel('+quinielaActiva+','+i+',\'EMPATE\',this)">E</button>'+
-      '<button class="btn-opt'+clsV+'" onclick="toggleSel('+quinielaActiva+','+i+',\'VISITANTE\',this)">V</button>'+
-      '<div class="team-name right">'+escapeHtml(p.visitante)+'</div>'+
-      '</div>'+(badge?'<div style="text-align:center;margin-top:4px;">'+badge+'</div>':'')+
-      '</div>';
-    container.appendChild(row);
-  });
-}
-
-function toggleSel(qIdx,partidoIdx,resultado,btn){
-  var arr=quinielas[qIdx].selecciones[partidoIdx];
-  if(!arr)arr=quinielas[qIdx].selecciones[partidoIdx]=[];
-  var pos=arr.indexOf(resultado);
-  if(pos>-1){arr.splice(pos,1);}else{if(arr.length>=3){return;}arr.push(resultado);}
-  renderPartidos(); actualizarBarraTotal(); renderTabs();
-}
-
-function contarCombos(qIdx){ var d=0,t=0,sel=quinielas[qIdx].selecciones; for(var i=0;i<numPartidos;i++){var c=(sel[i]||[]).length;if(c===2)d++;if(c===3)t++;} return{dobles:d,triples:t}; }
-
-// ════════════════════════════════════════════════════
-//  CALCULADORA
-// ════════════════════════════════════════════════════
-function calcularCostoQuiniela(qIdx){ var d=0,t=0,sel=quinielas[qIdx].selecciones; for(var i=0;i<numPartidos;i++){var c=(sel[i]||[]).length;if(c===2)d++;if(c===3)t++;} return PRECIO_BASE*Math.pow(2,d)*Math.pow(3,t); }
-function calcularTotalGeneral(){ var total=0; quinielas.forEach(function(_,i){total+=calcularCostoQuiniela(i);}); return total; }
-
-function actualizarContadorHeader(){
-  if(quinielas.length===0||quinielaActiva>=quinielas.length)return;
-  var c=contarCombos(quinielaActiva); var costoActual=calcularCostoQuiniela(quinielaActiva);
-  var sel=quinielas[quinielaActiva].selecciones; var seleccionados=0;
-  for(var i=0;i<numPartidos;i++){if((sel[i]||[]).length>0)seleccionados++;}
-  var pct=numPartidos>0?Math.round((seleccionados/numPartidos)*100):0;
-  var elD=document.getElementById('cntDobles'),elT=document.getElementById('cntTriples');
-  var elDV=document.getElementById('cntDoblesVal'),elTV=document.getElementById('cntTriplesVal');
-  var elP=document.getElementById('cntPrecio'),elAlt=document.getElementById('p2hAlerta');
-  var elPart=document.getElementById('cntPartidos'),elPartT=document.getElementById('cntPartidosTotal');
-  var elFill=document.getElementById('cntProgFill');
-  if(!elD)return;
-  if(elPart)elPart.textContent=seleccionados;
-  if(elPartT)elPartT.textContent='/'+numPartidos;
-  if(elFill){elFill.style.width=pct+'%';elFill.style.background=pct===100?'var(--oro)':pct>=50?'var(--verde)':'var(--muted)';}
-  if(elPart)elPart.style.color=seleccionados===numPartidos?'var(--oro)':'var(--verde)';
-  elDV.textContent=c.dobles; elTV.textContent=c.triples;
-  elP.textContent='$'+costoActual.toLocaleString('es-MX');
-  elD.classList.toggle('has-d',c.dobles>0&&c.dobles<=8); elD.classList.toggle('over',c.dobles>3);
-  elT.classList.toggle('has-t',c.triples>0&&c.triples<=5); elT.classList.toggle('over',c.triples>2);
-  var alertas=[];
-  if(c.dobles>8)alertas.push('🔀 Dobles: '+c.dobles+'/3 — ¡Excediste el máximo!');
-  if(c.triples>5)alertas.push('🎲 Triples: '+c.triples+'/2 — ¡Excediste el máximo!');
-  if(alertas.length>0){elAlt.textContent=alertas.join(' · ');elAlt.classList.remove('hidden');}else{elAlt.classList.add('hidden');}
-}
-
-function actualizarBarraTotal(){
-  var total=calcularTotalGeneral();
-  var precioEl=document.getElementById('barraTotal');
-  var detEl=document.getElementById('barraDetalle');
-  var confirmBtn=document.getElementById('btnConfirmar');
-  precioEl.textContent='$'+total.toLocaleString('es-MX');
-  actualizarContadorHeader();
-  var faltantes=0,excedeLimite=false,avisoLimite='';
-  quinielas.forEach(function(_,i){
-    if(!estaCompleta(i))faltantes++;
-    var c=contarCombos(i);
-    if(c.dobles>3){excedeLimite=true;avisoLimite='⚠️ Quiniela '+getAliasQ(i)+': max 3 Dobles (tienes '+c.dobles+')';}
-    if(c.triples>2){excedeLimite=true;avisoLimite='⚠️ Quiniela '+getAliasQ(i)+': max 2 Triples (tienes '+c.triples+')';}
-  });
-  var av=document.getElementById('aviso2');
-  if(faltantes>0){precioEl.className='barra-precio incomplete';detEl.textContent=faltantes+' quiniela'+(faltantes>1?'s':'')+' incompleta'+(faltantes>1?'s':'');confirmBtn.disabled=true;if(!excedeLimite)limpiarAviso(av);}
-  else if(excedeLimite){precioEl.className='barra-precio incomplete';detEl.textContent='Revisa los límites';confirmBtn.disabled=true;mostrarAviso(av,'warn',avisoLimite);}
-  else{
-    precioEl.className='barra-precio';limpiarAviso(av);
-    var doblesTot=0,triplesTot=0;
-    quinielas.forEach(function(_,i){var c=contarCombos(i);doblesTot+=c.dobles;triplesTot+=c.triples;});
-    var costoActiva=calcularCostoQuiniela(quinielaActiva);
-    detEl.textContent='Esta: $'+costoActiva.toLocaleString('es-MX')+(quinielas.length>1?' · Total: $'+total.toLocaleString('es-MX'):'')+
-      (doblesTot?' · '+doblesTot+'D':'')+(triplesTot?' '+triplesTot+'T':'');
-    confirmBtn.disabled=false;
-  }
-}
-
-// ════════════════════════════════════════════════════
-//  ENVIAR QUINIELAS
-// ════════════════════════════════════════════════════
-function enviarQuinielas(){
-  for(var i=0;i<quinielas.length;i++){
-    if(!estaCompleta(i)){var av=document.getElementById('aviso2');mostrarAviso(av,'error','⚠️ La quiniela "'+getAliasQ(i)+'" tiene partidos sin seleccionar.');activarTab(i);av.scrollIntoView({behavior:'smooth',block:'center'});return;}
-  }
-  for(var i=0;i<quinielas.length;i++){
-    var c=contarCombos(i);
-    if(c.dobles>3){var av=document.getElementById('aviso2');mostrarAviso(av,'error','⚠️ "'+getAliasQ(i)+'" tiene '+c.dobles+' Dobles. Máximo 3.');activarTab(i);av.scrollIntoView({behavior:'smooth',block:'center'});return;}
-    if(c.triples>2){var av=document.getElementById('aviso2');mostrarAviso(av,'error','⚠️ "'+getAliasQ(i)+'" tiene '+c.triples+' Triples. Máximo 2.');activarTab(i);av.scrollIntoView({behavior:'smooth',block:'center'});return;}
-  }
-  if(!confirm('¿Confirmar '+quinielas.length+' quiniela'+(quinielas.length>1?'s':'')+' por $'+calcularTotalGeneral().toLocaleString('es-MX')+' MXN?'))return;
-  var btn=document.getElementById('btnConfirmar'); btn.disabled=true; btn.innerHTML='<span class="spinner"></span>ENVIANDO';
-  var arrQuinielas=quinielas.map(function(q){var pronos=[];for(var p=0;p<numPartidos;p++){pronos.push((q.selecciones[p]||[]).join(','));}return pronos;});
-  google.script.run
-    .withSuccessHandler(onGuardadoOK)
-    .withFailureHandler(function(){ btn.disabled=false; btn.textContent='CONFIRMAR ✓'; mostrarAviso(document.getElementById('aviso2'),'error','Error de conexión. Intenta de nuevo.'); })
-    .guardarRespuestas({nombre:userData.nombre,whatsapp:userData.whatsapp,alias:aliasBase,quinielas:arrQuinielas});
-}
-
-function onGuardadoOK(res){
-  var btn=document.getElementById('btnConfirmar');
-  if(res.estado&&res.estado!=='OK'){
-    btn.disabled=false; btn.textContent='CONFIRMAR ✓';
-    mostrarAviso(document.getElementById('aviso2'),'error',res.estado==='ALIAS_DUPLICADO'?'❌ El alias "'+( res.alias||'')+'" ya existe.':'⚠️ '+res.estado);
-    return;
-  }
-  resultadoGuardado=res;
-  if(res.datosPago){
-    datosPago=res.datosPago;
-    document.getElementById('clabeNombreBanco').textContent=res.datosPago.banco||'BANCO';
-    document.getElementById('clabeNumero').textContent=formatClabe(res.datosPago.clabe||'');
-    document.getElementById('clabeNombre').textContent=res.datosPago.nombre||'';
-  }
-  var total=res.costoTotal||calcularTotalGeneral();
-  document.getElementById('totalAPagar').textContent='$'+total.toLocaleString('es-MX');
-  document.getElementById('clabeMonto').textContent='$'+total.toLocaleString('es-MX')+' MXN';
-  var campoTotal=document.getElementById('costoTotalEsperado'); if(campoTotal)campoTotal.value=String(total);
-  var lista=document.getElementById('resumenLista'); var boletas=document.getElementById('listaBoletas');
-  lista.innerHTML=''; if(boletas)boletas.innerHTML='';
-  (res.desglose||[]).forEach(function(d,i){
-    var al=res.aliasGuardados[i]||'';
-    var partes=[]; if(d.dobles>0)partes.push(d.dobles+' Doble'+(d.dobles!==1?'s':'')); if(d.triples>0)partes.push(d.triples+' Triple'+(d.triples!==1?'s':''));
-    var desc=partes.length===0?'Sencilla':partes.join(' · ');
-    var item=document.createElement('div'); item.className='resumen-item';
-    item.innerHTML='<div><div class="resumen-alias">'+escapeHtml(al)+'</div><div class="resumen-detalle">'+desc+'</div></div><div class="resumen-costo">$'+(d.costo||0).toLocaleString('es-MX')+'</div>';
-    lista.appendChild(item);
-    if(boletas){var bBtn=document.createElement('button');bBtn.id='boletaBtn_'+i;bBtn.className='btn-boleta-item';bBtn.innerHTML='📄 VER Y GUARDAR BOLETA — '+escapeHtml(al)+' · $'+(d.costo||0).toLocaleString('es-MX');bBtn.onclick=(function(idx){return function(){verBoleta(idx);};})(i);boletas.appendChild(bBtn);}
-  });
-  var numQ=(res.aliasGuardados||[]).length;
-  document.getElementById('totalDetalle').textContent=numQ+' quiniela'+(numQ>1?'s':'')+' registrada'+(numQ>1?'s':'');
-  document.getElementById('page2').classList.add('hidden');
-  document.getElementById('barraCalc').classList.add('hidden');
-  document.getElementById('page3').classList.remove('hidden');
-  window.scrollTo(0,0);
-  activarRetoPage3();
-}
-
-// ─── RETO ──────────────────────────────────────────
-function activarRetoPage3(){
-  var link='https://quinielaprofut.com';
-  var primerAlias=resultadoGuardado?(resultadoGuardado.aliasGuardados[0]||aliasBase):aliasBase;
-  var jorn=document.getElementById('statJornada').textContent||'esta jornada';
-  var msg='⚽ Le atino más que tú 😤\nYa registré mi quiniela *'+primerAlias+'* en *'+jorn+'*\n¿Te atreves a competir conmigo? 🏆\n📲 Regístrate aquí → '+link;
-  var preview=document.getElementById('retoMsgPreview');
-  if(preview)preview.innerHTML='⚽ Le atino más que tú 😤<br>Ya registré mi quiniela <strong>'+escapeHtml(primerAlias)+'</strong> en <strong>'+escapeHtml(jorn)+'</strong><br>¿Te atreves? 🏆<br>📲 <strong>'+link+'</strong>';
-  var waBtn=document.getElementById('retoWaBtn'); if(waBtn)waBtn.href='https://wa.me/?text='+encodeURIComponent(msg);
-  var boletaWrap=document.getElementById('retoBoletaWrap');
-  if(boletaWrap&&resultadoGuardado){
-    boletaWrap.innerHTML='';
-    (resultadoGuardado.aliasGuardados||[]).forEach(function(al,i){
-      var costo=(resultadoGuardado.desglose[i]||{}).costo||0;
-      var bBtn=document.createElement('button'); bBtn.className='btn-boleta-item'; bBtn.style.marginBottom='8px';
-      bBtn.innerHTML='📄 VER Y GUARDAR BOLETA — '+escapeHtml(al)+' · $'+costo.toLocaleString('es-MX');
-      bBtn.onclick=(function(idx){return function(){verBoleta(idx);};})(i);
-      boletaWrap.appendChild(bBtn);
-    });
-  }
-  var panel=document.getElementById('retoPage3Panel'); if(panel)panel.style.display='block';
-  window._retoMsg=msg;
-}
-
-function copiarMensajeRetoPag3(){
-  var msg=window._retoMsg||''; if(!msg)return;
-  navigator.clipboard.writeText(msg).then(function(){
-    var label=document.getElementById('retoCopyLabel'); if(label){label.textContent='✓ ¡Copiado!';label.style.color='var(--verde)';setTimeout(function(){label.textContent='Copiar mensaje';label.style.color='';},2500);}
-  });
-}
-
-// ─── COMPROBANTE ────────────────────────────────────
-function subirComprobante(){
-  var fileInput=document.getElementById('archivoPago'); var av=document.getElementById('aviso3'); var btn=document.getElementById('btnSubir');
-  limpiarAviso(av);
-  if(!fileInput.files||fileInput.files.length===0){mostrarAviso(av,'error','Selecciona tu foto primero.');return;}
-  var file=fileInput.files[0];
-  if(file.size>10*1024*1024){mostrarAviso(av,'error','La imagen es muy grande. Máx 10MB.');return;}
-  btn.disabled=true; mostrarProgresoSubida('leyendo');
-  var aliases=resultadoGuardado?(resultadoGuardado.aliasGuardados||[aliasBase]):[aliasBase];
-  var reader=new FileReader();
-  reader.onerror=function(){btn.disabled=false;btn.textContent='📤 SUBIR COMPROBANTE';ocultarProgresoSubida();mostrarAviso(av,'error','No se pudo leer el archivo.');};
-  reader.onload=function(e){
-    mostrarProgresoSubida('enviando');
-    google.script.run
-      .withSuccessHandler(function(res){mostrarProgresoSubida('listo');setTimeout(function(){onComprobanteOK(res);},800);})
-      .withFailureHandler(function(){btn.disabled=false;btn.textContent='📤 SUBIR COMPROBANTE';ocultarProgresoSubida();mostrarAviso(av,'error','Error al subir. Intenta de nuevo.');})
-      .procesarPago(userData.whatsapp,aliases,e.target.result,file.name,file.type);
-  };
-  reader.readAsDataURL(file);
-}
-
-function mostrarProgresoSubida(paso){
-  var box=document.getElementById('progresoSubida'); if(!box)return; box.style.display='block';
-  var pasos={leyendo:{pct:25,txt:'📂 Leyendo imagen...',color:'var(--oro)'},enviando:{pct:70,txt:'☁️ Guardando comprobante...',color:'var(--oro)'},listo:{pct:100,txt:'✅ ¡Comprobante recibido!',color:'var(--verde)'}};
-  var p=pasos[paso]||pasos.enviando;
-  var fill=document.getElementById('progresoFill'); var label=document.getElementById('progresoLabel');
-  if(fill){fill.style.width=p.pct+'%';fill.style.background=p.color;}
-  if(label){label.textContent=p.txt;label.style.color=p.color;}
-}
-function ocultarProgresoSubida(){ var box=document.getElementById('progresoSubida'); if(box)box.style.display='none'; }
-
-function onComprobanteOK(res){
-  if(res.estado!=='OK'){
-    var btn=document.getElementById('btnSubir'); btn.disabled=false; btn.textContent='SUBIR COMPROBANTE 🚀';
-    mostrarAviso(document.getElementById('aviso3'),'error',res.estado||'Error desconocido.'); return;
-  }
-  var link='https://quinielaprofut.com';
-  var primerAlias=resultadoGuardado?(resultadoGuardado.aliasGuardados[0]||aliasBase):aliasBase;
-  var jorn=document.getElementById('statJornada').textContent||'esta jornada';
-  var msgReto='⚽ Le atino más que tú 😤\nYa registré mi quiniela *'+primerAlias+'* en *'+jorn+'*\n¿Te atreves? 🏆\n📲 '+link;
-  document.getElementById('btnWA').href='https://wa.me/?text='+encodeURIComponent(msgReto);
-  document.getElementById('page3').classList.add('hidden');
-  document.getElementById('pageFinal').classList.remove('hidden');
-  window.scrollTo(0,0);
-  var divBoletas=document.getElementById('boletasGuardadas');
-  if(divBoletas&&resultadoGuardado){divBoletas.innerHTML='<p style="font-size:12px;color:var(--muted);text-align:center;font-weight:700;margin-bottom:10px;">⏳ Generando boletas...</p>';generarTodasLasBoletas(0,[]);}
-}
-
-// ════════════════════════════════════════════════════
-//  REINICIAR
-// ════════════════════════════════════════════════════
-function reiniciar(){
-  userData={nombre:'',whatsapp:''}; aliasBase=''; quinielas=[]; quinielaActiva=0; resultadoGuardado=null;
-  document.getElementById('nombre').value=''; document.getElementById('whatsapp').value=''; document.getElementById('alias').value='';
-  document.getElementById('archivoPago').value='';
-  var btn=document.getElementById('btnIniciar'); btn.disabled=false; btn.textContent='ARMAR MI JUGADA ⚽';
-  limpiarAviso(document.getElementById('aviso1'));
-  ['pageFinal','page3','page2','barraCalc'].forEach(function(id){document.getElementById(id).classList.add('hidden');});
-  document.getElementById('heroSection').classList.remove('hidden');
-  document.getElementById('seccionMomios').style.display='block';
-  document.getElementById('page1').classList.remove('hidden');
-  window.scrollTo(0,0);
-}
-
-// ═══ UTILIDADES ═════════════════════════════════════
-function copiarClabe(){
-  var clabe=(datosPago.clabe||document.getElementById('clabeNumero').textContent).replace(/\s/g,'');
-  if(navigator.clipboard){navigator.clipboard.writeText(clabe).then(function(){var btn=document.querySelector('.btn-copy');btn.textContent='✅ ¡Copiado!';setTimeout(function(){btn.textContent='📋 Copiar CLABE';},2000);});}
-}
-function formatClabe(clabe){return clabe.replace(/(\d{4})(?=\d)/g,'$1 ').trim();}
-function escapeHtml(str){if(!str)return'';return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function mostrarAviso(el,tipo,msg){el.textContent=msg;el.className='aviso show-'+tipo;}
-function limpiarAviso(el){el.textContent='';el.className='aviso';}
-
-// ═══ BOLETA / TICKET ════════════════════════════════
-function buildTicketHTML(qIdx){
-  var q=quinielas[qIdx]; var combos=contarCombos(qIdx); var costo=calcularCostoQuiniela(qIdx);
-  var total=calcularTotalGeneral(); var alias=getAliasQ(qIdx); var numQ=quinielas.length; var qNum=qIdx+1;
-  var jorn=document.getElementById('statJornada').textContent||'Jornada';
-  var now=new Date(); var fecha=now.toLocaleString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
-  var S=q.selecciones; var rows='';
-  for(var i=0;i<partidosGlobal.length;i++){
-    var p=partidosGlobal[i]; var ops=S[i]||[]; var esD=ops.length===2; var esT=ops.length===3;
-    var rowBg=esT?'rgba(255,59,92,.08)':esD?'rgba(255,214,0,.06)':'transparent';
-    var badgeHtml='';
-    if(esT)badgeHtml='<span style="background:rgba(255,59,92,.25);border:1px solid #ff3b5c;color:#ff3b5c;padding:1px 5px;font-size:8px;font-weight:900;border-radius:3px;margin-left:3px;">TRIPLE</span>';
-    else if(esD)badgeHtml='<span style="background:rgba(255,214,0,.2);border:1px solid #ffd600;color:#ffd600;padding:1px 5px;font-size:8px;font-weight:900;border-radius:3px;margin-left:3px;">DOBLE</span>';
-    var btns='';
-    ['LOCAL','EMPATE','VISITANTE'].forEach(function(res){
-      var sel=ops.indexOf(res)>-1; var ltr=res==='LOCAL'?'L':res==='EMPATE'?'E':'V';
-      var bg=sel?(res==='LOCAL'?'#00e676':res==='EMPATE'?'#ffd600':'#4fc3f7'):'#1e2740';
-      var fg=sel?'#000000':'#3a5070';
-      btns+='<span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:'+bg+';color:'+fg+';font-size:10px;font-weight:900;margin-right:2px;border-radius:4px;">'+ltr+'</span>';
-    });
-    var loc=p.local.length>11?p.local.substring(0,11)+'.':p.local;
-    var vis=p.visitante.length>11?p.visitante.substring(0,11)+'.':p.visitante;
-    rows+='<div style="display:flex;align-items:center;padding:5px 12px;border-bottom:1px solid #1a2030;background:'+rowBg+';">'+
-      '<span style="width:16px;font-size:9px;color:#6b7a9e;font-weight:800;flex-shrink:0;">'+(i+1)+'</span>'+
-      '<span style="flex:1;font-size:9px;font-weight:700;color:#b8c4d8;margin:0 5px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">'+loc+' vs '+vis+'</span>'+
-      '<div style="display:flex;align-items:center;flex-shrink:0;">'+btns+badgeHtml+'</div>'+
-      '</div>';
-  }
-  return '<div style="width:360px;background:#0f172a;font-family:Arial,Helvetica,sans-serif;color:#e8ecf5;border:3px solid #ffd600;display:inline-block;">'+
-    '<div style="background:linear-gradient(135deg,#1c2d50 0%,#0f172a 100%);padding:14px 16px;text-align:center;border-bottom:2px solid #ffd600;">'+
-    '<div style="font-size:19px;font-weight:900;color:#ffd600;letter-spacing:3px;">&#x26BD; QUINIELA PRO FUT</div>'+
-    '<div style="font-size:9px;color:#94a3b8;letter-spacing:2.5px;text-transform:uppercase;margin-top:3px;">'+jorn+'</div>'+
-    '</div>'+
-    '<div style="padding:8px 14px;background:#0d1120;border-bottom:1px solid #1e2740;display:flex;justify-content:space-between;align-items:center;">'+
-    '<div><div style="font-size:7px;color:#6b7a9e;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;">JUGADOR</div>'+
-    '<div style="font-size:17px;font-weight:900;color:#ffd600;letter-spacing:2px;">'+alias+'</div>'+
-    (numQ>1?'<div style="font-size:8px;color:#94a3b8;">Boleta '+qNum+' de '+numQ+'</div>':'')+
-    '</div><div style="text-align:right;"><div style="font-size:7px;color:#6b7a9e;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;">FECHA</div>'+
-    '<div style="font-size:9px;color:#c8d4e8;font-weight:700;">'+fecha+'</div></div></div>'+
-    '<div style="padding:4px 12px;background:#131829;border-bottom:1px solid #1e2740;display:flex;">'+
-    '<span style="width:16px;font-size:7px;color:#4a5a78;font-weight:800;">#</span>'+
-    '<span style="flex:1;font-size:7px;color:#4a5a78;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:0 5px;">PARTIDO</span>'+
-    '<span style="font-size:7px;color:#4a5a78;font-weight:800;letter-spacing:1px;text-transform:uppercase;">PRONO</span></div>'+
-    rows+
-    '<div style="padding:8px 14px;background:#0d1120;border-top:1px solid #1e2740;display:flex;justify-content:space-around;align-items:center;">'+
-    '<div style="text-align:center;"><div style="font-size:20px;font-weight:900;color:'+(combos.dobles>3?'#ff3b5c':'#ffd600')+';">'+combos.dobles+'<span style="font-size:10px;color:#4a5a78;">/3</span></div><div style="font-size:7px;color:#6b7a9e;letter-spacing:1px;text-transform:uppercase;">Dobles</div></div>'+
-    '<div style="width:1px;height:36px;background:#1e2740;"></div>'+
-    '<div style="text-align:center;"><div style="font-size:20px;font-weight:900;color:'+(combos.triples>2?'#ff3b5c':'#00e676')+';">'+combos.triples+'<span style="font-size:10px;color:#4a5a78;">/2</span></div><div style="font-size:7px;color:#6b7a9e;letter-spacing:1px;text-transform:uppercase;">Triples</div></div>'+
-    '<div style="width:1px;height:36px;background:#1e2740;"></div>'+
-    '<div style="text-align:center;"><div style="font-size:16px;font-weight:900;color:#00e676;">$'+costo.toLocaleString('es-MX')+'</div><div style="font-size:7px;color:#6b7a9e;letter-spacing:1px;text-transform:uppercase;">Esta boleta</div></div>'+
-    '</div>'+
-    '<div style="padding:10px 14px;background:#080d1a;border-top:2px solid #00e676;text-align:center;">'+
-    '<div style="font-size:8px;color:#4a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;">TOTAL A PAGAR &mdash; '+numQ+' QUINIELA'+(numQ>1?'S':'')+'</div>'+
-    '<div style="font-size:30px;font-weight:900;color:#ffd600;letter-spacing:3px;">$'+total.toLocaleString('es-MX')+' MXN</div>'+
-    '</div>'+
-    '<div style="padding:5px 14px;text-align:center;border-top:1px solid #1e2740;">'+
-    '<div style="font-size:7px;color:#3a4a60;letter-spacing:2px;text-transform:uppercase;">&#x2705; CONSERVA TU BOLETA &nbsp;&#xB7;&nbsp; quinielaprofut.com</div>'+
-    '</div>'+
-    '</div>';
-}
-
-function verBoleta(qIdx){
-  var btn=document.getElementById('boletaBtn_'+qIdx);
-  if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Generando imagen...';}
-  var container=document.getElementById('boletaRenderContainer');
-  container.innerHTML=buildTicketHTML(qIdx); container.style.display='block';
-  setTimeout(function(){
-    html2canvas(container.firstChild,{scale:2,useCORS:false,allowTaint:true,backgroundColor:'#0f172a',logging:false}).then(function(canvas){
-      var dataUrl=canvas.toDataURL('image/png'); var al=getAliasQ(qIdx);
-      document.getElementById('boletaImgEl').src=dataUrl;
-      var dl=document.getElementById('boletaDownloadLink'); dl.href=dataUrl; dl.download='Boleta_'+al+'_QPF.png';
-      document.getElementById('boletaModal').classList.remove('hidden');
-      container.style.display='none';
-      if(btn){btn.disabled=false;btn.innerHTML='📄 VER Y GUARDAR BOLETA — '+escapeHtml(al)+' · $'+calcularCostoQuiniela(qIdx).toLocaleString('es-MX');}
-    }).catch(function(){container.style.display='none';if(btn){btn.disabled=false;btn.innerHTML='📄 VER Y GUARDAR BOLETA';}alert('Error al generar imagen.');});
-  },150);
-}
-function cerrarBoleta(){document.getElementById('boletaModal').classList.add('hidden');document.getElementById('boletaImgEl').src='';}
-
-function generarTodasLasBoletas(idx,acum){
-  if(!resultadoGuardado)return;
-  var total=(resultadoGuardado.aliasGuardados||[]).length;
-  if(idx>=total){
-    var divBoletas=document.getElementById('boletasGuardadas'); if(!divBoletas)return;
-    divBoletas.innerHTML='';
-    acum.forEach(function(item){var a=document.createElement('a');a.href=item.dataUrl;a.download='Boleta_'+item.alias+'_QPF.png';a.className='btn btn-ghost';a.style.cssText='display:block;text-align:center;text-decoration:none;margin-bottom:8px;font-size:14px;';a.innerHTML='💾 GUARDAR BOLETA — <strong style="color:var(--oro);">'+item.alias+'</strong>';divBoletas.appendChild(a);});
-    var hint=document.createElement('p');hint.style.cssText='font-size:11px;color:var(--muted);text-align:center;font-weight:700;margin-top:6px;';hint.textContent='📱 En celular: mantén presionada la imagen para guardar';divBoletas.appendChild(hint);
-    return;
-  }
-  var container=document.getElementById('boletaRenderContainer');
-  container.innerHTML=buildTicketHTML(idx); container.style.display='block';
-  setTimeout(function(){
-    html2canvas(container.firstChild,{scale:2,useCORS:false,allowTaint:true,backgroundColor:'#0f172a',logging:false}).then(function(canvas){
-      acum.push({alias:getAliasQ(idx),dataUrl:canvas.toDataURL('image/png')});
-      container.style.display='none'; generarTodasLasBoletas(idx+1,acum);
-    }).catch(function(){container.style.display='none';generarTodasLasBoletas(idx+1,acum);});
-  },120);
-}
-
-// ═══ TABLA PRECIOS ══════════════════════════════════
-function rellenarTablaPrecios(base){
-  var tbody=document.getElementById('tablaMatrizBody'); var nota=document.getElementById('tablaNotaPrecio'); if(!tbody)return;
-  var filasD=['0 Dobles','1 Doble','2 Dobles','3 Dobles'];
-  var colorClass=function(d,t){var lvl=d+t;if(lvl===0)return'tc-price tc-base';if(lvl===1)return'tc-price tc-mid';if(lvl===2)return'tc-price tc-high';return'tc-price tc-max';};
-  var rows='';
-  for(var d=0;d<=3;d++){rows+='<tr><td>'+filasD[d]+'</td>';for(var t=0;t<=2;t++){var precio=base*Math.pow(2,d)*Math.pow(3,t);rows+='<td class="'+colorClass(d,t)+'">$'+precio.toLocaleString('es-MX')+'</td>';}rows+='</tr>';}
-  tbody.innerHTML=rows;
-  if(nota)nota.innerHTML='⚡ BASE: <strong style="color:var(--oro);">$'+base.toLocaleString('es-MX')+'</strong> × 2<sup>dobles</sup> × 3<sup>triples</sup> &nbsp;·&nbsp; Máx <strong>3 Dobles</strong> + <strong>2 Triples</strong>';
-  var titulo=document.querySelector('.tabla-costos-titulo'); if(titulo)titulo.childNodes[0].textContent='💰 TABLA DE COSTOS (base $'+base.toLocaleString('es-MX')+') ';
-}
-
-// ═══ COMPROBANTE PREVIEW ════════════════════════════
-function onArchivoSeleccionado(input){
-  if(!input.files||!input.files[0])return;
-  var file=input.files[0]; var av=document.getElementById('aviso3'); limpiarAviso(av);
-  if(file.size>10*1024*1024){mostrarAviso(av,'error','Imagen muy grande. Máx 10MB.');input.value='';return;}
-  var reader=new FileReader();
-  reader.onload=function(e){
-    var img=document.getElementById('ocrPreviewImg'); var panel=document.getElementById('ocrPanel');
-    var btn=document.getElementById('btnSubir'); var status=document.getElementById('ocrStatus');
-    if(img)img.src=e.target.result; if(panel)panel.classList.remove('hidden');
-    if(status){status.className='ocr-status ocr-ok';status.textContent='✅ Imagen lista — pulsa el botón para enviar';}
-    btn.disabled=false; btn.style.opacity='1'; btn.textContent='📤 SUBIR COMPROBANTE';
-  };
-  reader.readAsDataURL(file);
-}
-
-// ═══ WHATSAPP AUTOCOMPLETE ══════════════════════════
-function onWhatsappInput(val){
-  if(val.length!==10)return;
-  google.script.run
-    .withSuccessHandler(function(jugador){
-      if(!jugador)return;
-      var frases=['¡Te extrañábamos! 🔥','¡El crack ha vuelto! 👑','¡Sabíamos que regresarías! ⚽','¡A por otra jornada! 💪','¡El de siempre ya llegó! 😤'];
-      var frase=frases[Math.floor(Math.random()*frases.length)];
-      var nombre=jugador.nombre.split(' ')[0];
-      var campoNombre=document.getElementById('nombre');
-      if(!campoNombre.value.trim())campoNombre.value=jugador.nombre;
-      mostrarPopupBienvenida(nombre,frase,jugador.veces);
-    })
-    .withFailureHandler(function(){})
-    .buscarJugadorPorWhatsapp(val);
-}
-
-function mostrarPopupBienvenida(nombre,frase,veces){
-  var overlay=document.createElement('div'); overlay.id='popupBienvenida';
-  overlay.style.cssText='position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);animation:fadeIn .3s ease both;padding:20px;';
-  var vecesTexto=veces>1?'<div style="margin-top:10px;background:rgba(255,214,0,.15);border:1px solid var(--oro);border-radius:8px;padding:8px 16px;display:inline-block;"><span style="color:var(--oro);font-size:15px;font-weight:800;">🏅 '+veces+' jornadas jugadas</span></div>':'<div style="margin-top:10px;color:var(--muted);font-size:13px;font-weight:700;">¡Tu primera jornada con nosotros! 🌟</div>';
-  overlay.innerHTML='<div style="background:var(--surface);border:2px solid var(--verde);border-radius:20px;padding:32px 28px;max-width:340px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.7);animation:pop .4s cubic-bezier(.18,.89,.32,1.28) both;">'+
-    '<div style="font-size:64px;margin-bottom:12px;">👋</div>'+
-    '<div style="font-family:var(--font-head);font-size:36px;color:var(--verde);letter-spacing:2px;margin-bottom:6px;">¡HOLA,<br>'+escapeHtml(nombre.toUpperCase())+'!</div>'+
-    '<div style="font-size:18px;font-weight:800;color:var(--texto);margin-bottom:4px;">'+frase+'</div>'+
-    '<div style="font-size:14px;color:var(--muted);font-weight:600;margin-bottom:8px;">Bienvenido de nuevo a Quiniela Pro Fut</div>'+
-    vecesTexto+
-    '<button onclick="cerrarPopupBienvenida()" style="margin-top:22px;width:100%;padding:14px;background:linear-gradient(135deg,var(--verde),#00c47a);border:none;border-radius:10px;font-family:var(--font-head);font-size:20px;letter-spacing:2px;color:#020a0e;cursor:pointer;box-shadow:0 5px 0 var(--verde2);">¡VAMOS! ⚽</button>'+
-    '</div>';
-  document.body.appendChild(overlay);
-  overlay.addEventListener('click',function(e){if(e.target===overlay)cerrarPopupBienvenida();});
-}
-
-function cerrarPopupBienvenida(){var popup=document.getElementById('popupBienvenida');if(popup)popup.remove();setTimeout(function(){document.getElementById('alias').focus();},100);}
-function borrarTodosPartidos(){if(!confirm('¿Borrar todas las selecciones de '+getAliasQ(quinielaActiva)+'?'))return;var sel=quinielas[quinielaActiva].selecciones;for(var i=0;i<numPartidos;i++){sel[i]=[];}renderPartidos();actualizarBarraTotal();renderTabs();}
-
-function mostrarDespedida(){
-  var alias=userData.nombre||aliasBase||'Jugador';
-  var panel=document.getElementById('pageFinal'); if(!panel)return;
-  panel.querySelector('.panel').innerHTML='<div class="despedida-screen">'+
-    '<span class="despedida-icon">🌟</span>'+
-    '<div class="despedida-titulo">¡MUCHO ÉXITO!</div>'+
-    '<p class="despedida-msg">¡Gracias <strong>'+escapeHtml(alias)+'</strong>!<br>Tu quiniela está registrada y activa. ⚽</p>'+
-    '<p class="despedida-sub">Sigue los resultados en la pantalla de seguimiento.</p>'+
-    '<div style="background:var(--oro-dim);border:1.5px solid var(--oro);border-radius:12px;padding:16px;margin-bottom:20px;">'+
-    '<div style="font-size:11px;font-weight:800;color:var(--oro);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">QUINIELA PRO FUT</div>'+
-    '<div style="font-size:13px;color:var(--texto);font-weight:700;">Ya puedes cerrar esta ventana. 👋</div>'+
-    '</div>'+
-    '<button class="btn btn-ghost" onclick="intentarCerrarVentana()" style="width:100%;">✕ CERRAR ESTA VENTANA</button>'+
-    '</div>';
-  window.scrollTo(0,0);
-}
-
-function intentarCerrarVentana(){try{window.close();}catch(e){}setTimeout(function(){reiniciar();},300);}
 </script>
-
 </body>
 </html>
