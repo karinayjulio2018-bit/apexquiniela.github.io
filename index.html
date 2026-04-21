@@ -36,6 +36,18 @@ html{scroll-behavior:smooth;}
 –glow:rgba(0,255,135,0.15);
 –nav-bg:rgba(6,8,10,0.92);
 –shimmer:rgba(0,255,135,0.03);
+/* ── NUEVO: variables de contraste ── */
+–ham-color:#A0B0C0;
+–topbar-bg:rgba(6,8,10,0.97);
+–topbar-borde:#1E2830;
+–topbar-texto:#F0F4F8;
+–btn-back-col:#8A9BB0;
+–badge-bg:rgba(0,255,135,0.12);
+–badge-color:#00FF87;
+–badge-borde:rgba(0,255,135,0.3);
+–badge-oro-bg:rgba(255,216,77,0.12);
+–badge-oro-color:#FFD84D;
+–badge-oro-borde:rgba(255,216,77,0.3);
 }
 
 /* ── TEMA CLARO (día) ── */
@@ -55,6 +67,18 @@ html{scroll-behavior:smooth;}
 –oro:#C8860A;
 –rojo:#D63650;
 –glow:rgba(0,153,85,0.1);
+/* ── NUEVO: variables de contraste modo claro ── */
+–ham-color:#1A202C;
+–topbar-bg:rgba(255,255,255,0.98);
+–topbar-borde:#D8DEE8;
+–topbar-texto:#0D1B2A;
+–btn-back-col:#2D3748;
+–badge-bg:#007740;
+–badge-color:#FFFFFF;
+–badge-borde:#007740;
+–badge-oro-bg:#C8860A;
+–badge-oro-color:#FFFFFF;
+–badge-oro-borde:#C8860A;
 }
 
 html,body{
@@ -108,9 +132,10 @@ transition:all 0.2s !important;
 }
 .nav-btn-cta:hover{background:var(–verde2) !important;transform:translateY(-1px);}
 
-/* hamburger */
+/* hamburger — CAMBIO: usa –ham-color para visibilidad en ambos temas */
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
-.hamburger span{width:22px;height:2px;background:var(–muted);border-radius:2px;transition:0.2s;}
+.hamburger span{width:22px;height:2.5px;background:var(–ham-color);border-radius:2px;transition:0.2s;display:block;}
+.hamburger:hover span{background:var(–verde);}
 .nav-mobile{
 display:none;position:fixed;top:60px;left:0;right:0;z-index:998;
 background:var(–nav-bg);border-bottom:1px solid var(–borde);
@@ -605,30 +630,34 @@ max-width:660px;margin:1rem auto 0;line-height:1.6;
 }
 
 /* ══════════════════════════
-IFRAMES
+IFRAMES — CAMBIO: topbar usa variables de tema
 ══════════════════════════ */
 #vista-registro,#vista-seguimiento,#vista-analisis{
 display:none;flex-direction:column;height:100vh;
 }
 .iframe-topbar{
 display:flex;align-items:center;justify-content:space-between;
-padding:0.85rem 1.5rem;background:rgba(6,8,10,0.97);
-border-bottom:1px solid var(–borde);flex-shrink:0;
+padding:0.85rem 1.5rem;
+background:var(–topbar-bg);
+border-bottom:1px solid var(–topbar-borde);
+flex-shrink:0;
+transition:background 0.4s,border-color 0.4s;
 }
 .btn-back-home{
-background:none;border:1px solid var(–borde2);color:var(–muted);
+background:none;border:1px solid var(–borde2);color:var(–btn-back-col);
 font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;
 cursor:pointer;font-family:‘Outfit’,sans-serif;transition:all 0.2s;
 }
 .btn-back-home:hover{border-color:var(–verde);color:var(–verde);}
-.topbar-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(–texto);}
+.topbar-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(–topbar-texto);}
 .topbar-title em{color:var(–verde);font-style:normal;}
-.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.3rem 0.8rem;border-radius:100px;}
-.ldot-sm{width:6px;height:6px;background:var(–verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
-.iframe-main{flex:1;border:none;width:100%;background:var(–negro);}
+/* CAMBIO: badges usan variables de contraste */
+.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–badge-color);background:var(–badge-bg);border:1.5px solid var(–badge-borde);padding:0.35rem 0.9rem;border-radius:100px;}
+.topbar-badge.oro{color:var(–badge-oro-color);background:var(–badge-oro-bg);border-color:var(–badge-oro-borde);}
+.ldot-sm{width:6px;height:6px;background:currentColor;border-radius:50%;animation:pulseAnim 1.5s infinite;}
+.iframe-main{flex:1;border:none;width:100%;min-height:calc(100vh - 60px);background:var(–negro);}
 .seguimiento-bar{border-bottom-color:var(–oro);}
 .oro{color:var(–oro)!important;}
-.ldot-sm.oro{background:var(–oro);}
 
 /* ══════════════════════════
 ANIMACIONES
@@ -714,43 +743,30 @@ RESPONSIVE
     <p class="hero-desc">
       Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.
     </p>
-
-    <!-- PROMO REFERIDO — visible desde el hero -->
     <div class="hero-referido">
       <div class="ref-icon">🎁</div>
       <div class="ref-text">
         <strong>Invita 1 amigo que pague</strong> y obtén <span>$20 de descuento</span> en tu próxima jornada
       </div>
     </div>
-
     <div class="hero-btns">
       <button class="btn-v" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
       <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
     </div>
   </div>
-
   <!-- DERECHA — Panel visual -->
   <div class="hero-right">
     <div class="hero-stat-card">
       <div class="hsc-icon">🏆</div>
-      <div>
-        <div class="hsc-label">Premio jornada actual</div>
-        <div class="hsc-val oro">$880 MXN</div>
-      </div>
+      <div><div class="hsc-label">Premio jornada actual</div><div class="hsc-val oro">$880 MXN</div></div>
     </div>
     <div class="hero-stat-card">
       <div class="hsc-icon">👑</div>
-      <div>
-        <div class="hsc-label">Último ganador</div>
-        <div class="hsc-val">KAKAROTTO</div>
-      </div>
+      <div><div class="hsc-label">Último ganador</div><div class="hsc-val">KAKAROTTO</div></div>
     </div>
     <div class="hero-stat-card">
       <div class="hsc-icon">⚡</div>
-      <div>
-        <div class="hsc-label">Pagos en tiempo</div>
-        <div class="hsc-val">100%</div>
-      </div>
+      <div><div class="hsc-label">Pagos en tiempo</div><div class="hsc-val">100%</div></div>
     </div>
     <div class="hero-right-cta">
       <div class="hrc-title">⚽ Partidos de esta jornada</div>
@@ -778,70 +794,39 @@ RESPONSIVE
     <div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
   </div>
 
-  <!-- ══ GANADORES REALES — NUEVA SECCIÓN ══ -->
+  <!-- GANADORES -->
 
   <div class="ganadores-section" id="ganadores">
     <section class="sec">
       <span class="chip reveal">Ganadores Reales</span>
       <h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
       <p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
-
-```
-  <div class="ganadores-grid">
-    <!-- Ganador jornada actual -->
-    <div class="ganador-card reveal">
-      <div class="ganador-badge">🏆 JORNADA 17</div>
-      <div class="ganador-trophy">🥇</div>
-      <div class="ganador-nombre">KAKAROTTO</div>
-      <div class="ganador-alias">Mark Overmars</div>
-      <div class="ganador-premio">$880</div>
-      <div class="ganador-meta"><div class="ganador-dot"></div>9 aciertos · 60% · Jornada 17</div>
-    </div>
-    <!-- Ganadores jornada anterior -->
-    <div class="ganador-card reveal">
-      <div class="ganador-badge">🏆 JORNADA 16</div>
-      <div class="ganador-trophy">🥇</div>
-      <div class="ganador-nombre">Perkys & Chino</div>
-      <div class="ganador-alias">Eduardo P. · Jugador Verificado</div>
-      <div class="ganador-premio">$400 c/u</div>
-      <div class="ganador-meta"><div class="ganador-dot"></div>Empate en 1er lugar · $400 cada uno</div>
-    </div>
-  </div>
-
-  <!-- Historial compacto -->
-  <div class="historial reveal" style="margin-top:2.5rem;">
-    <div class="historial-row hdr">
-      <span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span>
-    </div>
-    <div class="historial-row">
-      <span class="h-pos">🥇</span>
-      <span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span>
-      <span class="h-aciertos">9</span>
-      <span class="h-premio">$880</span>
-    </div>
-    <div class="historial-row">
-      <span class="h-pos">🥇</span>
-      <span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span>
-      <span class="h-aciertos">—</span>
-      <span class="h-premio">$400</span>
-    </div>
-    <div class="historial-row">
-      <span class="h-pos">🥇</span>
-      <span class="h-nombre">Chino <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span>
-      <span class="h-aciertos">—</span>
-      <span class="h-premio">$400</span>
-    </div>
-    <div class="historial-row" style="opacity:0.4;">
-      <span class="h-pos" style="color:var(--muted);">—</span>
-      <span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span>
-      <span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span>
-      <span class="h-premio" style="color:var(--verde);">$???</span>
-    </div>
-  </div>
-
-</section>
-```
-
+      <div class="ganadores-grid">
+        <div class="ganador-card reveal">
+          <div class="ganador-badge">🏆 JORNADA 17</div>
+          <div class="ganador-trophy">🥇</div>
+          <div class="ganador-nombre">KAKAROTTO</div>
+          <div class="ganador-alias">Mark Overmars</div>
+          <div class="ganador-premio">$880</div>
+          <div class="ganador-meta"><div class="ganador-dot"></div>9 aciertos · 60% · Jornada 17</div>
+        </div>
+        <div class="ganador-card reveal">
+          <div class="ganador-badge">🏆 JORNADA 16</div>
+          <div class="ganador-trophy">🥇</div>
+          <div class="ganador-nombre">Perkys & Chino</div>
+          <div class="ganador-alias">Eduardo P. · Jugador Verificado</div>
+          <div class="ganador-premio">$400 c/u</div>
+          <div class="ganador-meta"><div class="ganador-dot"></div>Empate en 1er lugar · $400 cada uno</div>
+        </div>
+      </div>
+      <div class="historial reveal" style="margin-top:2.5rem;">
+        <div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span><span class="h-aciertos">9</span><span class="h-premio">$880</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Chino <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
+        <div class="historial-row" style="opacity:0.4;"><span class="h-pos" style="color:var(--muted);">—</span><span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span><span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span><span class="h-premio" style="color:var(--verde);">$???</span></div>
+      </div>
+    </section>
   </div>
 
   <!-- CÓMO FUNCIONA -->
@@ -852,30 +837,10 @@ RESPONSIVE
       <h2 class="stitle reveal">Así de fácil<br>es participar</h2>
       <p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
       <div class="steps">
-        <div class="step reveal">
-          <div class="step-bg">01</div>
-          <div class="step-icon">⚽</div>
-          <h3>Entra al formulario</h3>
-          <p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-bg">02</div>
-          <div class="step-icon">🔀</div>
-          <h3>Juega con Dobles y Triples</h3>
-          <p>Marca 2 o 3 opciones por partido para multiplicar tu boleta. Más riesgo, más premio.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-bg">03</div>
-          <div class="step-icon">📊</div>
-          <h3>Sigue tu posición en vivo</h3>
-          <p>Ranking actualizado en tiempo real conforme caen los resultados.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-bg">04</div>
-          <div class="step-icon">🏆</div>
-          <h3>Cobra tu premio</h3>
-          <p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p>
-        </div>
+        <div class="step reveal"><div class="step-bg">01</div><div class="step-icon">⚽</div><h3>Entra al formulario</h3><p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p></div>
+        <div class="step reveal"><div class="step-bg">02</div><div class="step-icon">🔀</div><h3>Juega con Dobles y Triples</h3><p>Marca 2 o 3 opciones por partido para multiplicar tu boleta. Más riesgo, más premio.</p></div>
+        <div class="step reveal"><div class="step-bg">03</div><div class="step-icon">📊</div><h3>Sigue tu posición en vivo</h3><p>Ranking actualizado en tiempo real conforme caen los resultados.</p></div>
+        <div class="step reveal"><div class="step-bg">04</div><div class="step-icon">🏆</div><h3>Cobra tu premio</h3><p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p></div>
       </div>
     </section>
   </div>
@@ -928,34 +893,27 @@ RESPONSIVE
       <span class="chip reveal">Premio</span>
       <h2 class="stitle reveal">El ganador<br><span style="color:var(--oro)">se lleva todo</span></h2>
       <p class="sdesc reveal">Una quiniela. Un campeón. El pozo completo de la jornada directo al mejor pronóstico.</p>
-
-```
-  <div class="premio-principal reveal">
-    <div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
-    <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);letter-spacing:0.05em;">EL POZO</div>
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--oro);letter-spacing:0.1em;opacity:0.8;margin-bottom:1rem;">COMPLETO</div>
-    <div style="font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.7;">El jugador con más aciertos al final de la jornada gana <strong style="color:var(--texto)">el pozo completo acumulado</strong>. Puedes ver en tiempo real cuánto vale el pozo en la pantalla de seguimiento.</div>
-    <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.25);border-radius:8px;padding:0.75rem 1.5rem;">
-      <span style="font-size:1.2rem;">🤝</span>
-      <span style="font-size:0.82rem;color:#FF8FA3;font-weight:600;line-height:1.5;">En caso de empate en el primer lugar,<br>el pozo se divide a partes iguales entre los ganadores.</span>
-    </div>
-  </div>
-
-  <!-- PROMO REFERIDO ACTUALIZADA -->
-  <div class="promo-referido reveal">
-    <div style="font-size:3.5rem;flex-shrink:0;">🎁</div>
-    <div style="flex:1;min-width:220px;">
-      <div class="promo-badge">NUEVO</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);letter-spacing:0.05em;line-height:1;margin-bottom:0.5rem;">INVITA 1 AMIGO<br>Y OBTÉN $20 OFF</div>
-      <div style="font-size:0.9rem;color:var(--muted);line-height:1.6;">Consigue que un amigo se registre y pague su quiniela y <strong style="color:var(--texto)">tú obtienes $20 de descuento</strong> en tu próxima jornada. Sin límite de veces.</div>
-    </div>
-    <button class="btn-v" onclick="mostrarRegistro()" style="flex-shrink:0;">⚽ Participar</button>
-  </div>
-
-</section>
-```
-
+      <div class="premio-principal reveal">
+        <div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
+        <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);letter-spacing:0.05em;">EL POZO</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--oro);letter-spacing:0.1em;opacity:0.8;margin-bottom:1rem;">COMPLETO</div>
+        <div style="font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.7;">El jugador con más aciertos al final de la jornada gana <strong style="color:var(--texto)">el pozo completo acumulado</strong>. Puedes ver en tiempo real cuánto vale el pozo en la pantalla de seguimiento.</div>
+        <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.25);border-radius:8px;padding:0.75rem 1.5rem;">
+          <span style="font-size:1.2rem;">🤝</span>
+          <span style="font-size:0.82rem;color:#FF8FA3;font-weight:600;line-height:1.5;">En caso de empate en el primer lugar,<br>el pozo se divide a partes iguales entre los ganadores.</span>
+        </div>
+      </div>
+      <div class="promo-referido reveal">
+        <div style="font-size:3.5rem;flex-shrink:0;">🎁</div>
+        <div style="flex:1;min-width:220px;">
+          <div class="promo-badge">NUEVO</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);letter-spacing:0.05em;line-height:1;margin-bottom:0.5rem;">INVITA 1 AMIGO<br>Y OBTÉN $20 OFF</div>
+          <div style="font-size:0.9rem;color:var(--muted);line-height:1.6;">Consigue que un amigo se registre y pague su quiniela y <strong style="color:var(--texto)">tú obtienes $20 de descuento</strong> en tu próxima jornada. Sin límite de veces.</div>
+        </div>
+        <button class="btn-v" onclick="mostrarRegistro()" style="flex-shrink:0;">⚽ Participar</button>
+      </div>
+    </section>
   </div>
 
   <!-- TRANSPARENCIA -->
@@ -965,30 +923,26 @@ RESPONSIVE
       <span class="chip reveal">Transparencia Total</span>
       <h2 class="stitle reveal">¿A dónde va<br><span style="color:var(--verde)">tu dinero?</span></h2>
       <p class="sdesc reveal">Aquí no hay sorpresas. Te decimos exactamente cómo se distribuye el pozo de cada jornada.</p>
-
-```
-  <div class="transparencia-card reveal">
-    <div class="t-row">
-      <div class="t-bloque">
-        <div class="t-pct v">80%</div>
-        <div class="t-label">🏆 Para el Ganador</div>
-        <div class="t-desc">El monto neto va directo al jugador con más aciertos. En caso de empate, se divide a partes iguales. Pago inmediato vía transferencia.</div>
+      <div class="transparencia-card reveal">
+        <div class="t-row">
+          <div class="t-bloque">
+            <div class="t-pct v">80%</div>
+            <div class="t-label">🏆 Para el Ganador</div>
+            <div class="t-desc">El monto neto va directo al jugador con más aciertos. En caso de empate, se divide a partes iguales. Pago inmediato vía transferencia.</div>
+          </div>
+          <div class="t-sep"></div>
+          <div class="t-bloque">
+            <div class="t-pct g">20%</div>
+            <div class="t-label">⚙️ Gastos de Operación</div>
+            <div class="t-desc">Cubre la plataforma de seguimiento en tiempo real, curación de partidos, administración del sistema y soporte a participantes.</div>
+          </div>
+        </div>
+        <div class="t-ejemplo">
+          <span class="t-ejemplo-icon">💡</span>
+          <span>Ejemplo: si participan 10 jugadores a $100 cada uno, el pozo total es $1,000. El ganador recibe <strong style="color:var(--verde)">$800 MXN</strong> directo a su cuenta. Los $200 restantes cubren los gastos de operación de la plataforma.</span>
+        </div>
       </div>
-      <div class="t-sep"></div>
-      <div class="t-bloque">
-        <div class="t-pct g">20%</div>
-        <div class="t-label">⚙️ Gastos de Operación</div>
-        <div class="t-desc">Cubre la plataforma de seguimiento en tiempo real, curación de partidos, administración del sistema y soporte a participantes.</div>
-      </div>
-    </div>
-    <div class="t-ejemplo">
-      <span class="t-ejemplo-icon">💡</span>
-      <span>Ejemplo: si participan 10 jugadores a $100 cada uno, el pozo total es $1,000. El ganador recibe <strong style="color:var(--verde)">$800 MXN</strong> directo a su cuenta. Los $200 restantes cubren los gastos de operación de la plataforma.</span>
-    </div>
-  </div>
-</section>
-```
-
+    </section>
   </div>
 
   <!-- TESTIMONIALES -->
@@ -1029,7 +983,7 @@ RESPONSIVE
 
   <footer>
     <span class="flogo">Quiniela<em>Pro</em>Fut</span>
-    <p>© 2026 quinielaprofut.com — Todos los derechos reservados</p>
+    <p>©️ 2026 quinielaprofut.com — Todos los derechos reservados</p>
     <p>contacto@quinielaprofut.com</p>
     <p class="footer-legal">* Los premios se entregan sobre el monto neto del pozo total recaudado, descontando el 20% correspondiente a gastos de administración, operación y tecnología de la plataforma Quiniela Pro Fut. El monto del pozo visible en pantalla representa el total bruto antes de dicho descuento. Al registrar su participación, el jugador acepta estas condiciones de distribución.</p>
   </footer>
@@ -1052,10 +1006,8 @@ RESPONSIVE
 <div id="vista-analisis">
   <div class="iframe-topbar" style="border-bottom-color:var(--oro);">
     <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
-    <div class="topbar-title" style="color:var(--texto);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; <span style="color:var(--oro);">Análisis Premium</span></div>
-    <div class="topbar-badge" style="color:var(--oro);background:rgba(255,216,77,0.1);border-color:rgba(255,216,77,0.3);">
-      <div class="ldot-sm" style="background:var(--oro);"></div>Exclusivo
-    </div>
+    <div class="topbar-title" style="color:var(--topbar-texto);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; <span style="color:var(--oro);">Análisis Premium</span></div>
+    <div class="topbar-badge oro"><div class="ldot-sm"></div>Exclusivo</div>
   </div>
   <iframe id="iframe-analisis" class="iframe-main" src="" title="Análisis Premium" loading="lazy"></iframe>
 </div>
@@ -1065,8 +1017,8 @@ RESPONSIVE
 <div id="vista-seguimiento">
   <div class="iframe-topbar seguimiento-bar">
     <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
-    <div class="topbar-title oro">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Seguimiento</div>
-    <div class="topbar-badge oro"><div class="ldot-sm oro"></div>En Vivo</div>
+    <div class="topbar-title" style="color:var(--oro);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Seguimiento</div>
+    <div class="topbar-badge oro"><div class="ldot-sm"></div>En Vivo</div>
   </div>
   <iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" loading="lazy"></iframe>
 </div>
@@ -1080,11 +1032,11 @@ var iframesLoaded = { registro:false, seguimiento:false, analisis:false };
 // ══════════════════════════
 // TEMA DÍA / NOCHE
 // ══════════════════════════
-var temaManual = false; // ¿el usuario lo cambió manualmente?
+var temaManual = false;
 
 function esDeDia(){
   var h = new Date().getHours();
-  return h >= 7 && h < 19; // 7am - 7pm = día
+  return h >= 7 && h < 19;
 }
 
 function aplicarTema(dia){
@@ -1106,17 +1058,11 @@ function toggleTema(){
   localStorage.setItem('qpf-tema', !esDia ? 'dia' : 'noche');
 }
 
-// Al cargar: revisa localStorage o usa la hora
 (function(){
   var guardado = localStorage.getItem('qpf-tema');
-  if(guardado){
-    aplicarTema(guardado === 'dia');
-  } else {
-    aplicarTema(esDeDia());
-  }
+  if(guardado){ aplicarTema(guardado === 'dia'); } else { aplicarTema(esDeDia()); }
 })();
 
-// Actualizar tema automáticamente cada hora si no fue cambiado manualmente
 setInterval(function(){
   if(!temaManual){ aplicarTema(esDeDia()); }
 }, 60 * 60 * 1000);
@@ -1157,7 +1103,7 @@ function irSeccion(id){
 }
 
 // ══════════════════════════
-// MENÚ HAMBURGER — FIX
+// MENÚ HAMBURGER
 // ══════════════════════════
 var menuAbierto = false;
 function toggleMenu(){
