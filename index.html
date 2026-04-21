@@ -1096,10 +1096,8 @@ document.querySelectorAll('.liga').forEach(function(c){
 // LEAD FORM — Captación de prospectos
 // ══════════════════════════
 // ← CAMBIA por la URL de tu Web App de Apps Script
-var LEAD_SCRIPT_URL = 'LEAD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
-// ← CAMBIA por tu número (521 + 10 dígitos, sin espacios)
+var LEAD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var ADMIN_WA_NUM = '5217471193095';
-
 function capturarLead() {
   var nombre = (document.getElementById('lfNombre').value || '').trim();
   var wa     = (document.getElementById('lfWA').value || '').replace(/\D/g, '').trim();
