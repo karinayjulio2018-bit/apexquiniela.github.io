@@ -20,63 +20,53 @@ a{color:inherit;text-decoration:none;}
 html{scroll-behavior:smooth;}
 
 /* ── TEMA OSCURO (default / noche) ── */
-:root {
-  --verde:    #00FF87;
-  --verde2:   #00CC6A;
-  --negro:    #06080A;
-  --card:     #0E1318;
-  --card2:    #141A21;
-  --borde:    #1E2830;
-  --borde2:   #26333D;
-  --texto:    #F0F4F8;
-  --muted:    #8A9BB0;
-  --muted2:   #5A6B7A;
-  --oro:      #FFD84D;
-  --rojo:     #FF4D6A;
-  --glow:     rgba(0,255,135,0.15);
-  --nav-bg:   rgba(6,8,10,0.95);
-  --shimmer:  rgba(0,255,135,0.03);
-  --ham-color:     #A0B0C0;
-  --topbar-bg:     rgba(6,8,10,0.97);
-  --topbar-texto:  #F0F4F8;
-  --topbar-borde:  #1E2830;
-  --btn-back-col:  #8A9BB0;
-  --badge-bg:      rgba(0,255,135,0.12);
-  --badge-color:   #00FF87;
-  --badge-borde:   rgba(0,255,135,0.3);
-  --badge-oro-bg:     rgba(255,216,77,0.12);
-  --badge-oro-color:  #FFD84D;
-  --badge-oro-borde:  rgba(255,216,77,0.3);
+:root{
+–verde:#00FF87;
+–verde2:#00CC6A;
+–negro:#06080A;
+–card:#0E1318;
+–card2:#141A21;
+–borde:#1E2830;
+–borde2:#26333D;
+–texto:#F0F4F8;
+–muted:#8A9BB0;
+–muted2:#5A6B7A;
+–oro:#FFD84D;
+–rojo:#FF4D6A;
+–glow:rgba(0,255,135,0.15);
+–nav-bg:rgba(6,8,10,0.92);
+–shimmer:rgba(0,255,135,0.03);
 }
 
-:root.dia {
-  --negro:    #F5F7FA;
-  --card:     #FFFFFF;
-  --card2:    #EEF1F5;
-  --borde:    #D8DEE8;
-  --borde2:   #C4CDD8;
-  --texto:    #0D1B2A;
-  --muted:    #4A5568;
-  --muted2:   #718096;
-  --nav-bg:   rgba(245,247,250,0.97);
-  --shimmer:  rgba(0,200,100,0.04);
-  --verde:    #007A40;
-  --verde2:   #005C2E;
-  --oro:      #9A6200;
-  --rojo:     #C0192E;
-  --glow:     rgba(0,122,64,0.1);
-  --ham-color:     #1A202C;
-  --topbar-bg:     rgba(255,255,255,0.98);
-  --topbar-texto:  #0D1B2A;
-  --topbar-borde:  #D8DEE8;
-  --btn-back-col:  #2D3748;
-  --badge-bg:      #007A40;
-  --badge-color:   #FFFFFF;
-  --badge-borde:   #007A40;
-  --badge-oro-bg:     #9A6200;
-  --badge-oro-color:  #FFFFFF;
-  --badge-oro-borde:  #9A6200;
+/* ── TEMA CLARO (día) ── */
+:root.dia{
+–negro:#F5F7FA;
+–card:#FFFFFF;
+–card2:#EEF1F5;
+–borde:#D8DEE8;
+–borde2:#C4CDD8;
+–texto:#0D1B2A;
+–muted:#4A5568;
+–muted2:#718096;
+–nav-bg:rgba(245,247,250,0.95);
+–shimmer:rgba(0,200,100,0.04);
+–verde:#009955;
+–verde2:#007740;
+–oro:#C8860A;
+–rojo:#D63650;
+–glow:rgba(0,153,85,0.1);
 }
+
+html,body{
+background:var(–negro) !important;
+color:var(–texto) !important;
+font-family:‘Outfit’,sans-serif;
+font-size:16px;
+line-height:1.6;
+overflow-x:hidden;
+transition:background 0.4s ease, color 0.4s ease;
+}
+
 /* ── VISTAS ── */
 .vista{display:none;}
 .vista.activa{display:block;}
@@ -120,8 +110,7 @@ transition:all 0.2s !important;
 
 /* hamburger */
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
-.hamburger span{width:24px;height:2.5px;background:var(--ham-color);border-radius:2px;transition:0.2s;display:block;}
-.hamburger:hover span{background:var(--verde);}
+.hamburger span{width:22px;height:2px;background:var(–muted);border-radius:2px;transition:0.2s;}
 .nav-mobile{
 display:none;position:fixed;top:60px;left:0;right:0;z-index:998;
 background:var(–nav-bg);border-bottom:1px solid var(–borde);
@@ -623,19 +612,18 @@ display:none;flex-direction:column;height:100vh;
 }
 .iframe-topbar{
 display:flex;align-items:center;justify-content:space-between;
-padding:0.85rem 1.5rem;
-background:var(--topbar-bg);
-border-bottom:1px solid var(--topbar-borde);
-flex-shrink:0;
-transition:background 0.4s,border-color 0.4s;
-}	
+padding:0.85rem 1.5rem;background:rgba(6,8,10,0.97);
+border-bottom:1px solid var(–borde);flex-shrink:0;
+}
 .btn-back-home{
-background:var(--card2);border:1px solid var(--borde2);color:var(--btn-back-col);
+background:none;border:1px solid var(–borde2);color:var(–muted);
+font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;
+cursor:pointer;font-family:‘Outfit’,sans-serif;transition:all 0.2s;
+}
 .btn-back-home:hover{border-color:var(–verde);color:var(–verde);}
 .topbar-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(–texto);}
 .topbar-title em{color:var(–verde);font-style:normal;}
-.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--badge-color);background:var(--badge-bg);border:1.5px solid var(--badge-borde);padding:0.35rem 0.9rem;border-radius:100px;}
-.topbar-badge.oro{color:var(--badge-oro-color);background:var(--badge-oro-bg);border-color:var(--badge-oro-borde);}
+.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.3rem 0.8rem;border-radius:100px;}
 .ldot-sm{width:6px;height:6px;background:var(–verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
 .iframe-main{flex:1;border:none;width:100%;background:var(–negro);}
 .seguimiento-bar{border-bottom-color:var(–oro);}
@@ -1065,7 +1053,7 @@ RESPONSIVE
   <div class="iframe-topbar" style="border-bottom-color:var(--oro);">
     <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
     <div class="topbar-title" style="color:var(--texto);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; <span style="color:var(--oro);">Análisis Premium</span></div>
-    <div class="topbar-badge oro" style="color:var(--oro);background:rgba(255,216,77,0.1);border-color:rgba(255,216,77,0.3);">
+    <div class="topbar-badge" style="color:var(--oro);background:rgba(255,216,77,0.1);border-color:rgba(255,216,77,0.3);">
       <div class="ldot-sm" style="background:var(--oro);"></div>Exclusivo
     </div>
   </div>
@@ -1078,7 +1066,7 @@ RESPONSIVE
   <div class="iframe-topbar seguimiento-bar">
     <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
     <div class="topbar-title oro">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Seguimiento</div>
-    <div class="topbar-badge oro"><div class="ldot-sm "></div>En Vivo</div>
+    <div class="topbar-badge oro"><div class="ldot-sm oro"></div>En Vivo</div>
   </div>
   <iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" loading="lazy"></iframe>
 </div>
