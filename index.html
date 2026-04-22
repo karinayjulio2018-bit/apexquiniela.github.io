@@ -268,7 +268,7 @@ border-radius:10px;padding:0.85rem 1.25rem;margin-bottom:2rem;
 animation:fadeUp 0.6s ease 0.25s both;
 }
 .hero-referido .ref-icon{font-size:1.5rem;flex-shrink:0;}
-.hero-referido .ref-text{font-size:0.95rem;color:#FFFFFF;font-weight:600;line-height:1.5;}
+.hero-referido .ref-text{font-size:0.95rem;color:var(--texto);font-weight:600;line-height:1.5;}
 .hero-referido .ref-text strong{color:var(--oro);font-size:1rem;}
 .hero-referido .ref-text span{color:var(--oro);font-weight:800;font-size:1.05rem;}
 
@@ -659,6 +659,24 @@ cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;
 .oro{color:var(--oro)!important;}
 
 /* ══════════════════════════
+SPLASH SCREEN
+══════════════════════════ */
+#splashScreen{position:fixed;inset:0;z-index:9999;background:var(--negro);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.25s ease;}
+#splashScreen.visible{opacity:1;pointer-events:all;}
+.splash-logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:0.1em;color:var(--texto);}
+.splash-logo em{color:var(--splash-color,#00FF87);font-style:normal;}
+.splash-titulo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--splash-color,#00FF87);text-transform:uppercase;}
+.splash-sub{font-size:0.85rem;color:var(--muted);letter-spacing:1px;}
+.splash-barra{width:200px;height:3px;background:var(--borde);border-radius:3px;overflow:hidden;}
+.splash-barra-fill{height:100%;width:0%;background:var(--splash-color,#00FF87);border-radius:3px;animation:splashLoad 5.5s cubic-bezier(0.4,0,0.2,1) forwards;}
+@keyframes splashLoad{0%{width:0%;}30%{width:45%;}60%{width:72%;}85%{width:88%;}100%{width:95%;}}
+.splash-dots{display:flex;gap:6px;}
+.splash-dot{width:7px;height:7px;border-radius:50%;background:var(--splash-color,#00FF87);animation:splashDot 1.2s infinite;}
+.splash-dot:nth-child(2){animation-delay:0.2s;}
+.splash-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes splashDot{0%,80%,100%{opacity:0.2;transform:scale(0.8);}40%{opacity:1;transform:scale(1.2);}}
+
+/* ══════════════════════════
 ANIMACIONES
 ══════════════════════════ */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
@@ -949,10 +967,10 @@ RESPONSIVE
       <span class="chip reveal">La Comunidad Habla</span>
       <h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
       <div class="tgrid">
-        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela,intentenlo y les ira muy mal !!!.</p><div class="tauthor"><div class="ava">EL</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornada 17 y 15</div></div></div></div>
-        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Preparate KAKAROTTO arma tu mejor quiniela te voy a destrozar!!!.</p><div class="tauthor"><div class="ava">NM</div><div><div class="aname">EL CHINO </div><div class="ameta">Jugador desde la Jornada 16 </div></div></div></div>
-        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo. Así da confianza meter la lana.</p><div class="tauthor"><div class="ava">GJ</div><div><div class="aname"> C A T O </div><div class="ameta">Jugador recurrente</div></div></div></div>
-        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que en esta quiniela se puede meter dobles o triples me ayuda a asegurar mi victoria. </p><div class="tauthor"><div class="ava">GJ</div><div><div class="aname"> A_P_E_X_ </div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela, intentenlo y les ira muy mal !!!.</p><div class="tauthor"><div class="ava">EL</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornada 17 y 15</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Preparate KAKAROTTO arma tu mejor quiniela te voy a destrozar!!!.</p><div class="tauthor"><div class="ava">NM</div><div><div class="aname">EL CHINO</div><div class="ameta">Jugador desde la Jornada 16</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo. Así da confianza meter la lana.</p><div class="tauthor"><div class="ava">GJ</div><div><div class="aname">CATO</div><div class="ameta">Jugador recurrente</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que en esta quiniela se puede meter dobles o triples me ayuda a asegurar mi victoria.</p><div class="tauthor"><div class="ava">GJ</div><div><div class="aname">A_P_E_X_</div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
       </div>
     </section>
   </div>
@@ -1018,6 +1036,19 @@ RESPONSIVE
   <iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" loading="lazy"></iframe>
 </div>
 
+<!-- SPLASH SCREEN -->
+<div id="splashScreen">
+  <div class="splash-logo">Quiniela<em>Pro</em>Fut</div>
+  <div class="splash-titulo" id="splashTitulo">Cargando...</div>
+  <div class="splash-sub" id="splashSub">Un momento por favor</div>
+  <div class="splash-barra"><div class="splash-barra-fill"></div></div>
+  <div class="splash-dots">
+    <div class="splash-dot"></div>
+    <div class="splash-dot"></div>
+    <div class="splash-dot"></div>
+  </div>
+</div>
+
 <script>
 var URL_REGISTRO    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
@@ -1063,6 +1094,40 @@ setInterval(function(){
 }, 60 * 60 * 1000);
 
 // ══════════════════════════
+// SPLASH SCREEN
+// ══════════════════════════
+function mostrarSplash(titulo, subtitulo, colorAcento) {
+  var splash = document.getElementById('splashScreen');
+  document.getElementById('splashTitulo').textContent = titulo;
+  document.getElementById('splashSub').textContent = subtitulo;
+  splash.style.setProperty('--splash-color', colorAcento || '#00FF87');
+  splash.classList.add('visible');
+}
+function ocultarSplash() {
+  var splash = document.getElementById('splashScreen');
+  splash.classList.remove('visible');
+}
+
+// ══════════════════════════
+// PRECARGA EN BACKGROUND
+// ══════════════════════════
+function precargarIframes() {
+  // Esperar 2s después de que el usuario vea la landing, luego precargar en silencio
+  setTimeout(function() {
+    if (!iframesLoaded.registro) {
+      document.getElementById('iframe-registro').src = URL_REGISTRO;
+      iframesLoaded.registro = true;
+    }
+  }, 2000);
+  setTimeout(function() {
+    if (!iframesLoaded.seguimiento) {
+      document.getElementById('iframe-seguimiento').src = URL_SEGUIMIENTO;
+      iframesLoaded.seguimiento = true;
+    }
+  }, 4000);
+}
+
+// ══════════════════════════
 // NAVEGACIÓN
 // ══════════════════════════
 function mostrarLanding(){
@@ -1077,25 +1142,43 @@ function mostrarLanding(){
 }
 function mostrarAnalisis(){ window.location.href='analisis.html'; }
 function mostrarRegistro(){
+  mostrarSplash('Cargando Registro', 'Preparando tu quiniela...', '#00FF87');
   document.getElementById('vista-landing').style.display='none';
   document.getElementById('vista-seguimiento').style.display='none';
   document.getElementById('vista-registro').style.display='flex';
   document.getElementById('navPrincipal').style.display='none';
   document.title='QuinielaPro Fut — Registrar Quiniela';
-  if(!iframesLoaded.registro){ document.getElementById('iframe-registro').src=URL_REGISTRO; iframesLoaded.registro=true; }
+  var iframe = document.getElementById('iframe-registro');
+  if(!iframesLoaded.registro){
+    iframe.src = URL_REGISTRO;
+    iframesLoaded.registro = true;
+  }
+  iframe.onload = function(){ ocultarSplash(); };
+  // Ocultar splash máximo en 6s aunque no cargue
+  setTimeout(ocultarSplash, 6000);
 }
 function mostrarSeguimiento(){
+  mostrarSplash('Cargando Seguimiento', 'Obteniendo datos en vivo...', '#FFD84D');
   document.getElementById('vista-landing').style.display='none';
   document.getElementById('vista-registro').style.display='none';
   document.getElementById('vista-seguimiento').style.display='flex';
   document.getElementById('navPrincipal').style.display='none';
   document.title='QuinielaPro Fut — Seguimiento en Vivo';
-  if(!iframesLoaded.seguimiento){ document.getElementById('iframe-seguimiento').src=URL_SEGUIMIENTO; iframesLoaded.seguimiento=true; }
+  var iframe = document.getElementById('iframe-seguimiento');
+  if(!iframesLoaded.seguimiento){
+    iframe.src = URL_SEGUIMIENTO;
+    iframesLoaded.seguimiento = true;
+  }
+  iframe.onload = function(){ ocultarSplash(); };
+  setTimeout(ocultarSplash, 6000);
 }
 function irSeccion(id){
   mostrarLanding();
   setTimeout(function(){ var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); },100);
 }
+
+// Arrancar precarga al cargar la página
+window.addEventListener('load', precargarIframes);
 
 // ══════════════════════════
 // MENÚ HAMBURGER
