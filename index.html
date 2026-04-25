@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -19,31 +18,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 a{color:inherit;text-decoration:none;}
 html{scroll-behavior:smooth;}
 
-/* ── TEMA OSCURO (default / noche) ── */
+/* ── TEMA OSCURO (default) ── */
 :root{
-–verde:#00FF87;–verde2:#00CC6A;–negro:#06080A;–card:#0E1318;–card2:#141A21;
-–borde:#1E2830;–borde2:#26333D;–texto:#F0F4F8;–muted:#8A9BB0;–muted2:#5A6B7A;
-–oro:#FFD84D;–rojo:#FF4D6A;–glow:rgba(0,255,135,0.15);–nav-bg:rgba(6,8,10,0.92);
-–ham-color:#A0B0C0;–topbar-bg:rgba(6,8,10,0.97);–topbar-borde:#1E2830;
-–topbar-texto:#F0F4F8;–btn-back-col:#8A9BB0;–badge-bg:rgba(0,255,135,0.12);
-–badge-color:#00FF87;–badge-borde:rgba(0,255,135,0.3);
-–badge-oro-bg:rgba(255,216,77,0.12);–badge-oro-color:#FFD84D;–badge-oro-borde:rgba(255,216,77,0.3);
+--verde:#00FF87;--verde2:#00CC6A;--negro:#06080A;--card:#0E1318;--card2:#141A21;
+--borde:#1E2830;--borde2:#26333D;--texto:#F0F4F8;--muted:#8A9BB0;--muted2:#5A6B7A;
+--oro:#FFD84D;--rojo:#FF4D6A;--glow:rgba(0,255,135,0.15);--nav-bg:rgba(6,8,10,0.92);
+--ham-color:#A0B0C0;--topbar-bg:rgba(6,8,10,0.97);--topbar-borde:#1E2830;
+--topbar-texto:#F0F4F8;--btn-back-col:#8A9BB0;--badge-bg:rgba(0,255,135,0.12);
+--badge-color:#00FF87;--badge-borde:rgba(0,255,135,0.3);
+--badge-oro-bg:rgba(255,216,77,0.12);--badge-oro-color:#FFD84D;--badge-oro-borde:rgba(255,216,77,0.3);
+--cd-height:38px;
 }
 /* ── TEMA CLARO ── */
 :root.dia{
-–negro:#F5F7FA;–card:#FFFFFF;–card2:#EEF1F5;–borde:#D8DEE8;–borde2:#C4CDD8;
-–texto:#0D1B2A;–muted:#4A5568;–muted2:#718096;–nav-bg:rgba(245,247,250,0.95);
-–verde:#009955;–verde2:#007740;–oro:#C8860A;–rojo:#D63650;–glow:rgba(0,153,85,0.1);
-–ham-color:#1A202C;–topbar-bg:rgba(255,255,255,0.98);–topbar-borde:#D8DEE8;
-–topbar-texto:#0D1B2A;–btn-back-col:#2D3748;–badge-bg:#007740;–badge-color:#FFFFFF;
-–badge-borde:#007740;–badge-oro-bg:#C8860A;–badge-oro-color:#FFFFFF;–badge-oro-borde:#C8860A;
+--negro:#F5F7FA;--card:#FFFFFF;--card2:#EEF1F5;--borde:#D8DEE8;--borde2:#C4CDD8;
+--texto:#0D1B2A;--muted:#4A5568;--muted2:#718096;--nav-bg:rgba(245,247,250,0.95);
+--verde:#009955;--verde2:#007740;--oro:#C8860A;--rojo:#D63650;--glow:rgba(0,153,85,0.1);
+--ham-color:#1A202C;--topbar-bg:rgba(255,255,255,0.98);--topbar-borde:#D8DEE8;
+--topbar-texto:#0D1B2A;--btn-back-col:#2D3748;--badge-bg:#007740;--badge-color:#FFFFFF;
+--badge-borde:#007740;--badge-oro-bg:#C8860A;--badge-oro-color:#FFFFFF;--badge-oro-borde:#C8860A;
 }
 
-html,body{background:var(–negro)!important;color:var(–texto)!important;font-family:‘Outfit’,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;transition:background 0.4s ease,color 0.4s ease;}
+html,body{background:var(--negro)!important;color:var(--texto)!important;font-family:'Outfit',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;transition:background 0.4s ease,color 0.4s ease;}
 .vista{display:none;}.vista.activa{display:block;}
 
 /* ══════════════════════════
-COUNTDOWN BAR — NUEVO
+COUNTDOWN BAR
 ══════════════════════════ */
 #countdownBar{
 width:100%;
@@ -52,71 +52,134 @@ border-bottom:1px solid rgba(255,109,0,.3);
 padding:7px 16px;
 display:flex;align-items:center;justify-content:center;gap:12px;
 position:sticky;top:0;z-index:1000;
+height:var(--cd-height);
 animation:barSlideDown .5s ease;
 }
 @keyframes barSlideDown{from{transform:translateY(-100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
 #countdownBar.cerrado{background:linear-gradient(90deg,#0a1a0a,#102010,#0a1a0a);border-bottom-color:rgba(0,255,135,.2);}
-.cd-label{font-family:‘Outfit’,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF6D00;display:flex;align-items:center;gap:6px;}
-#countdownBar.cerrado .cd-label{color:var(–verde);}
+.cd-label{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF6D00;display:flex;align-items:center;gap:6px;}
+#countdownBar.cerrado .cd-label{color:var(--verde);}
 .cd-blink{animation:blink 1s step-end infinite;}
 @keyframes blink{50%{opacity:0;}}
 .cd-digits{display:flex;align-items:center;gap:4px;}
 .cd-block{background:rgba(255,109,0,.12);border:1px solid rgba(255,109,0,.3);border-radius:6px;min-width:36px;padding:3px 5px;text-align:center;}
 #countdownBar.cerrado .cd-block{background:rgba(0,255,135,.08);border-color:rgba(0,255,135,.25);}
-.cd-num{font-family:‘Bebas Neue’,sans-serif;font-size:17px;color:#FF6D00;line-height:1;display:block;}
-#countdownBar.cerrado .cd-num{color:var(–verde);}
+.cd-num{font-family:'Bebas Neue',sans-serif;font-size:17px;color:#FF6D00;line-height:1;display:block;}
+#countdownBar.cerrado .cd-num{color:var(--verde);}
 .cd-lbl{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,109,0,.55);display:block;margin-top:1px;}
 #countdownBar.cerrado .cd-lbl{color:rgba(0,255,135,.55);}
-.cd-sep{font-family:‘Bebas Neue’,sans-serif;font-size:16px;color:#FF6D00;opacity:.5;animation:blink 1s step-end infinite;}
+.cd-sep{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#FF6D00;opacity:.5;animation:blink 1s step-end infinite;}
 .cd-cta{display:none;}
 @media(min-width:580px){
-.cd-cta{display:inline-flex;align-items:center;gap:5px;background:#FF6D00;color:#06080A;font-family:‘Outfit’,sans-serif;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 13px;border-radius:100px;border:none;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 3px 14px rgba(255,109,0,.3);}
+.cd-cta{display:inline-flex;align-items:center;gap:5px;background:#FF6D00;color:#06080A;font-family:'Outfit',sans-serif;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 13px;border-radius:100px;border:none;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 3px 14px rgba(255,109,0,.3);}
 .cd-cta:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(255,109,0,.45);}
 }
 
 /* ══════════════════════════
-NAV
+NAV — CORREGIDO PARA MÓVIL
 ══════════════════════════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0.85rem 2rem;background:var(–nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(–borde);transition:background 0.4s,border-color 0.4s;}
-/* Cuando countdown bar está visible, el nav baja */
-body.has-countdown nav{top:36px;}
-.btn-tema{background:none;border:1px solid var(–borde2);border-radius:20px;padding:0.3rem 0.75rem;font-size:0.88rem;cursor:pointer;transition:all 0.2s;color:var(–muted);display:flex;align-items:center;gap:0.3rem;font-family:‘Outfit’,sans-serif;}
-.btn-tema:hover{border-color:var(–verde);color:var(–verde);}
-.logo{font-family:‘Bebas Neue’,sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(–texto);cursor:pointer;transition:color 0.3s;}
-.logo em{color:var(–verde);font-style:normal;}
+nav{
+  position:sticky; /* CAMBIO: sticky en lugar de fixed para fluir con el countdown */
+  top:0;
+  left:0;right:0;
+  z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.85rem 1.5rem;
+  background:var(--nav-bg);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--borde);
+  transition:background 0.4s,border-color 0.4s;
+  height:58px;
+}
+.btn-tema{background:none;border:1px solid var(--borde2);border-radius:20px;padding:0.3rem 0.75rem;font-size:0.88rem;cursor:pointer;transition:all 0.2s;color:var(--muted);display:flex;align-items:center;gap:0.3rem;font-family:'Outfit',sans-serif;}
+.btn-tema:hover{border-color:var(--verde);color:var(--verde);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--texto);cursor:pointer;transition:color 0.3s;}
+.logo em{color:var(--verde);font-style:normal;}
 .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
-.nav-links a,.nav-links button{font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(–muted);background:none;border:none;cursor:pointer;transition:color 0.2s;font-family:‘Outfit’,sans-serif;}
-.nav-links a:hover,.nav-links button:hover{color:var(–texto);}
-.nav-btn-cta{background:var(–verde)!important;color:#06080A!important;padding:0.45rem 1.3rem;border-radius:6px;font-weight:700!important;transition:all 0.2s!important;}
-.nav-btn-cta:hover{background:var(–verde2)!important;transform:translateY(-1px);}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
-.hamburger span{width:22px;height:2.5px;background:var(–ham-color);border-radius:2px;transition:0.2s;display:block;}
-.hamburger:hover span{background:var(–verde);}
-.nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;z-index:998;background:var(–nav-bg);border-bottom:1px solid var(–borde);padding:1.5rem 2rem;flex-direction:column;gap:1rem;backdrop-filter:blur(24px);}
-.nav-mobile.open{display:flex;}
-.nav-mobile button,.nav-mobile a{font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);background:none;border:none;cursor:pointer;padding:0.5rem 0;text-align:left;border-bottom:1px solid var(–borde);font-family:‘Outfit’,sans-serif;}
-.nav-mobile .cta-mobile{background:var(–verde);color:#06080A;padding:0.8rem 1.5rem;border-radius:8px;text-align:center;font-weight:700;border:none;}
+.nav-links a,.nav-links button{font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;transition:color 0.2s;font-family:'Outfit',sans-serif;}
+.nav-links a:hover,.nav-links button:hover{color:var(--texto);}
+.nav-btn-cta{background:var(--verde)!important;color:#06080A!important;padding:0.45rem 1.3rem;border-radius:6px;font-weight:700!important;transition:all 0.2s!important;}
+.nav-btn-cta:hover{background:var(--verde2)!important;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1001;}
+.hamburger span{width:24px;height:2.5px;background:var(--ham-color);border-radius:2px;transition:0.3s;display:block;}
+.hamburger:hover span{background:var(--verde);}
+.hamburger.abierto span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+.hamburger.abierto span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.abierto span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+/* ── MENÚ MÓVIL CORREGIDO ── */
+.nav-mobile{
+  display:none;
+  position:fixed; /* fixed para cubrir toda la pantalla desde arriba */
+  top:0;
+  left:0;right:0;
+  z-index:997; /* debajo del nav pero encima de todo lo demás */
+  background:var(--nav-bg);
+  border-bottom:2px solid var(--verde);
+  padding:1rem 1.5rem 1.5rem;
+  flex-direction:column;
+  gap:0;
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+  transform:translateY(-110%);
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+  opacity:0;
+  pointer-events:none;
+  padding-top:calc(var(--cd-height) + 58px + 0.5rem); /* espacio para countdown + nav */
+}
+.nav-mobile.open{
+  display:flex;
+  transform:translateY(0);
+  opacity:1;
+  pointer-events:all;
+}
+.nav-mobile button,.nav-mobile a{
+  font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);background:none;border:none;cursor:pointer;
+  padding:1rem 0.25rem;text-align:left;
+  border-bottom:1px solid var(--borde);
+  font-family:'Outfit',sans-serif;
+  transition:color 0.2s, padding-left 0.2s;
+  width:100%;
+}
+.nav-mobile button:hover,.nav-mobile a:hover{color:var(--verde);padding-left:0.5rem;}
+.nav-mobile button:last-child{border-bottom:none;}
+.cta-mobile{
+  background:var(--verde)!important;color:#06080A!important;
+  padding:1rem 1.5rem!important;border-radius:10px;text-align:center!important;
+  font-weight:800!important;border:none!important;margin-top:0.75rem;
+  font-size:1rem!important;
+}
+.cta-mobile:hover{background:var(--verde2)!important;padding-left:1.5rem!important;}
+
+/* Overlay oscuro cuando menú móvil está abierto */
+#menuOverlay{
+  display:none;position:fixed;inset:0;z-index:996;
+  background:rgba(6,8,10,0.6);backdrop-filter:blur(2px);
+}
+#menuOverlay.show{display:block;}
 
 /* ══════════════════════════
 HERO
 ══════════════════════════ */
-#hero{min-height:100vh;display:flex;align-items:center;padding:7rem 2rem 5rem;position:relative;overflow:hidden;}
+#hero{min-height:100vh;display:flex;align-items:center;padding:5rem 2rem 5rem;position:relative;overflow:hidden;}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;width:100%;max-width:1120px;margin:0 auto;position:relative;z-index:2;}
 .hero-right{display:flex;flex-direction:column;gap:1rem;}
-.hero-stat-card{background:var(–card);border:1px solid var(–borde);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.3s,transform 0.3s;animation:fadeUp 0.6s ease both;}
+.hero-stat-card{background:var(--card);border:1px solid var(--borde);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.3s,transform 0.3s;animation:fadeUp 0.6s ease both;}
 .hero-stat-card:nth-child(1){animation-delay:0.3s;}
 .hero-stat-card:nth-child(2){animation-delay:0.4s;border-color:rgba(255,216,77,0.25);}
 .hero-stat-card:nth-child(3){animation-delay:0.5s;}
 .hero-stat-card:hover{transform:translateX(6px);}
 .hsc-icon{font-size:2rem;flex-shrink:0;}
-.hsc-label{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(–muted);margin-bottom:0.2rem;}
-.hsc-val{font-family:‘Bebas Neue’,sans-serif;font-size:2rem;line-height:1;color:var(–verde);}
-.hsc-val.oro{color:var(–oro);}
+.hsc-label{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.2rem;}
+.hsc-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;color:var(--verde);}
+.hsc-val.oro{color:var(--oro);}
 .hero-right-cta{background:linear-gradient(135deg,rgba(0,255,135,0.06) 0%,rgba(0,255,135,0.02) 100%);border:1px solid rgba(0,255,135,0.2);border-radius:14px;padding:1.5rem;animation:fadeUp 0.6s ease 0.55s both;}
-.hrc-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.4rem;color:var(–texto);margin-bottom:0.5rem;}
+.hrc-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--texto);margin-bottom:0.5rem;}
 .hrc-ligas{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
-.hrc-liga{font-size:0.75rem;font-weight:600;background:rgba(255,255,255,0.05);border:1px solid var(–borde2);border-radius:5px;padding:0.25rem 0.6rem;color:var(–muted);}
-.hrc-live{display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-weight:700;color:var(–verde);letter-spacing:0.08em;text-transform:uppercase;}
+.hrc-liga{font-size:0.75rem;font-weight:600;background:rgba(255,255,255,0.05);border:1px solid var(--borde2);border-radius:5px;padding:0.25rem 0.6rem;color:var(--muted);}
+.hrc-live{display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-weight:700;color:var(--verde);letter-spacing:0.08em;text-transform:uppercase;}
 @media(max-width:780px){.hero-grid{grid-template-columns:1fr;}.hero-right{display:none;}}
 .hero-bg-3d{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
 .orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orbFloat 8s ease-in-out infinite;}
@@ -124,312 +187,306 @@ HERO
 .orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(61,139,255,0.07) 0%,transparent 70%);bottom:-100px;left:-100px;animation-delay:-3s;}
 .orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,216,77,0.06) 0%,transparent 70%);top:40%;left:40%;animation-delay:-5s;}
 @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-20px) scale(1.05);}66%{transform:translate(-20px,30px) scale(0.95);}}
-.hero-hex{position:absolute;inset:0;pointer-events:none;opacity:0.03;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘56’ height=‘100’%3E%3Cpath d=‘M28 66L0 50V17L28 1l28 16v33z’ fill=‘none’ stroke=’%2300FF87’ stroke-width=‘1’/%3E%3Cpath d=‘M28 100L0 84V51l28-17 28 17v33z’ fill=‘none’ stroke=’%2300FF87’ stroke-width=‘1’/%3E%3C/svg%3E”);}
+.hero-hex{position:absolute;inset:0;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33z' fill='none' stroke='%2300FF87' stroke-width='1'/%3E%3Cpath d='M28 100L0 84V51l28-17 28 17v33z' fill='none' stroke='%2300FF87' stroke-width='1'/%3E%3C/svg%3E");}
 .hero-content{position:relative;z-index:2;}
-.hero-tag{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);color:var(–verde);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:100px;margin-bottom:2rem;animation:fadeUp 0.5s ease both;}
-.pdot{width:7px;height:7px;background:var(–verde);border-radius:50%;animation:pulseAnim 1.8s infinite;}
-.hero-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(4rem,10vw,7.5rem);line-height:0.9;letter-spacing:0.02em;color:var(–texto);margin-bottom:1.75rem;animation:fadeUp 0.6s ease 0.1s both;}
-.hero-title .v{color:var(–verde);}.hero-title .o{color:var(–oro);}
-.hero-desc{font-size:1.1rem;color:var(–muted);max-width:500px;margin-bottom:1.5rem;line-height:1.8;animation:fadeUp 0.6s ease 0.2s both;}
-.hero-desc strong{color:var(–texto);font-weight:600;}
+.hero-tag{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);color:var(--verde);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:100px;margin-bottom:2rem;animation:fadeUp 0.5s ease both;}
+.pdot{width:7px;height:7px;background:var(--verde);border-radius:50%;animation:pulseAnim 1.8s infinite;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,7.5rem);line-height:0.9;letter-spacing:0.02em;color:var(--texto);margin-bottom:1.75rem;animation:fadeUp 0.6s ease 0.1s both;}
+.hero-title .v{color:var(--verde);}.hero-title .o{color:var(--oro);}
+.hero-desc{font-size:1.1rem;color:var(--muted);max-width:500px;margin-bottom:1.5rem;line-height:1.8;animation:fadeUp 0.6s ease 0.2s both;}
+.hero-desc strong{color:var(--texto);font-weight:600;}
 .hero-referido{display:inline-flex;align-items:center;gap:0.75rem;background:rgba(255,216,77,0.15);border:2px solid rgba(255,216,77,0.6);border-radius:10px;padding:0.85rem 1.25rem;margin-bottom:2rem;animation:fadeUp 0.6s ease 0.25s both;}
 .hero-referido .ref-icon{font-size:1.5rem;flex-shrink:0;}
-.hero-referido .ref-text{font-size:0.95rem;color:var(–texto);font-weight:600;line-height:1.5;}
-.hero-referido .ref-text strong{color:var(–oro);font-size:1rem;}
-.hero-referido .ref-text span{color:var(–oro);font-weight:800;font-size:1.05rem;}
+.hero-referido .ref-text{font-size:0.95rem;color:var(--texto);font-weight:600;line-height:1.5;}
+.hero-referido .ref-text strong{color:var(--oro);font-size:1rem;}
+.hero-referido .ref-text span{color:var(--oro);font-weight:800;font-size:1.05rem;}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.3s both;}
-.btn-v{display:inline-flex;align-items:center;gap:0.6rem;background:var(–verde);color:var(–negro);font-size:0.95rem;font-weight:700;padding:0.9rem 2rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 0 30px rgba(0,255,135,0.25);}
-.btn-v:hover{background:var(–verde2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,135,0.4);}
-.btn-o{display:inline-flex;align-items:center;gap:0.6rem;background:var(–oro);color:#06080A;font-size:0.95rem;font-weight:800;padding:0.9rem 2rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 0 30px rgba(255,216,77,0.25);}
+.btn-v{display:inline-flex;align-items:center;gap:0.6rem;background:var(--verde);color:var(--negro);font-size:0.95rem;font-weight:700;padding:0.9rem 2rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 0 30px rgba(0,255,135,0.25);}
+.btn-v:hover{background:var(--verde2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,135,0.4);}
+.btn-o{display:inline-flex;align-items:center;gap:0.6rem;background:var(--oro);color:#06080A;font-size:0.95rem;font-weight:800;padding:0.9rem 2rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 0 30px rgba(255,216,77,0.25);}
 .btn-o:hover{background:#e6c200;transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,216,77,0.4);color:#06080A;}
 
 /* ══════════════════════════
 STATS BAR
 ══════════════════════════ */
-.stats-bar{background:var(–card);border-top:1px solid rgba(0,255,135,0.1);border-bottom:1px solid rgba(0,255,135,0.1);display:grid;grid-template-columns:repeat(4,1fr);position:relative;overflow:hidden;}
-.stats-bar::before{content:’’;position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,255,135,0.03),transparent);animation:shimmer 4s linear infinite;}
+.stats-bar{background:var(--card);border-top:1px solid rgba(0,255,135,0.1);border-bottom:1px solid rgba(0,255,135,0.1);display:grid;grid-template-columns:repeat(4,1fr);position:relative;overflow:hidden;}
+.stats-bar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,255,135,0.03),transparent);animation:shimmer 4s linear infinite;}
 @keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
-.stat{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(–borde);position:relative;}
+.stat{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(--borde);position:relative;}
 .stat:last-child{border-right:none;}
-.stat-n{font-family:‘Bebas Neue’,sans-serif;font-size:3.2rem;line-height:1;color:var(–verde);display:block;}
-.stat-l{font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(–muted);margin-top:0.3rem;display:block;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;line-height:1;color:var(--verde);display:block;}
+.stat-l{font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;display:block;}
 
 /* ══════════════════════════
 SECCIONES BASE
 ══════════════════════════ */
 .sec{padding:5rem 2rem;max-width:1120px;margin:0 auto;}
-.chip{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(–verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.15);padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:1rem;}
-.stitle{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1;letter-spacing:0.02em;color:var(–texto);margin-bottom:1rem;}
-.sdesc{font-size:1rem;color:var(–muted);max-width:500px;line-height:1.8;margin-bottom:3rem;}
+.chip{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.15);padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:1rem;}
+.stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1;letter-spacing:0.02em;color:var(--texto);margin-bottom:1rem;}
+.sdesc{font-size:1rem;color:var(--muted);max-width:500px;line-height:1.8;margin-bottom:3rem;}
 
 /* ══════════════════════════
-LEAD CAPTURE — NUEVO
+LEAD CAPTURE
 ══════════════════════════ */
-.lead-section{
-background:var(–negro);
-padding:5rem 2rem;
-position:relative;
-overflow:hidden;
-}
-.lead-section::before{
-content:’’;position:absolute;inset:0;
-background-image:
-repeating-linear-gradient(0deg,transparent,transparent 58px,rgba(0,255,135,.03) 58px,rgba(0,255,135,.03) 59px),
-repeating-linear-gradient(90deg,transparent,transparent 58px,rgba(0,255,135,.03) 58px,rgba(0,255,135,.03) 59px);
-pointer-events:none;
-}
+.lead-section{background:var(--negro);padding:5rem 2rem;position:relative;overflow:hidden;}
+.lead-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 58px,rgba(0,255,135,.03) 58px,rgba(0,255,135,.03) 59px),repeating-linear-gradient(90deg,transparent,transparent 58px,rgba(0,255,135,.03) 58px,rgba(0,255,135,.03) 59px);pointer-events:none;}
 .lead-inner{max-width:640px;margin:0 auto;position:relative;z-index:1;}
 .lead-badge-wrap{display:flex;align-items:center;gap:8px;margin-bottom:1.5rem;}
-.lead-live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,255,135,.08);border:1px solid rgba(0,255,135,.2);border-radius:100px;padding:5px 14px;font-size:0.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(–verde);}
-.lead-card{
-background:var(–card);
-border:1px solid var(–borde);
-border-radius:20px;
-padding:2.5rem 2rem;
-position:relative;
-box-shadow:0 24px 80px rgba(0,0,0,.5),0 0 0 1px rgba(0,255,135,.05);
-}
-.lead-card::before{content:’’;position:absolute;top:0;left:2rem;right:2rem;height:1px;background:linear-gradient(90deg,transparent,var(–verde),transparent);opacity:.5;}
-.lead-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(2.2rem,6vw,3.2rem);line-height:1;color:var(–texto);margin-bottom:.6rem;}
-.lead-title .v{color:var(–verde);}
-.lead-sub{font-size:.95rem;color:var(–muted);line-height:1.7;margin-bottom:2rem;max-width:480px;}
+.lead-live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,255,135,.08);border:1px solid rgba(0,255,135,.2);border-radius:100px;padding:5px 14px;font-size:0.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--verde);}
+.lead-card{background:var(--card);border:1px solid var(--borde);border-radius:20px;padding:2.5rem 2rem;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.5),0 0 0 1px rgba(0,255,135,.05);}
+.lead-card::before{content:'';position:absolute;top:0;left:2rem;right:2rem;height:1px;background:linear-gradient(90deg,transparent,var(--verde),transparent);opacity:.5;}
+.lead-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,3.2rem);line-height:1;color:var(--texto);margin-bottom:.6rem;}
+.lead-title .v{color:var(--verde);}
+.lead-sub{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:2rem;max-width:480px;}
 .lead-benefits{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.75rem;}
-.lead-chip{display:flex;align-items:center;gap:5px;background:rgba(0,255,135,.06);border:1px solid rgba(0,255,135,.12);border-radius:7px;padding:5px 11px;font-size:.75rem;font-weight:700;color:var(–verde);}
+.lead-chip{display:flex;align-items:center;gap:5px;background:rgba(0,255,135,.06);border:1px solid rgba(0,255,135,.12);border-radius:7px;padding:5px 11px;font-size:.75rem;font-weight:700;color:var(--verde);}
 .lead-form-grid{display:grid;gap:1rem;margin-bottom:1.5rem;}
 .lf-group{display:flex;flex-direction:column;gap:5px;}
-.lf-label{font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(–muted2);}
-.lf-input{background:var(–card2);border:1.5px solid var(–borde);border-radius:9px;padding:12px 14px;font-size:.95rem;font-family:‘Outfit’,sans-serif;color:var(–texto);outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
-.lf-input::placeholder{color:var(–muted2);opacity:.6;}
-.lf-input:focus{border-color:var(–verde);box-shadow:0 0 0 3px rgba(0,255,135,.1);}
-.lf-input.err{border-color:var(–rojo);}
+.lf-label{font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);}
+.lf-input{background:var(--card2);border:1.5px solid var(--borde);border-radius:9px;padding:12px 14px;font-size:.95rem;font-family:'Outfit',sans-serif;color:var(--texto);outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.lf-input::placeholder{color:var(--muted2);opacity:.6;}
+.lf-input:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(0,255,135,.1);}
+.lf-input.err{border-color:var(--rojo);}
 .lf-error{font-size:.7rem;color:#ff8591;display:none;}
 .lf-error.show{display:block;}
 .lf-check-wrap{display:flex;align-items:center;gap:10px;padding:11px 13px;background:rgba(255,216,77,.05);border:1px solid rgba(255,216,77,.15);border-radius:9px;cursor:pointer;transition:background .2s;}
 .lf-check-wrap:hover{background:rgba(255,216,77,.09);}
 .lf-check-wrap input{display:none;}
-.lf-checkbox{width:19px;height:19px;border-radius:5px;border:2px solid var(–oro);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;font-size:11px;color:#06080A;}
-.lf-check-wrap input:checked~.lf-checkbox{background:var(–oro);}
-.lf-check-text{font-size:.82rem;color:var(–texto);line-height:1.4;}
-.lf-check-text strong{color:var(–oro);}
-.lead-btn{
-width:100%;padding:1.1rem;background:var(–verde);color:var(–negro);border:none;border-radius:10px;
-font-family:‘Bebas Neue’,sans-serif;font-size:1.4rem;letter-spacing:2px;cursor:pointer;
-transition:transform .15s,box-shadow .2s;box-shadow:0 0 30px rgba(0,255,135,.25);
-display:flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden;
-}
+.lf-checkbox{width:19px;height:19px;border-radius:5px;border:2px solid var(--oro);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;font-size:11px;color:#06080A;}
+.lf-check-wrap input:checked~.lf-checkbox{background:var(--oro);}
+.lf-check-text{font-size:.82rem;color:var(--texto);line-height:1.4;}
+.lf-check-text strong{color:var(--oro);}
+.lead-btn{width:100%;padding:1.1rem;background:var(--verde);color:var(--negro);border:none;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 0 30px rgba(0,255,135,.25);display:flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden;}
 .lead-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,135,.4);}
-.lead-btn:after{content:’’;position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 50%);pointer-events:none;}
+.lead-btn:after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 50%);pointer-events:none;}
 .lead-btn.loading .btn-text-inner{display:none;}
 .lead-spinner{display:none;width:20px;height:20px;border:2.5px solid rgba(0,0,0,.2);border-top-color:#06080A;border-radius:50%;animation:lspin .7s linear infinite;}
 .lead-btn.loading .lead-spinner{display:block;}
 @keyframes lspin{to{transform:rotate(360deg);}}
-.lead-privacy{text-align:center;font-size:.72rem;color:var(–muted2);margin-top:1rem;line-height:1.5;}
+.lead-privacy{text-align:center;font-size:.72rem;color:var(--muted2);margin-top:1rem;line-height:1.5;}
 .lead-success{display:none;text-align:center;padding:1rem 0;animation:fadeUp .5s ease;}
 .lead-success.show{display:block;}
 .lead-form-inner.hide{display:none;}
 .lead-success-icon{font-size:56px;display:block;margin-bottom:12px;animation:popIn .5s cubic-bezier(.18,.89,.32,1.28);}
 @keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
-.lead-success-title{font-family:‘Bebas Neue’,sans-serif;font-size:2rem;color:var(–verde);margin-bottom:.5rem;}
-.lead-success-text{font-size:.9rem;color:var(–muted);line-height:1.6;margin-bottom:1.5rem;}
+.lead-success-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--verde);margin-bottom:.5rem;}
+.lead-success-text{font-size:.9rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;}
 .lead-wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:12px 22px;text-decoration:none;font-weight:700;font-size:.9rem;transition:transform .15s,box-shadow .2s;box-shadow:0 6px 20px rgba(37,211,102,.25);}
 .lead-wa-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,.4);}
-.lead-social-proof{display:flex;align-items:center;gap:12px;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(–borde);}
+.lead-social-proof{display:flex;align-items:center;gap:12px;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--borde);}
 .lsp-avatars{display:flex;}
-.lsp-ava{width:30px;height:30px;border-radius:50%;border:2px solid var(–card);background:var(–card2);display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’,sans-serif;font-size:12px;color:var(–verde);margin-left:-7px;}
+.lsp-ava{width:30px;height:30px;border-radius:50%;border:2px solid var(--card);background:var(--card2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:12px;color:var(--verde);margin-left:-7px;}
 .lsp-ava:first-child{margin-left:0;}
-.lsp-text{font-size:.78rem;color:var(–muted);line-height:1.4;}
-.lsp-text strong{color:var(–verde);}
+.lsp-text{font-size:.78rem;color:var(--muted);line-height:1.4;}
+.lsp-text strong{color:var(--verde);}
 
 /* ══════════════════════════
 GANADORES
 ══════════════════════════ */
-.ganadores-section{background:linear-gradient(180deg,var(–negro) 0%,rgba(0,255,135,0.02) 50%,var(–negro) 100%);border-top:1px solid var(–borde);border-bottom:1px solid var(–borde);}
+.ganadores-section{background:linear-gradient(180deg,var(--negro) 0%,rgba(0,255,135,0.02) 50%,var(--negro) 100%);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);}
 .ganadores-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem;}
-.ganador-card{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,216,77,0.2);background:linear-gradient(135deg,var(–card) 0%,rgba(255,216,77,0.04) 100%);padding:2rem;transform-style:preserve-3d;transition:transform 0.4s ease,box-shadow 0.4s ease;cursor:default;}
+.ganador-card{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,216,77,0.2);background:linear-gradient(135deg,var(--card) 0%,rgba(255,216,77,0.04) 100%);padding:2rem;transform-style:preserve-3d;transition:transform 0.4s ease,box-shadow 0.4s ease;cursor:default;}
 .ganador-card:hover{transform:perspective(800px) rotateX(-3deg) rotateY(3deg) translateY(-6px);box-shadow:0 20px 60px rgba(255,216,77,0.15);}
-.ganador-card::before{content:’’;position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,216,77,0.06) 100%);pointer-events:none;}
-.ganador-badge{position:absolute;top:0;right:0;background:var(–oro);color:var(–negro);font-size:0.62rem;font-weight:800;letter-spacing:0.1em;padding:0.3rem 0.9rem;border-bottom-left-radius:8px;}
+.ganador-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,216,77,0.06) 100%);pointer-events:none;}
+.ganador-badge{position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.62rem;font-weight:800;letter-spacing:0.1em;padding:0.3rem 0.9rem;border-bottom-left-radius:8px;}
 .ganador-trophy{font-size:2.5rem;margin-bottom:1rem;}
-.ganador-nombre{font-family:‘Bebas Neue’,sans-serif;font-size:1.8rem;color:var(–oro);letter-spacing:0.05em;line-height:1;margin-bottom:0.25rem;}
-.ganador-alias{font-size:0.8rem;color:var(–muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;}
-.ganador-premio{font-family:‘Bebas Neue’,sans-serif;font-size:3rem;color:var(–verde);line-height:1;margin-bottom:0.5rem;}
-.ganador-meta{font-size:0.8rem;color:var(–muted2);display:flex;align-items:center;gap:0.5rem;}
-.ganador-dot{width:6px;height:6px;background:var(–verde);border-radius:50%;animation:pulseAnim 2s infinite;}
-.historial{margin-top:2rem;background:var(–card);border:1px solid var(–borde);border-radius:12px;overflow:hidden;}
+.ganador-nombre{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--oro);letter-spacing:0.05em;line-height:1;margin-bottom:0.25rem;}
+.ganador-alias{font-size:0.8rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;}
+.ganador-premio{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--verde);line-height:1;margin-bottom:0.5rem;}
+.ganador-meta{font-size:0.8rem;color:var(--muted2);display:flex;align-items:center;gap:0.5rem;}
+.ganador-dot{width:6px;height:6px;background:var(--verde);border-radius:50%;animation:pulseAnim 2s infinite;}
+.historial{margin-top:2rem;background:var(--card);border:1px solid var(--borde);border-radius:12px;overflow:hidden;}
 .historial-row{display:grid;grid-template-columns:2rem 1fr auto auto;align-items:center;gap:1rem;padding:0.85rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.88rem;transition:background 0.15s;}
 .historial-row:last-child{border-bottom:none;}
 .historial-row:hover{background:rgba(255,255,255,0.02);}
-.historial-row.hdr{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(–muted2);background:rgba(0,0,0,0.3);}
-.h-pos{font-weight:800;color:var(–oro);}
-.h-nombre{font-weight:600;color:var(–texto);}
-.h-aciertos{background:rgba(0,255,135,0.08);color:var(–verde);font-family:‘Bebas Neue’,sans-serif;font-size:1.2rem;padding:0.1rem 0.6rem;border-radius:5px;border:1px solid rgba(0,255,135,0.15);text-align:center;}
-.h-premio{font-weight:700;color:var(–oro);font-size:0.9rem;}
+.historial-row.hdr{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted2);background:rgba(0,0,0,0.3);}
+.h-pos{font-weight:800;color:var(--oro);}
+.h-nombre{font-weight:600;color:var(--texto);}
+.h-aciertos{background:rgba(0,255,135,0.08);color:var(--verde);font-family:'Bebas Neue',sans-serif;font-size:1.2rem;padding:0.1rem 0.6rem;border-radius:5px;border:1px solid rgba(0,255,135,0.15);text-align:center;}
+.h-premio{font-weight:700;color:var(--oro);font-size:0.9rem;}
 
 /* ══════════════════════════
 STEPS
 ══════════════════════════ */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;margin-top:3rem;}
-.step{background:var(–card);border:1px solid var(–borde);border-radius:16px;padding:2.5rem 2rem;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform 0.4s ease,box-shadow 0.4s ease,border-color 0.3s;}
+.step{background:var(--card);border:1px solid var(--borde);border-radius:16px;padding:2.5rem 2rem;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform 0.4s ease,box-shadow 0.4s ease,border-color 0.3s;}
 .step:hover{transform:perspective(600px) rotateX(-4deg) translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(0,255,135,0.2);border-color:rgba(0,255,135,0.3);}
-.step::after{content:’’;position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(–verde),transparent);opacity:0;transition:opacity 0.3s;}
+.step::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--verde),transparent);opacity:0;transition:opacity 0.3s;}
 .step:hover::after{opacity:1;}
-.step-bg{font-family:‘Bebas Neue’,sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.04);position:absolute;top:0.5rem;right:1rem;pointer-events:none;}
+.step-bg{font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.04);position:absolute;top:0.5rem;right:1rem;pointer-events:none;}
 .step-icon{font-size:2.2rem;margin-bottom:1.25rem;}
-.step h3{font-size:1rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(–texto);margin-bottom:0.6rem;}
-.step p{font-size:0.9rem;color:var(–muted);line-height:1.7;}
+.step h3{font-size:1rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--texto);margin-bottom:0.6rem;}
+.step p{font-size:0.9rem;color:var(--muted);line-height:1.7;}
 
 /* ══════════════════════════
 LIGAS
 ══════════════════════════ */
 .ligas{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem;}
-.liga{display:flex;align-items:center;gap:0.5rem;background:var(–card);border:1px solid var(–borde2);border-radius:8px;padding:0.6rem 1.2rem;font-size:0.88rem;font-weight:600;color:var(–texto);transition:all 0.2s;cursor:default;}
-.liga:hover,.liga.on{border-color:var(–verde);color:var(–verde);background:rgba(0,255,135,0.05);}
+.liga{display:flex;align-items:center;gap:0.5rem;background:var(--card);border:1px solid var(--borde2);border-radius:8px;padding:0.6rem 1.2rem;font-size:0.88rem;font-weight:600;color:var(--texto);transition:all 0.2s;cursor:default;}
+.liga:hover,.liga.on{border-color:var(--verde);color:var(--verde);background:rgba(0,255,135,0.05);}
 
 /* ══════════════════════════
 TRACKING PREVIEW
 ══════════════════════════ */
-.tbox{background:var(–card);border:1px solid var(–borde);border-radius:16px;overflow:hidden;margin-top:3rem;box-shadow:0 0 0 1px rgba(0,255,135,0.05),0 40px 80px rgba(0,0,0,0.4);}
-.thead{background:var(–card2);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(–borde);}
-.thead-t{font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(–texto);}
-.live{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–verde);}
-.ldot{width:8px;height:8px;background:var(–verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
+.tbox{background:var(--card);border:1px solid var(--borde);border-radius:16px;overflow:hidden;margin-top:3rem;box-shadow:0 0 0 1px rgba(0,255,135,0.05),0 40px 80px rgba(0,0,0,0.4);}
+.thead{background:var(--card2);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--borde);}
+.thead-t{font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--texto);}
+.live{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--verde);}
+.ldot{width:8px;height:8px;background:var(--verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
 .trow{display:grid;grid-template-columns:2.5rem 1fr repeat(6,2.4rem) 3rem;align-items:center;padding:0.7rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.85rem;transition:background 0.15s;}
 .trow:hover{background:rgba(255,255,255,0.02);}
 .trow:last-child{border-bottom:none;}
-.trow.hdr{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(–muted2);background:rgba(0,0,0,0.3);}
+.trow.hdr{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted2);background:rgba(0,0,0,0.3);}
 .rk{font-weight:800;font-size:0.9rem;}
-.r1{color:var(–oro);}.r2{color:#C0C0C0;}.r3{color:#CD7F32;}.r4{color:var(–muted);}
+.r1{color:var(--oro);}.r2{color:#C0C0C0;}.r3{color:#CD7F32;}.r4{color:var(--muted);}
 .cell{width:2rem;height:2rem;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;margin:0 auto;}
-.ok{background:rgba(0,255,135,0.12);color:var(–verde);}
-.fail{background:rgba(255,77,106,0.12);color:var(–rojo);}
-.pend{background:rgba(255,255,255,0.04);color:var(–muted2);}
-.pts{background:rgba(0,255,135,0.08);color:var(–verde);font-family:‘Bebas Neue’,sans-serif;font-size:1.15rem;text-align:center;border-radius:5px;padding:0.1rem 0.3rem;border:1px solid rgba(0,255,135,0.15);}
-.pname{font-weight:500;color:var(–texto);}
+.ok{background:rgba(0,255,135,0.12);color:var(--verde);}
+.fail{background:rgba(255,77,106,0.12);color:var(--rojo);}
+.pend{background:rgba(255,255,255,0.04);color:var(--muted2);}
+.pts{background:rgba(0,255,135,0.08);color:var(--verde);font-family:'Bebas Neue',sans-serif;font-size:1.15rem;text-align:center;border-radius:5px;padding:0.1rem 0.3rem;border:1px solid rgba(0,255,135,0.15);}
+.pname{font-weight:500;color:var(--texto);}
 
 /* ══════════════════════════
 PREMIOS
 ══════════════════════════ */
-.premio-principal{background:linear-gradient(135deg,var(–negro) 0%,rgba(255,216,77,0.06) 100%);border:2px solid rgba(255,216,77,0.5);border-radius:20px;padding:3rem 2rem;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform 0.5s ease,box-shadow 0.5s ease;}
+.premio-principal{background:linear-gradient(135deg,var(--negro) 0%,rgba(255,216,77,0.06) 100%);border:2px solid rgba(255,216,77,0.5);border-radius:20px;padding:3rem 2rem;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform 0.5s ease,box-shadow 0.5s ease;}
 .premio-principal:hover{transform:perspective(1000px) rotateX(-2deg) translateY(-8px);box-shadow:0 30px 80px rgba(255,216,77,0.2),0 0 0 1px rgba(255,216,77,0.4);}
-.premio-principal::before{content:’’;position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent 0deg,rgba(255,216,77,0.03) 60deg,transparent 120deg);animation:rotateConic 8s linear infinite;pointer-events:none;}
+.premio-principal::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent 0deg,rgba(255,216,77,0.03) 60deg,transparent 120deg);animation:rotateConic 8s linear infinite;pointer-events:none;}
 @keyframes rotateConic{to{transform:rotate(360deg);}}
 .promo-referido{background:linear-gradient(135deg,rgba(0,255,135,0.04) 0%,rgba(0,255,135,0.08) 100%);border:2px solid rgba(0,255,135,0.3);border-radius:16px;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;transition:transform 0.3s,box-shadow 0.3s;}
 .promo-referido:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,255,135,0.12);}
-.promo-badge{background:var(–verde);color:var(–negro);font-size:0.65rem;font-weight:800;letter-spacing:0.1em;padding:0.2rem 0.7rem;border-radius:100px;display:inline-block;margin-bottom:0.5rem;}
+.promo-badge{background:var(--verde);color:var(--negro);font-size:0.65rem;font-weight:800;letter-spacing:0.1em;padding:0.2rem 0.7rem;border-radius:100px;display:inline-block;margin-bottom:0.5rem;}
 
 /* ══════════════════════════
 TESTIMONIALES
 ══════════════════════════ */
 .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-top:3rem;}
-.tcard{background:var(–card);border:1px solid var(–borde);border-radius:16px;padding:2rem;position:relative;transition:transform 0.4s ease,border-color 0.3s,box-shadow 0.4s;transform-style:preserve-3d;}
+.tcard{background:var(--card);border:1px solid var(--borde);border-radius:16px;padding:2rem;position:relative;transition:transform 0.4s ease,border-color 0.3s,box-shadow 0.4s;transform-style:preserve-3d;}
 .tcard:hover{transform:perspective(600px) rotateX(-3deg) rotateY(2deg) translateY(-6px);border-color:rgba(0,255,135,0.2);box-shadow:0 20px 50px rgba(0,0,0,0.4);}
-.tq{font-family:‘Bebas Neue’,sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.06);position:absolute;top:0;right:1.5rem;pointer-events:none;}
-.stars{color:var(–oro);font-size:0.85rem;margin-bottom:1rem;}
-.tcard p{font-size:0.95rem;color:var(–muted);line-height:1.75;margin-bottom:1.5rem;position:relative;z-index:1;}
+.tq{font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.06);position:absolute;top:0;right:1.5rem;pointer-events:none;}
+.stars{color:var(--oro);font-size:0.85rem;margin-bottom:1rem;}
+.tcard p{font-size:0.95rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem;position:relative;z-index:1;}
 .tauthor{display:flex;align-items:center;gap:0.75rem;}
-.ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(–borde2),var(–card2));border:1px solid var(–borde2);display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’,sans-serif;font-size:1.1rem;color:var(–verde);flex-shrink:0;}
-.aname{font-size:0.9rem;font-weight:700;color:var(–texto);}
-.ameta{font-size:0.75rem;color:var(–muted2);margin-top:0.1rem;}
+.ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--borde2),var(--card2));border:1px solid var(--borde2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--verde);flex-shrink:0;}
+.aname{font-size:0.9rem;font-weight:700;color:var(--texto);}
+.ameta{font-size:0.75rem;color:var(--muted2);margin-top:0.1rem;}
 
 /* ══════════════════════════
 CTA FINAL
 ══════════════════════════ */
-.cta-wrap{background:linear-gradient(135deg,var(–card) 0%,rgba(0,255,135,0.03) 100%);border-top:1px solid var(–borde);border-bottom:1px solid var(–borde);}
+.cta-wrap{background:linear-gradient(135deg,var(--card) 0%,rgba(0,255,135,0.03) 100%);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);}
 .cta-inner{max-width:700px;margin:0 auto;text-align:center;padding:7rem 2rem;}
 .cta-inner .stitle{font-size:clamp(2.8rem,7vw,5rem);}
 .cta-inner .sdesc{margin:1.5rem auto 3rem;max-width:480px;}
 .cta-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
-.btn-registro{display:inline-flex;align-items:center;gap:0.75rem;background:var(–verde);color:var(–negro);font-family:‘Outfit’,sans-serif;font-size:1rem;font-weight:800;padding:1.1rem 2.5rem;border-radius:10px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 24px rgba(0,255,135,0.3);letter-spacing:0.04em;}
-.btn-registro:hover{background:var(–verde2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,255,135,0.45);}
-.btn-seguimiento{display:inline-flex;align-items:center;gap:0.75rem;background:var(–oro);color:#06080A;font-family:‘Outfit’,sans-serif;font-size:1rem;font-weight:800;padding:1.1rem 2.5rem;border-radius:10px;border:none;cursor:pointer;transition:all 0.2s;letter-spacing:0.04em;box-shadow:0 4px 24px rgba(255,216,77,0.25);}
+.btn-registro{display:inline-flex;align-items:center;gap:0.75rem;background:var(--verde);color:var(--negro);font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;padding:1.1rem 2.5rem;border-radius:10px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 24px rgba(0,255,135,0.3);letter-spacing:0.04em;}
+.btn-registro:hover{background:var(--verde2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,255,135,0.45);}
+.btn-seguimiento{display:inline-flex;align-items:center;gap:0.75rem;background:var(--oro);color:#06080A;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;padding:1.1rem 2.5rem;border-radius:10px;border:none;cursor:pointer;transition:all 0.2s;letter-spacing:0.04em;box-shadow:0 4px 24px rgba(255,216,77,0.25);}
 .btn-seguimiento:hover{background:#e6c200;transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,216,77,0.4);}
 .trust{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
-.ti{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(–muted);font-weight:500;}
+.ti{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--muted);font-weight:500;}
 
 /* ══════════════════════════
 TRANSPARENCIA
 ══════════════════════════ */
-.transparencia-section{background:var(–card);border-top:1px solid var(–borde);border-bottom:1px solid var(–borde);}
-.transparencia-card{background:linear-gradient(135deg,var(–negro) 0%,rgba(0,255,135,0.04) 100%);border:1px solid rgba(0,255,135,0.2);border-radius:20px;padding:2.5rem;margin-top:2.5rem;position:relative;overflow:hidden;}
-.transparencia-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(–verde),transparent);}
+.transparencia-section{background:var(--card);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);}
+.transparencia-card{background:linear-gradient(135deg,var(--negro) 0%,rgba(0,255,135,0.04) 100%);border:1px solid rgba(0,255,135,0.2);border-radius:20px;padding:2.5rem;margin-top:2.5rem;position:relative;overflow:hidden;}
+.transparencia-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--verde),transparent);}
 .t-row{display:flex;gap:2rem;align-items:stretch;flex-wrap:wrap;}
 .t-bloque{flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.5rem;}
-.t-sep{width:1px;background:var(–borde2);align-self:stretch;flex-shrink:0;}
-.t-pct{font-family:‘Bebas Neue’,sans-serif;font-size:5rem;line-height:1;}
-.t-pct.v{color:var(–verde);}.t-pct.g{color:var(–borde2);}
-.t-label{font-size:1rem;font-weight:700;color:var(–texto);}
-.t-desc{font-size:0.88rem;color:var(–muted);line-height:1.6;}
-.t-ejemplo{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(–borde);font-size:0.88rem;color:var(–muted);line-height:1.7;display:flex;gap:0.75rem;align-items:flex-start;}
+.t-sep{width:1px;background:var(--borde2);align-self:stretch;flex-shrink:0;}
+.t-pct{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;}
+.t-pct.v{color:var(--verde);}.t-pct.g{color:var(--borde2);}
+.t-label{font-size:1rem;font-weight:700;color:var(--texto);}
+.t-desc{font-size:0.88rem;color:var(--muted);line-height:1.6;}
+.t-ejemplo{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--borde);font-size:0.88rem;color:var(--muted);line-height:1.7;display:flex;gap:0.75rem;align-items:flex-start;}
 .t-ejemplo-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
 @media(max-width:600px){.t-sep{display:none;}.transparencia-card{padding:1.75rem 1.25rem;}}
 
 /* ══════════════════════════
 FOOTER
 ══════════════════════════ */
-footer{background:var(–negro);border-top:1px solid var(–borde);padding:3rem 2rem;text-align:center;}
-.flogo{font-family:‘Bebas Neue’,sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(–texto);}
-.flogo em{color:var(–verde);font-style:normal;}
-footer p{font-size:0.82rem;color:var(–muted2);margin-top:0.75rem;}
-.footer-legal{font-size:0.68rem;color:var(–muted2);opacity:0.55;max-width:660px;margin:1rem auto 0;line-height:1.6;}
+footer{background:var(--negro);border-top:1px solid var(--borde);padding:3rem 2rem;text-align:center;}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(--texto);}
+.flogo em{color:var(--verde);font-style:normal;}
+footer p{font-size:0.82rem;color:var(--muted2);margin-top:0.75rem;}
+.footer-legal{font-size:0.68rem;color:var(--muted2);opacity:0.55;max-width:660px;margin:1rem auto 0;line-height:1.6;}
 
 /* ══════════════════════════
-IFRAMES
+IFRAMES — MEJORADO PARA VELOCIDAD
 ══════════════════════════ */
 #vista-registro,#vista-seguimiento,#vista-analisis{display:none;flex-direction:column;height:100vh;}
-.iframe-topbar{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.5rem;background:var(–topbar-bg);border-bottom:1px solid var(–topbar-borde);flex-shrink:0;transition:background 0.4s,border-color 0.4s;}
-.btn-back-home{background:none;border:1px solid var(–borde2);color:var(–btn-back-col);font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;cursor:pointer;font-family:‘Outfit’,sans-serif;transition:all 0.2s;}
-.btn-back-home:hover{border-color:var(–verde);color:var(–verde);}
-.topbar-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(–topbar-texto);}
-.topbar-title em{color:var(–verde);font-style:normal;}
-.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–badge-color);background:var(–badge-bg);border:1.5px solid var(–badge-borde);padding:0.35rem 0.9rem;border-radius:100px;}
-.topbar-badge.oro{color:var(–badge-oro-color);background:var(–badge-oro-bg);border-color:var(–badge-oro-borde);}
+.iframe-topbar{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.5rem;background:var(--topbar-bg);border-bottom:1px solid var(--topbar-borde);flex-shrink:0;transition:background 0.4s,border-color 0.4s;}
+.btn-back-home{background:none;border:1px solid var(--borde2);color:var(--btn-back-col);font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;}
+.btn-back-home:hover{border-color:var(--verde);color:var(--verde);}
+.topbar-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(--topbar-texto);}
+.topbar-title em{color:var(--verde);font-style:normal;}
+.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--badge-color);background:var(--badge-bg);border:1.5px solid var(--badge-borde);padding:0.35rem 0.9rem;border-radius:100px;}
+.topbar-badge.oro{color:var(--badge-oro-color);background:var(--badge-oro-bg);border-color:var(--badge-oro-borde);}
 .ldot-sm{width:6px;height:6px;background:currentColor;border-radius:50%;animation:pulseAnim 1.5s infinite;}
-.iframe-main{flex:1;border:none;width:100%;min-height:calc(100vh - 60px);background:var(–negro);}
-.seguimiento-bar{border-bottom-color:var(–oro);}
+.iframe-main{flex:1;border:none;width:100%;min-height:calc(100vh - 60px);background:var(--negro);}
+.seguimiento-bar{border-bottom-color:var(--oro);}
+
+/* Pantalla de carga RÁPIDA para iframe */
+.iframe-loading{
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  gap:1rem;padding:3rem;text-align:center;
+  position:absolute;top:60px;left:0;right:0;bottom:0;
+  background:var(--negro);z-index:10;
+}
+.iframe-loading.show{display:flex;}
+.iframe-wrap{position:relative;flex:1;}
+.il-icon{font-size:3rem;animation:bounce 1s ease-in-out infinite alternate;}
+@keyframes bounce{from{transform:translateY(0);}to{transform:translateY(-10px);}}
+.il-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);}
+.il-sub{font-size:0.85rem;color:var(--muted);}
+.il-bar{width:200px;height:3px;background:var(--borde);border-radius:3px;overflow:hidden;}
+.il-fill{height:100%;background:var(--verde);border-radius:3px;animation:ilFill 4s ease-out forwards;}
+@keyframes ilFill{0%{width:0%;}50%{width:65%;}80%{width:85%;}100%{width:95%;}}
 
 /* ══════════════════════════
-EXIT INTENT POPUP — NUEVO
+EXIT INTENT POPUP
 ══════════════════════════ */
 #exitOverlay{display:none;position:fixed;inset:0;background:rgba(6,8,10,.9);z-index:9998;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
 #exitOverlay.show{display:flex;animation:fadeIn .25s ease;}
-.exit-modal{background:var(–card);border:1px solid var(–borde);border-radius:22px;max-width:400px;width:100%;padding:36px 28px 28px;position:relative;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(0,255,135,.06);}
-.exit-modal::before{content:’’;position:absolute;top:0;left:2rem;right:2rem;height:1px;background:linear-gradient(90deg,transparent,var(–verde),transparent);}
+.exit-modal{background:var(--card);border:1px solid var(--borde);border-radius:22px;max-width:400px;width:100%;padding:36px 28px 28px;position:relative;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(0,255,135,.06);}
+.exit-modal::before{content:'';position:absolute;top:0;left:2rem;right:2rem;height:1px;background:linear-gradient(90deg,transparent,var(--verde),transparent);}
 @keyframes modalPop{from{transform:scale(.85) translateY(20px);opacity:0;}to{transform:scale(1) translateY(0);opacity:1;}}
-.exit-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(–muted);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .2s;}
-.exit-close:hover{color:var(–texto);}
+.exit-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .2s;}
+.exit-close:hover{color:var(--texto);}
 .exit-emoji{font-size:48px;display:block;margin-bottom:10px;}
-.exit-title{font-family:‘Bebas Neue’,sans-serif;font-size:2rem;line-height:1.1;color:var(–texto);margin-bottom:7px;}
-.exit-title span{color:var(–verde);}
-.exit-sub{font-size:.85rem;color:var(–muted);line-height:1.6;margin-bottom:1.5rem;}
-.exit-input{width:100%;background:var(–card2);border:1.5px solid var(–borde);border-radius:9px;padding:11px 14px;font-size:.9rem;font-family:‘Outfit’,sans-serif;color:var(–texto);margin-bottom:10px;transition:border-color .2s,box-shadow .2s;outline:none;-webkit-appearance:none;}
-.exit-input::placeholder{color:var(–muted2);opacity:.6;}
-.exit-input:focus{border-color:var(–verde);box-shadow:0 0 0 3px rgba(0,255,135,.1);}
-.exit-input.err{border-color:var(–rojo);}
-.exit-btn{width:100%;padding:13px;background:var(–verde);color:var(–negro);border:none;border-radius:9px;font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:1px;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(0,255,135,.25);display:flex;align-items:center;justify-content:center;gap:7px;}
+.exit-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1.1;color:var(--texto);margin-bottom:7px;}
+.exit-title span{color:var(--verde);}
+.exit-sub{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;}
+.exit-input{width:100%;background:var(--card2);border:1.5px solid var(--borde);border-radius:9px;padding:11px 14px;font-size:.9rem;font-family:'Outfit',sans-serif;color:var(--texto);margin-bottom:10px;transition:border-color .2s,box-shadow .2s;outline:none;-webkit-appearance:none;}
+.exit-input::placeholder{color:var(--muted2);opacity:.6;}
+.exit-input:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(0,255,135,.1);}
+.exit-input.err{border-color:var(--rojo);}
+.exit-btn{width:100%;padding:13px;background:var(--verde);color:var(--negro);border:none;border-radius:9px;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(0,255,135,.25);display:flex;align-items:center;justify-content:center;gap:7px;}
 .exit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,255,135,.4);}
-.exit-skip{display:block;margin-top:12px;font-size:.75rem;color:var(–muted2);cursor:pointer;background:none;border:none;width:100%;text-align:center;transition:color .2s;}
-.exit-skip:hover{color:var(–muted);}
+.exit-skip{display:block;margin-top:12px;font-size:.75rem;color:var(--muted2);cursor:pointer;background:none;border:none;width:100%;text-align:center;transition:color .2s;}
+.exit-skip:hover{color:var(--muted);}
 .exit-success{display:none;animation:fadeUp .4s ease;}
 .exit-success.show{display:block;}
 .exit-form-wrap.hide{display:none;}
 .exit-ok-icon{font-size:48px;display:block;margin-bottom:10px;}
-.exit-ok-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.8rem;color:var(–verde);margin-bottom:6px;}
-.exit-ok-text{font-size:.85rem;color:var(–muted);line-height:1.6;}
+.exit-ok-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);margin-bottom:6px;}
+.exit-ok-text{font-size:.85rem;color:var(--muted);line-height:1.6;}
 
 /* ══════════════════════════
 SPLASH
 ══════════════════════════ */
-#splashScreen{position:fixed;inset:0;z-index:9999;background:var(–negro);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.25s ease;}
+#splashScreen{position:fixed;inset:0;z-index:9999;background:var(--negro);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.25s ease;}
 #splashScreen.visible{opacity:1;pointer-events:all;}
-.splash-logo{font-family:‘Bebas Neue’,sans-serif;font-size:2.2rem;letter-spacing:0.1em;color:var(–texto);}
-.splash-logo em{color:var(–splash-color,#00FF87);font-style:normal;}
-.splash-titulo{font-family:‘Bebas Neue’,sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(–splash-color,#00FF87);text-transform:uppercase;}
-.splash-sub{font-size:0.85rem;color:var(–muted);letter-spacing:1px;}
-.splash-barra{width:200px;height:3px;background:var(–borde);border-radius:3px;overflow:hidden;}
-.splash-barra-fill{height:100%;width:0%;background:var(–splash-color,#00FF87);border-radius:3px;animation:splashLoad 5.5s cubic-bezier(0.4,0,0.2,1) forwards;}
+.splash-logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:0.1em;color:var(--texto);}
+.splash-logo em{color:var(--splash-color,#00FF87);font-style:normal;}
+.splash-titulo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--splash-color,#00FF87);text-transform:uppercase;}
+.splash-sub{font-size:0.85rem;color:var(--muted);letter-spacing:1px;}
+.splash-barra{width:200px;height:3px;background:var(--borde);border-radius:3px;overflow:hidden;}
+.splash-barra-fill{height:100%;width:0%;background:var(--splash-color,#00FF87);border-radius:3px;animation:splashLoad 5.5s cubic-bezier(0.4,0,0.2,1) forwards;}
 @keyframes splashLoad{0%{width:0%;}30%{width:45%;}60%{width:72%;}85%{width:88%;}100%{width:95%;}}
 .splash-dots{display:flex;gap:6px;}
-.splash-dot{width:7px;height:7px;border-radius:50%;background:var(–splash-color,#00FF87);animation:splashDot 1.2s infinite;}
+.splash-dot{width:7px;height:7px;border-radius:50%;background:var(--splash-color,#00FF87);animation:splashDot 1.2s infinite;}
 .splash-dot:nth-child(2){animation-delay:0.2s;}
 .splash-dot:nth-child(3){animation-delay:0.4s;}
 @keyframes splashDot{0%,80%,100%{opacity:0.2;transform:scale(0.8);}40%{opacity:1;transform:scale(1.2);}}
@@ -447,26 +504,25 @@ ANIMACIONES
 RESPONSIVE
 ══════════════════════════ */
 @media(max-width:768px){
-.nav-links{display:none;}.hamburger{display:flex;}
-.stats-bar{grid-template-columns:repeat(2,1fr);}
-.stat:nth-child(2){border-right:none;}.stat:nth-child(3){border-top:1px solid var(–borde);}
-.trow{grid-template-columns:2rem 1fr repeat(4,2rem) 2.5rem;}
-.trow .cell:nth-child(6),.trow .cell:nth-child(7){display:none;}
-.hero-referido{flex-direction:column;align-items:flex-start;gap:0.5rem;}
-.historial-row{grid-template-columns:2rem 1fr auto;}
-.historial-row .h-aciertos{display:none;}
-.lead-card{padding:1.75rem 1.25rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .stat:nth-child(2){border-right:none;}
+  .stat:nth-child(3){border-top:1px solid var(--borde);}
+  .trow{grid-template-columns:2rem 1fr repeat(4,2rem) 2.5rem;}
+  .trow .cell:nth-child(6),.trow .cell:nth-child(7){display:none;}
+  .hero-referido{flex-direction:column;align-items:flex-start;gap:0.5rem;}
+  .historial-row{grid-template-columns:2rem 1fr auto;}
+  .historial-row .h-aciertos{display:none;}
+  .lead-card{padding:1.75rem 1.25rem;}
+  nav{padding:0.85rem 1rem;}
+  #hero{padding-top:3rem;}
 }
 </style>
-
 </head>
 <body>
 
-<!-- ════════════════════════════════════
-COUNTDOWN BAR — Urgencia de cierre
-CAMBIA FECHA_CIERRE en el JS abajo
-════════════════════════════════════ -->
-
+<!-- COUNTDOWN BAR -->
 <div id="countdownBar">
 <div class="cd-label"><span class="cd-blink">⏳</span> Cierre de jornada en:</div>
 <div class="cd-digits">
@@ -480,396 +536,410 @@ CAMBIA FECHA_CIERRE en el JS abajo
 </div>
 
 <!-- NAV -->
-
 <nav id="navPrincipal">
-<div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
-<ul class="nav-links">
-<li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
-<li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
-<li><button onclick="irSeccion('premios')">Premios</button></li>
-<li><button onclick="mostrarSeguimiento()">En Vivo</button></li>
-<li><button class="btn-tema" id="btnTema" onclick="toggleTema()" title="Cambiar tema">🌙</button></li>
-<li><button class="nav-btn-cta" onclick="mostrarRegistro()">⚽ Jugar Ahora</button></li>
-</ul>
-<div style="display:flex;align-items:center;gap:0.75rem;">
-<button class="btn-tema" id="btnTemaMobile" onclick="toggleTema()" title="Cambiar tema">🌙</button>
-<button class="hamburger" id="hambBtn" onclick="toggleMenu()" aria-label="Menú">
-<span></span><span></span><span></span>
-</button>
-</div>
+  <div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
+  <ul class="nav-links">
+    <li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
+    <li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
+    <li><button onclick="irSeccion('premios')">Premios</button></li>
+    <li><button onclick="mostrarSeguimiento()">En Vivo</button></li>
+    <li><button class="btn-tema" id="btnTema" onclick="toggleTema()" title="Cambiar tema">🌙</button></li>
+    <li><button class="nav-btn-cta" onclick="mostrarRegistro()">⚽ Jugar Ahora</button></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="btn-tema" id="btnTemaMobile" onclick="toggleTema()" title="Cambiar tema">🌙</button>
+    <button class="hamburger" id="hambBtn" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- Overlay para cerrar menú tocando fuera -->
+<div id="menuOverlay" onclick="cerrarMenu()"></div>
+
+<!-- MENÚ MÓVIL CORREGIDO -->
 <div class="nav-mobile" id="navMobile">
-<button onclick="irSeccion('ganadores');cerrarMenu()">Ganadores</button>
-<button onclick="irSeccion('como-funciona');cerrarMenu()">Cómo funciona</button>
-<button onclick="irSeccion('premios');cerrarMenu()">Premios</button>
-<button onclick="mostrarSeguimiento();cerrarMenu()">En Vivo</button>
-<button class="cta-mobile" onclick="mostrarRegistro();cerrarMenu()">⚽ Jugar Ahora — $100 MXN</button>
+  <button onclick="irSeccion('ganadores');cerrarMenu()">🏆 Ganadores</button>
+  <button onclick="irSeccion('como-funciona');cerrarMenu()">❓ Cómo funciona</button>
+  <button onclick="irSeccion('premios');cerrarMenu()">💰 Premios</button>
+  <button onclick="mostrarSeguimiento();cerrarMenu()">📊 En Vivo</button>
+  <button class="cta-mobile" onclick="mostrarRegistro();cerrarMenu()">⚽ Jugar Ahora — $100 MXN</button>
 </div>
 
 <!-- VISTA LANDING -->
-
 <div id="vista-landing" class="vista activa">
 
 <!-- HERO -->
-
 <section id="hero">
 <div class="hero-bg-3d">
 <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
 </div>
 <div class="hero-hex"></div>
 <div class="hero-grid">
-<div class="hero-content">
-<div class="hero-tag"><div class="pdot"></div>Jornada Activa — Inscripciones Abiertas</div>
-<h1 class="hero-title"><span class="v">Quiniela</span><br><span class="o">Pro</span> Fut</h1>
-<p class="hero-desc">Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.</p>
-<div class="hero-referido">
-<div class="ref-icon">🎁</div>
-<div class="ref-text"><strong>Invita 1 amigo que pague</strong> y obtén <span>$20 de descuento</span> en tu próxima jornada</div>
-</div>
-<div class="hero-btns">
-<button class="btn-v" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
-<button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
-</div>
-</div>
-<div class="hero-right">
-<div class="hero-stat-card"><div class="hsc-icon">🏆</div><div><div class="hsc-label">Premio jornada actual</div><div class="hsc-val oro">$880 MXN</div></div></div>
-<div class="hero-stat-card"><div class="hsc-icon">👑</div><div><div class="hsc-label">Último ganador</div><div class="hsc-val">KAKAROTTO</div></div></div>
-<div class="hero-stat-card"><div class="hsc-icon">⚡</div><div><div class="hsc-label">Pagos en tiempo</div><div class="hsc-val">100%</div></div></div>
-<div class="hero-right-cta">
-<div class="hrc-title">⚽ Partidos de esta jornada</div>
-<div class="hrc-ligas">
-<span class="hrc-liga">🇲🇽 Liga MX</span><span class="hrc-liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</span><span class="hrc-liga">🇩🇪 Bundesliga</span><span class="hrc-liga">🇮🇹 Serie A</span><span class="hrc-liga">🇪🇸 LaLiga</span>
-</div>
-<div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 18</div>
-</div>
-</div>
+  <div class="hero-content">
+    <div class="hero-tag"><div class="pdot"></div>Jornada Activa — Inscripciones Abiertas</div>
+    <h1 class="hero-title"><span class="v">Quiniela</span><br><span class="o">Pro</span> Fut</h1>
+    <p class="hero-desc">Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.</p>
+    <div class="hero-referido">
+      <div class="ref-icon">🎁</div>
+      <div class="ref-text"><strong>Invita 1 amigo que pague</strong> y obtén <span>20% de descuento</span> en tu próxima jornada</div>
+    </div>
+    <div class="hero-btns">
+      <button class="btn-v" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
+      <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- ACTUALIZADO: Jornada 18, ganadores APLES + MR_HAPPY -->
+    <div class="hero-stat-card"><div class="hsc-icon">🏆</div><div><div class="hsc-label">Últimos ganadores J18</div><div class="hsc-val oro" style="font-size:1.3rem;">APLES & MR.HAPPY</div></div></div>
+    <div class="hero-stat-card"><div class="hsc-icon">💰</div><div><div class="hsc-label">Premio por ganador J18</div><div class="hsc-val oro">$440 MXN</div></div></div>
+    <div class="hero-stat-card"><div class="hsc-icon">⚡</div><div><div class="hsc-label">Pagos en tiempo</div><div class="hsc-val">100%</div></div></div>
+    <div class="hero-right-cta">
+      <div class="hrc-title">⚽ Partidos de esta jornada</div>
+      <div class="hrc-ligas">
+        <span class="hrc-liga">🇲🇽 Liga MX</span><span class="hrc-liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</span><span class="hrc-liga">🇩🇪 Bundesliga</span><span class="hrc-liga">🇮🇹 Serie A</span><span class="hrc-liga">🇪🇸 LaLiga</span>
+      </div>
+      <div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 19</div>
+    </div>
+  </div>
 </div>
 </section>
 
-<!-- STATS -->
-
+<!-- STATS — ACTUALIZADO J18 -->
 <div class="stats-bar">
-<div class="stat"><span class="stat-n" data-to="17">0</span><span class="stat-l">Jornadas Jugadas</span></div>
-<div class="stat"><span class="stat-n" data-to="880" style="color:var(--oro)">0</span><span class="stat-l">Premio Actual $MXN</span></div>
-<div class="stat"><span class="stat-n" data-to="8">0</span><span class="stat-l">Jugadores Activos</span></div>
-<div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
+  <div class="stat"><span class="stat-n" data-to="18">0</span><span class="stat-l">Jornadas Jugadas</span></div>
+  <div class="stat"><span class="stat-n" data-to="880" style="color:var(--oro)">0</span><span class="stat-l">Pozo Actual $MXN</span></div>
+  <div class="stat"><span class="stat-n" data-to="8">0</span><span class="stat-l">Jugadores Activos</span></div>
+  <div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
 </div>
 
-<!-- GANADORES -->
-
+<!-- GANADORES — ACTUALIZADO con J18 -->
 <div class="ganadores-section" id="ganadores">
 <section class="sec">
-<span class="chip reveal">Ganadores Reales</span>
-<h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
-<p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
-<div class="ganadores-grid">
-<div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 17</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">KAKAROTTO</div><div class="ganador-alias">Mark Overmars</div><div class="ganador-premio">$880</div><div class="ganador-meta"><div class="ganador-dot"></div>9 aciertos · 60% · Jornada 17</div></div>
-<div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 16</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">Perkys & Chino</div><div class="ganador-alias">Eduardo P. · Jugador Verificado</div><div class="ganador-premio">$400 c/u</div><div class="ganador-meta"><div class="ganador-dot"></div>Empate en 1er lugar · $400 cada uno</div></div>
-</div>
-<div class="historial reveal" style="margin-top:2.5rem;">
-<div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span><span class="h-aciertos">9</span><span class="h-premio">$880</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Chino <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
-<div class="historial-row" style="opacity:0.4;"><span class="h-pos" style="color:var(--muted);">—</span><span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span><span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span><span class="h-premio" style="color:var(--verde);">$???</span></div>
-</div>
+  <span class="chip reveal">Ganadores Reales</span>
+  <h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
+  <p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
+  <div class="ganadores-grid">
+    <!-- NUEVO: Jornada 18 — Empate APLES + MR_HAPPY -->
+    <div class="ganador-card reveal">
+      <div class="ganador-badge">🏆 JORNADA 18</div>
+      <div class="ganador-trophy">🥇</div>
+      <div class="ganador-nombre">APLES</div>
+      <div class="ganador-alias">Jugador Verificado · Empate 1er lugar</div>
+      <div class="ganador-premio">$440</div>
+      <div class="ganador-meta"><div class="ganador-dot"></div>8 aciertos · Empate con MR.HAPPY · Jornada 18</div>
+    </div>
+    <div class="ganador-card reveal">
+      <div class="ganador-badge">🏆 JORNADA 18</div>
+      <div class="ganador-trophy">🥇</div>
+      <div class="ganador-nombre">MR. HAPPY</div>
+      <div class="ganador-alias">Jugador Verificado · Empate 1er lugar</div>
+      <div class="ganador-premio">$440</div>
+      <div class="ganador-meta"><div class="ganador-dot"></div>8 aciertos · Empate con APLES · Jornada 18</div>
+    </div>
+  </div>
+
+  <!-- HISTORIAL ACTUALIZADO -->
+  <div class="historial reveal" style="margin-top:2.5rem;">
+    <div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>
+    <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">APLES <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
+    <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">MR. HAPPY <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
+    <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span><span class="h-aciertos">9</span><span class="h-premio">$880</span></div>
+    <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
+    <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Chino <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
+    <div class="historial-row" style="opacity:0.4;"><span class="h-pos" style="color:var(--muted);">—</span><span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span><span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span><span class="h-premio" style="color:var(--verde);">$???</span></div>
+  </div>
 </section>
 </div>
 
 <!-- CÓMO FUNCIONA -->
-
 <div style="background:var(--negro);">
 <section class="sec" id="como-funciona">
-<span class="chip reveal">El Proceso</span>
-<h2 class="stitle reveal">Así de fácil<br>es participar</h2>
-<p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
-<div class="steps">
-<div class="step reveal"><div class="step-bg">01</div><div class="step-icon">⚽</div><h3>Entra al formulario</h3><p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p></div>
-<div class="step reveal"><div class="step-bg">02</div><div class="step-icon">🔀</div><h3>Juega con Dobles y Triples</h3><p>Marca 2 o 3 opciones por partido para multiplicar tu boleta. Más riesgo, más premio.</p></div>
-<div class="step reveal"><div class="step-bg">03</div><div class="step-icon">📊</div><h3>Sigue tu posición en vivo</h3><p>Ranking actualizado en tiempo real conforme caen los resultados.</p></div>
-<div class="step reveal"><div class="step-bg">04</div><div class="step-icon">🏆</div><h3>Cobra tu premio</h3><p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p></div>
-</div>
+  <span class="chip reveal">El Proceso</span>
+  <h2 class="stitle reveal">Así de fácil<br>es participar</h2>
+  <p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
+  <div class="steps">
+    <div class="step reveal"><div class="step-bg">01</div><div class="step-icon">⚽</div><h3>Entra al formulario</h3><p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p></div>
+    <div class="step reveal"><div class="step-bg">02</div><div class="step-icon">🔀</div><h3>Juega con Dobles y Triples</h3><p>Marca 2 o 3 opciones por partido para multiplicar tu boleta. Más riesgo, más premio.</p></div>
+    <div class="step reveal"><div class="step-bg">03</div><div class="step-icon">📊</div><h3>Sigue tu posición en vivo</h3><p>Ranking actualizado en tiempo real conforme caen los resultados.</p></div>
+    <div class="step reveal"><div class="step-bg">04</div><div class="step-icon">🏆</div><h3>Cobra tu premio</h3><p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p></div>
+  </div>
 </section>
 </div>
 
-<!-- ══════════════════════════════════
-LEAD CAPTURE — NUEVO ★
-Captura prospectos que no están
-listos para pagar todavía
-══════════════════════════════════ -->
-
+<!-- LEAD CAPTURE -->
 <div class="lead-section" id="unete">
 <div class="lead-inner">
-<div class="lead-badge-wrap reveal">
-<div class="lead-live-badge"><div class="pdot"></div>¿Primera vez aquí?</div>
+  <div class="lead-badge-wrap reveal">
+    <div class="lead-live-badge"><div class="pdot"></div>¿Primera vez aquí?</div>
+  </div>
+  <div class="lead-card reveal">
+    <h2 class="lead-title">¿Nuevo en las<br><span class="v">Quinielas?</span></h2>
+    <p class="lead-sub">Déjanos tu WhatsApp y te explicamos cómo funciona, cuándo arranca la próxima jornada y cómo ganar desde tu primera jugada. Sin costo, sin spam.</p>
+    <div class="lead-benefits">
+      <div class="lead-chip">⚽ Multi-liga</div>
+      <div class="lead-chip">🏆 Ganas el pozo</div>
+      <div class="lead-chip">📊 Ranking en vivo</div>
+      <div class="lead-chip">💸 Desde $100 MXN</div>
+    </div>
+    <div class="lead-form-inner" id="leadFormInner">
+      <div class="lead-form-grid">
+        <div class="lf-group">
+          <label class="lf-label">Tu nombre</label>
+          <input class="lf-input" type="text" id="lf-nombre" placeholder="Ej. Carlos, El Chino, Perkys…" autocomplete="given-name">
+          <span class="lf-error" id="lferr-nombre">Escribe tu nombre para continuar.</span>
+        </div>
+        <div class="lf-group">
+          <label class="lf-label">WhatsApp</label>
+          <input class="lf-input" type="tel" id="lf-wp" placeholder="10 dígitos — Ej. 5512345678" maxlength="10" inputmode="numeric" autocomplete="tel">
+          <span class="lf-error" id="lferr-wp">Ingresa un número de 10 dígitos.</span>
+        </div>
+        <div class="lf-group">
+          <label class="lf-label">Email <span style="opacity:.45;font-weight:400;font-size:10px">(opcional)</span></label>
+          <input class="lf-input" type="email" id="lf-email" placeholder="tu@correo.com" autocomplete="email">
+        </div>
+        <label class="lf-check-wrap" for="lf-notif">
+          <input type="checkbox" id="lf-notif" checked>
+          <div class="lf-checkbox" id="lfCheckIcon">✓</div>
+          <span class="lf-check-text">Avísame cuando <strong>inicie la siguiente jornada</strong> 🔔</span>
+        </label>
+      </div>
+      <button class="lead-btn" id="leadBtn" onclick="handleLeadSubmit()">
+        <span class="btn-text-inner">📲 Quiero Info — Mándame Todo</span>
+        <div class="lead-spinner"></div>
+      </button>
+      <p class="lead-privacy">🔒 Solo usamos tus datos para avisarte de Quiniela Pro Fut. Sin spam, sin costo.</p>
+    </div>
+    <div class="lead-success" id="leadSuccess">
+      <span class="lead-success-icon">🎉</span>
+      <h3 class="lead-success-title">¡Ya estás dentro!</h3>
+      <p class="lead-success-text">Recibimos tu registro. En breve te mandamos todo por WhatsApp: cómo funciona, cuándo abre la próxima jornada y cómo meter tu primera quiniela.</p>
+      <a class="lead-wa-btn" id="leadWaLink" href="#" target="_blank">💬 Escríbenos en WhatsApp</a>
+    </div>
+    <div class="lead-social-proof" id="leadSocialProof">
+      <div class="lsp-avatars">
+        <div class="lsp-ava">K</div><div class="lsp-ava">A</div><div class="lsp-ava">M</div><div class="lsp-ava">+</div>
+      </div>
+      <div class="lsp-text"><strong>+12 jugadores activos</strong> esta jornada.<br>APLES & MR.HAPPY ganaron $440 cada uno en J18 🏆</div>
+    </div>
+  </div>
 </div>
-<div class="lead-card reveal">
-<h2 class="lead-title">¿Nuevo en las<br><span class="v">Quinielas?</span></h2>
-<p class="lead-sub">Déjanos tu WhatsApp y te explicamos cómo funciona, cuándo arranca la próxima jornada y cómo ganar desde tu primera jugada. Sin costo, sin spam.</p>
-<div class="lead-benefits">
-<div class="lead-chip">⚽ Multi-liga</div>
-<div class="lead-chip">🏆 Ganas el pozo</div>
-<div class="lead-chip">📊 Ranking en vivo</div>
-<div class="lead-chip">💸 Desde $100 MXN</div>
-</div>
-
-```
-<!-- FORM -->
-<div class="lead-form-inner" id="leadFormInner">
-<div class="lead-form-grid">
-<div class="lf-group">
-<label class="lf-label">Tu nombre</label>
-<input class="lf-input" type="text" id="lf-nombre" placeholder="Ej. Carlos, El Chino, Perkys…" autocomplete="given-name">
-<span class="lf-error" id="lferr-nombre">Escribe tu nombre para continuar.</span>
-</div>
-<div class="lf-group">
-<label class="lf-label">WhatsApp</label>
-<input class="lf-input" type="tel" id="lf-wp" placeholder="10 dígitos — Ej. 5512345678" maxlength="10" inputmode="numeric" autocomplete="tel">
-<span class="lf-error" id="lferr-wp">Ingresa un número de 10 dígitos.</span>
-</div>
-<div class="lf-group">
-<label class="lf-label">Email <span style="opacity:.45;font-weight:400;font-size:10px">(opcional)</span></label>
-<input class="lf-input" type="email" id="lf-email" placeholder="tu@correo.com" autocomplete="email">
-</div>
-<label class="lf-check-wrap" for="lf-notif">
-<input type="checkbox" id="lf-notif" checked>
-<div class="lf-checkbox" id="lfCheckIcon">✓</div>
-<span class="lf-check-text">Avísame cuando <strong>inicie la siguiente jornada</strong> 🔔</span>
-</label>
-</div>
-<button class="lead-btn" id="leadBtn" onclick="handleLeadSubmit()">
-<span class="btn-text-inner">📲 Quiero Info — Mándame Todo</span>
-<div class="lead-spinner"></div>
-</button>
-<p class="lead-privacy">🔒 Solo usamos tus datos para avisarte de Quiniela Pro Fut. Sin spam, sin costo.</p>
-</div>
-
-<!-- ÉXITO -->
-<div class="lead-success" id="leadSuccess">
-<span class="lead-success-icon">🎉</span>
-<h3 class="lead-success-title">¡Ya estás dentro!</h3>
-<p class="lead-success-text">Recibimos tu registro. En breve te mandamos todo por WhatsApp: cómo funciona, cuándo abre la próxima jornada y cómo meter tu primera quiniela.</p>
-<a class="lead-wa-btn" id="leadWaLink" href="#" target="_blank">💬 Escríbenos en WhatsApp</a>
-</div>
-
-<!-- SOCIAL PROOF -->
-<div class="lead-social-proof" id="leadSocialProof">
-<div class="lsp-avatars">
-<div class="lsp-ava">K</div><div class="lsp-ava">C</div><div class="lsp-ava">A</div><div class="lsp-ava">+</div>
-</div>
-<div class="lsp-text"><strong>+12 jugadores activos</strong> esta jornada.<br>KAKAROTTO lleva 2 jornadas ganando 🏆</div>
-</div>
-</div>
-</div>
-```
-
 </div>
 
 <!-- LIGAS -->
-
 <section class="sec" id="ligas">
-<span class="chip reveal">Cobertura</span>
-<h2 class="stitle reveal">Todas las ligas<br>que importan</h2>
-<p class="sdesc reveal">Cada jornada incluye los mejores partidos de las competencias más importantes del mundo.</p>
-<div class="ligas reveal">
-<div class="liga on">🇲🇽 Liga MX</div><div class="liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</div><div class="liga">🌍 Champions League</div><div class="liga">🇪🇸 LaLiga</div><div class="liga">🇩🇪 Bundesliga</div><div class="liga">🌎 Copa MX</div>
-</div>
+  <span class="chip reveal">Cobertura</span>
+  <h2 class="stitle reveal">Todas las ligas<br>que importan</h2>
+  <p class="sdesc reveal">Cada jornada incluye los mejores partidos de las competencias más importantes del mundo.</p>
+  <div class="ligas reveal">
+    <div class="liga on">🇲🇽 Liga MX</div>
+    <div class="liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</div>
+    <div class="liga">🌍 Champions League</div>
+    <div class="liga">🇪🇸 LaLiga</div>
+    <div class="liga">🇩🇪 Bundesliga</div>
+    <div class="liga">🌎 Copa MX</div>
+  </div>
 </section>
 
-<!-- TRACKING PREVIEW -->
-
+<!-- TRACKING PREVIEW — ACTUALIZADO J18 -->
 <div style="background:var(--card);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
 <section class="sec" id="seguimiento-prev">
-<span class="chip reveal">En Tiempo Real</span>
-<h2 class="stitle reveal">Sigue el ranking<br>mientras pasa</h2>
-<p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones de todos los jugadores.</p>
-<div class="tbox reveal">
-<div class="thead"><span class="thead-t">Jornada en Curso — Seguimiento Live</span><span class="live"><div class="ldot"></div>En Vivo</span></div>
-<div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
-<div class="trow"><span class="rk r1">1</span><span class="pname">KAKAROTTO</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">5</div></div>
-<div class="trow"><span class="rk r2">2</span><span class="pname">CHINICUIL</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">4</div></div>
-<div class="trow"><span class="rk r3">3</span><span class="pname">HIJM</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">4</div></div>
-<div class="trow"><span class="rk r4">4</span><span class="pname">MR_HAPPY</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">3</div></div>
-<div class="trow" style="opacity:0.5"><span class="rk r4">5</span><span class="pname">A_P_E_X</span><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell pend">—</div><div class="pts">2</div></div>
-</div>
-<div style="text-align:center;margin-top:2rem;">
-<button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button>
-</div>
+  <span class="chip reveal">En Tiempo Real</span>
+  <h2 class="stitle reveal">Sigue el ranking<br>mientras pasa</h2>
+  <p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones de todos los jugadores.</p>
+  <div class="tbox reveal">
+    <div class="thead"><span class="thead-t">Jornada 18 — Resultado Final</span><span class="live"><div class="ldot"></div>Completada</span></div>
+    <div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
+    <div class="trow"><span class="rk r1">1</span><span class="pname">APLES</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">8</div></div>
+    <div class="trow"><span class="rk r1">1</span><span class="pname">MR. HAPPY</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">8</div></div>
+    <div class="trow"><span class="rk r3">3</span><span class="pname">KAKAROTTO</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">5</div></div>
+    <div class="trow"><span class="rk r4">4</span><span class="pname">CHINICUIL</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">3</div></div>
+  </div>
+  <div style="text-align:center;margin-top:2rem;">
+    <button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button>
+  </div>
 </section>
 </div>
 
 <!-- PREMIOS -->
-
 <div style="background:var(--card2);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
 <section class="sec" id="premios">
-<span class="chip reveal">Premio</span>
-<h2 class="stitle reveal">El ganador<br><span style="color:var(--oro)">se lleva todo</span></h2>
-<p class="sdesc reveal">Una quiniela. Un campeón. El pozo completo de la jornada directo al mejor pronóstico.</p>
-<div class="premio-principal reveal">
-<div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
-<div style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);letter-spacing:0.05em;">EL POZO</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--oro);letter-spacing:0.1em;opacity:0.8;margin-bottom:1rem;">COMPLETO</div>
-<div style="font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.7;">El jugador con más aciertos al final de la jornada gana <strong style="color:var(--texto)">el pozo completo acumulado</strong>.</div>
-<div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.25);border-radius:8px;padding:0.75rem 1.5rem;"><span style="font-size:1.2rem;">🤝</span><span style="font-size:0.82rem;color:#FF8FA3;font-weight:600;line-height:1.5;">En caso de empate en el primer lugar,<br>el pozo se divide a partes iguales entre los ganadores.</span></div>
-</div>
-<div class="promo-referido reveal">
-<div style="font-size:3.5rem;flex-shrink:0;">🎁</div>
-<div style="flex:1;min-width:220px;">
-<div class="promo-badge">NUEVO</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);letter-spacing:0.05em;line-height:1;margin-bottom:0.5rem;">INVITA 1 AMIGO<br>Y OBTÉN $20 OFF</div>
-<div style="font-size:0.9rem;color:var(--muted);line-height:1.6;">Consigue que un amigo se registre y pague su quiniela y <strong style="color:var(--texto)">tú obtienes $20 de descuento</strong> en tu próxima jornada.</div>
-</div>
-<button class="btn-v" onclick="mostrarRegistro()" style="flex-shrink:0;">⚽ Participar</button>
-</div>
+  <span class="chip reveal">Premio</span>
+  <h2 class="stitle reveal">El ganador<br><span style="color:var(--oro)">se lleva todo</span></h2>
+  <p class="sdesc reveal">Una quiniela. Un campeón. El pozo completo de la jornada directo al mejor pronóstico.</p>
+  <div class="premio-principal reveal">
+    <div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
+    <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);letter-spacing:0.05em;">EL POZO</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--oro);letter-spacing:0.1em;opacity:0.8;margin-bottom:1rem;">COMPLETO</div>
+    <div style="font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.7;">El jugador con más aciertos al final de la jornada gana <strong style="color:var(--texto)">el pozo completo acumulado</strong>.</div>
+    <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.25);border-radius:8px;padding:0.75rem 1.5rem;"><span style="font-size:1.2rem;">🤝</span><span style="font-size:0.82rem;color:#FF8FA3;font-weight:600;line-height:1.5;">En caso de empate en el primer lugar,<br>el pozo se divide a partes iguales entre los ganadores.</span></div>
+  </div>
+  <div class="promo-referido reveal">
+    <div style="font-size:3.5rem;flex-shrink:0;">🎁</div>
+    <div style="flex:1;min-width:220px;">
+      <div class="promo-badge">NUEVO</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--verde);letter-spacing:0.05em;line-height:1;margin-bottom:0.5rem;">INVITA 1 AMIGO<br>Y OBTÉN 20% OFF</div>
+      <div style="font-size:0.9rem;color:var(--muted);line-height:1.6;">Consigue que un amigo se registre y pague su quiniela y <strong style="color:var(--texto)">tú obtienes 20% de descuento</strong> en tu próxima jornada.</div>
+    </div>
+    <button class="btn-v" onclick="mostrarRegistro()" style="flex-shrink:0;">⚽ Participar</button>
+  </div>
 </section>
 </div>
 
 <!-- TRANSPARENCIA -->
-
 <div class="transparencia-section" id="transparencia">
 <section class="sec">
-<span class="chip reveal">Transparencia Total</span>
-<h2 class="stitle reveal">¿A dónde va<br><span style="color:var(--verde)">tu dinero?</span></h2>
-<p class="sdesc reveal">Aquí no hay sorpresas. Te decimos exactamente cómo se distribuye el pozo de cada jornada.</p>
-<div class="transparencia-card reveal">
-<div class="t-row">
-<div class="t-bloque"><div class="t-pct v">80%</div><div class="t-label">🏆 Para el Ganador</div><div class="t-desc">El monto neto va directo al jugador con más aciertos. Pago inmediato vía transferencia.</div></div>
-<div class="t-sep"></div>
-<div class="t-bloque"><div class="t-pct g">20%</div><div class="t-label">⚙️ Gastos de Operación</div><div class="t-desc">Cubre la plataforma de seguimiento, curación de partidos, administración y soporte.</div></div>
-</div>
-<div class="t-ejemplo"><span class="t-ejemplo-icon">💡</span><span>Ejemplo: si participan 10 jugadores a $100 cada uno, el pozo total es $1,000. El ganador recibe <strong style="color:var(--verde)">$800 MXN</strong> directo a su cuenta.</span></div>
-</div>
+  <span class="chip reveal">Transparencia Total</span>
+  <h2 class="stitle reveal">¿A dónde va<br><span style="color:var(--verde)">tu dinero?</span></h2>
+  <p class="sdesc reveal">Aquí no hay sorpresas. Te decimos exactamente cómo se distribuye el pozo de cada jornada.</p>
+  <div class="transparencia-card reveal">
+    <div class="t-row">
+      <div class="t-bloque"><div class="t-pct v">80%</div><div class="t-label">🏆 Para el Ganador</div><div class="t-desc">El monto neto va directo al jugador con más aciertos. Pago inmediato vía transferencia.</div></div>
+      <div class="t-sep"></div>
+      <div class="t-bloque"><div class="t-pct g">20%</div><div class="t-label">⚙️ Gastos de Operación</div><div class="t-desc">Cubre la plataforma de seguimiento, curación de partidos, administración y soporte.</div></div>
+    </div>
+    <div class="t-ejemplo"><span class="t-ejemplo-icon">💡</span><span>Ejemplo: si participan 10 jugadores a $100 cada uno, el pozo total es $1,000. El ganador recibe <strong style="color:var(--verde)">$800 MXN</strong> directo a su cuenta.</span></div>
+  </div>
 </section>
 </div>
 
-<!-- TESTIMONIALES -->
-
+<!-- TESTIMONIALES — con APLES actualizado -->
 <div style="background:var(--card);border-top:1px solid var(--borde);">
 <section class="sec" id="testimonios">
-<span class="chip reveal">La Comunidad Habla</span>
-<h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
-<div class="tgrid">
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela, intentenlo y les ira muy mal !!!.</p><div class="tauthor"><div class="ava">EL</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornada 17 y 15</div></div></div></div>
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Preparate KAKAROTTO arma tu mejor quiniela te voy a destrozar!!!.</p><div class="tauthor"><div class="ava">NM</div><div><div class="aname">EL CHINO</div><div class="ameta">Jugador desde la Jornada 16</div></div></div></div>
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo. Así da confianza meter la lana.</p><div class="tauthor"><div class="ava">GJ</div><div><div class="aname">CATO</div><div class="ameta">Jugador recurrente</div></div></div></div>
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que en esta quiniela se puede meter dobles o triples me ayuda a asegurar mi victoria.</p><div class="tauthor"><div class="ava">GJ</div><div><div class="aname">A_P_E_X_</div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
-</div>
+  <span class="chip reveal">La Comunidad Habla</span>
+  <h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
+  <div class="tgrid">
+    <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela, intentenlo y les ira muy mal !!!.</p><div class="tauthor"><div class="ava">K</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornadas 17 y 15</div></div></div></div>
+    <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>¡Jornada 18 fue mía! 8 aciertos y el pozo partido. La próxima me lo llevo completo yo solo 🔥</p><div class="tauthor"><div class="ava">A</div><div><div class="aname">APLES</div><div class="ameta">Ganador Jornada 18 · $440 MXN</div></div></div></div>
+    <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo. Así da confianza meter la lana.</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CATO</div><div class="ameta">Jugador recurrente</div></div></div></div>
+    <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que se puede meter dobles o triples, me ayuda a asegurar mi victoria.</p><div class="tauthor"><div class="ava">Ap</div><div><div class="aname">A_P_E_X_</div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
+  </div>
 </section>
 </div>
 
 <!-- CTA FINAL -->
-
 <div class="cta-wrap" id="registro-cta">
 <div class="cta-inner">
-<span class="chip reveal">¿Listo?</span>
-<h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">jornada activa</span></h2>
-<p class="sdesc reveal">Inscripción directa en el sitio. Pronósticos, dobles, triples, boleta descargable y seguimiento en vivo.</p>
-<div class="cta-btns reveal">
-<button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button>
-<button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
-</div>
-<div class="trust reveal">
-<div class="ti"><span>🔒</span> Pago seguro</div>
-<div class="ti"><span>⚡</span> Resultados en tiempo real</div>
-<div class="ti"><span>🏆</span> Premios garantizados</div>
-<div class="ti"><span>📱</span> 100% desde el celular</div>
-</div>
+  <span class="chip reveal">¿Listo?</span>
+  <h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">jornada activa</span></h2>
+  <p class="sdesc reveal">Inscripción directa en el sitio. Pronósticos, dobles, triples, boleta descargable y seguimiento en vivo.</p>
+  <div class="cta-btns reveal">
+    <button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button>
+    <button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
+  </div>
+  <div class="trust reveal">
+    <div class="ti"><span>🔒</span> Pago seguro</div>
+    <div class="ti"><span>⚡</span> Resultados en tiempo real</div>
+    <div class="ti"><span>🏆</span> Premios garantizados</div>
+    <div class="ti"><span>📱</span> 100% desde el celular</div>
+  </div>
 </div>
 </div>
 
 <!-- FOOTER -->
-
 <footer>
-<span class="flogo">Quiniela<em>Pro</em>Fut</span>
-<p>©️ 2026 quinielaprofut.com — Todos los derechos reservados</p>
-<p>contacto@quinielaprofut.com</p>
-<p class="footer-legal">* Los premios se entregan sobre el monto neto del pozo total recaudado, descontando el 20% correspondiente a gastos de administración, operación y tecnología de la plataforma Quiniela Pro Fut.</p>
+  <span class="flogo">Quiniela<em>Pro</em>Fut</span>
+  <p>©️ 2026 quinielaprofut.com — Todos los derechos reservados</p>
+  <p>contacto@quinielaprofut.com</p>
+  <p class="footer-legal">* Los premios se entregan sobre el monto neto del pozo total recaudado, descontando el 20% correspondiente a gastos de administración, operación y tecnología de la plataforma Quiniela Pro Fut.</p>
 </footer>
 
 </div><!-- /vista-landing -->
 
-<!-- VISTA REGISTRO -->
-
+<!-- VISTA REGISTRO — con pantalla de carga mejorada -->
 <div id="vista-registro">
-<div class="iframe-topbar">
-<button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
-<div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Registro</div>
-<div class="topbar-badge"><div class="ldot-sm"></div>Jornada Activa</div>
-</div>
-<iframe id="iframe-registro" class="iframe-main" src="" title="Registro de Quiniela" allow="clipboard-write" loading="lazy"></iframe>
+  <div class="iframe-topbar">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Registro</div>
+    <div class="topbar-badge"><div class="ldot-sm"></div>Jornada Activa</div>
+  </div>
+  <div class="iframe-wrap">
+    <div class="iframe-loading" id="loadingRegistro">
+      <div class="il-icon">⚽</div>
+      <div class="il-title">Cargando Registro</div>
+      <div class="il-sub">Preparando tu quiniela...</div>
+      <div class="il-bar"><div class="il-fill"></div></div>
+    </div>
+    <iframe id="iframe-registro" class="iframe-main" src="" title="Registro de Quiniela" allow="clipboard-write"></iframe>
+  </div>
 </div>
 
 <!-- VISTA ANÁLISIS -->
-
 <div id="vista-analisis">
-<div class="iframe-topbar" style="border-bottom-color:var(--oro);">
-<button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
-<div class="topbar-title" style="color:var(--topbar-texto);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; <span style="color:var(--oro);">Análisis Premium</span></div>
-<div class="topbar-badge oro"><div class="ldot-sm"></div>Exclusivo</div>
-</div>
-<iframe id="iframe-analisis" class="iframe-main" src="" title="Análisis Premium" loading="lazy"></iframe>
+  <div class="iframe-topbar" style="border-bottom-color:var(--oro);">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title" style="color:var(--topbar-texto);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; <span style="color:var(--oro);">Análisis Premium</span></div>
+    <div class="topbar-badge oro"><div class="ldot-sm"></div>Exclusivo</div>
+  </div>
+  <iframe id="iframe-analisis" class="iframe-main" src="" title="Análisis Premium"></iframe>
 </div>
 
-<!-- VISTA SEGUIMIENTO -->
-
+<!-- VISTA SEGUIMIENTO — con pantalla de carga mejorada -->
 <div id="vista-seguimiento">
-<div class="iframe-topbar seguimiento-bar">
-<button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
-<div class="topbar-title" style="color:var(--oro);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Seguimiento</div>
-<div class="topbar-badge oro"><div class="ldot-sm"></div>En Vivo</div>
-</div>
-<iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" loading="lazy"></iframe>
+  <div class="iframe-topbar seguimiento-bar">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title" style="color:var(--oro);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Seguimiento</div>
+    <div class="topbar-badge oro"><div class="ldot-sm"></div>En Vivo</div>
+  </div>
+  <div class="iframe-wrap">
+    <div class="iframe-loading" id="loadingSeguimiento">
+      <div class="il-icon">📊</div>
+      <div class="il-title">Cargando Ranking</div>
+      <div class="il-sub">Obteniendo datos en tiempo real...</div>
+      <div class="il-bar"><div class="il-fill"></div></div>
+    </div>
+    <iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo"></iframe>
+  </div>
 </div>
 
-<!-- EXIT INTENT POPUP — NUEVO ★ -->
-
+<!-- EXIT INTENT POPUP -->
 <div id="exitOverlay">
-<div class="exit-modal">
-<button class="exit-close" onclick="cerrarExit()">✕</button>
-<div class="exit-form-wrap" id="exitFormWrap">
-<span class="exit-emoji">🚨</span>
-<h3 class="exit-title">¡Espera!<br><span>No te vayas sin tu lugar</span></h3>
-<p class="exit-sub">El pozo ya está creciendo esta jornada. Déjanos tu WhatsApp y te avisamos exactamente cuándo abre la siguiente inscripción.</p>
-<input class="exit-input" type="text" id="exit-nombre" placeholder="Tu nombre">
-<input class="exit-input" type="tel" id="exit-wp" placeholder="WhatsApp (10 dígitos)" maxlength="10" inputmode="numeric" style="margin-bottom:14px;">
-<button class="exit-btn" onclick="handleExitSubmit()">📲 Avisarme del siguiente pozo</button>
-<button class="exit-skip" onclick="cerrarExit()">No, prefiero perderme el pozo →</button>
-</div>
-<div class="exit-success" id="exitSuccess">
-<span class="exit-ok-icon">✅</span>
-<h3 class="exit-ok-title">¡Listo!</h3>
-<p class="exit-ok-text">Te avisamos en cuanto abra la siguiente jornada.<br>¡Prepara tus pronósticos! ⚽</p>
-</div>
-</div>
+  <div class="exit-modal">
+    <button class="exit-close" onclick="cerrarExit()">✕</button>
+    <div class="exit-form-wrap" id="exitFormWrap">
+      <span class="exit-emoji">🚨</span>
+      <h3 class="exit-title">¡Espera!<br><span>No te vayas sin tu lugar</span></h3>
+      <p class="exit-sub">El pozo ya está creciendo esta jornada. Déjanos tu WhatsApp y te avisamos exactamente cuándo abre la siguiente inscripción.</p>
+      <input class="exit-input" type="text" id="exit-nombre" placeholder="Tu nombre">
+      <input class="exit-input" type="tel" id="exit-wp" placeholder="WhatsApp (10 dígitos)" maxlength="10" inputmode="numeric" style="margin-bottom:14px;">
+      <button class="exit-btn" onclick="handleExitSubmit()">📲 Avisarme del siguiente pozo</button>
+      <button class="exit-skip" onclick="cerrarExit()">No, prefiero perderme el pozo →</button>
+    </div>
+    <div class="exit-success" id="exitSuccess">
+      <span class="exit-ok-icon">✅</span>
+      <h3 class="exit-ok-title">¡Listo!</h3>
+      <p class="exit-ok-text">Te avisamos en cuanto abra la siguiente jornada.<br>¡Prepara tus pronósticos! ⚽</p>
+    </div>
+  </div>
 </div>
 
 <!-- SPLASH -->
-
 <div id="splashScreen">
-<div class="splash-logo">Quiniela<em>Pro</em>Fut</div>
-<div class="splash-titulo" id="splashTitulo">Cargando...</div>
-<div class="splash-sub" id="splashSub">Un momento por favor</div>
-<div class="splash-barra"><div class="splash-barra-fill"></div></div>
-<div class="splash-dots"><div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div></div>
+  <div class="splash-logo">Quiniela<em>Pro</em>Fut</div>
+  <div class="splash-titulo" id="splashTitulo">Cargando...</div>
+  <div class="splash-sub" id="splashSub">Un momento por favor</div>
+  <div class="splash-barra"><div class="splash-barra-fill"></div></div>
+  <div class="splash-dots"><div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div></div>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════
 // CONFIGURACIÓN — CAMBIA SOLO ESTOS VALORES
 // ══════════════════════════════════════════════════════
-var URL_REGISTRO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
+var URL_REGISTRO    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
-var URL_ANALISIS = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=analisis';
+var URL_ANALISIS    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=analisis';
 
-// ← CAMBIA ESTO cada jornada (formato: YYYY-MM-DDTHH:MM:SS hora México)
-var FECHA_CIERRE_JORNADA = '2026-04-24T19:00:00';
+// ← CAMBIA ESTO cada jornada (fecha límite de registro)
+var FECHA_CIERRE_JORNADA = '2026-04-24T21:00:00';
 
-// ← Tu número de WhatsApp con código de país (sin + ni espacios)
+// ← Tu WhatsApp con código de país
 var TU_WHATSAPP = '5217471193095';
 
-// ← URL del webhook de tu Apps Script Codigo_Leads.gs (opcional)
+// ← Webhook de leads (opcional)
 var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';
+
 var iframesLoaded = { registro:false, seguimiento:false, analisis:false };
 
 // ══════════════════════════
@@ -878,249 +948,345 @@ var iframesLoaded = { registro:false, seguimiento:false, analisis:false };
 var temaManual = false;
 function esDeDia(){ var h=new Date().getHours(); return h>=7&&h<19; }
 function aplicarTema(dia){
-var html=document.documentElement, btns=document.querySelectorAll('#btnTema,#btnTemaMobile');
-if(dia){html.classList.add('dia');btns.forEach(function(b){b.textContent='🌙';b.title='Modo noche';});}
-else{html.classList.remove('dia');btns.forEach(function(b){b.textContent='☀️';b.title='Modo día';});}
+  var html=document.documentElement, btns=document.querySelectorAll('#btnTema,#btnTemaMobile');
+  if(dia){html.classList.add('dia');btns.forEach(function(b){b.textContent='🌙';b.title='Modo noche';});}
+  else{html.classList.remove('dia');btns.forEach(function(b){b.textContent='☀️';b.title='Modo día';});}
 }
 function toggleTema(){
-temaManual=true; var esDia=document.documentElement.classList.contains('dia');
-aplicarTema(!esDia); localStorage.setItem('qpf-tema',!esDia?'dia':'noche');
+  temaManual=true;
+  var esDia=document.documentElement.classList.contains('dia');
+  aplicarTema(!esDia);
+  localStorage.setItem('qpf-tema',!esDia?'dia':'noche');
 }
-(function(){var g=localStorage.getItem('qpf-tema');if(g){aplicarTema(g==='dia');}else{aplicarTema(esDeDia());}})();
+(function(){
+  var g=localStorage.getItem('qpf-tema');
+  if(g){aplicarTema(g==='dia');}else{aplicarTema(esDeDia());}
+})();
 setInterval(function(){if(!temaManual){aplicarTema(esDeDia());}},60*60*1000);
 
 // ══════════════════════════
 // COUNTDOWN BAR
 // ══════════════════════════
 (function initCountdown(){
-var bar=document.getElementById('countdownBar');
-var cierreTs=new Date(FECHA_CIERRE_JORNADA).getTime();
-// Dar espacio al nav
-document.body.classList.add('has-countdown');
-
-function tick(){
-var diff=cierreTs-Date.now();
-if(diff<=0){
-bar.classList.add('cerrado');
-document.getElementById('cd-hrs').textContent='00';
-document.getElementById('cd-min').textContent='00';
-document.getElementById('cd-sec').textContent='00';
-var lbl=bar.querySelector('.cd-label');
-if(lbl) lbl.innerHTML='<span>⚽</span> Jornada en curso — próxima abre pronto';
-var cta=bar.querySelector('.cd-cta');
-if(cta){cta.textContent='📊 Ver ranking en vivo';cta.onclick=mostrarSeguimiento;}
-clearInterval(t); return;
-}
-var s=Math.floor(diff/1000);
-var h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60;
-document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
-document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
-document.getElementById('cd-sec').textContent=String(sec).padStart(2,'0');
-if(h<2) bar.style.background='linear-gradient(90deg,#1a0000,#2d0505,#1a0000)';
-}
-tick(); var t=setInterval(tick,1000);
+  var bar=document.getElementById('countdownBar');
+  var cierreTs=new Date(FECHA_CIERRE_JORNADA).getTime();
+  function tick(){
+    var diff=cierreTs-Date.now();
+    if(diff<=0){
+      bar.classList.add('cerrado');
+      document.getElementById('cd-hrs').textContent='00';
+      document.getElementById('cd-min').textContent='00';
+      document.getElementById('cd-sec').textContent='00';
+      var lbl=bar.querySelector('.cd-label');
+      if(lbl) lbl.innerHTML='<span>⚽</span> Jornada en curso — próxima abre pronto';
+      var cta=bar.querySelector('.cd-cta');
+      if(cta){cta.textContent='📊 Ver ranking en vivo';cta.onclick=mostrarSeguimiento;}
+      clearInterval(t); return;
+    }
+    var s=Math.floor(diff/1000);
+    var h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60;
+    document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+    document.getElementById('cd-sec').textContent=String(sec).padStart(2,'0');
+    if(h<2) bar.style.background='linear-gradient(90deg,#1a0000,#2d0505,#1a0000)';
+  }
+  tick(); var t=setInterval(tick,1000);
 })();
 
 // ══════════════════════════
 // LEAD CAPTURE FORM
 // ══════════════════════════
 document.getElementById('lf-notif').addEventListener('change',function(){
-document.getElementById('lfCheckIcon').textContent=this.checked?'✓':'';
+  document.getElementById('lfCheckIcon').textContent=this.checked?'✓':'';
 });
 document.getElementById('lf-wp').addEventListener('input',function(){
-this.value=this.value.replace(/\D/g,'').slice(0,10);
+  this.value=this.value.replace(/\D/g,'').slice(0,10);
 });
 
 async function handleLeadSubmit(){
-var nombre=document.getElementById('lf-nombre').value.trim();
-var wp=document.getElementById('lf-wp').value.trim().replace(/\D/g,'');
-var email=document.getElementById('lf-email').value.trim();
-var notif=document.getElementById('lf-notif').checked;
-var valid=true;
-
-if(!nombre){
-document.getElementById('lferr-nombre').classList.add('show');
-document.getElementById('lf-nombre').classList.add('err'); valid=false;
-} else {
-document.getElementById('lferr-nombre').classList.remove('show');
-document.getElementById('lf-nombre').classList.remove('err');
-}
-if(wp.length!==10){
-document.getElementById('lferr-wp').classList.add('show');
-document.getElementById('lf-wp').classList.add('err'); valid=false;
-} else {
-document.getElementById('lferr-wp').classList.remove('show');
-document.getElementById('lf-wp').classList.remove('err');
-}
-if(!valid) return;
-
-var btn=document.getElementById('leadBtn');
-btn.classList.add('loading'); btn.disabled=true;
-
-if(WEBHOOK_LEADS){
-try{
-await fetch(WEBHOOK_LEADS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
-body:JSON.stringify({nombre,whatsapp:wp,email,notif,fuente:'landing_lead_form',fecha:new Date().toISOString()})});
-}catch(e){console.warn('Webhook:',e);}
-}
-
-await new Promise(r=>setTimeout(r,900));
-
-// Actualizar link WA con nombre del lead
-var msg=encodeURIComponent('Hola, soy '+nombre+'! Me registré en quinielaprofut.com y quiero saber cómo participar en la siguiente jornada 🔥⚽');
-document.getElementById('leadWaLink').href='https://wa.me/'+TU_WHATSAPP+'?text='+msg;
-
-document.getElementById('leadFormInner').classList.add('hide');
-document.getElementById('leadSocialProof').style.display='none';
-document.getElementById('leadSuccess').classList.add('show');
-try{localStorage.setItem('qpf_lead','1');}catch(e){}
+  var nombre=document.getElementById('lf-nombre').value.trim();
+  var wp=document.getElementById('lf-wp').value.trim().replace(/\D/g,'');
+  var email=document.getElementById('lf-email').value.trim();
+  var notif=document.getElementById('lf-notif').checked;
+  var valid=true;
+  if(!nombre){
+    document.getElementById('lferr-nombre').classList.add('show');
+    document.getElementById('lf-nombre').classList.add('err'); valid=false;
+  } else {
+    document.getElementById('lferr-nombre').classList.remove('show');
+    document.getElementById('lf-nombre').classList.remove('err');
+  }
+  if(wp.length!==10){
+    document.getElementById('lferr-wp').classList.add('show');
+    document.getElementById('lf-wp').classList.add('err'); valid=false;
+  } else {
+    document.getElementById('lferr-wp').classList.remove('show');
+    document.getElementById('lf-wp').classList.remove('err');
+  }
+  if(!valid) return;
+  var btn=document.getElementById('leadBtn');
+  btn.classList.add('loading'); btn.disabled=true;
+  if(WEBHOOK_LEADS){
+    try{
+      await fetch(WEBHOOK_LEADS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nombre,whatsapp:wp,email,notif,fuente:'landing_lead_form',fecha:new Date().toISOString()})});
+    }catch(e){console.warn('Webhook:',e);}
+  }
+  await new Promise(r=>setTimeout(r,900));
+  var msg=encodeURIComponent('Hola, soy '+nombre+'! Me registré en quinielaprofut.com y quiero saber cómo participar en la siguiente jornada 🔥⚽');
+  document.getElementById('leadWaLink').href='https://wa.me/'+TU_WHATSAPP+'?text='+msg;
+  document.getElementById('leadFormInner').classList.add('hide');
+  document.getElementById('leadSocialProof').style.display='none';
+  document.getElementById('leadSuccess').classList.add('show');
+  try{localStorage.setItem('qpf_lead','1');}catch(e){}
 }
 
 // ══════════════════════════
 // EXIT INTENT POPUP
 // ══════════════════════════
-var exitMostrado=false, tiempoEnPagina=0;
-var timerPag=setInterval(function(){tiempoEnPagina++;},1000);
-
+var exitMostrado=false;
 document.addEventListener('mouseleave',function(e){
-if(e.clientY<15&&!exitMostrado) mostrarExit();
+  if(e.clientY<15&&!exitMostrado) mostrarExit();
 });
-setTimeout(function(){if(!exitMostrado&&!scrolledToBottom) mostrarExit();},45000);
-var scrolledToBottom=false;
+setTimeout(function(){if(!exitMostrado) mostrarExit();},45000);
 window.addEventListener('scroll',function(){
-if(window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-100) scrolledToBottom=true;
+  if(window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-100) exitMostrado=true;
 });
-
 function mostrarExit(){
-if(localStorage.getItem('qpf_lead')) return; // ya se registró
-exitMostrado=true;
-document.getElementById('exitOverlay').classList.add('show');
-document.body.style.overflow='hidden';
+  if(localStorage.getItem('qpf_lead')) return;
+  exitMostrado=true;
+  document.getElementById('exitOverlay').classList.add('show');
+  document.body.style.overflow='hidden';
 }
 function cerrarExit(){
-document.getElementById('exitOverlay').classList.remove('show');
-document.body.style.overflow='';
+  document.getElementById('exitOverlay').classList.remove('show');
+  document.body.style.overflow='';
 }
 document.getElementById('exitOverlay').addEventListener('click',function(e){if(e.target===this)cerrarExit();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarExit();});
-document.getElementById('exit-wp').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,10);});
-
+document.getElementById('exit-wp').addEventListener('input',function(){
+  this.value=this.value.replace(/\D/g,'').slice(0,10);
+});
 async function handleExitSubmit(){
-var nombre=document.getElementById('exit-nombre').value.trim();
-var wp=document.getElementById('exit-wp').value.trim().replace(/\D/g,'');
-if(!nombre){document.getElementById('exit-nombre').classList.add('err');setTimeout(function(){document.getElementById('exit-nombre').classList.remove('err');},1500);return;}
-if(wp.length!==10){document.getElementById('exit-wp').classList.add('err');setTimeout(function(){document.getElementById('exit-wp').classList.remove('err');},1500);return;}
-
-if(WEBHOOK_LEADS){
-try{
-await fetch(WEBHOOK_LEADS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
-body:JSON.stringify({nombre,whatsapp:wp,email:'',notif:true,fuente:'exit_intent_popup',fecha:new Date().toISOString()})});
-}catch(e){console.warn(e);}
-}
-try{localStorage.setItem('qpf_lead','1');}catch(e){}
-document.getElementById('exitFormWrap').classList.add('hide');
-document.getElementById('exitSuccess').classList.add('show');
-setTimeout(cerrarExit,3000);
+  var nombre=document.getElementById('exit-nombre').value.trim();
+  var wp=document.getElementById('exit-wp').value.trim().replace(/\D/g,'');
+  if(!nombre){document.getElementById('exit-nombre').classList.add('err');setTimeout(function(){document.getElementById('exit-nombre').classList.remove('err');},1500);return;}
+  if(wp.length!==10){document.getElementById('exit-wp').classList.add('err');setTimeout(function(){document.getElementById('exit-wp').classList.remove('err');},1500);return;}
+  if(WEBHOOK_LEADS){
+    try{
+      await fetch(WEBHOOK_LEADS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nombre,whatsapp:wp,email:'',notif:true,fuente:'exit_intent_popup',fecha:new Date().toISOString()})});
+    }catch(e){console.warn(e);}
+  }
+  try{localStorage.setItem('qpf_lead','1');}catch(e){}
+  document.getElementById('exitFormWrap').classList.add('hide');
+  document.getElementById('exitSuccess').classList.add('show');
+  setTimeout(cerrarExit,3000);
 }
 
 // ══════════════════════════
 // SPLASH SCREEN
 // ══════════════════════════
 function mostrarSplash(titulo,sub,color){
-var s=document.getElementById('splashScreen');
-document.getElementById('splashTitulo').textContent=titulo;
-document.getElementById('splashSub').textContent=sub;
-s.style.setProperty('--splash-color',color||'#00FF87');
-s.classList.add('visible');
+  var s=document.getElementById('splashScreen');
+  document.getElementById('splashTitulo').textContent=titulo;
+  document.getElementById('splashSub').textContent=sub;
+  s.style.setProperty('--splash-color',color||'#00FF87');
+  s.classList.add('visible');
 }
 function ocultarSplash(){document.getElementById('splashScreen').classList.remove('visible');}
 
 // ══════════════════════════
-// PRECARGA
+// PRECARGA MEJORADA — Sin lazy, carga inmediata al click
 // ══════════════════════════
-function precargarIframes(){
-setTimeout(function(){if(!iframesLoaded.registro){document.getElementById('iframe-registro').src=URL_REGISTRO;iframesLoaded.registro=true;}},2000);
-setTimeout(function(){if(!iframesLoaded.seguimiento){document.getElementById('iframe-seguimiento').src=URL_SEGUIMIENTO;iframesLoaded.seguimiento=true;}},4000);
+function precargarSeguimiento(){
+  // Precargamos solo seguimiento en background después de 3s
+  setTimeout(function(){
+    if(!iframesLoaded.seguimiento){
+      var iframe=document.getElementById('iframe-seguimiento');
+      iframe.src=URL_SEGUIMIENTO;
+      iframesLoaded.seguimiento=true;
+    }
+  },3000);
 }
-window.addEventListener('load',precargarIframes);
+window.addEventListener('load', precargarSeguimiento);
 
 // ══════════════════════════
-// NAVEGACIÓN
+// NAVEGACIÓN — MEJORADA
 // ══════════════════════════
+function ocultarTodas(){
+  document.getElementById('vista-landing').style.display='none';
+  document.getElementById('vista-registro').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='none';
+  document.getElementById('vista-analisis').style.display='none';
+}
+
 function mostrarLanding(){
-document.getElementById('vista-landing').classList.add('activa');
-document.getElementById('vista-landing').style.display='block';
-document.getElementById('vista-registro').style.display='none';
-document.getElementById('vista-seguimiento').style.display='none';
-document.getElementById('vista-analisis').style.display='none';
-document.getElementById('navPrincipal').style.display='flex';
-document.getElementById('countdownBar').style.display='flex';
-window.scrollTo(0,0);
-document.title='QuinielaPro Fut — La Quiniela Más Pro de México';
+  ocultarTodas();
+  document.getElementById('vista-landing').classList.add('activa');
+  document.getElementById('vista-landing').style.display='block';
+  document.getElementById('navPrincipal').style.display='flex';
+  document.getElementById('countdownBar').style.display='flex';
+  window.scrollTo(0,0);
+  document.title='QuinielaPro Fut — La Quiniela Más Pro de México';
 }
+
 function mostrarRegistro(){
-mostrarSplash('Cargando Registro','Preparando tu quiniela...','#00FF87');
-document.getElementById('vista-landing').style.display='none';
-document.getElementById('vista-seguimiento').style.display='none';
-document.getElementById('vista-registro').style.display='flex';
-document.getElementById('navPrincipal').style.display='none';
-document.getElementById('countdownBar').style.display='none';
-document.title='QuinielaPro Fut — Registrar Quiniela';
-var iframe=document.getElementById('iframe-registro');
-if(!iframesLoaded.registro){iframe.src=URL_REGISTRO;iframesLoaded.registro=true;}
-iframe.onload=function(){ocultarSplash();};
-setTimeout(ocultarSplash,6000);
+  ocultarTodas();
+  document.getElementById('navPrincipal').style.display='none';
+  document.getElementById('countdownBar').style.display='none';
+  document.getElementById('vista-registro').style.display='flex';
+  document.title='QuinielaPro Fut — Registrar Quiniela';
+
+  var loading=document.getElementById('loadingRegistro');
+  var iframe=document.getElementById('iframe-registro');
+
+  if(!iframesLoaded.registro){
+    loading.classList.add('show');
+    iframe.style.opacity='0';
+    iframe.src=URL_REGISTRO;
+    iframesLoaded.registro=true;
+
+    iframe.onload=function(){
+      loading.classList.remove('show');
+      iframe.style.opacity='1';
+      iframe.style.transition='opacity 0.3s ease';
+    };
+    // Fallback: ocultar loading máx 8s
+    setTimeout(function(){
+      loading.classList.remove('show');
+      iframe.style.opacity='1';
+    },8000);
+  } else {
+    loading.classList.remove('show');
+    iframe.style.opacity='1';
+  }
 }
+
 function mostrarSeguimiento(){
-mostrarSplash('Cargando Seguimiento','Obteniendo datos en vivo...','#FFD84D');
-document.getElementById('vista-landing').style.display='none';
-document.getElementById('vista-registro').style.display='none';
-document.getElementById('vista-seguimiento').style.display='flex';
-document.getElementById('navPrincipal').style.display='none';
-document.getElementById('countdownBar').style.display='none';
-document.title='QuinielaPro Fut — Seguimiento en Vivo';
-var iframe=document.getElementById('iframe-seguimiento');
-if(!iframesLoaded.seguimiento){iframe.src=URL_SEGUIMIENTO;iframesLoaded.seguimiento=true;}
-iframe.onload=function(){ocultarSplash();};
-setTimeout(ocultarSplash,6000);
+  ocultarTodas();
+  document.getElementById('navPrincipal').style.display='none';
+  document.getElementById('countdownBar').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='flex';
+  document.title='QuinielaPro Fut — Seguimiento en Vivo';
+
+  var loading=document.getElementById('loadingSeguimiento');
+  var iframe=document.getElementById('iframe-seguimiento');
+
+  if(!iframesLoaded.seguimiento){
+    loading.classList.add('show');
+    iframe.style.opacity='0';
+    iframe.src=URL_SEGUIMIENTO;
+    iframesLoaded.seguimiento=true;
+
+    iframe.onload=function(){
+      loading.classList.remove('show');
+      iframe.style.opacity='1';
+      iframe.style.transition='opacity 0.3s ease';
+    };
+    setTimeout(function(){
+      loading.classList.remove('show');
+      iframe.style.opacity='1';
+    },8000);
+  } else {
+    // Ya cargado, mostrar directo
+    loading.classList.remove('show');
+    iframe.style.opacity='1';
+  }
 }
+
 function irSeccion(id){
-mostrarLanding();
-setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
+  mostrarLanding();
+  setTimeout(function(){
+    var el=document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  },100);
 }
 
 // ══════════════════════════
-// HAMBURGER
+// HAMBURGER — MEJORADO
 // ══════════════════════════
 var menuAbierto=false;
 function toggleMenu(){
-var m=document.getElementById('navMobile'); menuAbierto=!menuAbierto;
-if(menuAbierto){m.classList.add('open');m.style.display='flex';}else{cerrarMenu();}
+  menuAbierto=!menuAbierto;
+  var m=document.getElementById('navMobile');
+  var btn=document.getElementById('hambBtn');
+  var overlay=document.getElementById('menuOverlay');
+  if(menuAbierto){
+    m.style.display='flex'; // necesario para que funcione la transición
+    // Forzar reflow para que la animación se active
+    m.offsetHeight;
+    m.classList.add('open');
+    btn.classList.add('abierto');
+    overlay.classList.add('show');
+    document.body.style.overflow='hidden';
+  } else {
+    cerrarMenu();
+  }
 }
 function cerrarMenu(){
-var m=document.getElementById('navMobile');m.classList.remove('open');m.style.display='none';menuAbierto=false;
+  var m=document.getElementById('navMobile');
+  var btn=document.getElementById('hambBtn');
+  var overlay=document.getElementById('menuOverlay');
+  m.classList.remove('open');
+  btn.classList.remove('abierto');
+  overlay.classList.remove('show');
+  document.body.style.overflow='';
+  menuAbierto=false;
+  // Ocultar con delay para que termine la animación
+  setTimeout(function(){ if(!menuAbierto) m.style.display='none'; },350);
 }
+
+// Cerrar menú si se rota el dispositivo
+window.addEventListener('orientationchange', function(){ if(menuAbierto) cerrarMenu(); });
 
 // ══════════════════════════
 // REVEAL ON SCROLL
 // ══════════════════════════
 var io=new IntersectionObserver(function(entries){
-entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('in');},i*70);io.unobserve(e.target);}});
+  entries.forEach(function(e,i){
+    if(e.isIntersecting){
+      setTimeout(function(){e.target.classList.add('in');},i*70);
+      io.unobserve(e.target);
+    }
+  });
 },{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 
 // COUNT UP
-function countUp(el,to,dur){dur=dur||1800;var n=0,step=to/(dur/16);var t=setInterval(function(){n+=step;if(n>=to){el.textContent=to;clearInterval(t);return;}el.textContent=Math.floor(n);},16);}
-var cio=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){countUp(e.target,+e.target.dataset.to);cio.unobserve(e.target);}});},{threshold:0.5});
+function countUp(el,to,dur){
+  dur=dur||1800;
+  var n=0,step=to/(dur/16);
+  var t=setInterval(function(){
+    n+=step;
+    if(n>=to){el.textContent=to;clearInterval(t);return;}
+    el.textContent=Math.floor(n);
+  },16);
+}
+var cio=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){countUp(e.target,+e.target.dataset.to);cio.unobserve(e.target);}
+  });
+},{threshold:0.5});
 document.querySelectorAll('[data-to]').forEach(function(el){cio.observe(el);});
 
 // LIGA CHIPS
-document.querySelectorAll('.liga').forEach(function(c){c.addEventListener('click',function(){document.querySelectorAll('.liga').forEach(function(x){x.classList.remove('on');});c.classList.add('on');});});
+document.querySelectorAll('.liga').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.liga').forEach(function(x){x.classList.remove('on');});
+    c.classList.add('on');
+  });
+});
 
 // 3D CARD TILT
 document.querySelectorAll('.ganador-card,.step,.tcard').forEach(function(card){
-card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-0.5;var y=(e.clientY-r.top)/r.height-0.5;card.style.transform='perspective(600px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg) translateY(-6px)';});
-card.addEventListener('mouseleave',function(){card.style.transform='';});
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-0.5;
+    var y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform='perspective(600px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg) translateY(-6px)';
+  });
+  card.addEventListener('mouseleave',function(){card.style.transform='';});
 });
 </script>
 
