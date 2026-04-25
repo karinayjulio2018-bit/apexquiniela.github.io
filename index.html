@@ -1039,19 +1039,53 @@ async function handleLeadSubmit(){
   document.getElementById('leadSocialProof').style.display='none';
   document.getElementById('leadSuccess').classList.add('show');
   try{localStorage.setItem('qpf_lead','1');}catch(e){}
+  // ── GTM: lead sección principal ──
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'generacion_lead',
+    formLocation: 'landing_section',
+    leadNombre: nombre,
+    leadWhatsapp: wp
+  });
 }
 
 // ══════════════════════════
 // EXIT INTENT POPUP
 // ══════════════════════════
 var exitMostrado=false;
-document.addEventListener('mouseleave',function(e){
-  if(e.clientY<15&&!exitMostrado) mostrarExit();
-});
-setTimeout(function(){if(!exitMostrado) mostrarExit();},45000);
+var esMovil=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
+
+// ── Desktop: cursor sale por arriba ──
+if(!esMovil){
+  document.addEventListener('mouseleave',function(e){
+    if(e.clientY<15&&!exitMostrado) mostrarExit();
+  });
+}
+
+// ── Móvil: detectar scroll rápido hacia arriba (gesto de cierre) ──
+if(esMovil){
+  var lastScrollY=0, lastScrollTime=Date.now(), scrollVelocidad=0;
+  window.addEventListener('scroll',function(){
+    var now=Date.now();
+    var dy=window.scrollY-lastScrollY;
+    var dt=now-lastScrollTime;
+    if(dt>0) scrollVelocidad=dy/dt; // px/ms, negativo=sube
+    // Si sube rápido (>1.5px/ms) y está en el tercio superior: exit intent
+    if(scrollVelocidad<-1.5 && window.scrollY<document.documentElement.scrollHeight*0.33){
+      if(!exitMostrado) mostrarExit();
+    }
+    lastScrollY=window.scrollY;
+    lastScrollTime=now;
+  },{passive:true});
+}
+
+// ── Fallback universal: 50s sin registrarse ──
+setTimeout(function(){if(!exitMostrado) mostrarExit();},50000);
+
+// ── Marcar como visto si llega al fondo (ya convirtió o leyó todo) ──
 window.addEventListener('scroll',function(){
   if(window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-100) exitMostrado=true;
-});
+},{passive:true});
 function mostrarExit(){
   if(localStorage.getItem('qpf_lead')) return;
   exitMostrado=true;
@@ -1079,6 +1113,14 @@ async function handleExitSubmit(){
     }catch(e){console.warn(e);}
   }
   try{localStorage.setItem('qpf_lead','1');}catch(e){}
+  // ── GTM: lead exit intent popup ──
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'generacion_lead',
+    formLocation: 'exit_intent_popup',
+    leadNombre: nombre,
+    leadWhatsapp: wp
+  });
   document.getElementById('exitFormWrap').classList.add('hide');
   document.getElementById('exitSuccess').classList.add('show');
   setTimeout(cerrarExit,3000);
@@ -1132,6 +1174,9 @@ function mostrarLanding(){
 }
 
 function mostrarRegistro(){
+  // ── GTM: clic en botón de registro ──
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'clic_registro', origen: document.title });
   ocultarTodas();
   document.getElementById('navPrincipal').style.display='none';
   document.getElementById('countdownBar').style.display='none';
