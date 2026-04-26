@@ -980,7 +980,29 @@ setInterval(function(){if(!temaManual){aplicarTema(esDeDia());}},60*60*1000);
       var lbl=bar.querySelector('.cd-label');
       if(lbl) lbl.innerHTML='<span>⚽</span> Jornada en curso — próxima abre pronto';
       var cta=bar.querySelector('.cd-cta');
-      if(cta){cta.textContent='📊 Ver ranking en vivo';cta.onclick=mostrarSeguimiento;}
+      if(cta){cta.textContent='📲 Avísame de la próxima';cta.onclick=function(){irSeccion('unete');};}
+      // ★ Cambiar hero-tag
+      var tag=document.querySelector('.hero-tag');
+      if(tag) tag.innerHTML='<div class="pdot"></div>Inscripciones cerradas — próxima jornada pronto';
+      // ★ Cambiar botones principales a "Avísame"
+      var btnV=document.querySelector('.btn-v[onclick*="mostrarRegistro"]');
+      if(btnV){btnV.textContent='📲 Avísame de la próxima jornada';btnV.onclick=function(){irSeccion('unete');};}
+      var btnReg=document.querySelector('.btn-registro');
+      if(btnReg){btnReg.textContent='📲 Avísame de la próxima jornada';btnReg.onclick=function(){irSeccion('unete');};}
+      // ★ Cambiar título del CTA final
+      var ctaTitulo=document.querySelector('#registro-cta .stitle');
+      if(ctaTitulo) ctaTitulo.innerHTML='Próxima jornada<br><span style="color:var(--verde)">muy pronto</span>';
+      var ctaDesc=document.querySelector('#registro-cta .sdesc');
+      if(ctaDesc) ctaDesc.textContent='Déjanos tu WhatsApp y serás el primero en enterarte cuando abra el registro.';
+      // ★ Actualizar texto del lead form para jornada cerrada
+      var leadTitle=document.querySelector('.lead-title');
+      if(leadTitle) leadTitle.innerHTML='¿Te perdiste<br><span class="v">esta jornada?</span>';
+      var leadSub=document.querySelector('.lead-sub');
+      if(leadSub) leadSub.textContent='No hay problema. Déjanos tu WhatsApp y te avisamos EN CUANTO abra el registro de la próxima jornada. Sé el primero en entrar.';
+      var leadBadge=document.querySelector('.lead-live-badge');
+      if(leadBadge) leadBadge.innerHTML='<div class="pdot"></div>Próxima jornada — Regístrate para aviso';
+      var leadBtnTxt=document.querySelector('.lead-btn .btn-text-inner');
+      if(leadBtnTxt) leadBtnTxt.textContent='🔔 Avísame cuando abra la J19';
       clearInterval(t); return;
     }
     var s=Math.floor(diff/1000);
@@ -1151,7 +1173,28 @@ function precargarSeguimiento(){
     }
   },3000);
 }
-window.addEventListener('load', precargarSeguimiento);
+window.addEventListener('load', function(){
+  precargarSeguimiento();
+  // ★ Si la jornada ya está cerrada al cargar, mostrar banner de aviso arriba del hero
+  var diff = new Date(FECHA_CIERRE_JORNADA).getTime() - Date.now();
+  if(diff <= 0) {
+    // Insertar banner llamativo antes del hero
+    var banner = document.createElement('div');
+    banner.id = 'banner-cerrado';
+    banner.style.cssText = 'background:linear-gradient(90deg,rgba(0,255,135,.12),rgba(0,255,135,.06));border-bottom:2px solid var(--verde);padding:1.25rem 2rem;text-align:center;position:relative;z-index:10;';
+    banner.innerHTML =
+      '<div style="max-width:640px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">' +
+      '<div style="font-size:1.5rem;">⚽</div>' +
+      '<div style="flex:1;min-width:200px;">' +
+      '<div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--verde);letter-spacing:2px;">JORNADA EN CURSO</div>' +
+      '<div style="font-size:0.85rem;color:var(--muted);font-weight:600;">El registro está cerrado. ¿Quieres jugar la siguiente? Déjanos tu WhatsApp.</div>' +
+      '</div>' +
+      '<button onclick="irSeccion('unete')" style="background:var(--verde);color:var(--negro);border:none;padding:0.65rem 1.5rem;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1px;cursor:pointer;white-space:nowrap;">📲 AVÍSAME</button>' +
+      '</div>';
+    var hero = document.getElementById('hero');
+    if(hero) hero.parentNode.insertBefore(banner, hero);
+  }
+});
 
 // ══════════════════════════
 // NAVEGACIÓN — MEJORADA
