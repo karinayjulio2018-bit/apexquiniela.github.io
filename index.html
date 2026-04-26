@@ -981,6 +981,39 @@ setInterval(function(){if(!temaManual){aplicarTema(esDeDia());}},60*60*1000);
       if(lbl) lbl.innerHTML='<span>⚽</span> Jornada en curso — próxima abre pronto';
       var cta=bar.querySelector('.cd-cta');
       if(cta){cta.textContent='📲 Avísame de la próxima';cta.onclick=function(){irSeccion('unete');};}
+
+      // ★ CAMBIO 1: Transformar página al modo "jornada cerrada"
+      // Botón hero
+      var btnHero=document.querySelector('.hero-btns .btn-v');
+      if(btnHero){
+        btnHero.innerHTML='📲 Avísame de la próxima jornada';
+        btnHero.onclick=function(){irSeccion('unete');};
+        btnHero.style.background='var(--verde)';
+      }
+      // Botón CTA final
+      var btnCta=document.querySelector('.btn-registro');
+      if(btnCta){
+        btnCta.innerHTML='📲 Avísame de la próxima jornada';
+        btnCta.onclick=function(){irSeccion('unete');};
+      }
+      // Título CTA final
+      var ctaTit=document.querySelector('#registro-cta .stitle');
+      if(ctaTit) ctaTit.innerHTML='Próxima jornada<br><span style="color:var(--verde)">muy pronto</span>';
+      var ctaDesc=document.querySelector('#registro-cta .sdesc');
+      if(ctaDesc) ctaDesc.textContent='Déjanos tu WhatsApp y serás el primero en enterarte cuando abra el registro.';
+      // Hero tag
+      var heroTag=document.querySelector('.hero-tag');
+      if(heroTag) heroTag.innerHTML='<div class="pdot"></div>Inscripciones cerradas — próxima jornada pronto';
+      // Formulario de leads
+      var leadTit=document.querySelector('.lead-title');
+      if(leadTit) leadTit.innerHTML='¿Te perdiste<br><span class="v">esta jornada?</span>';
+      var leadSub=document.querySelector('.lead-sub');
+      if(leadSub) leadSub.textContent='No hay problema. Déjanos tu WhatsApp y te avisamos EN CUANTO abra el registro de la próxima jornada. Sé el primero en entrar.';
+      var leadBadge=document.querySelector('.lead-live-badge');
+      if(leadBadge) leadBadge.innerHTML='<div class="pdot"></div>Próxima jornada — déjanos tu WhatsApp';
+      var leadBtnTxt=document.querySelector('.lead-btn .btn-text-inner');
+      if(leadBtnTxt) leadBtnTxt.textContent='🔔 Avísame cuando abra la J19';
+
       clearInterval(t); return;
     }
     var s=Math.floor(diff/1000);
@@ -1151,7 +1184,48 @@ function precargarSeguimiento(){
     }
   },3000);
 }
-window.addEventListener('load', precargarSeguimiento);
+window.addEventListener('load', function(){
+  precargarSeguimiento();
+
+  // ★ CAMBIO 2: Banner verde si jornada ya cerrada al cargar
+  if(new Date(FECHA_CIERRE_JORNADA).getTime() <= Date.now()){
+    var b = document.createElement('div');
+    b.style.cssText = 'background:linear-gradient(90deg,rgba(0,255,135,.1),rgba(0,255,135,.05));border-bottom:2px solid var(--verde);padding:1rem 1.5rem;text-align:center;position:relative;z-index:10;';
+
+    var btnB = document.createElement('button');
+    btnB.textContent = '📲 AVÍSAME DE LA PRÓXIMA';
+    btnB.onclick = function(){ irSeccion('unete'); };
+    btnB.style.cssText = 'background:var(--verde);color:var(--negro);border:none;padding:0.65rem 1.5rem;border-radius:8px;font-size:1rem;cursor:pointer;white-space:nowrap;margin-left:1rem;font-weight:800;';
+
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'max-width:640px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap;';
+
+    var ico = document.createElement('span');
+    ico.textContent = '⚽';
+    ico.style.fontSize = '1.4rem';
+
+    var txt = document.createElement('div');
+    txt.style.cssText = 'flex:1;min-width:200px;text-align:left;';
+
+    var tit = document.createElement('div');
+    tit.textContent = 'JORNADA EN CURSO';
+    tit.style.cssText = 'font-size:1.1rem;font-weight:800;color:var(--verde);letter-spacing:2px;';
+
+    var sub = document.createElement('div');
+    sub.textContent = 'Registro cerrado. ¿Quieres la próxima? Déjanos tu WhatsApp.';
+    sub.style.cssText = 'font-size:0.82rem;color:var(--muted);font-weight:600;margin-top:2px;';
+
+    txt.appendChild(tit);
+    txt.appendChild(sub);
+    wrap.appendChild(ico);
+    wrap.appendChild(txt);
+    wrap.appendChild(btnB);
+    b.appendChild(wrap);
+
+    var hero = document.getElementById('hero');
+    if(hero) hero.parentNode.insertBefore(b, hero);
+  }
+});
 
 // ══════════════════════════
 // NAVEGACIÓN — MEJORADA
