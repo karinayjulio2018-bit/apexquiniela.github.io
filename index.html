@@ -369,7 +369,7 @@ footer p{font-size:0.82rem;color:var(–muted2);margin-top:0.75rem;}
 @keyframes ilFill{0%{width:0%;}50%{width:65%;}80%{width:85%;}100%{width:95%;}}
 
 /* EXIT INTENT */
-#exitOverlay{display:none;position:fixed;inset:0;background:rgba(6,8,10,.9);z-index:9998;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+#exitOverlay{display:none;position:fixed;inset:0;background:rgba(6,8,10,.7);z-index:9998;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
 #exitOverlay.show{display:flex;animation:fadeIn .25s ease;}
 .exit-modal{background:var(–card);border:1px solid var(–borde);border-radius:22px;max-width:400px;width:100%;padding:36px 28px 28px;position:relative;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(0,255,135,.06);}
 .exit-modal::before{content:’’;position:absolute;top:0;left:2rem;right:2rem;height:1px;background:linear-gradient(90deg,transparent,var(–verde),transparent);}
@@ -632,8 +632,8 @@ PARTIDOS J20 — NUEVA SECCIÓN
 
 <div class="pozo-preview reveal">
 <div>
-<div class="pozo-preview-label">Pozo estimado</div>
-<div class="pozo-preview-num">$900+ MXN</div>
+<div class="pozo-preview-label">Premio especial</div>
+<div class="pozo-preview-num">$2,000 MXN</div>
 </div>
 <div style="width:1px;background:rgba(255,216,77,0.3);align-self:stretch;"></div>
 <div>
@@ -1295,6 +1295,7 @@ document.getElementById('vista-analisis').style.display='none';
 }
 function mostrarLanding(){
 ocultarTodas();
+document.getElementById('btnFlotantePartidos').classList.remove('oculto');
 document.getElementById('vista-landing').classList.add('activa');
 document.getElementById('vista-landing').style.display='block';
 document.getElementById('navPrincipal').style.display='flex';
@@ -1305,6 +1306,7 @@ document.title='QuinielaPro Fut — La Quiniela Más Pro de México';
 function mostrarRegistro(){
 window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({ event: 'clic_registro', origen: document.title });
+document.getElementById('btnFlotantePartidos').classList.add('oculto');
 ocultarTodas();
 document.getElementById('navPrincipal').style.display='none';
 document.getElementById('countdownBar').style.display='none';
@@ -1322,6 +1324,7 @@ setTimeout(function(){loading.classList.remove('show');iframe.style.opacity='1';
 function mostrarSeguimiento(){
 window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({ event: 'clic_seguimiento' });
+document.getElementById('btnFlotantePartidos').classList.add('oculto');
 ocultarTodas();
 document.getElementById('navPrincipal').style.display='none';
 document.getElementById('countdownBar').style.display='none';
