@@ -1024,11 +1024,12 @@ loading.classList.remove('show'); iframe.style.opacity = '1';
 }
 
 // ★ FIX: Seguimiento abre en pestaña nueva — evita bloqueo de cookies en Safari/iOS
-function mostrarSeguimiento() {
-window.dataLayer = window.dataLayer || []; window.dataLayer.push({event:'clic_seguimiento'});
-window.open(URL_SEGUIMIENTO, '_blank');
-}
 
+function mostrarSeguimiento(){
+  window.dataLayer=window.dataLayer||[];
+  window.dataLayer.push({event:'clic_seguimiento'});
+  window.open(URL_SEGUIMIENTO, '_blank');
+}
 function irSeccion(id) {
 mostrarLanding();
 setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth'}); }, 100);
