@@ -1,1318 +1,1222 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
-<meta charset="UTF-8">
-<base target="_top">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<title>QUINIELA PRO FUT</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QuinielaPro Fut — La Quiniela Más Pro de México</title>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WKGS2XRL');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-:root {
---bg:#05100a;--surface:#0a1f12;--surface2:#0f2a18;--border:#1a4028;
---gold:#ff6b00;--gold2:#ff8c2a;--gold-dim:rgba(255,107,0,.15);
---green:#00e87a;--green-dark:#00b35e;--red:#ff3b5c;
---text:#e8f5ec;--text-muted:#6b9e7a;
---font-head:'Bebas Neue',sans-serif;--font-body:'Nunito',sans-serif;
---radius:10px;--shadow:0 8px 32px rgba(0,0,0,.6);
---hero-sub-bg:rgba(0,232,122,.07);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+a{color:inherit;text-decoration:none;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px;
-background-image:radial-gradient(ellipse 100% 50% at 50% -5%,rgba(0,232,122,.12) 0%,transparent 65%),radial-gradient(ellipse 60% 40% at 100% 100%,rgba(255,107,0,.06) 0%,transparent 60%),repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(26,64,40,.5) 47px,rgba(26,64,40,.5) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,64,40,.5) 47px,rgba(26,64,40,.5) 48px);}
-.hidden{display:none!important;}
-.card{max-width:580px;margin:0 auto;padding:0 14px;}
-.panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 18px;margin-bottom:14px;box-shadow:var(--shadow);}
-.hero{text-align:center;padding:32px 20px 24px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(245,197,24,.06) 0%,transparent 60%);pointer-events:none;}
-.hero-badge{display:inline-block;background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);font-size:10px;font-weight:800;letter-spacing:3px;padding:5px 14px;border-radius:999px;margin-bottom:16px;text-transform:uppercase;}
-.hero h1{font-family:var(--font-head);font-size:clamp(42px,11vw,72px);letter-spacing:5px;line-height:.95;margin-bottom:6px;white-space:nowrap;}
-.hero h1 .word-quiniela{color:var(--text);display:block;}
-.hero h1 .word-pro{color:var(--gold);text-shadow:0 0 50px rgba(255,107,0,.5);display:inline;}
-.hero h1 .word-fut{color:var(--green);text-shadow:0 0 50px rgba(0,232,122,.4);display:inline;}
-.hero h1 .emoji{font-size:.6em;vertical-align:middle;margin-right:4px;}
-.hero-sub{display:inline-block;background:var(--hero-sub-bg);border:1.5px solid var(--border);border-radius:999px;padding:8px 22px;font-size:clamp(12px,3vw,15px);font-weight:800;color:var(--text-muted);letter-spacing:.5px;margin:0 auto;line-height:1.4;margin-top:14px;}
-.hero-sub strong{color:var(--green);}
-.hero-sub em{color:var(--gold);font-style:normal;}
-.field-label{display:block;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;}
-.field-input{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:13px 15px;font-family:var(--font-body);font-size:15px;font-weight:700;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;}
-.field-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,197,24,.12);}
-.field-input::placeholder{color:var(--text-muted);font-weight:600;}
-.field-group{margin-bottom:14px;}
-.alias-panel{background:var(--gold-dim);border:1.5px solid var(--gold);border-radius:12px;padding:16px;margin-bottom:16px;}
-.alias-panel .alias-title{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px;}
-.alias-panel .alias-desc{font-size:11px;color:rgba(245,197,24,.7);margin-bottom:12px;line-height:1.5;font-weight:600;}
-.alias-panel .field-input{border-color:rgba(245,197,24,.4);}
-.alias-panel .field-input:focus{border-color:var(--gold);}
-.btn{width:100%;padding:15px;border:none;border-radius:var(--radius);font-family:var(--font-head);font-size:20px;letter-spacing:2px;cursor:pointer;transition:transform .1s,box-shadow .1s,opacity .2s;text-transform:uppercase;position:relative;overflow:hidden;}
-.btn:active{transform:translateY(3px);box-shadow:none!important;}
-.btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important;}
-.btn-gold{background:linear-gradient(135deg,#ff6b00,#ff8c2a);color:#0a0e1a;box-shadow:0 5px 0 #c44e00,0 8px 20px rgba(255,107,0,.3);}
-.btn-green{background:linear-gradient(135deg,var(--green),#00c47a);color:#020a0e;box-shadow:0 5px 0 #007a50,0 8px 20px rgba(1,224,143,.2);}
-.btn-ghost{background:var(--surface2);color:var(--text-muted);border:1.5px solid var(--border);box-shadow:none;font-size:16px;}
-.btn-ghost:hover{border-color:var(--text-muted);color:var(--text);}
-.btn-sm{padding:10px 18px;font-size:15px;width:auto;}
-.aviso{border-radius:var(--radius);padding:12px 14px;font-size:13px;font-weight:700;margin-bottom:14px;display:none;}
-.aviso.show-error{display:block;background:rgba(255,71,87,.1);border:1.5px solid var(--red);color:#ff8591;}
-.aviso.show-ok{display:block;background:rgba(1,224,143,.08);border:1.5px solid var(--green);color:var(--green);}
-.aviso.show-warn{display:block;background:rgba(245,197,24,.08);border:1.5px solid var(--gold);color:var(--gold);}
-.tabla-costos{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
-.tabla-costos-titulo{background:var(--gold-dim);border-bottom:1px solid var(--border);padding:12px 16px;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--gold);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;}
-.tabla-costos-titulo:active{opacity:.7;}
-.tabla-matrix{width:100%;border-collapse:collapse;font-family:var(--font-body);}
-.tabla-matrix th{padding:8px 6px;text-align:center;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid var(--border);}
-.tabla-matrix th.th-dobles{color:var(--text-muted);background:var(--surface2);text-align:left;padding-left:12px;}
-.tabla-matrix th.th-triple{color:var(--green);background:rgba(1,224,143,.05);}
-.tabla-matrix td{padding:9px 6px;text-align:center;border-top:1px solid var(--border);font-size:13px;}
-.tabla-matrix td:first-child{text-align:left;padding-left:12px;background:var(--surface2);color:var(--gold);font-weight:900;font-family:var(--font-head);font-size:14px;letter-spacing:1px;white-space:nowrap;}
-.tabla-matrix tr:hover td{background:var(--surface);}
-.tabla-matrix tr:hover td:first-child{background:var(--surface2);}
-.tabla-matrix .tc-price{font-family:var(--font-head);font-size:15px;letter-spacing:.5px;color:var(--text);}
-.tabla-matrix .tc-base{color:var(--gold);}
-.tabla-matrix .tc-mid{color:#f0a020;}
-.tabla-matrix .tc-high{color:#e06010;}
-.tabla-matrix .tc-max{color:var(--red);}
-.tabla-nota{padding:8px 14px;font-size:10px;font-weight:700;color:var(--text-muted);border-top:1px solid var(--border);text-align:center;line-height:1.5;}
-.quinielas-nav{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
-.q-tab{background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:8px 16px;font-family:var(--font-body);font-size:12px;font-weight:800;color:var(--text-muted);cursor:pointer;transition:.15s;white-space:nowrap;}
-.q-tab.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
-.q-tab.done{border-color:var(--green);color:var(--green);background:rgba(1,224,143,.06);}
-.q-tab.done::after{content:' ✓';}
-.btn-add-q{background:var(--surface2);border:1.5px dashed var(--border);border-radius:var(--radius);padding:8px 14px;font-size:20px;color:var(--text-muted);cursor:pointer;line-height:1;transition:.15s;}
-.btn-add-q:hover{border-color:var(--gold);color:var(--gold);}
-.btn-remove-q{background:none;border:none;color:var(--red);cursor:pointer;font-size:15px;padding:0 0 0 4px;vertical-align:middle;opacity:.7;}
-.btn-remove-q:hover{opacity:1;}
-.match-row{display:grid;grid-template-columns:24px 1fr;gap:8px;padding:13px 0;border-bottom:1px solid var(--border);align-items:center;}
-.match-row:last-child{border-bottom:none;padding-bottom:4px;}
-.match-num{font-family:var(--font-head);font-size:18px;color:var(--text-muted);text-align:center;}
-.match-inner{display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:5px;align-items:center;}
-.team-name{font-size:12px;font-weight:800;text-transform:uppercase;color:var(--text);line-height:1.3;letter-spacing:.2px;}
-.team-name.right{text-align:right;}
-/* ★ FIX: tap targets mínimo 44px (Apple HIG) */
-.btn-opt{width:44px;height:44px;border:1.5px solid var(--border);background:var(--surface2);border-radius:8px;cursor:pointer;font-family:var(--font-head);font-size:16px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;transition:.12s;-webkit-tap-highlight-color:transparent;user-select:none;}
-.btn-opt:hover{border-color:var(--gold);color:var(--text);}
-.btn-opt.sel-L{background:rgba(1,224,143,.15);border-color:var(--green);color:var(--green);box-shadow:0 3px 0 rgba(1,224,143,.3);transform:translateY(-2px);}
-.btn-opt.sel-E{background:rgba(245,197,24,.15);border-color:var(--gold);color:var(--gold);box-shadow:0 3px 0 rgba(245,197,24,.3);transform:translateY(-2px);}
-.btn-opt.sel-V{background:rgba(99,102,241,.2);border-color:#818cf8;color:#a5b4fc;box-shadow:0 3px 0 rgba(99,102,241,.3);transform:translateY(-2px);}
-.match-badge{display:inline-block;font-size:8px;font-weight:800;padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle;letter-spacing:1px;}
-.badge-doble{background:rgba(245,197,24,.15);color:var(--gold);border:1px solid rgba(245,197,24,.3);}
-.badge-triple{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);}
-#barraCalc{position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,32,.97);border-top:2px solid var(--gold);backdrop-filter:blur(10px);padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:center;gap:12px;z-index:999;box-shadow:0 -8px 30px rgba(0,0,0,.6);}
-.barra-info{flex:1;min-width:0;}
-.barra-label{font-size:9px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
-.barra-precio{font-family:var(--font-head);font-size:28px;letter-spacing:1px;color:var(--green);line-height:1;transition:color .2s;}
-.barra-precio.incomplete{color:var(--text-muted);}
-.barra-detalle{font-size:10px;color:var(--text-muted);font-weight:600;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.clabe-box{background:var(--gold-dim);border:2px solid var(--gold);border-radius:12px;padding:18px;text-align:center;margin-bottom:16px;}
-.clabe-banco{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
-.clabe-num{font-family:var(--font-head);font-size:clamp(20px,5vw,28px);letter-spacing:3px;color:var(--text);word-break:break-all;margin-bottom:6px;}
-.clabe-nombre{font-size:14px;font-weight:800;color:var(--text-muted);}
-.clabe-total{font-family:var(--font-head);font-size:36px;color:var(--green);letter-spacing:2px;margin-top:10px;}
-.btn-copy{background:none;border:1px solid var(--gold);color:var(--gold);font-family:var(--font-body);font-size:11px;font-weight:800;padding:5px 12px;border-radius:6px;cursor:pointer;margin-top:8px;letter-spacing:1px;transition:.15s;}
-.btn-copy:hover{background:var(--gold-dim);}
-.resumen-lista{margin-bottom:16px;}
-.resumen-item{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
-.resumen-alias{font-family:var(--font-head);font-size:18px;color:var(--gold);letter-spacing:1px;}
-.resumen-detalle{font-size:11px;color:var(--text-muted);font-weight:600;margin-top:2px;}
-.resumen-costo{font-family:var(--font-head);font-size:22px;color:var(--green);}
-.upload-box{background:var(--surface2);border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;margin-bottom:14px;transition:border-color .2s;}
-.upload-box:hover{border-color:var(--gold);}
-.upload-box .upload-icon{font-size:40px;margin-bottom:8px;}
-.upload-box .upload-title{font-size:14px;font-weight:800;color:var(--gold);margin-bottom:5px;}
-.upload-box .upload-desc{font-size:11px;color:var(--text-muted);margin-bottom:12px;font-weight:600;}
-.upload-box input[type="file"]{background:var(--surface);color:var(--text-muted);padding:8px;border-radius:8px;width:100%;font-size:13px;border:1px solid var(--border);margin-bottom:12px;}
-.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#25D366;color:#fff;border:none;border-radius:var(--radius);font-family:var(--font-head);font-size:20px;letter-spacing:2px;cursor:pointer;box-shadow:0 5px 0 #128c3e;transition:.1s;text-decoration:none;text-transform:uppercase;margin-bottom:10px;}
-.btn-wa:active{transform:translateY(3px);box-shadow:none;}
-.btn-wa svg{width:22px;height:22px;fill:white;flex-shrink:0;}
-.success-page{text-align:center;padding:40px 16px;}
-.success-icon{font-size:90px;display:block;margin-bottom:16px;animation:pop .5s cubic-bezier(.18,.89,.32,1.28) both;}
-@keyframes pop{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
-.success-title{font-family:var(--font-head);font-size:42px;color:var(--green);letter-spacing:2px;margin-bottom:10px;}
-.success-sub{color:var(--text-muted);font-size:14px;font-weight:600;line-height:1.6;margin-bottom:24px;}
-.section-title{font-family:var(--font-head);font-size:22px;letter-spacing:2px;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.section-title::after{content:'';flex:1;height:1px;background:var(--border);}
-.stats-row{display:flex;gap:8px;margin-bottom:14px;}
-.stat-box{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px;text-align:center;}
-.stat-val{font-family:var(--font-head);font-size:22px;color:var(--gold);letter-spacing:1px;}
-.stat-lbl{font-size:9px;font-weight:800;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;}
-.divider{height:1px;background:var(--border);margin:16px 0;}
-.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.2);border-top-color:currentColor;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.fade-in{animation:fadeIn .35s ease both;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-.total-box{background:var(--surface);border:2px solid var(--green);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px;}
-.total-box .tl{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;}
-.total-box .tv{font-family:var(--font-head);font-size:44px;color:var(--green);letter-spacing:2px;}
-.total-box .ts{font-size:11px;color:var(--text-muted);font-weight:600;}
-.page2-sticky-header{position:sticky;top:0;z-index:200;background:var(--bg);border-bottom:2px solid var(--gold);box-shadow:0 4px 20px rgba(0,0,0,.4);padding:3px 0 0;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
-.p2h-top{display:flex;align-items:center;gap:6px;padding:0 0 3px;}
-.p2h-alias-wrap{flex-shrink:0;}
-.p2h-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;line-height:1;}
-.p2h-alias{font-family:var(--font-head);font-size:20px;color:var(--gold);letter-spacing:1.5px;line-height:1;}
-.p2h-progreso{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;}
-.p2h-prog-nums{font-family:var(--font-head);font-size:14px;letter-spacing:1px;color:var(--text);line-height:1;}
-.p2h-prog-nums .prog-actual{color:var(--green);font-size:20px;}
-.p2h-prog-bar{width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
-.p2h-prog-fill{height:100%;background:var(--green);border-radius:2px;transition:width .2s ease;}
-.p2h-prog-lbl{font-size:8px;font-weight:800;letter-spacing:1px;color:var(--text-muted);text-transform:uppercase;}
-.p2h-num{font-family:var(--font-head);font-size:20px;color:var(--text);line-height:1;flex-shrink:0;text-align:right;}
-.p2h-right{text-align:right;flex-shrink:0;}
-.p2h-tabs{padding-bottom:2px;}
-.p2h-combos{display:flex;align-items:center;gap:0;background:var(--surface2);border:1px solid var(--border);border-radius:8px;margin-bottom:5px;overflow:hidden;height:28px;}
-.p2h-combo-item{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 6px;height:100%;transition:background .15s;}
-.p2h-combo-sep{width:1px;height:20px;background:var(--border);flex-shrink:0;}
-.p2h-combo-ico{font-size:12px;line-height:1;}
-.p2h-combo-val{font-family:var(--font-head);font-size:14px;line-height:1;color:var(--text);letter-spacing:1px;transition:color .2s;}
-.p2h-combo-max{font-size:9px;font-weight:800;color:var(--text-muted);letter-spacing:.5px;line-height:1;}
-.p2h-combo-lbl{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);}
-.p2h-precio{font-size:15px!important;}
-.p2h-combo-item.has-d .p2h-combo-val{color:var(--gold);}
-.p2h-combo-item.has-t .p2h-combo-val{color:var(--green);}
-.p2h-combo-item .p2h-precio{color:var(--green);font-size:18px;}
-.p2h-combo-item.over .p2h-combo-val{color:var(--red)!important;animation:pulseRed .7s infinite alternate;}
-@keyframes pulseRed{from{opacity:1;}to{opacity:.5;}}
-.p2h-alerta{background:rgba(255,71,87,.12);border:1.5px solid var(--red);border-radius:var(--radius);padding:8px 12px;font-size:12px;font-weight:800;color:var(--red);margin-bottom:8px;text-align:center;letter-spacing:.3px;animation:slideDown .25s ease;}
-@keyframes slideDown{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
-#boletaRenderContainer{position:fixed;left:-9999px;top:80px;z-index:-1;pointer-events:none;width:380px;}
-.boleta-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;}
-.boleta-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(6px);}
-.boleta-box{position:relative;z-index:1;background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:18px;max-width:420px;width:calc(100% - 28px);max-height:92vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.7);}
-.boleta-box-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);}
-.boleta-box-title{font-family:var(--font-head);font-size:20px;letter-spacing:2px;color:var(--gold);}
-.boleta-close-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
-.boleta-img-wrap{border-radius:10px;overflow:hidden;margin-bottom:14px;background:#0f172a;text-align:center;}
-.boleta-img-wrap img{max-width:100%;display:block;margin:0 auto;}
-.boleta-hint{font-size:11px;color:var(--text-muted);text-align:center;margin:8px 0;font-weight:600;}
-.btn-boleta-item{width:100%;margin-top:10px;background:linear-gradient(135deg,#ff6b00,#ff8c2a);border:none;border-radius:12px;padding:16px 14px;font-family:var(--font-head);font-size:20px;font-weight:900;color:#fff;cursor:pointer;letter-spacing:1px;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 5px 0 #c44e00,0 8px 20px rgba(255,107,0,.35);animation:pulsoboleta 1.8s ease-in-out infinite;}
-.btn-boleta-item:hover{opacity:.92;}
-@keyframes pulsoboleta{0%{transform:scale(1);box-shadow:0 5px 0 #c44e00,0 8px 20px rgba(255,107,0,.35);}50%{transform:scale(1.02);box-shadow:0 5px 0 #c44e00,0 14px 30px rgba(255,107,0,.6);}100%{transform:scale(1);box-shadow:0 5px 0 #c44e00,0 8px 20px rgba(255,107,0,.35);}}
-.ocr-panel{margin:10px 0 12px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
-.ocr-preview-wrap{background:#000;max-height:180px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.ocr-preview-wrap img{max-width:100%;max-height:180px;object-fit:contain;display:block;}
-.ocr-status{padding:11px 14px;font-size:12px;font-weight:700;text-align:center;line-height:1.5;}
-.ocr-ok{background:rgba(1,224,143,.1);border-top:2px solid var(--green);color:var(--green);}
-.btn-borrar-todo{background:rgba(255,71,87,.1);border:1px solid rgba(255,71,87,.35);color:var(--red);font-family:var(--font-body);font-size:11px;font-weight:800;padding:6px 10px;border-radius:var(--radius);cursor:pointer;white-space:nowrap;transition:.15s;flex-shrink:0;}
-.btn-borrar-todo:hover{background:rgba(255,71,87,.2);border-color:var(--red);}
-.btn-cerrar{background:linear-gradient(135deg,#1a8a5a,#0f6640);border:none;color:#fff;font-family:var(--font-head);font-size:18px;letter-spacing:1.5px;cursor:pointer;border-radius:var(--radius);padding:14px;transition:.15s;box-shadow:0 4px 0 #0a4a2d;}
-.btn-cerrar:active{transform:translateY(3px);box-shadow:none;}
-.despedida-screen{text-align:center;padding:40px 20px;animation:fadeIn .4s ease both;}
-.despedida-icon{font-size:80px;display:block;margin-bottom:16px;}
-.despedida-titulo{font-family:var(--font-head);font-size:38px;letter-spacing:3px;color:var(--green);margin-bottom:12px;}
-.despedida-msg{font-size:16px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:8px;}
-.despedida-sub{font-size:13px;color:var(--text-muted);font-weight:600;margin-bottom:24px;}
-.reto-panel{background:var(--surface2);border:1.5px solid var(--border);border-top:3px solid var(--green);border-radius:12px;padding:16px 14px;margin-top:0;text-align:center;}
-.reto-paso-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;text-align:center;}
-.reto-titulo{font-family:var(--font-head);font-size:20px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;}
-.reto-sub{font-size:12px;color:var(--text-muted);font-weight:700;margin-bottom:14px;line-height:1.5;}
-.reto-msg-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:12px;text-align:left;}
-.reto-msg-box strong{color:var(--text);}
-.btn-wa-reto{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:var(--radius);font-family:var(--font-head);font-size:18px;letter-spacing:2px;cursor:pointer;box-shadow:0 4px 0 #128c3e;text-decoration:none;text-transform:uppercase;margin-bottom:8px;transition:.1s;}
-.btn-wa-reto:active{transform:translateY(3px);box-shadow:none;}
-.btn-copy-reto{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:9px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-body);font-size:12px;font-weight:800;cursor:pointer;letter-spacing:1px;transition:.15s;}
-.btn-copy-reto:hover{background:var(--surface2);color:var(--text);}
-.reto-hint{font-size:10px;color:var(--text-muted);margin-top:8px;font-weight:600;}
-.reto-divider{height:1px;background:var(--border);margin:14px 0;}
+:root{
+--verde:#00FF87;--verde2:#00CC6A;--negro:#06080A;--card:#0E1318;--card2:#141A21;
+--borde:#1E2830;--borde2:#26333D;--texto:#F0F4F8;--muted:#8A9BB0;--muted2:#5A6B7A;
+--oro:#FFD84D;--rojo:#FF4D6A;--glow:rgba(0,255,135,0.15);--nav-bg:rgba(6,8,10,0.92);
+--ham-color:#A0B0C0;--topbar-bg:rgba(6,8,10,0.97);--topbar-borde:#1E2830;
+--topbar-texto:#F0F4F8;--btn-back-col:#8A9BB0;--badge-bg:rgba(0,255,135,0.12);
+--badge-color:#00FF87;--badge-borde:rgba(0,255,135,0.3);
+--badge-oro-bg:rgba(255,216,77,0.12);--badge-oro-color:#FFD84D;--badge-oro-borde:rgba(255,216,77,0.3);
+--cd-height:38px;
+}
+:root.dia{
+--negro:#F5F7FA;--card:#FFFFFF;--card2:#EEF1F5;--borde:#D8DEE8;--borde2:#C4CDD8;
+--texto:#0D1B2A;--muted:#4A5568;--muted2:#718096;--nav-bg:rgba(245,247,250,0.95);
+--verde:#009955;--verde2:#007740;--oro:#C8860A;--rojo:#D63650;--glow:rgba(0,153,85,0.1);
+--ham-color:#1A202C;--topbar-bg:rgba(255,255,255,0.98);--topbar-borde:#D8DEE8;
+--topbar-texto:#0D1B2A;--btn-back-col:#2D3748;--badge-bg:#007740;--badge-color:#FFFFFF;
+--badge-borde:#007740;--badge-oro-bg:#C8860A;--badge-oro-color:#FFFFFF;--badge-oro-borde:#C8860A;
+}
+html,body{background:var(--negro)!important;color:var(--texto)!important;font-family:'Outfit',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;transition:background 0.4s ease,color 0.4s ease;}
+.vista{display:none;}.vista.activa{display:block;}
 
-/* ── MODAL PROPIO — reemplaza prompt() y confirm() nativos ── */
-.modal-overlay{position:fixed;inset:0;z-index:9990;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);padding:0;animation:fadeIn .2s ease;}
-@media(min-width:500px){.modal-overlay{align-items:center;padding:20px;}}
-.modal-box{background:var(–surface);border:2px solid var(–gold);border-radius:20px 20px 0 0;padding:28px 24px 36px;width:100%;max-width:420px;text-align:center;box-shadow:0 -8px 40px rgba(0,0,0,.6);animation:slideUp .25s cubic-bezier(.18,.89,.32,1.28) both;}
-@media(min-width:500px){.modal-box{border-radius:20px;padding:28px 24px;animation:pop .25s cubic-bezier(.18,.89,.32,1.28) both;}}
-@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-.modal-title{font-family:var(–font-head);font-size:22px;color:var(–gold);letter-spacing:2px;margin-bottom:8px;}
-.modal-msg{font-size:14px;font-weight:700;color:var(–text);line-height:1.6;margin-bottom:20px;}
-.modal-input{width:100%;background:var(–surface2);border:1.5px solid var(–gold);border-radius:var(–radius);padding:14px 15px;font-family:var(–font-body);font-size:16px;font-weight:700;color:var(–text);outline:none;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
-.modal-input:focus{box-shadow:0 0 0 3px rgba(255,107,0,.2);}
-.modal-btns{display:flex;gap:10px;}
-.modal-btns .btn{flex:1;font-size:17px;padding:13px;}
+/* COUNTDOWN BAR */
+#countdownBar{width:100%;background:linear-gradient(90deg,#1a0a00,#2d1200,#1a0a00);border-bottom:1px solid rgba(255,109,0,.3);padding:7px 16px;display:flex;align-items:center;justify-content:center;gap:12px;position:sticky;top:0;z-index:1000;height:var(–cd-height);animation:barSlideDown .5s ease;}
+@keyframes barSlideDown{from{transform:translateY(-100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+#countdownBar.cerrado{background:linear-gradient(90deg,#0a1a0a,#102010,#0a1a0a);border-bottom-color:rgba(0,255,135,.2);}
+.cd-label{font-family:‘Outfit’,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF6D00;display:flex;align-items:center;gap:6px;}
+#countdownBar.cerrado .cd-label{color:var(–verde);}
+.cd-blink{animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+.cd-digits{display:flex;align-items:center;gap:4px;}
+.cd-block{background:rgba(255,109,0,.12);border:1px solid rgba(255,109,0,.3);border-radius:6px;min-width:36px;padding:3px 5px;text-align:center;}
+#countdownBar.cerrado .cd-block{background:rgba(0,255,135,.08);border-color:rgba(0,255,135,.25);}
+.cd-num{font-family:‘Bebas Neue’,sans-serif;font-size:17px;color:#FF6D00;line-height:1;display:block;}
+#countdownBar.cerrado .cd-num{color:var(–verde);}
+.cd-lbl{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,109,0,.55);display:block;margin-top:1px;}
+#countdownBar.cerrado .cd-lbl{color:rgba(0,255,135,.55);}
+.cd-sep{font-family:‘Bebas Neue’,sans-serif;font-size:16px;color:#FF6D00;opacity:.5;animation:blink 1s step-end infinite;}
+.cd-cta{display:none;}
+@media(min-width:580px){.cd-cta{display:inline-flex;align-items:center;gap:5px;background:#FF6D00;color:#06080A;font-family:‘Outfit’,sans-serif;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 13px;border-radius:100px;border:none;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 3px 14px rgba(255,109,0,.3);}
+.cd-cta:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(255,109,0,.45);}}
 
-@media(min-width:600px){.card{max-width:620px;padding:0 20px;}.hero{padding:40px 32px 28px;}.hero h1{font-size:clamp(40px,7vw,64px);letter-spacing:6px;}.field-input{padding:14px 18px;font-size:16px;}.btn{font-size:22px;padding:17px;}.btn-opt{width:46px;height:46px;}}
-@media(min-width:900px){.card{max-width:680px;}.panel{padding:26px 24px;}.btn-opt{width:46px;height:46px;}#barraCalc{padding:12px 32px;}.barra-precio{font-size:32px;}}
-@media(min-width:1200px){body{padding-top:20px;}.card{max-width:700px;}}
+/* NAV */
+nav{position:sticky;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.5rem;background:var(–nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(–borde);transition:background 0.4s,border-color 0.4s;height:58px;}
+.btn-tema{background:none;border:1px solid var(–borde2);border-radius:20px;padding:0.3rem 0.75rem;font-size:0.88rem;cursor:pointer;transition:all 0.2s;color:var(–muted);display:flex;align-items:center;gap:0.3rem;font-family:‘Outfit’,sans-serif;}
+.btn-tema:hover{border-color:var(–verde);color:var(–verde);}
+.logo{font-family:‘Bebas Neue’,sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(–texto);cursor:pointer;transition:color 0.3s;}
+.logo em{color:var(–verde);font-style:normal;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
+.nav-links a,.nav-links button{font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(–muted);background:none;border:none;cursor:pointer;transition:color 0.2s;font-family:‘Outfit’,sans-serif;}
+.nav-links a:hover,.nav-links button:hover{color:var(–texto);}
+.nav-btn-cta{background:var(–verde)!important;color:#06080A!important;padding:0.45rem 1.3rem;border-radius:6px;font-weight:700!important;transition:all 0.2s!important;}
+.nav-btn-cta:hover{background:var(–verde2)!important;transform:translateY(-1px);}
+.nav-btn-admin{background:rgba(255,109,0,0.1)!important;color:#FF6D00!important;border:1px solid rgba(255,109,0,0.3)!important;padding:0.45rem 1rem;border-radius:6px;font-weight:700!important;}
+.nav-btn-admin:hover{background:rgba(255,109,0,0.2)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1001;}
+.hamburger span{width:24px;height:2.5px;background:var(–ham-color);border-radius:2px;transition:0.3s;display:block;}
+.hamburger:hover span{background:var(–verde);}
+.hamburger.abierto span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+.hamburger.abierto span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.abierto span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+.nav-mobile{display:none;position:fixed;top:0;left:0;right:0;z-index:997;background:var(–nav-bg);border-bottom:2px solid var(–verde);padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 8px 32px rgba(0,0,0,0.5);transform:translateY(-110%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease;opacity:0;pointer-events:none;padding-top:calc(var(–cd-height) + 58px + 0.5rem);}
+.nav-mobile.open{display:flex;transform:translateY(0);opacity:1;pointer-events:all;}
+.nav-mobile button,.nav-mobile a{font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);background:none;border:none;cursor:pointer;padding:1rem 0.25rem;text-align:left;border-bottom:1px solid var(–borde);font-family:‘Outfit’,sans-serif;transition:color 0.2s,padding-left 0.2s;width:100%;}
+.nav-mobile button:hover,.nav-mobile a:hover{color:var(–verde);padding-left:0.5rem;}
+.nav-mobile button:last-child{border-bottom:none;}
+.cta-mobile{background:var(–verde)!important;color:#06080A!important;padding:1rem 1.5rem!important;border-radius:10px;text-align:center!important;font-weight:800!important;border:none!important;margin-top:0.75rem;font-size:1rem!important;}
+.cta-mobile:hover{background:var(–verde2)!important;padding-left:1.5rem!important;}
+#menuOverlay{display:none;position:fixed;inset:0;z-index:996;background:rgba(6,8,10,0.6);backdrop-filter:blur(2px);}
+#menuOverlay.show{display:block;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:5rem 2rem 5rem;position:relative;overflow:hidden;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;width:100%;max-width:1120px;margin:0 auto;position:relative;z-index:2;}
+.hero-right{display:flex;flex-direction:column;gap:1rem;}
+.hero-stat-card{background:var(–card);border:1px solid var(–borde);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.3s,transform 0.3s;animation:fadeUp 0.6s ease both;}
+.hero-stat-card:nth-child(1){animation-delay:0.3s;}.hero-stat-card:nth-child(2){animation-delay:0.4s;border-color:rgba(255,216,77,0.25);}.hero-stat-card:nth-child(3){animation-delay:0.5s;}
+.hero-stat-card:hover{transform:translateX(6px);}
+.hsc-icon{font-size:2rem;flex-shrink:0;}
+.hsc-label{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(–muted);margin-bottom:0.2rem;}
+.hsc-val{font-family:‘Bebas Neue’,sans-serif;font-size:2rem;line-height:1;color:var(–verde);}
+.hsc-val.oro{color:var(–oro);}
+.hero-right-cta{background:linear-gradient(135deg,rgba(0,255,135,0.06) 0%,rgba(0,255,135,0.02) 100%);border:1px solid rgba(0,255,135,0.2);border-radius:14px;padding:1.5rem;animation:fadeUp 0.6s ease 0.55s both;}
+.hrc-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.4rem;color:var(–texto);margin-bottom:0.5rem;}
+.hrc-ligas{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+.hrc-liga{font-size:0.75rem;font-weight:600;background:rgba(255,255,255,0.05);border:1px solid var(–borde2);border-radius:5px;padding:0.25rem 0.6rem;color:var(–muted);}
+.hrc-live{display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-weight:700;color:var(–verde);letter-spacing:0.08em;text-transform:uppercase;}
+@media(max-width:780px){.hero-grid{grid-template-columns:1fr;}.hero-right{display:none;}}
+.hero-bg-3d{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orbFloat 8s ease-in-out infinite;}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(0,255,135,0.1) 0%,transparent 70%);top:-150px;right:-200px;}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(61,139,255,0.07) 0%,transparent 70%);bottom:-100px;left:-100px;animation-delay:-3s;}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,216,77,0.06) 0%,transparent 70%);top:40%;left:40%;animation-delay:-5s;}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-20px) scale(1.05);}66%{transform:translate(-20px,30px) scale(0.95);}}
+.hero-hex{position:absolute;inset:0;pointer-events:none;opacity:0.03;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘56’ height=‘100’%3E%3Cpath d=‘M28 66L0 50V17L28 1l28 16v33z’ fill=‘none’ stroke=’%2300FF87’ stroke-width=‘1’/%3E%3Cpath d=‘M28 100L0 84V51l28-17 28 17v33z’ fill=‘none’ stroke=’%2300FF87’ stroke-width=‘1’/%3E%3C/svg%3E”);}
+.hero-content{position:relative;z-index:2;}
+.hero-tag{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);color:var(–verde);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:100px;margin-bottom:2rem;animation:fadeUp 0.5s ease both;}
+.pdot{width:7px;height:7px;background:var(–verde);border-radius:50%;animation:pulseAnim 1.8s infinite;}
+.hero-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(4rem,10vw,7.5rem);line-height:0.9;letter-spacing:0.02em;color:var(–texto);margin-bottom:1.75rem;animation:fadeUp 0.6s ease 0.1s both;}
+.hero-title .v{color:var(–verde);}.hero-title .o{color:var(–oro);}
+.hero-desc{font-size:1.1rem;color:var(–muted);max-width:500px;margin-bottom:1.5rem;line-height:1.8;animation:fadeUp 0.6s ease 0.2s both;}
+.hero-desc strong{color:var(–texto);font-weight:600;}
+.hero-referido{display:inline-flex;align-items:center;gap:0.75rem;background:rgba(255,216,77,0.15);border:2px solid rgba(255,216,77,0.6);border-radius:10px;padding:0.85rem 1.25rem;margin-bottom:2rem;animation:fadeUp 0.6s ease 0.25s both;}
+.hero-referido .ref-icon{font-size:1.5rem;flex-shrink:0;}
+.hero-referido .ref-text{font-size:0.95rem;color:var(–texto);font-weight:600;line-height:1.5;}
+.hero-referido .ref-text strong{color:var(–oro);}.hero-referido .ref-text span{color:var(–oro);font-weight:800;font-size:1.05rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.3s both;}
+.btn-v{display:inline-flex;align-items:center;gap:0.6rem;background:var(–verde);color:var(–negro);font-size:0.95rem;font-weight:700;padding:0.9rem 2rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 0 30px rgba(0,255,135,0.25);}
+.btn-v:hover{background:var(–verde2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,135,0.4);}
+.btn-o{display:inline-flex;align-items:center;gap:0.6rem;background:var(–oro);color:#06080A;font-size:0.95rem;font-weight:800;padding:0.9rem 2rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 0 30px rgba(255,216,77,0.25);}
+.btn-o:hover{background:#e6c200;transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,216,77,0.4);color:#06080A;}
+
+/* STATS BAR */
+.stats-bar{background:var(–card);border-top:1px solid rgba(0,255,135,0.1);border-bottom:1px solid rgba(0,255,135,0.1);display:grid;grid-template-columns:repeat(4,1fr);position:relative;overflow:hidden;}
+.stats-bar::before{content:’’;position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,255,135,0.03),transparent);animation:shimmer 4s linear infinite;}
+@keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+.stat{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(–borde);position:relative;}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:‘Bebas Neue’,sans-serif;font-size:3.2rem;line-height:1;color:var(–verde);display:block;}
+.stat-l{font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(–muted);margin-top:0.3rem;display:block;}
+
+/* SECCIONES */
+.sec{padding:5rem 2rem;max-width:1120px;margin:0 auto;}
+.chip{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(–verde);background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.15);padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:1rem;}
+.stitle{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1;letter-spacing:0.02em;color:var(–texto);margin-bottom:1rem;}
+.sdesc{font-size:1rem;color:var(–muted);max-width:500px;line-height:1.8;margin-bottom:3rem;}
+
+/* PARTIDOS */
+.partidos-section{background:linear-gradient(180deg,var(–negro) 0%,rgba(0,255,135,0.02) 50%,var(–negro) 100%);border-top:1px solid var(–borde);border-bottom:1px solid var(–borde);position:relative;overflow:hidden;}
+.partidos-section::before{content:’’;position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 58px,rgba(0,255,135,.02) 58px,rgba(0,255,135,.02) 59px),repeating-linear-gradient(90deg,transparent,transparent 58px,rgba(0,255,135,.02) 58px,rgba(0,255,135,.02) 59px);pointer-events:none;}
+.partidos-grid{display:grid;gap:1rem;margin-top:2rem;}
+.partidos-dia{margin-bottom:1.5rem;}
+.partidos-dia-label{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;}
+.dia-badge{font-size:0.7rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:100px;}
+.dia-viernes{background:rgba(0,255,135,0.1);color:var(–verde);border:1px solid rgba(0,255,135,0.25);}
+.dia-sabado{background:rgba(255,216,77,0.1);color:var(–oro);border:1px solid rgba(255,216,77,0.25);}
+.dia-domingo{background:rgba(255,77,106,0.1);color:#FF8FA3;border:1px solid rgba(255,77,106,0.2);}
+.dia-line{flex:1;height:1px;background:var(–borde);}
+.partidos-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.75rem;}
+.partido-card{background:var(–card);border:1px solid var(–borde);border-radius:12px;padding:0.85rem 1rem;display:flex;align-items:flex-start;gap:0.6rem;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;overflow:hidden;}
+.partido-card::before{content:’’;position:absolute;left:0;top:0;bottom:0;width:3px;background:var(–verde);opacity:0;transition:opacity 0.2s;}
+.partido-card:hover{border-color:rgba(0,255,135,0.3);transform:translateX(4px);box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+.partido-card:hover::before{opacity:1;}
+.partido-liga-icon{font-size:1.4rem;flex-shrink:0;}
+.partido-info{flex:1;min-width:0;}
+.partido-equipos{font-size:0.85rem;font-weight:700;color:var(–texto);white-space:normal;line-height:1.3;word-break:break-word;}
+.partido-equipos .vs{color:var(–muted2);font-weight:400;margin:0 0.3rem;}
+.partido-liga-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(–muted2);margin-top:0.15rem;}
+.partido-destacado{border-color:rgba(255,216,77,0.3)!important;background:linear-gradient(135deg,var(–card) 0%,rgba(255,216,77,0.03) 100%)!important;}
+.partido-destacado::before{background:var(–oro)!important;}
+.partido-destacado .partido-equipos{color:var(–oro);}
+.partido-num{font-family:‘Bebas Neue’,sans-serif;font-size:1.4rem;color:var(–muted2);flex-shrink:0;width:1.8rem;text-align:center;}
+.partidos-cta{text-align:center;margin-top:2.5rem;}
+.pozo-preview{display:inline-flex;align-items:center;gap:1rem;background:linear-gradient(135deg,rgba(255,216,77,0.08),rgba(255,216,77,0.04));border:2px solid rgba(255,216,77,0.4);border-radius:14px;padding:1.25rem 2rem;margin-bottom:1.5rem;}
+.pozo-preview-num{font-family:‘Bebas Neue’,sans-serif;font-size:3rem;color:var(–oro);line-height:1;}
+.pozo-preview-label{font-size:0.8rem;color:var(–muted);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;}
+
+/* LEAD */
+.lead-section{background:var(–negro);padding:5rem 2rem;position:relative;overflow:hidden;}
+.lead-section::before{content:’’;position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 58px,rgba(0,255,135,.03) 58px,rgba(0,255,135,.03) 59px),repeating-linear-gradient(90deg,transparent,transparent 58px,rgba(0,255,135,.03) 58px,rgba(0,255,135,.03) 59px);pointer-events:none;}
+.lead-inner{max-width:640px;margin:0 auto;position:relative;z-index:1;}
+.lead-badge-wrap{display:flex;align-items:center;gap:8px;margin-bottom:1.5rem;}
+.lead-live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,255,135,.08);border:1px solid rgba(0,255,135,.2);border-radius:100px;padding:5px 14px;font-size:0.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(–verde);}
+.lead-card{background:var(–card);border:1px solid var(–borde);border-radius:20px;padding:2.5rem 2rem;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.5);}
+.lead-card::before{content:’’;position:absolute;top:0;left:2rem;right:2rem;height:1px;background:linear-gradient(90deg,transparent,var(–verde),transparent);opacity:.5;}
+.lead-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(2.2rem,6vw,3.2rem);line-height:1;color:var(–texto);margin-bottom:.6rem;}
+.lead-title .v{color:var(–verde);}
+.lead-sub{font-size:.95rem;color:var(–muted);line-height:1.7;margin-bottom:2rem;max-width:480px;}
+.lead-benefits{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.75rem;}
+.lead-chip{display:flex;align-items:center;gap:5px;background:rgba(0,255,135,.06);border:1px solid rgba(0,255,135,.12);border-radius:7px;padding:5px 11px;font-size:.75rem;font-weight:700;color:var(–verde);}
+.lead-form-grid{display:grid;gap:1rem;margin-bottom:1.5rem;}
+.lf-group{display:flex;flex-direction:column;gap:5px;}
+.lf-label{font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(–muted2);}
+.lf-input{background:var(–card2);border:1.5px solid var(–borde);border-radius:9px;padding:12px 14px;font-size:.95rem;font-family:‘Outfit’,sans-serif;color:var(–texto);outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.lf-input::placeholder{color:var(–muted2);opacity:.6;}
+.lf-input:focus{border-color:var(–verde);box-shadow:0 0 0 3px rgba(0,255,135,.1);}
+.lf-input.err{border-color:var(–rojo);}
+.lf-error{font-size:.7rem;color:#ff8591;display:none;}.lf-error.show{display:block;}
+.lf-check-wrap{display:flex;align-items:center;gap:10px;padding:11px 13px;background:rgba(255,216,77,.05);border:1px solid rgba(255,216,77,.15);border-radius:9px;cursor:pointer;transition:background .2s;}
+.lf-check-wrap:hover{background:rgba(255,216,77,.09);}
+.lf-check-wrap input{display:none;}
+.lf-checkbox{width:19px;height:19px;border-radius:5px;border:2px solid var(–oro);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;font-size:11px;color:#06080A;}
+.lf-check-wrap input:checked~.lf-checkbox{background:var(–oro);}
+.lf-check-text{font-size:.82rem;color:var(–texto);line-height:1.4;}.lf-check-text strong{color:var(–oro);}
+.lead-btn{width:100%;padding:1.1rem;background:var(–verde);color:var(–negro);border:none;border-radius:10px;font-family:‘Bebas Neue’,sans-serif;font-size:1.4rem;letter-spacing:2px;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 0 30px rgba(0,255,135,.25);display:flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden;}
+.lead-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,135,.4);}
+.lead-btn:after{content:’’;position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 50%);pointer-events:none;}
+.lead-btn.loading .btn-text-inner{display:none;}
+.lead-spinner{display:none;width:20px;height:20px;border:2.5px solid rgba(0,0,0,.2);border-top-color:#06080A;border-radius:50%;animation:lspin .7s linear infinite;}
+.lead-btn.loading .lead-spinner{display:block;}
+@keyframes lspin{to{transform:rotate(360deg);}}
+.lead-privacy{text-align:center;font-size:.72rem;color:var(–muted2);margin-top:1rem;line-height:1.5;}
+.lead-success{display:none;text-align:center;padding:1rem 0;animation:fadeUp .5s ease;}.lead-success.show{display:block;}
+.lead-form-inner.hide{display:none;}
+.lead-success-icon{font-size:56px;display:block;margin-bottom:12px;animation:popIn .5s cubic-bezier(.18,.89,.32,1.28);}
+@keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+.lead-success-title{font-family:‘Bebas Neue’,sans-serif;font-size:2rem;color:var(–verde);margin-bottom:.5rem;}
+.lead-success-text{font-size:.9rem;color:var(–muted);line-height:1.6;margin-bottom:1.5rem;}
+.lead-wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:12px 22px;text-decoration:none;font-weight:700;font-size:.9rem;transition:transform .15s,box-shadow .2s;}
+.lead-wa-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,.4);}
+.lead-social-proof{display:flex;align-items:center;gap:12px;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(–borde);}
+.lsp-avatars{display:flex;}
+.lsp-ava{width:30px;height:30px;border-radius:50%;border:2px solid var(–card);background:var(–card2);display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’,sans-serif;font-size:12px;color:var(–verde);margin-left:-7px;}
+.lsp-ava:first-child{margin-left:0;}
+.lsp-text{font-size:.78rem;color:var(–muted);line-height:1.4;}.lsp-text strong{color:var(–verde);}
+
+/* GANADORES */
+.ganadores-section{background:linear-gradient(180deg,var(–negro) 0%,rgba(0,255,135,0.02) 50%,var(–negro) 100%);border-top:1px solid var(–borde);border-bottom:1px solid var(–borde);}
+.ganadores-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem;}
+.ganador-card{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,216,77,0.2);background:linear-gradient(135deg,var(–card) 0%,rgba(255,216,77,0.04) 100%);padding:2rem;transform-style:preserve-3d;transition:transform 0.4s ease,box-shadow 0.4s ease;cursor:default;}
+.ganador-card:hover{transform:perspective(800px) rotateX(-3deg) rotateY(3deg) translateY(-6px);box-shadow:0 20px 60px rgba(255,216,77,0.15);}
+.ganador-card::before{content:’’;position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,216,77,0.06) 100%);pointer-events:none;}
+.ganador-badge{position:absolute;top:0;right:0;background:var(–oro);color:var(–negro);font-size:0.62rem;font-weight:800;letter-spacing:0.1em;padding:0.3rem 0.9rem;border-bottom-left-radius:8px;}
+.ganador-trophy{font-size:2.5rem;margin-bottom:1rem;}
+.ganador-nombre{font-family:‘Bebas Neue’,sans-serif;font-size:1.8rem;color:var(–oro);letter-spacing:0.05em;line-height:1;margin-bottom:0.25rem;}
+.ganador-alias{font-size:0.8rem;color:var(–muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;}
+.ganador-premio{font-family:‘Bebas Neue’,sans-serif;font-size:3rem;color:var(–verde);line-height:1;margin-bottom:0.5rem;}
+.ganador-meta{font-size:0.8rem;color:var(–muted2);display:flex;align-items:center;gap:0.5rem;}
+.ganador-dot{width:6px;height:6px;background:var(–verde);border-radius:50%;animation:pulseAnim 2s infinite;}
+.historial{margin-top:2rem;background:var(–card);border:1px solid var(–borde);border-radius:12px;overflow:hidden;}
+.historial-row{display:grid;grid-template-columns:2rem 1fr auto auto;align-items:center;gap:1rem;padding:0.85rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.88rem;transition:background 0.15s;}
+.historial-row:last-child{border-bottom:none;}.historial-row:hover{background:rgba(255,255,255,0.02);}
+.historial-row.hdr{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(–muted2);background:rgba(0,0,0,0.3);}
+.h-pos{font-weight:800;color:var(–oro);}.h-nombre{font-weight:600;color:var(–texto);}
+.h-aciertos{background:rgba(0,255,135,0.08);color:var(–verde);font-family:‘Bebas Neue’,sans-serif;font-size:1.2rem;padding:0.1rem 0.6rem;border-radius:5px;border:1px solid rgba(0,255,135,0.15);text-align:center;}
+.h-premio{font-weight:700;color:var(–oro);font-size:0.9rem;}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;margin-top:3rem;}
+.step{background:var(–card);border:1px solid var(–borde);border-radius:16px;padding:2.5rem 2rem;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform 0.4s ease,box-shadow 0.4s ease,border-color 0.3s;}
+.step:hover{transform:perspective(600px) rotateX(-4deg) translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(0,255,135,0.2);border-color:rgba(0,255,135,0.3);}
+.step::after{content:’’;position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(–verde),transparent);opacity:0;transition:opacity 0.3s;}
+.step:hover::after{opacity:1;}
+.step-bg{font-family:‘Bebas Neue’,sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.04);position:absolute;top:0.5rem;right:1rem;pointer-events:none;}
+.step-icon{font-size:2.2rem;margin-bottom:1.25rem;}
+.step h3{font-size:1rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(–texto);margin-bottom:0.6rem;}
+.step p{font-size:0.9rem;color:var(–muted);line-height:1.7;}
+.ligas{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem;}
+.liga{display:flex;align-items:center;gap:0.5rem;background:var(–card);border:1px solid var(–borde2);border-radius:8px;padding:0.6rem 1.2rem;font-size:0.88rem;font-weight:600;color:var(–texto);transition:all 0.2s;cursor:default;}
+.liga:hover,.liga.on{border-color:var(–verde);color:var(–verde);background:rgba(0,255,135,0.05);}
+
+/* TRACKING */
+.tbox{background:var(–card);border:1px solid var(–borde);border-radius:16px;overflow:hidden;margin-top:3rem;}
+.thead{background:var(–card2);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(–borde);}
+.thead-t{font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(–texto);}
+.live{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–verde);}
+.ldot{width:8px;height:8px;background:var(–verde);border-radius:50%;animation:pulseAnim 1.5s infinite;}
+.trow{display:grid;grid-template-columns:2.5rem 1fr repeat(6,2.4rem) 3rem;align-items:center;padding:0.7rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.85rem;transition:background 0.15s;}
+.trow:hover{background:rgba(255,255,255,0.02);}.trow:last-child{border-bottom:none;}
+.trow.hdr{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(–muted2);background:rgba(0,0,0,0.3);}
+.rk{font-weight:800;font-size:0.9rem;}.r1{color:var(–oro);}.r2{color:#C0C0C0;}.r3{color:#CD7F32;}.r4{color:var(–muted);}
+.cell{width:2rem;height:2rem;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;margin:0 auto;}
+.ok{background:rgba(0,255,135,0.12);color:var(–verde);}.fail{background:rgba(255,77,106,0.12);color:var(–rojo);}.pend{background:rgba(255,255,255,0.04);color:var(–muted2);}
+.pts{background:rgba(0,255,135,0.08);color:var(–verde);font-family:‘Bebas Neue’,sans-serif;font-size:1.15rem;text-align:center;border-radius:5px;padding:0.1rem 0.3rem;border:1px solid rgba(0,255,135,0.15);}
+.pname{font-weight:500;color:var(–texto);}
+
+/* PREMIOS */
+.premio-principal{background:linear-gradient(135deg,var(–negro) 0%,rgba(255,216,77,0.06) 100%);border:2px solid rgba(255,216,77,0.5);border-radius:20px;padding:3rem 2rem;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform 0.5s ease,box-shadow 0.5s ease;}
+.premio-principal:hover{transform:perspective(1000px) rotateX(-2deg) translateY(-8px);box-shadow:0 30px 80px rgba(255,216,77,0.2);}
+.premio-principal::before{content:’’;position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent 0deg,rgba(255,216,77,0.03) 60deg,transparent 120deg);animation:rotateConic 8s linear infinite;pointer-events:none;}
+@keyframes rotateConic{to{transform:rotate(360deg);}}
+.promo-referido{background:linear-gradient(135deg,rgba(0,255,135,0.04) 0%,rgba(0,255,135,0.08) 100%);border:2px solid rgba(0,255,135,0.3);border-radius:16px;padding:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;transition:transform 0.3s,box-shadow 0.3s;}
+.promo-referido:hover{transform:translateY(-4px);}
+.promo-badge{background:var(–verde);color:var(–negro);font-size:0.65rem;font-weight:800;letter-spacing:0.1em;padding:0.2rem 0.7rem;border-radius:100px;display:inline-block;margin-bottom:0.5rem;}
+
+/* TESTIMONIALES */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-top:3rem;}
+.tcard{background:var(–card);border:1px solid var(–borde);border-radius:16px;padding:2rem;position:relative;transition:transform 0.4s ease,border-color 0.3s,box-shadow 0.4s;transform-style:preserve-3d;}
+.tcard:hover{transform:perspective(600px) rotateX(-3deg) rotateY(2deg) translateY(-6px);border-color:rgba(0,255,135,0.2);box-shadow:0 20px 50px rgba(0,0,0,0.4);}
+.tq{font-family:‘Bebas Neue’,sans-serif;font-size:6rem;line-height:1;color:rgba(0,255,135,0.06);position:absolute;top:0;right:1.5rem;pointer-events:none;}
+.stars{color:var(–oro);font-size:0.85rem;margin-bottom:1rem;}
+.tcard p{font-size:0.95rem;color:var(–muted);line-height:1.75;margin-bottom:1.5rem;position:relative;z-index:1;}
+.tauthor{display:flex;align-items:center;gap:0.75rem;}
+.ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(–borde2),var(–card2));border:1px solid var(–borde2);display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’,sans-serif;font-size:1.1rem;color:var(–verde);flex-shrink:0;}
+.aname{font-size:0.9rem;font-weight:700;color:var(–texto);}.ameta{font-size:0.75rem;color:var(–muted2);margin-top:0.1rem;}
+
+/* CTA */
+.cta-wrap{background:linear-gradient(135deg,var(–card) 0%,rgba(0,255,135,0.03) 100%);border-top:1px solid var(–borde);border-bottom:1px solid var(–borde);}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center;padding:7rem 2rem;}
+.cta-inner .stitle{font-size:clamp(2.8rem,7vw,5rem);}
+.cta-inner .sdesc{margin:1.5rem auto 3rem;max-width:480px;}
+.cta-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.btn-registro{display:inline-flex;align-items:center;gap:0.75rem;background:var(–verde);color:var(–negro);font-family:‘Outfit’,sans-serif;font-size:1rem;font-weight:800;padding:1.1rem 2.5rem;border-radius:10px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 24px rgba(0,255,135,0.3);letter-spacing:0.04em;}
+.btn-registro:hover{background:var(–verde2);transform:translateY(-3px);}
+.btn-seguimiento{display:inline-flex;align-items:center;gap:0.75rem;background:var(–oro);color:#06080A;font-family:‘Outfit’,sans-serif;font-size:1rem;font-weight:800;padding:1.1rem 2.5rem;border-radius:10px;border:none;cursor:pointer;transition:all 0.2s;letter-spacing:0.04em;box-shadow:0 4px 24px rgba(255,216,77,0.25);}
+.btn-seguimiento:hover{background:#e6c200;transform:translateY(-3px);}
+.trust{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.ti{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(–muted);font-weight:500;}
+
+/* TRANSPARENCIA */
+.transparencia-section{background:var(–card);border-top:1px solid var(–borde);border-bottom:1px solid var(–borde);}
+.transparencia-card{background:linear-gradient(135deg,var(–negro) 0%,rgba(0,255,135,0.04) 100%);border:1px solid rgba(0,255,135,0.2);border-radius:20px;padding:2.5rem;margin-top:2.5rem;position:relative;overflow:hidden;}
+.transparencia-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(–verde),transparent);}
+.t-row{display:flex;gap:2rem;align-items:stretch;flex-wrap:wrap;}
+.t-bloque{flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.5rem;}
+.t-sep{width:1px;background:var(–borde2);align-self:stretch;flex-shrink:0;}
+.t-pct{font-family:‘Bebas Neue’,sans-serif;font-size:5rem;line-height:1;}
+.t-pct.v{color:var(–verde);}.t-pct.g{color:var(–borde2);}
+.t-label{font-size:1rem;font-weight:700;color:var(–texto);}.t-desc{font-size:0.88rem;color:var(–muted);line-height:1.6;}
+.t-ejemplo{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(–borde);font-size:0.88rem;color:var(–muted);line-height:1.7;display:flex;gap:0.75rem;align-items:flex-start;}
+.t-ejemplo-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+@media(max-width:600px){.t-sep{display:none;}.transparencia-card{padding:1.75rem 1.25rem;}}
+
+/* FOOTER */
+footer{background:var(–negro);border-top:1px solid var(–borde);padding:3rem 2rem;text-align:center;}
+.flogo{font-family:‘Bebas Neue’,sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(–texto);}
+.flogo em{color:var(–verde);font-style:normal;}
+footer p{font-size:0.82rem;color:var(–muted2);margin-top:0.75rem;}
+.footer-legal{font-size:0.68rem;color:var(–muted2);opacity:0.55;max-width:660px;margin:1rem auto 0;line-height:1.6;}
+
+/* IFRAMES */
+#vista-registro,#vista-seguimiento,#vista-analisis{display:none;flex-direction:column;height:100vh;}
+.iframe-topbar{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.5rem;background:var(–topbar-bg);border-bottom:1px solid var(–topbar-borde);flex-shrink:0;transition:background 0.4s,border-color 0.4s;}
+.btn-back-home{background:none;border:1px solid var(–borde2);color:var(–btn-back-col);font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;cursor:pointer;font-family:‘Outfit’,sans-serif;transition:all 0.2s;}
+.btn-back-home:hover{border-color:var(–verde);color:var(–verde);}
+.topbar-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(–topbar-texto);}
+.topbar-title em{color:var(–verde);font-style:normal;}
+.topbar-badge{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(–badge-color);background:var(–badge-bg);border:1.5px solid var(–badge-borde);padding:0.35rem 0.9rem;border-radius:100px;}
+.topbar-badge.oro{color:var(–badge-oro-color);background:var(–badge-oro-bg);border-color:var(–badge-oro-borde);}
+.ldot-sm{width:6px;height:6px;background:currentColor;border-radius:50%;animation:pulseAnim 1.5s infinite;}
+.iframe-main{flex:1;border:none;width:100%;min-height:calc(100vh - 60px);background:var(–negro);}
+.seguimiento-bar{border-bottom-color:var(–oro);}
+.iframe-loading{display:none;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:3rem;text-align:center;position:absolute;top:60px;left:0;right:0;bottom:0;background:var(–negro);z-index:10;}
+.iframe-loading.show{display:flex;}
+.iframe-wrap{position:relative;flex:1;}
+.il-icon{font-size:3rem;animation:bounce 1s ease-in-out infinite alternate;}
+@keyframes bounce{from{transform:translateY(0);}to{transform:translateY(-10px);}}
+.il-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.8rem;color:var(–verde);}
+.il-sub{font-size:0.85rem;color:var(–muted);}
+.il-bar{width:200px;height:3px;background:var(–borde);border-radius:3px;overflow:hidden;}
+.il-fill{height:100%;background:var(–verde);border-radius:3px;animation:ilFill 4s ease-out forwards;}
+@keyframes ilFill{0%{width:0%;}50%{width:65%;}80%{width:85%;}100%{width:95%;}}
+
+/* ★ POPUP RECORDATORIO */
+.remind-overlay{display:none;position:fixed;inset:0;z-index:9997;background:rgba(6,8,10,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px;}
+.remind-overlay.show{display:flex;animation:fadeIn .25s ease;}
+.remind-modal{background:var(–card);border:1px solid var(–borde);border-top:3px solid var(–verde);border-radius:20px;max-width:390px;width:100%;padding:32px 26px 26px;position:relative;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 32px 80px rgba(0,0,0,.6);}
+.remind-modal::before{content:’’;position:absolute;top:0;left:2rem;right:2rem;height:1px;background:linear-gradient(90deg,transparent,var(–verde),transparent);}
+@keyframes modalPop{from{transform:scale(.85) translateY(20px);opacity:0;}to{transform:scale(1) translateY(0);opacity:1;}}
+.remind-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(–muted);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .2s;}
+.remind-close:hover{color:var(–texto);}
+.remind-ico{font-size:48px;display:block;margin-bottom:10px;}
+.remind-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.9rem;line-height:1.1;color:var(–texto);margin-bottom:7px;}
+.remind-title span{color:var(–verde);}
+.remind-sub{font-size:.85rem;color:var(–muted);line-height:1.65;margin-bottom:1.25rem;}
+.remind-saved{display:none;align-items:center;gap:6px;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);border-radius:100px;padding:4px 12px;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(–verde);margin-bottom:12px;justify-content:center;}
+.remind-saved.show{display:flex;}
+.remind-input{width:100%;background:var(–card2);border:1.5px solid var(–borde);border-radius:9px;padding:11px 14px;font-size:.9rem;font-family:‘Outfit’,sans-serif;color:var(–texto);margin-bottom:9px;transition:border-color .2s,box-shadow .2s;outline:none;-webkit-appearance:none;}
+.remind-input::placeholder{color:var(–muted2);opacity:.6;}
+.remind-input:focus{border-color:var(–verde);box-shadow:0 0 0 3px rgba(0,255,135,.1);}
+.remind-input.err{border-color:var(–rojo);}
+.remind-btn{width:100%;padding:13px;background:var(–verde);color:var(–negro);border:none;border-radius:9px;font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:1px;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(0,255,135,.25);display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:10px;}
+.remind-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,255,135,.4);}
+.remind-btn:disabled{opacity:.35;transform:none;cursor:not-allowed;}
+.remind-skip{display:block;font-size:.72rem;color:var(–muted2);cursor:pointer;background:none;border:none;width:100%;text-align:center;transition:color .2s;font-family:‘Outfit’,sans-serif;}
+.remind-skip:hover{color:var(–muted);}
+.remind-success{display:none;animation:fadeUp .4s ease;}.remind-success.show{display:block;}
+.remind-form-wrap.hide{display:none;}
+.remind-ok-ico{font-size:48px;display:block;margin-bottom:10px;}
+.remind-ok-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.8rem;color:var(–verde);margin-bottom:6px;}
+.remind-ok-text{font-size:.85rem;color:var(–muted);line-height:1.6;margin-bottom:1rem;}
+.remind-banner{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(10px);background:var(–card);border:1px solid rgba(0,255,135,0.4);border-radius:100px;padding:10px 22px;font-size:.8rem;font-weight:700;letter-spacing:.5px;color:var(–verde);z-index:9990;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.4);font-family:‘Outfit’,sans-serif;}
+.remind-banner.show{display:block;animation:bannerUp .4s ease both;}
+@keyframes bannerUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* EXIT INTENT */
+#exitOverlay{display:none;position:fixed;inset:0;background:rgba(6,8,10,.7);z-index:9998;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);}
+#exitOverlay.show{display:flex;animation:fadeIn .25s ease;}
+.exit-modal{background:var(–card);border:1px solid var(–borde);border-radius:22px;max-width:400px;width:100%;padding:36px 28px 28px;position:relative;text-align:center;animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 32px 80px rgba(0,0,0,.6);}
+.exit-modal::before{content:’’;position:absolute;top:0;left:2rem;right:2rem;height:1px;background:linear-gradient(90deg,transparent,var(–verde),transparent);}
+.exit-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(–muted);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .2s;}
+.exit-close:hover{color:var(–texto);}
+.exit-emoji{font-size:48px;display:block;margin-bottom:10px;}
+.exit-title{font-family:‘Bebas Neue’,sans-serif;font-size:2rem;line-height:1.1;color:var(–texto);margin-bottom:7px;}
+.exit-title span{color:var(–verde);}
+.exit-sub{font-size:.85rem;color:var(–muted);line-height:1.6;margin-bottom:1.5rem;}
+.exit-input{width:100%;background:var(–card2);border:1.5px solid var(–borde);border-radius:9px;padding:11px 14px;font-size:.9rem;font-family:‘Outfit’,sans-serif;color:var(–texto);margin-bottom:10px;transition:border-color .2s,box-shadow .2s;outline:none;-webkit-appearance:none;}
+.exit-input::placeholder{color:var(–muted2);opacity:.6;}
+.exit-input:focus{border-color:var(–verde);box-shadow:0 0 0 3px rgba(0,255,135,.1);}
+.exit-input.err{border-color:var(–rojo);}
+.exit-btn{width:100%;padding:13px;background:var(–verde);color:var(–negro);border:none;border-radius:9px;font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:1px;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(0,255,135,.25);display:flex;align-items:center;justify-content:center;gap:7px;}
+.exit-btn:hover{transform:translateY(-2px);}
+.exit-skip{display:block;margin-top:12px;font-size:.75rem;color:var(–muted2);cursor:pointer;background:none;border:none;width:100%;text-align:center;transition:color .2s;}
+.exit-skip:hover{color:var(–muted);}
+.exit-success{display:none;animation:fadeUp .4s ease;}.exit-success.show{display:block;}
+.exit-form-wrap.hide{display:none;}
+.exit-ok-icon{font-size:48px;display:block;margin-bottom:10px;}
+.exit-ok-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.8rem;color:var(–verde);margin-bottom:6px;}
+.exit-ok-text{font-size:.85rem;color:var(–muted);line-height:1.6;}
+
+/* SPLASH */
+#splashScreen{position:fixed;inset:0;z-index:9999;background:var(–negro);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.25s ease;}
+#splashScreen.visible{opacity:1;pointer-events:all;}
+.splash-logo{font-family:‘Bebas Neue’,sans-serif;font-size:2.2rem;letter-spacing:0.1em;color:var(–texto);}
+.splash-logo em{color:#00FF87;font-style:normal;}
+.splash-titulo{font-family:‘Bebas Neue’,sans-serif;font-size:1.4rem;letter-spacing:3px;color:#00FF87;text-transform:uppercase;}
+.splash-sub{font-size:0.85rem;color:var(–muted);letter-spacing:1px;}
+.splash-barra{width:200px;height:3px;background:var(–borde);border-radius:3px;overflow:hidden;}
+.splash-barra-fill{height:100%;width:0%;background:#00FF87;border-radius:3px;animation:splashLoad 5.5s cubic-bezier(0.4,0,0.2,1) forwards;}
+@keyframes splashLoad{0%{width:0%;}30%{width:45%;}60%{width:72%;}85%{width:88%;}100%{width:95%;}}
+.splash-dots{display:flex;gap:6px;}
+.splash-dot{width:7px;height:7px;border-radius:50%;background:#00FF87;animation:splashDot 1.2s infinite;}
+.splash-dot:nth-child(2){animation-delay:0.2s;}.splash-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes splashDot{0%,80%,100%{opacity:0.2;transform:scale(0.8);}40%{opacity:1;transform:scale(1.2);}}
+
+/* ANIMACIONES */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes pulseAnim{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.85);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* BOTÓN FLOTANTE */
+#btnFlotantePartidos{position:fixed;top:70px;right:16px;z-index:990;background:linear-gradient(135deg,#FF6D00,#FF4500);color:#fff;border:none;border-radius:100px;padding:10px 16px;font-family:‘Outfit’,sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.05em;cursor:pointer;box-shadow:0 4px 16px rgba(255,109,0,0.45);display:flex;align-items:center;gap:6px;animation:floatIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 1s both;transition:transform 0.2s,box-shadow 0.2s,opacity 0.3s;}
+#btnFlotantePartidos:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 30px rgba(255,109,0,0.55);}
+#btnFlotantePartidos.oculto{opacity:0;pointer-events:none;transform:translateY(20px);}
+#btnFlotantePartidos .fp-dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulseAnim 1.5s infinite;flex-shrink:0;}
+#btnFlotantePartidos .fp-badge{background:rgba(255,255,255,0.25);border-radius:100px;padding:2px 8px;font-size:0.72rem;font-weight:700;}
+@keyframes floatIn{from{opacity:0;transform:translateY(40px) scale(0.8);}to{opacity:1;transform:translateY(0) scale(1);}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.nav-links{display:none;}.hamburger{display:flex;}
+.stats-bar{grid-template-columns:repeat(2,1fr);}
+.stat:nth-child(2){border-right:none;}.stat:nth-child(3){border-top:1px solid var(–borde);}
+.trow{grid-template-columns:2rem 1fr repeat(4,2rem) 2.5rem;}
+.trow .cell:nth-child(6),.trow .cell:nth-child(7){display:none;}
+.hero-referido{flex-direction:column;align-items:flex-start;gap:0.5rem;}
+.historial-row{grid-template-columns:2rem 1fr auto;}.historial-row .h-aciertos{display:none;}
+.lead-card{padding:1.75rem 1.25rem;}
+nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
+.partidos-lista{grid-template-columns:1fr;}
+}
 </style>
 
 </head>
 <body>
 
-<!-- PAGE 1 -->
+<!-- COUNTDOWN BAR -->
 
-<div id="page1" class="card fade-in">
-<div class="hero">
-<div class="hero-badge" id="heroJornadaBadge">⚡ Cargando jornada...</div>
-<h1>
-<span class="word-quiniela"><span class="emoji">⚽</span> QUINIELA</span>
-<span class="word-pro">PRO</span> <span class="word-fut">FUT</span>
-</h1>
-<div class="hero-sub"><strong>Dobles</strong> &amp; <em>Triples</em> &nbsp;·&nbsp; Multi-quiniela &nbsp;·&nbsp; ¡Gana más!</div>
+<div id="countdownBar">
+<div class="cd-label"><span class="cd-blink">⏳</span> Cierre de jornada en:</div>
+<div class="cd-digits">
+<div class="cd-block"><span class="cd-num" id="cd-hrs">00</span><span class="cd-lbl">hrs</span></div>
+<span class="cd-sep">:</span>
+<div class="cd-block"><span class="cd-num" id="cd-min">00</span><span class="cd-lbl">min</span></div>
+<span class="cd-sep">:</span>
+<div class="cd-block"><span class="cd-num" id="cd-sec">00</span><span class="cd-lbl">seg</span></div>
 </div>
-<div class="stats-row" id="statsRow">
-<div class="stat-box"><div class="stat-val" id="statJornada" style="font-size:clamp(12px,3vw,18px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">—</div><div class="stat-lbl">Jornada</div></div>
-<div class="stat-box"><div class="stat-val" id="statJugadores">—</div><div class="stat-lbl">Jugadores</div></div>
-<div class="stat-box"><div class="stat-val" id="statPrecio">$100</div><div class="stat-lbl">Desde</div></div>
-</div>
-<div class="tabla-costos">
-<div class="tabla-costos-titulo" id="tablaCostosTitulo">💰 PRECIOS — BASE <span id="tituloPrecioBase">$100</span> &nbsp;·&nbsp; <span style="color:var(--text-muted);font-size:10px;font-weight:700;">toca para ver tabla completa</span></div>
-<div id="tablaCostosBody">
-<div style="overflow-x:auto;">
-<table class="tabla-matrix" id="tablaMatriz">
-<thead><tr><th class="th-dobles">🔀 DOBLES ↓ · 🎲 TRIPLES →</th><th class="th-triple">0 Trip.</th><th class="th-triple">1 Trip.</th><th class="th-triple">2 Trip.</th></tr></thead>
-<tbody id="tablaMatrizBody"><tr><td colspan="4" style="text-align:center;padding:16px;color:var(--text-muted);font-size:12px;">Cargando...</td></tr></tbody>
-</table>
-</div>
-<div class="tabla-nota" id="tablaNotaPrecio">⚡ BASE × 2<sup>dobles</sup> × 3<sup>triples</sup> &nbsp;·&nbsp; Máx <strong>3D + 2T</strong></div>
-</div>
-</div>
-<div class="panel">
-<div class="section-title">👤 Tus Datos</div>
-<div id="aviso1" class="aviso"></div>
-<div class="field-group">
-<label class="field-label">WhatsApp (10 dígitos)</label>
-<input class="field-input" type="tel" id="whatsapp" placeholder="Ej. 7471234567" maxlength="10" inputmode="numeric" required oninput="this.value=this.value.replace(/\D/g,'').substring(0,10);onWhatsappInput(this.value)">
-</div>
-<div class="field-group">
-<label class="field-label">Nombre completo</label>
-<input class="field-input" type="text" id="nombre" placeholder="Ej. Julio César" autocomplete="name">
-</div>
-<div class="alias-panel">
-<div class="alias-title">🎟️ Alias de Jugador</div>
-<div class="alias-desc">Crea tu apodo único para esta jornada. Solo letras, números y guion bajo. Ej: APEX_PRO</div>
-<input class="field-input" type="text" id="alias" placeholder="Tu alias aquí" maxlength="20" autocomplete="off" style="border-color:rgba(245,197,24,.4);" oninput="this.value=this.value.toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,'')">
-</div>
-<button class="btn btn-gold" id="btnIniciar" onclick="validarIngreso()">ARMAR MI JUGADA ⚽</button>
-</div>
+<button class="cd-cta" onclick="mostrarRegistro()">⚽ Registrarme ahora</button>
 </div>
 
-<!-- PAGE 2 -->
+<!-- NAV -->
 
-<div id="page2" class="hidden fade-in">
-<div id="page2Header" class="page2-sticky-header">
-<div class="card">
-<div class="p2h-top">
-<div class="p2h-alias-wrap"><div class="p2h-lbl">Jugador</div><div id="bannerAlias" class="p2h-alias">—</div></div>
-<div class="p2h-progreso">
-<div class="p2h-prog-nums"><span class="prog-actual" id="cntPartidos">0</span><span id="cntPartidosTotal">/0</span></div>
-<div class="p2h-prog-bar"><div class="p2h-prog-fill" id="cntProgFill" style="width:0%"></div></div>
+<nav id="navPrincipal">
+<div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
+<ul class="nav-links">
+<li><button onclick="irSeccion('partidos-j20')">Partidos J20</button></li>
+<li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
+<li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
+<li><button onclick="irSeccion('premios')">Premios</button></li>
+<li><button onclick="mostrarSeguimiento()">En Vivo</button></li>
+<li><button class="btn-tema" id="btnTema" onclick="toggleTema()">🌙</button></li>
+<!-- ★ Admin — abre en pestaña nueva directamente -->
+<li><button class="nav-btn-admin" onclick="abrirAdmin()">⚙️ Admin</button></li>
+<li><button class="nav-btn-cta" onclick="mostrarRegistro()">⚽ Jugar Ahora</button></li>
+</ul>
+<div style="display:flex;align-items:center;gap:0.75rem;">
+<button class="btn-tema" id="btnTemaMobile" onclick="toggleTema()">🌙</button>
+<button class="hamburger" id="hambBtn" onclick="toggleMenu()" aria-label="Menú">
+<span></span><span></span><span></span>
+</button>
 </div>
-<div class="p2h-right">
-<div class="p2h-lbl">A pagar</div>
-<div class="p2h-num" id="cntPrecio" style="color:var(--green);font-size:22px;">$0</div>
-</div>
-</div>
-<div id="p2hAlerta" class="p2h-alerta hidden"></div>
-<div class="p2h-tabs">
-<div id="aviso2" class="aviso" style="margin-bottom:4px;"></div>
-<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-<div class="quinielas-nav" id="quinielasNav" style="flex:1;margin-bottom:0;"></div>
-<button class="btn-borrar-todo" onclick="borrarTodosPartidos()" title="Borrar selecciones">🗑️</button>
-</div>
-</div>
-</div>
-</div>
-<div class="card" style="padding-top:4px;">
-<div class="panel" style="padding:8px 14px;">
-<div id="partidosContainer">
-<p style="text-align:center;color:var(--text-muted);font-size:13px;font-weight:700;padding:20px 0;"><span class="spinner"></span> Cargando partidos...</p>
-</div>
-</div>
-</div>
-</div>
+</nav>
 
-<div id="barraCalc" class="hidden">
-<div class="barra-info">
-<div class="barra-label">Total a pagar:</div>
-<div class="barra-precio incomplete" id="barraTotal">$0</div>
-<div class="barra-detalle" id="barraDetalle">Selecciona tus partidos</div>
-</div>
-<button class="btn btn-green btn-sm" id="btnConfirmar" onclick="enviarQuinielas()">CONFIRMAR ✓</button>
+<div id="menuOverlay" onclick="cerrarMenu()"></div>
+
+<!-- MENÚ MÓVIL -->
+
+<div class="nav-mobile" id="navMobile">
+<button onclick="irSeccion('partidos-j20');cerrarMenu()">⚽ Partidos J20</button>
+<button onclick="irSeccion('ganadores');cerrarMenu()">🏆 Ganadores</button>
+<button onclick="irSeccion('como-funciona');cerrarMenu()">❓ Cómo funciona</button>
+<button onclick="irSeccion('premios');cerrarMenu()">💰 Premios</button>
+<button onclick="mostrarSeguimiento();cerrarMenu()">📊 En Vivo</button>
+<button onclick="abrirAdmin();cerrarMenu()" style="color:#FF6D00;">⚙️ Admin</button>
+<button class="cta-mobile" onclick="mostrarRegistro();cerrarMenu()">⚽ Jugar Ahora — $100 MXN</button>
 </div>
 
-<!-- PAGE 3 -->
+<!-- VISTA LANDING -->
 
-<div id="page3" class="card hidden fade-in">
-<div class="hero" style="padding:24px 20px 16px;">
-<div class="hero-badge">✅ Jugada Registrada</div>
-<h1 style="font-size:clamp(28px,8vw,42px);">¡YA<br>ESTÁS!</h1>
-<p>Solo falta tu pago para confirmar tu lugar.</p>
-</div>
-<div class="panel">
-<div class="section-title">📋 Tus Quinielas</div>
-<div id="resumenLista" class="resumen-lista"></div>
-<div class="total-box"><div class="tl">Total a Depositar</div><div class="tv" id="totalAPagar">$0</div><div class="ts" id="totalDetalle">—</div></div>
-<div id="listaBoletas" style="display:none;"></div>
-</div>
-<!-- reto solo en pageFinal -->
-<div class="panel">
-<div class="section-title">🏦 Datos de Pago</div>
-<div class="clabe-box">
-<div class="clabe-banco" id="clabeNombreBanco">BBVA</div>
-<div class="clabe-num" id="clabeNumero">— — — — — —</div>
-<div class="clabe-nombre" id="clabeNombre">Cargando...</div>
-<div class="clabe-total" id="clabeMonto">$0</div>
-<button class="btn-copy" onclick="copiarClabe()">📋 Copiar CLABE</button>
+<div id="vista-landing" class="vista activa">
+
+<section id="hero">
+<div class="hero-bg-3d"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div class="hero-hex"></div>
+<div class="hero-grid">
+<div class="hero-content">
+<div class="hero-tag"><div class="pdot"></div>Jornada 20 — Inscripciones Abiertas</div>
+<h1 class="hero-title"><span class="v">Quiniela</span><br><span class="o">Pro</span> Fut</h1>
+<p class="hero-desc">Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.</p>
+<div class="hero-referido"><div class="ref-icon">🔥</div><div class="ref-text"><strong>Premio especial J20:</strong> <span>$2,000 si aciertas 15/15</span> · $1,200 si aciertas 14/15</div></div>
+<div class="hero-btns">
+<button class="btn-v" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
+<button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
 </div>
 </div>
-<input type="hidden" id="costoTotalEsperado" value="0">
-<div class="panel">
-<div class="section-title">📸 Comprobante de Pago</div>
-<div id="aviso3" class="aviso"></div>
-<div class="upload-box">
-<div class="upload-icon">🧾</div>
-<div class="upload-title">Sube tu captura de transferencia</div>
-<div class="upload-desc">Foto o captura de pantalla de tu transferencia bancaria. Máx 10MB.<br><span style="font-size:10px;color:var(--green);font-weight:800;">✦ El sistema verificará automáticamente que el monto sea correcto.</span></div>
-<input type="file" id="archivoPago" accept="image/*" onchange="onArchivoSeleccionado(this)" style="margin-bottom:10px;">
-<div id="ocrPanel" class="ocr-panel hidden">
-<div class="ocr-preview-wrap"><img id="ocrPreviewImg" src="" alt="Comprobante"></div>
-<div class="ocr-status ocr-ok" id="ocrStatus">✅ Imagen lista — puedes subir tu comprobante</div>
-</div>
-<div id="progresoSubida" style="display:none;margin:10px 0 8px;">
-<div id="progresoLabel" style="font-size:12px;font-weight:800;color:var(--gold);text-align:center;margin-bottom:6px;letter-spacing:.5px;">Preparando...</div>
-<div style="width:100%;height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div id="progresoFill" style="height:100%;width:0%;background:var(--gold);border-radius:4px;transition:width .4s ease,background .3s;"></div></div>
-</div>
-<button class="btn btn-gold" id="btnSubir" onclick="subirComprobante()" disabled style="margin-top:10px;opacity:.5;">📤 SUBIR COMPROBANTE</button>
+<div class="hero-right">
+<div class="hero-stat-card"><div class="hsc-icon">🏆</div><div><div class="hsc-label">Ganador J19</div><div class="hsc-val oro" style="font-size:1.1rem;">CHRIS_</div></div></div>
+<div class="hero-stat-card"><div class="hsc-icon">💰</div><div><div class="hsc-label">Premio J19</div><div class="hsc-val oro">$720 MXN</div></div></div>
+<div class="hero-stat-card"><div class="hsc-icon">⚡</div><div><div class="hsc-label">Pagos en tiempo</div><div class="hsc-val">100%</div></div></div>
+<div class="hero-right-cta">
+<div class="hrc-title">⚽ Jornada 20 — 15 Partidos</div>
+<div class="hrc-ligas"><span class="hrc-liga">🇲🇽 Liga MX</span><span class="hrc-liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</span><span class="hrc-liga">🇩🇪 Bundesliga</span><span class="hrc-liga">🇮🇹 Serie A</span><span class="hrc-liga">🇪🇸 LaLiga</span></div>
+<div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 20</div>
 </div>
 </div>
+</div>
+</section>
+
+<div class="stats-bar">
+<div class="stat"><span class="stat-n" data-to="19">0</span><span class="stat-l">Jornadas Jugadas</span></div>
+<div class="stat"><span class="stat-n" data-to="900" style="color:var(--oro)">0</span><span class="stat-l">Pozo Estimado J20 $MXN</span></div>
+<div class="stat"><span class="stat-n" data-to="9">0</span><span class="stat-l">Jugadores J19</span></div>
+<div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
 </div>
 
-<!-- PAGE FINAL -->
+<!-- PARTIDOS -->
 
-<div id="pageFinal" class="card hidden fade-in">
-<div class="panel success-page">
-<span class="success-icon">🏆</span>
-<div class="success-title">¡LISTO!</div>
-<p class="success-sub">Tu pago fue recibido y tus quinielas están activas.<br>¡Mucha suerte! 🍀⚽</p>
+<div class="partidos-section" id="partidos-j20">
+<section class="sec">
+<span class="chip reveal">Jornada 20</span>
+<h2 class="stitle reveal">Partidos a<br><span style="color:var(--verde)">pronosticar</span></h2>
+<p class="sdesc reveal">15 partidos de las mejores ligas del mundo. ¿Cuántos puedes acertar?</p>
+<div class="pozo-preview reveal">
+<div><div class="pozo-preview-label">Premio especial</div><div class="pozo-preview-num">$2,000 MXN</div></div>
+<div style="width:1px;background:rgba(255,216,77,0.3);align-self:stretch;"></div>
+<div><div class="pozo-preview-label">Partidos</div><div class="pozo-preview-num" style="color:var(--verde);">15</div></div>
+<div style="width:1px;background:rgba(255,216,77,0.3);align-self:stretch;"></div>
+<div><div class="pozo-preview-label">Entrada</div><div class="pozo-preview-num" style="font-size:2rem;">$100 MXN</div></div>
 </div>
-<!-- Reto a amigo — aquí y solo aquí -->
-<div class="panel">
-<div class="section-title">😤 Reta a un amigo</div>
-<p style="font-size:13px;color:var(--text-muted);font-weight:700;margin-bottom:14px;line-height:1.6;">Ya estás dentro. ¿Le atinas más que alguien? Mándale el link y que compita contigo.</p>
-<a id="btnWA" class="btn-wa" href="#" target="_blank" style="margin-bottom:10px;">
-<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/></svg>
-ENVIAR RETO POR WHATSAPP
-</a>
+<div class="partidos-grid reveal">
+<div class="partidos-dia">
+<div class="partidos-dia-label"><div class="dia-badge dia-viernes">📅 Viernes 1 Mayo</div><div class="dia-line"></div></div>
+<div class="partidos-lista">
+<div class="partido-card"><div class="partido-num">1</div><div class="partido-liga-icon">🇪🇸</div><div class="partido-info"><div class="partido-equipos">Girona <span class="vs">vs</span> Mallorca</div><div class="partido-liga-tag">LaLiga</div></div></div>
 </div>
-<!-- Boletas -->
-<div class="panel" id="boletasGuardadas" style="display:none;">
-<div class="section-title">🎟️ Tus Boletas</div>
 </div>
-<div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
-<button class="btn btn-ghost" onclick="reiniciar()" style="flex:1;min-width:140px;">🔄 NUEVA JUGADA</button>
-<button class="btn btn-cerrar" onclick="mostrarDespedida()" style="flex:1;min-width:140px;">✅ FINALIZAR</button>
+<div class="partidos-dia">
+<div class="partidos-dia-label"><div class="dia-badge dia-sabado">📅 Sábado 2 Mayo</div><div class="dia-line"></div></div>
+<div class="partidos-lista">
+<div class="partido-card partido-destacado"><div class="partido-num">2</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Tigres UANL <span class="vs">vs</span> Guadalajara</div><div class="partido-liga-tag">Liga MX — Cuartos de Final</div></div></div>
+<div class="partido-card partido-destacado"><div class="partido-num">3</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Atlas <span class="vs">vs</span> Cruz Azul</div><div class="partido-liga-tag">Liga MX — Cuartos de Final</div></div></div>
+<div class="partido-card"><div class="partido-num">4</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Brentford <span class="vs">vs</span> West Ham</div><div class="partido-liga-tag">Premier League</div></div></div>
+<div class="partido-card"><div class="partido-num">5</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Newcastle <span class="vs">vs</span> Brighton</div><div class="partido-liga-tag">Premier League</div></div></div>
+<div class="partido-card"><div class="partido-num">6</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Arsenal <span class="vs">vs</span> Fulham</div><div class="partido-liga-tag">Premier League</div></div></div>
+<div class="partido-card"><div class="partido-num">7</div><div class="partido-liga-icon">🇪🇸</div><div class="partido-info"><div class="partido-equipos">Valencia <span class="vs">vs</span> Atlético Madrid</div><div class="partido-liga-tag">LaLiga</div></div></div>
+<div class="partido-card"><div class="partido-num">8</div><div class="partido-liga-icon">🇪🇸</div><div class="partido-info"><div class="partido-equipos">Alavés <span class="vs">vs</span> Athletic Bilbao</div><div class="partido-liga-tag">LaLiga — Derbi Vasco</div></div></div>
+<div class="partido-card"><div class="partido-num">9</div><div class="partido-liga-icon">🇩🇪</div><div class="partido-info"><div class="partido-equipos">Bayer Leverkusen <span class="vs">vs</span> RB Leipzig</div><div class="partido-liga-tag">Bundesliga</div></div></div>
+</div>
+</div>
+<div class="partidos-dia">
+<div class="partidos-dia-label"><div class="dia-badge dia-domingo">📅 Domingo 3 Mayo</div><div class="dia-line"></div></div>
+<div class="partidos-lista">
+<div class="partido-card partido-destacado"><div class="partido-num">10</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">América <span class="vs">vs</span> Pumas UNAM</div><div class="partido-liga-tag">Liga MX — Cuartos de Final</div></div></div>
+<div class="partido-card partido-destacado"><div class="partido-num">11</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Toluca <span class="vs">vs</span> Pachuca</div><div class="partido-liga-tag">Liga MX — Cuartos de Final</div></div></div>
+<div class="partido-card"><div class="partido-num">12</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Bournemouth <span class="vs">vs</span> Crystal Palace</div><div class="partido-liga-tag">Premier League</div></div></div>
+<div class="partido-card"><div class="partido-num">13</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Aston Villa <span class="vs">vs</span> Tottenham</div><div class="partido-liga-tag">Premier League</div></div></div>
+<div class="partido-card partido-destacado"><div class="partido-num">14</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Manchester United <span class="vs">vs</span> Liverpool</div><div class="partido-liga-tag">Premier League — Clásico Inglés</div></div></div>
+<div class="partido-card"><div class="partido-num">15</div><div class="partido-liga-icon">🇪🇸</div><div class="partido-info"><div class="partido-equipos">Getafe <span class="vs">vs</span> Rayo Vallecano</div><div class="partido-liga-tag">LaLiga — Derbi Madrileño</div></div></div>
+</div>
+</div>
+</div>
+<div class="partidos-cta reveal">
+<button class="btn-v" onclick="mostrarRegistro()" style="font-size:1.1rem;padding:1.1rem 2.5rem;">⚽ Registrar mi Quiniela — $100 MXN</button>
+</div>
+</section>
+</div>
+
+<!-- GANADORES -->
+
+<div class="ganadores-section" id="ganadores">
+<section class="sec">
+<span class="chip reveal">Ganadores Reales</span>
+<h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
+<p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
+<div class="ganadores-grid">
+<div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 19</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">CHRIS_</div><div class="ganador-alias">Christhian H. Rodriguez · Ganador J19</div><div class="ganador-premio">$720</div><div class="ganador-meta"><div class="ganador-dot"></div>11 aciertos · 73% efectividad · Jornada 19</div></div>
+<div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 18</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">APLES & MR.HAPPY</div><div class="ganador-alias">Empate 1er lugar · J18</div><div class="ganador-premio">$440</div><div class="ganador-meta"><div class="ganador-dot"></div>8 aciertos · Empate · Jornada 18</div></div>
+</div>
+<div class="historial reveal" style="margin-top:2.5rem;">
+<div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>
+<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">CHRIS_ <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 19</span></span><span class="h-aciertos">11</span><span class="h-premio">$720</span></div>
+<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">APLES <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
+<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">MR. HAPPY <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
+<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span><span class="h-aciertos">9</span><span class="h-premio">$880</span></div>
+<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
+<div class="historial-row" style="opacity:0.4;"><span class="h-pos" style="color:var(--muted);">—</span><span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span><span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span><span class="h-premio" style="color:var(--verde);">$???</span></div>
+</div>
+</section>
+</div>
+
+<!-- CÓMO FUNCIONA -->
+
+<div style="background:var(--negro);">
+<section class="sec" id="como-funciona">
+<span class="chip reveal">El Proceso</span>
+<h2 class="stitle reveal">Así de fácil<br>es participar</h2>
+<p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
+<div class="steps">
+<div class="step reveal"><div class="step-bg">01</div><div class="step-icon">⚽</div><h3>Entra al formulario</h3><p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p></div>
+<div class="step reveal"><div class="step-bg">02</div><div class="step-icon">🔀</div><h3>Juega con Dobles y Triples</h3><p>Marca 2 o 3 opciones por partido para multiplicar tu boleta.</p></div>
+<div class="step reveal"><div class="step-bg">03</div><div class="step-icon">📊</div><h3>Sigue tu posición en vivo</h3><p>Ranking actualizado en tiempo real conforme caen los resultados.</p></div>
+<div class="step reveal"><div class="step-bg">04</div><div class="step-icon">🏆</div><h3>Cobra tu premio</h3><p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p></div>
+</div>
+</section>
+</div>
+
+<!-- LEAD CAPTURE -->
+
+<div class="lead-section" id="unete">
+<div class="lead-inner">
+<div class="lead-badge-wrap reveal"><div class="lead-live-badge"><div class="pdot"></div>¿Primera vez aquí?</div></div>
+<div class="lead-card reveal">
+<h2 class="lead-title">¿Nuevo en las<br><span class="v">Quinielas?</span></h2>
+<p class="lead-sub">Déjanos tu WhatsApp y te explicamos cómo funciona, cuándo arranca la próxima jornada y cómo ganar desde tu primera jugada.</p>
+<div class="lead-benefits"><div class="lead-chip">⚽ Multi-liga</div><div class="lead-chip">🏆 Ganas el pozo</div><div class="lead-chip">📊 Ranking en vivo</div><div class="lead-chip">💸 Desde $100 MXN</div></div>
+<div class="lead-form-inner" id="leadFormInner">
+<div class="lead-form-grid">
+<div class="lf-group"><label class="lf-label">Tu nombre</label><input class="lf-input" type="text" id="lf-nombre" placeholder="Ej. Carlos, El Chino, Perkys…" autocomplete="given-name"><span class="lf-error" id="lferr-nombre">Escribe tu nombre para continuar.</span></div>
+<div class="lf-group"><label class="lf-label">WhatsApp</label><input class="lf-input" type="tel" id="lf-wp" placeholder="10 dígitos — Ej. 5512345678" maxlength="10" inputmode="numeric" autocomplete="tel"><span class="lf-error" id="lferr-wp">Ingresa un número de 10 dígitos.</span></div>
+<div class="lf-group"><label class="lf-label">Email <span style="opacity:.45;font-weight:400;font-size:10px">(opcional)</span></label><input class="lf-input" type="email" id="lf-email" placeholder="tu@correo.com" autocomplete="email"></div>
+<label class="lf-check-wrap" for="lf-notif"><input type="checkbox" id="lf-notif" checked><div class="lf-checkbox" id="lfCheckIcon">✓</div><span class="lf-check-text">Avísame cuando <strong>inicie la siguiente jornada</strong> 🔔</span></label>
+</div>
+<button class="lead-btn" id="leadBtn" onclick="handleLeadSubmit()"><span class="btn-text-inner">📲 Quiero Info — Mándame Todo</span><div class="lead-spinner"></div></button>
+<p class="lead-privacy">🔒 Solo usamos tus datos para avisarte de Quiniela Pro Fut. Sin spam.</p>
+</div>
+<div class="lead-success" id="leadSuccess">
+<span class="lead-success-icon">🎉</span>
+<h3 class="lead-success-title">¡Ya estás dentro!</h3>
+<p class="lead-success-text">En breve te mandamos todo por WhatsApp.</p>
+<a class="lead-wa-btn" id="leadWaLink" href="#" target="_blank">💬 Escríbenos en WhatsApp</a>
+</div>
+<div class="lead-social-proof" id="leadSocialProof">
+<div class="lsp-avatars"><div class="lsp-ava">C</div><div class="lsp-ava">A</div><div class="lsp-ava">M</div><div class="lsp-ava">+</div></div>
+<div class="lsp-text"><strong>+9 jugadores activos</strong> en J19.<br>CHRIS_ ganó $720 con 11 aciertos 🏆</div>
+</div>
+</div>
 </div>
 </div>
 
-<div id="boletaRenderContainer"></div>
+<!-- LIGAS -->
 
-<div id="boletaModal" class="boleta-modal hidden">
-<div class="boleta-backdrop" onclick="cerrarBoleta()"></div>
-<div class="boleta-box">
-<div class="boleta-box-header"><div class="boleta-box-title">🎟️ TU BOLETA</div><button class="boleta-close-btn" onclick="cerrarBoleta()">✕</button></div>
-<div class="boleta-img-wrap"><img id="boletaImgEl" src="" alt="Boleta"></div>
-<p class="boleta-hint">📱 En celular: mantén presionada la imagen para guardarla</p>
-<a id="boletaDownloadLink" class="btn btn-gold" download="Boleta_QPF.png" style="display:block;text-align:center;text-decoration:none;padding:14px;font-size:18px;">💾 DESCARGAR IMAGEN</a>
-<button class="btn btn-ghost" onclick="cerrarBoleta()" style="margin-top:8px;">✕ Cerrar</button>
+<section class="sec" id="ligas">
+<span class="chip reveal">Cobertura</span>
+<h2 class="stitle reveal">Todas las ligas<br>que importan</h2>
+<p class="sdesc reveal">Cada jornada incluye los mejores partidos de las competencias más importantes.</p>
+<div class="ligas reveal"><div class="liga on">🇲🇽 Liga MX</div><div class="liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</div><div class="liga">🌍 Champions League</div><div class="liga">🇪🇸 LaLiga</div><div class="liga">🇩🇪 Bundesliga</div><div class="liga">🌎 Copa MX</div></div>
+</section>
+
+<!-- TRACKING PREVIEW -->
+
+<div style="background:var(--card);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
+<section class="sec">
+<span class="chip reveal">En Tiempo Real</span>
+<h2 class="stitle reveal">Sigue el ranking<br>mientras pasa</h2>
+<p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones.</p>
+<div class="tbox reveal">
+<div class="thead"><span class="thead-t">Jornada 19 — Resultado Final</span><span class="live"><div class="ldot"></div>Completada</span></div>
+<div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
+<div class="trow"><span class="rk r1">1</span><span class="pname">CHRIS_</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">11</div></div>
+<div class="trow"><span class="rk r2">2</span><span class="pname">CATO ROJO</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">9</div></div>
+<div class="trow"><span class="rk r3">3</span><span class="pname">VJBA</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">9</div></div>
+<div class="trow"><span class="rk r4">4</span><span class="pname">PERKYS_</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">9</div></div>
+</div>
+<div style="text-align:center;margin-top:2rem;"><button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button></div>
+</section>
+</div>
+
+<!-- PREMIOS -->
+
+<div style="background:var(--card2);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
+<section class="sec" id="premios">
+<span class="chip reveal">Premio</span>
+<h2 class="stitle reveal">El ganador<br><span style="color:var(--oro)">se lleva todo</span></h2>
+<p class="sdesc reveal">Una quiniela. Un campeón. El pozo completo de la jornada.</p>
+<div class="premio-principal reveal">
+<div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:800;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
+<div style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
+<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);">EL POZO</div>
+<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--oro);opacity:0.8;margin-bottom:1rem;">COMPLETO</div>
+<div style="font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.7;">El jugador con más aciertos gana <strong style="color:var(--texto)">el pozo completo acumulado</strong>.</div>
+<div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.25);border-radius:8px;padding:0.75rem 1.5rem;"><span>🤝</span><span style="font-size:0.82rem;color:#FF8FA3;font-weight:600;line-height:1.5;">En caso de empate, el pozo se divide a partes iguales.</span></div>
+</div>
+<div class="promo-referido reveal" style="background:linear-gradient(135deg,rgba(255,109,0,0.06),rgba(255,216,77,0.06));border-color:rgba(255,109,0,0.4);">
+<div style="font-size:3.5rem;flex-shrink:0;">🔥</div>
+<div style="flex:1;min-width:220px;">
+<div class="promo-badge" style="background:#FF6D00;">EXCLUSIVO J20</div>
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#FF6D00;line-height:1.1;margin-bottom:0.5rem;">BOLSA ESPECIAL<br>ESTA JORNADA</div>
+<div style="font-size:0.9rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--oro);">15/15 aciertos → $2,000 MXN garantizados</strong><br><strong style="color:var(--texto);">14/15 aciertos → $1,200 MXN garantizados</strong></div>
+</div>
+<button class="btn-v" onclick="mostrarRegistro()" style="flex-shrink:0;background:#FF6D00;">⚽ Quiero ganar</button>
+</div>
+</section>
+</div>
+
+<!-- TRANSPARENCIA -->
+
+<div class="transparencia-section" id="transparencia">
+<section class="sec">
+<span class="chip reveal">Transparencia Total</span>
+<h2 class="stitle reveal">¿A dónde va<br><span style="color:var(--verde)">tu dinero?</span></h2>
+<p class="sdesc reveal">Aquí no hay sorpresas. Te decimos exactamente cómo se distribuye el pozo.</p>
+<div class="transparencia-card reveal">
+<div class="t-row">
+<div class="t-bloque"><div class="t-pct v">80%</div><div class="t-label">🏆 Para el Ganador</div><div class="t-desc">Pago inmediato vía transferencia al jugador con más aciertos.</div></div>
+<div class="t-sep"></div>
+<div class="t-bloque"><div class="t-pct g">20%</div><div class="t-label">⚙️ Gastos de Operación</div><div class="t-desc">Cubre la plataforma, curación de partidos y administración.</div></div>
+</div>
+<div class="t-ejemplo"><span class="t-ejemplo-icon">💡</span><span>10 jugadores × $100 = $1,000 pozo. El ganador recibe <strong style="color:var(--verde)">$800 MXN</strong> directo.</span></div>
+</div>
+</section>
+</div>
+
+<!-- TESTIMONIALES -->
+
+<div style="background:var(--card);border-top:1px solid var(--borde);">
+<section class="sec" id="testimonios">
+<span class="chip reveal">La Comunidad Habla</span>
+<h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
+<div class="tgrid">
+<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Jornada 19 fue mía. 11 aciertos, $720 al bolsillo. La próxima los barro de nuevo 🔥</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CHRIS_</div><div class="ameta">Ganador Jornada 19 · $720 MXN</div></div></div></div>
+<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela, intentenlo y les ira muy mal !!!</p><div class="tauthor"><div class="ava">K</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornadas 17 y 15</div></div></div></div>
+<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo.</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CATO</div><div class="ameta">Jugador recurrente</div></div></div></div>
+<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que se puede meter dobles o triples, me ayuda a asegurar mi victoria.</p><div class="tauthor"><div class="ava">Ap</div><div><div class="aname">A_P_E_X_</div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
+</div>
+</section>
+</div>
+
+<!-- CTA FINAL -->
+
+<div class="cta-wrap" id="registro-cta">
+<div class="cta-inner">
+<span class="chip reveal">¿Listo?</span>
+<h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">Jornada 20</span></h2>
+<p class="sdesc reveal">15 partidos. 1 ganador. El pozo completo.</p>
+<div class="cta-btns reveal">
+<button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button>
+<button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
+</div>
+<!-- Botón recordatorio manual -->
+<div style="margin-top:1.5rem;" class="reveal">
+<button onclick="abrirRemind()" style="background:none;border:1px solid rgba(0,255,135,0.25);color:var(--verde);padding:0.7rem 1.8rem;border-radius:8px;font-size:0.88rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;">🔔 Avísame de la próxima jornada</button>
+</div>
+<div class="trust reveal">
+<div class="ti"><span>🔒</span> Pago seguro</div>
+<div class="ti"><span>⚡</span> Resultados en tiempo real</div>
+<div class="ti"><span>🏆</span> Premios garantizados</div>
+<div class="ti"><span>📱</span> 100% desde el celular</div>
 </div>
 </div>
+</div>
+
+<footer>
+<span class="flogo">Quiniela<em>Pro</em>Fut</span>
+<p>©️ 2026 quinielaprofut.com — Todos los derechos reservados</p>
+<p>contacto@quinielaprofut.com</p>
+<p class="footer-legal">* Los premios se entregan sobre el monto neto del pozo total recaudado, descontando el 20% correspondiente a gastos de administración, operación y tecnología.</p>
+</footer>
+
+</div><!-- /vista-landing -->
+
+<!-- VISTA REGISTRO -->
+
+<div id="vista-registro">
+<div class="iframe-topbar">
+<button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+<div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Registro</div>
+<div class="topbar-badge"><div class="ldot-sm"></div>Jornada Activa</div>
+</div>
+<div class="iframe-wrap">
+<div class="iframe-loading" id="loadingRegistro"><div class="il-icon">⚽</div><div class="il-title">Cargando Registro</div><div class="il-sub">Preparando tu quiniela...</div><div class="il-bar"><div class="il-fill"></div></div></div>
+<iframe id="iframe-registro" class="iframe-main" src="" title="Registro de Quiniela" allow="clipboard-write"></iframe>
+</div>
+</div>
+
+<!-- VISTA ANÁLISIS -->
+
+<div id="vista-analisis">
+<div class="iframe-topbar" style="border-bottom-color:var(--oro);">
+<button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+<div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; <span style="color:var(--oro);">Análisis Premium</span></div>
+<div class="topbar-badge oro"><div class="ldot-sm"></div>Exclusivo</div>
+</div>
+<iframe id="iframe-analisis" class="iframe-main" src="" title="Análisis Premium"></iframe>
+</div>
+
+<!-- VISTA SEGUIMIENTO -->
+
+<div id="vista-seguimiento">
+<div class="iframe-topbar seguimiento-bar">
+<button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+<div class="topbar-title" style="color:var(--oro);">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Seguimiento</div>
+<div class="topbar-badge oro"><div class="ldot-sm"></div>En Vivo</div>
+</div>
+<div class="iframe-wrap">
+<div class="iframe-loading" id="loadingSeguimiento"><div class="il-icon">📊</div><div class="il-title">Cargando Ranking</div><div class="il-sub">Obteniendo datos en tiempo real...</div><div class="il-bar"><div class="il-fill"></div></div></div>
+<iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo"></iframe>
+</div>
+</div>
+
+<!-- BOTÓN FLOTANTE -->
+
+<button id="btnFlotantePartidos" onclick="irSeccion('partidos-j20')">
+<div class="fp-dot"></div>⚽ Ver Partidos J20<span class="fp-badge">15</span>
+</button>
+
+<!-- ★ POPUP RECORDATORIO -->
+
+<div class="remind-overlay" id="remindOverlay" onclick="cerrarRemindSiOverlay(event)">
+<div class="remind-modal">
+<button class="remind-close" onclick="cerrarRemind()">✕</button>
+<div class="remind-form-wrap" id="remindFormWrap">
+<span class="remind-ico">🔔</span>
+<h3 class="remind-title">¡Espera!<br><span>Te avisamos</span></h3>
+<p class="remind-sub">Déjanos tu nombre y WhatsApp. Te mandamos mensaje directo cuando abra el registro de la próxima jornada.</p>
+<div class="remind-saved" id="remindSavedBadge">✓ Datos guardados — puedes actualizar</div>
+<input class="remind-input" type="text" id="remind-nombre" placeholder="Tu nombre o apodo" maxlength="40" oninput="validarRemind()">
+<input class="remind-input" type="tel" id="remind-wp" placeholder="WhatsApp (10 dígitos)" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10);validarRemind()">
+<button class="remind-btn" id="remindBtn" onclick="guardarRemind()" disabled>🔔 Regístrame — avísame</button>
+<button class="remind-skip" onclick="cerrarRemind()">Ahora no</button>
+</div>
+<div class="remind-success" id="remindSuccess">
+<span class="remind-ok-ico">✅</span>
+<h3 class="remind-ok-title">¡Listo!</h3>
+<p class="remind-ok-text">Te mandamos WhatsApp en cuanto abra la próxima jornada. ⚽</p>
+<p id="remindNombreOk" style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--verde);margin-top:8px;"></p>
+<button class="remind-btn" onclick="cerrarRemind()" style="margin-top:14px;">Perfecto 👊</button>
+</div>
+</div>
+</div>
+
+<!-- SPLASH -->
+
+<div id="splashScreen">
+<div class="splash-logo">Quiniela<em>Pro</em>Fut</div>
+<div class="splash-titulo">Cargando...</div>
+<div class="splash-sub">Un momento por favor</div>
+<div class="splash-barra"><div class="splash-barra-fill"></div></div>
+<div class="splash-dots"><div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div></div>
+</div>
+
+<!-- Banner ya registrado -->
+
+<div class="remind-banner" id="remindBanner"></div>
 
 <script>
-// ════════════════════════════════════════════════════
-// QUINIELA PRO FUT — Index.html (Apps Script)
-// VERSIÓN OPTIMIZADA v2
-// Fixes: prompt()/confirm() → modales propios (iOS compat)
-// tap targets 44px (Apple HIG)
-// ════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════
+// URLs — actualiza solo aquí cada jornada
+// ════════════════════════════════════════════════════════════
+var URL_REGISTRO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
+var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
+var URL_ANALISIS = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=analisis';
+// ★ Admin: misma URL base + ?p=admin — abre en pestaña nueva
+var URL_ADMIN = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=admin';
 
-// ─── TEMA: solo dark mode ─────────────────────────────
-// (consistencia total en cualquier hora del día)
+var FECHA_CIERRE_JORNADA = '2026-05-01T12:30:00';
+var TU_WHATSAPP = '5217471193095';
+var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';
 
-// ─── Estado global ────────────────────────────────────
-var PRECIO_BASE = 100;
-var userData = { nombre:'', whatsapp:'' };
-var aliasBase = '';
-var partidosGlobal = [];
-var numPartidos = 0;
-var datosPago = { clabe:'', nombre:'', banco:'' };
-var quinielas = [];
-var quinielaActiva = 0;
-var resultadoGuardado = null;
+var iframesLoaded = { registro:false, seguimiento:false, analisis:false };
 
-// ─── CACHÉ DE PARTIDOS — precarga en background ───────
-var _partidosPrecargados = null;
-var _precargaEnCurso = false;
-
-// ─── INIT ─────────────────────────────────────────────
-google.script.run
-.withSuccessHandler(function(data) {
-if (data) {
-if (data.boleto) PRECIO_BASE = Number(data.boleto) || 100;
-if (data.nombreJornada) {
-document.getElementById('statJornada').textContent = data.nombreJornada;
-document.getElementById('heroJornadaBadge').textContent = '⚡ ' + data.nombreJornada;
+// ════════════════════════════════════════════════════════════
+// ★ TEMA — MANUAL SIN HORARIO AUTOMÁTICO
+// clave localStorage: 'qpf-tema' → 'dia'|'noche'
+// ════════════════════════════════════════════════════════════
+function aplicarTema(dia) {
+var html = document.documentElement;
+var btns = document.querySelectorAll('#btnTema,#btnTemaMobile');
+if (dia) { html.classList.add('dia'); btns.forEach(function(b){b.textContent='🌙';}); }
+else { html.classList.remove('dia'); btns.forEach(function(b){b.textContent='☀️';}); }
 }
-rellenarTablaPrecios(Number(data.boleto) || 100);
-if (data.total !== undefined) document.getElementById('statJugadores').textContent = data.total;
-document.getElementById('statPrecio').textContent = '$' + PRECIO_BASE;
+function toggleTema() {
+var dia = !document.documentElement.classList.contains('dia');
+aplicarTema(dia);
+try { localStorage.setItem('qpf-tema', dia ? 'dia' : 'noche'); } catch(e) {}
 }
-precargarPartidos();
-})
-.withFailureHandler(function(){ precargarPartidos(); })
-.getEstadisticas();
+// Init tema — solo desde localStorage, sin detectar hora
+(function(){
+var g = ''; try { g = localStorage.getItem('qpf-tema') || ''; } catch(e) {}
+aplicarTema(g === 'dia'); // default: noche
+})();
 
-function precargarPartidos() {
-if (_partidosPrecargados || _precargaEnCurso) return;
-_precargaEnCurso = true;
-google.script.run
-.withSuccessHandler(function(p) { _partidosPrecargados = p || []; _precargaEnCurso = false; })
-.withFailureHandler(function() { _precargaEnCurso = false; })
-.getPartidos();
+// ════════════════════════════════════════════════════════════
+// COUNTDOWN
+// ════════════════════════════════════════════════════════════
+(function(){
+var bar = document.getElementById('countdownBar');
+var ts = new Date(FECHA_CIERRE_JORNADA).getTime();
+function tick() {
+var diff = ts - Date.now();
+if (diff <= 0) {
+bar.classList.add('cerrado');
+['cd-hrs','cd-min','cd-sec'].forEach(function(id){ document.getElementById(id).textContent='00'; });
+var lbl = bar.querySelector('.cd-label');
+if(lbl) lbl.innerHTML='<span>⚽</span> Inscripciones cerradas — próxima jornada pronto';
+var cta = bar.querySelector('.cd-cta');
+if(cta){ cta.textContent='🔔 Avísame'; cta.onclick=function(){abrirRemind();}; }
+clearInterval(t); return;
 }
-
-function toggleTabla() {
-var body=document.getElementById('tablaCostosBody');
-body.classList.toggle('hidden');
+var s=Math.floor(diff/1000), h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60;
+document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+document.getElementById('cd-sec').textContent=String(sec).padStart(2,'0');
+if(h<2) bar.style.background='linear-gradient(90deg,#1a0000,#2d0505,#1a0000)';
 }
-document.getElementById('tablaCostosTitulo').addEventListener('click', toggleTabla);
+tick(); var t=setInterval(tick,1000);
+})();
 
-// ════════════════════════════════════════════════════
-// MODAL PROPIO — reemplaza prompt() y confirm() de iOS
-// ════════════════════════════════════════════════════
-// mostrarModal(opts) — opts:
-// title, msg, tipo: 'confirm' | 'input'
-// placeholder (para tipo input), valorInicial
-// onOk(valor) — callback cuando el usuario confirma
-// onCancel — opcional
-function mostrarModal(opts) {
-var overlay = document.createElement('div');
-overlay.className = 'modal-overlay';
-var esInput = opts.tipo === 'input';
-var inputId = 'modalInputField_' + Date.now();
-overlay.innerHTML =
-'<div class="modal-box">' +
-'<div class="modal-title">' + (opts.title || '⚽ Confirmar') + '</div>' +
-'<div class="modal-msg">' + (opts.msg || '') + '</div>' +
-(esInput ? '<input class="modal-input" id="' + inputId + '" type="text" maxlength="20" placeholder="' + (opts.placeholder || '') + '" autocomplete="off" autocorrect="off" spellcheck="false">' : '') +
-'<div class="modal-btns">' +
-'<button class="btn btn-ghost" id="modalBtnCancelar">✕ Cancelar</button>' +
-'<button class="btn btn-green" id="modalBtnOk">' + (esInput ? '✓ Aceptar' : '✓ Sí, confirmar') + '</button>' +
-'</div></div>';
-document.body.appendChild(overlay);
-
-var inputEl = esInput ? document.getElementById(inputId) : null;
-if (inputEl) {
-inputEl.value = opts.valorInicial || '';
-setTimeout(function(){ inputEl.focus(); inputEl.select(); }, 200);
-// Transformar a mayúsculas en tiempo real
-inputEl.addEventListener('input', function(){
-this.value = this.value.toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,'');
+// ════════════════════════════════════════════════════════════
+// LEAD FORM
+// ════════════════════════════════════════════════════════════
+document.getElementById('lf-notif').addEventListener('change',function(){
+document.getElementById('lfCheckIcon').textContent=this.checked?'✓':'';
 });
-// Enter confirma
-inputEl.addEventListener('keydown', function(e){ if(e.key==='Enter') confirmar(); });
-}
-
-function confirmar() {
-var val = esInput ? (inputEl ? inputEl.value.trim() : '') : true;
-overlay.remove();
-if (opts.onOk) opts.onOk(val);
-}
-function cancelar() {
-overlay.remove();
-if (opts.onCancel) opts.onCancel();
-}
-
-document.getElementById('modalBtnOk').onclick = confirmar;
-document.getElementById('modalBtnCancelar').onclick = cancelar;
-overlay.onclick = function(e){ if(e.target === overlay) cancelar(); };
-}
-
-// ════════════════════════════════════════════════════
-// PAGE 1 — Validar ingreso
-// ════════════════════════════════════════════════════
-function validarIngreso() {
-var n=document.getElementById('nombre').value.trim();
-var w=document.getElementById('whatsapp').value.trim();
-var al=document.getElementById('alias').value.trim();
-var av=document.getElementById('aviso1');
-limpiarAviso(av);
-if(!n){mostrarAviso(av,'error','Escribe tu nombre completo.');return;}
-if(!w||!/^\d{10}$/.test(w)){mostrarAviso(av,'error','El WhatsApp debe ser exactamente 10 dígitos.');return;}
-if(!al||al.length<3){mostrarAviso(av,'error','El alias debe tener al menos 3 caracteres.');return;}
-userData.nombre=n; userData.whatsapp=w; aliasBase=al;
-var btn=document.getElementById('btnIniciar');
-btn.disabled=true; btn.innerHTML='<span class="spinner"></span>VERIFICANDO...';
-google.script.run
-.withSuccessHandler(resultadoVerificacion)
-.withFailureHandler(function(){
-btn.disabled=false; btn.textContent='ARMAR MI JUGADA ⚽';
-mostrarAviso(av,'error','Error de conexión. Intenta de nuevo.');
-})
-.verificarAlias(al, w);
-}
-
-function resultadoVerificacion(res) {
-var av=document.getElementById('aviso1'), btn=document.getElementById('btnIniciar');
-if(res.estado==='ALIAS_DUPLICADO'){
-btn.disabled=false; btn.textContent='ARMAR MI JUGADA ⚽';
-mostrarAviso(av,'error','❌ Ese alias ya está en uso esta jornada. Elige otro.'); return;
-}
-if(res.estado==='CERRADO'){
-btn.disabled=false; btn.textContent='ARMAR MI JUGADA ⚽';
-mostrarAviso(av,'error','🔒 La quiniela está cerrada por el momento.'); return;
-}
-document.getElementById('page1').classList.add('hidden');
-document.getElementById('page2').classList.remove('hidden');
-document.getElementById('barraCalc').classList.remove('hidden');
-document.getElementById('bannerAlias').textContent=aliasBase;
-quinielas=[]; quinielaActiva=0;
-agregarQuiniela();
-
-if (_partidosPrecargados) {
-initPartidos(_partidosPrecargados);
-} else if (_precargaEnCurso) {
-var intentos=0;
-var esperar=setInterval(function(){
-intentos++;
-if (_partidosPrecargados) { clearInterval(esperar); initPartidos(_partidosPrecargados); }
-else if (intentos>25) { clearInterval(esperar); _cargarPartidosFallback(); }
-},200);
-} else {
-_cargarPartidosFallback();
-}
-}
-
-function _cargarPartidosFallback() {
-google.script.run
-.withSuccessHandler(function(p){ _partidosPrecargados=p; initPartidos(p); })
-.withFailureHandler(function(){
-mostrarAviso(document.getElementById('aviso2'),'error','Error al cargar partidos. Recarga la página.');
-})
-.getPartidos();
-}
-
-// ════════════════════════════════════════════════════
-// QUINIELAS MÚLTIPLES
-// ════════════════════════════════════════════════════
-function agregarQuiniela() {
-if (quinielas.length > 0) {
-// ★ FIX: modal propio en lugar de prompt() nativo (roto en iOS)
-mostrarModal({
-tipo: 'input',
-title: '🎟️ NUEVA QUINIELA',
-msg: 'Alias para la quiniela ' + (quinielas.length + 1) + ':',
-placeholder: aliasBase + '_' + (quinielas.length + 1),
-valorInicial: aliasBase + '_' + (quinielas.length + 1),
-onOk: function(nuevoAlias) {
-nuevoAlias = (nuevoAlias || '').trim().toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,'');
-if (nuevoAlias.length < 3) {
-mostrarModal({ tipo:'confirm', title:'⚠️ Alias muy corto', msg:'El alias debe tener al menos 3 caracteres.', onOk: agregarQuiniela, onCancel: function(){} });
-return;
-}
-quinielas.push({ selecciones:{}, alias: nuevoAlias });
-quinielaActiva = quinielas.length - 1;
-if (numPartidos > 0) inicializarSelecciones(quinielaActiva);
-renderTabs(); if(numPartidos>0) renderPartidos();
-actualizarBarraTotal();
-
-}
+document.getElementById('lf-wp').addEventListener('input',function(){
+this.value=this.value.replace(/\D/g,'').slice(0,10);
 });
-} else {
-quinielas.push({ selecciones:{}, alias: aliasBase });
-quinielaActiva = quinielas.length - 1;
-if (numPartidos > 0) inicializarSelecciones(quinielaActiva);
-renderTabs(); if(numPartidos>0) renderPartidos();
-actualizarBarraTotal();
+async function handleLeadSubmit(){
+var nombre=document.getElementById('lf-nombre').value.trim();
+var wp=document.getElementById('lf-wp').value.replace(/\D/g,'');
+var email=document.getElementById('lf-email').value.trim();
+var notif=document.getElementById('lf-notif').checked;
+var ok=true;
+if(!nombre){document.getElementById('lferr-nombre').classList.add('show');document.getElementById('lf-nombre').classList.add('err');ok=false;}
+else{document.getElementById('lferr-nombre').classList.remove('show');document.getElementById('lf-nombre').classList.remove('err');}
+if(wp.length!==10){document.getElementById('lferr-wp').classList.add('show');document.getElementById('lf-wp').classList.add('err');ok=false;}
+else{document.getElementById('lferr-wp').classList.remove('show');document.getElementById('lf-wp').classList.remove('err');}
+if(!ok) return;
+var btn=document.getElementById('leadBtn'); btn.classList.add('loading'); btn.disabled=true;
+// Guardar en localStorage
+try{localStorage.setItem('qpf-reminder',JSON.stringify({nombre:nombre,wa:wp,ts:Date.now()}));}catch(e){}
+try{localStorage.setItem('qpf_lead','1');}catch(e){}
+if(WEBHOOK_LEADS){try{await fetch(WEBHOOK_LEADS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre,whatsapp:wp,email,notif,fuente:'landing_lead_form',fecha:new Date().toISOString()})});}catch(e){}}
+await new Promise(r=>setTimeout(r,900));
+var msg=encodeURIComponent('Hola, soy '+nombre+'! Me registré en quinielaprofut.com y quiero saber cómo participar en la siguiente jornada 🔥⚽');
+document.getElementById('leadWaLink').href='https://wa.me/'+TU_WHATSAPP+'?text='+msg;
+document.getElementById('leadFormInner').classList.add('hide');
+document.getElementById('leadSocialProof').style.display='none';
+document.getElementById('leadSuccess').classList.add('show');
+window.dataLayer=window.dataLayer||[];
+window.dataLayer.push({event:'generacion_lead',formLocation:'landing_section',leadNombre:nombre,leadWhatsapp:wp});
+}
 
+// ════════════════════════════════════════════════════════════
+// ★ POPUP RECORDATORIO
+//
+// CUÁNDO APARECE (3 disparadores):
+// 1. A los 30 segundos de estar en la página
+// 2. Cuando el usuario hace scroll al 60% del contenido
+// 3. Exit intent: mouse sale por arriba (desktop) /
+// scroll brusco hacia arriba (móvil)
+//
+// REGLAS:
+// - Solo aparece 1 vez por visita (variable en memoria)
+// - Si ya se registró (qpf_lead en localStorage) → NUNCA aparece
+// - Al recargar la página vuelve a aparecer (variable se resetea)
+// - Datos guardados en localStorage clave 'qpf-reminder'
+// ════════════════════════════════════════════════════════════
+var _remindMostrado = false;
+var _remindData = null;
+
+function initRemind() {
+try { var r=localStorage.getItem('qpf-reminder'); if(r) _remindData=JSON.parse(r); } catch(e) {}
+if (_remindData && _remindData.nombre && _remindData.wa) {
+// Pre-llenar y mostrar badge
+document.getElementById('remind-nombre').value = _remindData.nombre;
+document.getElementById('remind-wp').value = _remindData.wa;
+document.getElementById('remindSavedBadge').classList.add('show');
+validarRemind();
+// Mostrar banner flotante
+var b = document.getElementById('remindBanner');
+b.textContent = '✓ ' + _remindData.nombre.toUpperCase() + ' — ya estás en la lista';
+b.classList.add('show');
+setTimeout(function(){ b.classList.remove('show'); }, 5000);
 }
 }
 
-function eliminarQuiniela(idx) {
-if(quinielas.length<=1) return;
-quinielas.splice(idx,1);
-if(quinielaActiva>=quinielas.length) quinielaActiva=quinielas.length-1;
-renderTabs(); renderPartidos(); actualizarBarraTotal();
-
-}
-
-function activarTab(idx) { quinielaActiva=idx; renderTabs(); renderPartidos(); actualizarBarraTotal(); }
-
-function renderTabs() {
-var nav=document.getElementById('quinielasNav');
-nav.innerHTML='';
-quinielas.forEach(function(q,i){
-var alias=getAliasQ(i), completa=estaCompleta(i);
-var tab=document.createElement('div');
-tab.className='q-tab'+(i===quinielaActiva?' active':'')+(completa?' done':'');
-tab.innerHTML=escapeHtml(alias);
-if(quinielas.length>1){
-var btnX=document.createElement('button');
-btnX.className='btn-remove-q'; btnX.textContent='×';
-btnX.setAttribute('aria-label','Eliminar quiniela '+(i+1));
-btnX.onclick=(function(idx){return function(e){e.stopPropagation();eliminarQuiniela(idx);};})(i);
-tab.appendChild(btnX);
-}
-tab.addEventListener('click',(function(idx){return function(){activarTab(idx);};})(i));
-nav.appendChild(tab);
-});
-var addBtn=document.createElement('button');
-addBtn.className='btn-add-q'; addBtn.textContent='+'; addBtn.title='Agregar quiniela';
-addBtn.onclick=agregarQuiniela;
-nav.appendChild(addBtn);
-}
-
-function getAliasQ(idx){
-if(quinielas[idx]&&quinielas[idx].alias) return quinielas[idx].alias;
-if(quinielas.length===1) return aliasBase;
-return aliasBase+'-'+(idx+1);
-}
-
-function estaCompleta(qIdx){
-if(numPartidos===0) return false;
-var sel=quinielas[qIdx].selecciones;
-for(var i=0;i<numPartidos;i++){if(!sel[i]||sel[i].length===0) return false;}
+function debeAparecer() {
+// Si ya se registró: nunca más
+try { if(localStorage.getItem('qpf_lead')) return false; } catch(e) {}
 return true;
 }
 
-// ════════════════════════════════════════════════════
-// PARTIDOS
-// ════════════════════════════════════════════════════
-function initPartidos(partidos){
-partidosGlobal=partidos||[]; numPartidos=partidosGlobal.length;
-quinielas.forEach(function(_,i){inicializarSelecciones(i);});
-renderTabs(); renderPartidos(); actualizarBarraTotal();
+function dispararPopup() {
+if (_remindMostrado) return; // ya apareció en esta visita
+if (!debeAparecer()) return; // ya está registrado
+_remindMostrado = true;
+abrirRemind();
 }
 
-function inicializarSelecciones(qIdx){
-for(var i=0;i<numPartidos;i++){
-if(!quinielas[qIdx].selecciones[i]) quinielas[qIdx].selecciones[i]=[];
-}
-}
+// ── DISPARADOR 1: 30 segundos ──
+setTimeout(function() { dispararPopup(); }, 30000);
 
-function renderPartidos(){
-var container=document.getElementById('partidosContainer');
-container.innerHTML='';
-if(numPartidos===0){
-container.innerHTML='<p style="text-align:center;color:var(--text-muted);font-size:13px;font-weight:700;padding:20px 0;">No hay partidos cargados.</p>';
-return;
-}
-var sel=quinielas[quinielaActiva].selecciones;
-partidosGlobal.forEach(function(p,i){
-var row=document.createElement('div');
-row.className='match-row';
-var selArr=sel[i]||[];
-var clsL=selArr.indexOf('LOCAL')>-1?' sel-L':'';
-var clsE=selArr.indexOf('EMPATE')>-1?' sel-E':'';
-var clsV=selArr.indexOf('VISITANTE')>-1?' sel-V':'';
-var badge='';
-if(selArr.length===2) badge='<span class="match-badge badge-doble">DOBLE</span>';
-if(selArr.length===3) badge='<span class="match-badge badge-triple">TRIPLE</span>';
-row.innerHTML=
-'<div class="match-num">'+(i+1)+'</div>'+
-'<div>'+
-'<div class="match-inner">'+
-'<div class="team-name">'+escapeHtml(p.local)+'</div>'+
-'<button class="btn-opt'+clsL+'" onclick="toggleSel('+quinielaActiva+','+i+',\'LOCAL\',this)">L</button>'+
-'<button class="btn-opt'+clsE+'" onclick="toggleSel('+quinielaActiva+','+i+',\'EMPATE\',this)">E</button>'+
-'<button class="btn-opt'+clsV+'" onclick="toggleSel('+quinielaActiva+','+i+',\'VISITANTE\',this)">V</button>'+
-'<div class="team-name right">'+escapeHtml(p.visitante)+'</div>'+
-'</div>'+
-'<div class="match-badge-wrap" style="text-align:center;margin-top:4px;">'+badge+'</div>'+
-'</div>';
-container.appendChild(row);
+// ── DISPARADOR 2: 60% del scroll ──
+window.addEventListener('scroll', function() {
+var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+if (pct >= 0.60) dispararPopup();
+}, { passive: true });
+
+// ── DISPARADOR 3: Exit intent ──
+var _esMovil = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+if (!_esMovil) {
+// Desktop: mouse sale por arriba del viewport
+document.addEventListener('mouseleave', function(e) {
+if (e.clientY < 15) dispararPopup();
 });
-}
-
-function toggleSel(qIdx, partidoIdx, resultado, btn) {
-var arr=quinielas[qIdx].selecciones[partidoIdx];
-if(!arr) arr=quinielas[qIdx].selecciones[partidoIdx]=[];
-var pos=arr.indexOf(resultado);
-if(pos>-1){ arr.splice(pos,1); }
-else { if(arr.length>=3) return; arr.push(resultado); }
-actualizarFilaPartido(partidoIdx, qIdx);
-actualizarBarraTotal();
-renderTabs();
-}
-
-function actualizarFilaPartido(pidx, qIdx) {
-var arr=quinielas[qIdx].selecciones[pidx]||[];
-var rows=document.getElementById('partidosContainer').querySelectorAll('.match-row');
-if(!rows[pidx]){ renderPartidos(); return; }
-var btns=rows[pidx].querySelectorAll('.btn-opt');
-var opciones=['LOCAL','EMPATE','VISITANTE'];
-var clases=['sel-L','sel-E','sel-V'];
-btns.forEach(function(b,i){
-b.className='btn-opt';
-if(arr.indexOf(opciones[i])>-1) b.classList.add(clases[i]);
-});
-var badgeWrap=rows[pidx].querySelector('.match-badge-wrap');
-var badge='';
-if(arr.length===2) badge='<span class="match-badge badge-doble">DOBLE</span>';
-if(arr.length===3) badge='<span class="match-badge badge-triple">TRIPLE</span>';
-if(badgeWrap) badgeWrap.innerHTML=badge;
-}
-
-function contarCombos(qIdx){
-var dobles=0,triples=0,sel=quinielas[qIdx].selecciones;
-for(var i=0;i<numPartidos;i++){var c=(sel[i]||[]).length;if(c===2)dobles++;if(c===3)triples++;}
-return{dobles:dobles,triples:triples};
-}
-
-// ════════════════════════════════════════════════════
-// CALCULADORA
-// ════════════════════════════════════════════════════
-function calcularCostoQuiniela(qIdx){
-var c=contarCombos(qIdx);
-return PRECIO_BASE*Math.pow(2,c.dobles)*Math.pow(3,c.triples);
-}
-
-function calcularTotalGeneral(){
-var total=0;
-quinielas.forEach(function(_,i){total+=calcularCostoQuiniela(i);});
-return total;
-}
-
-function actualizarContadorHeader(){
-if(quinielas.length===0||quinielaActiva>=quinielas.length) return;
-var c=contarCombos(quinielaActiva);
-var costoActual=calcularCostoQuiniela(quinielaActiva);
-var total=calcularTotalGeneral();
-var sel=quinielas[quinielaActiva].selecciones;
-var seleccionados=0;
-for(var i=0;i<numPartidos;i++){if((sel[i]||[]).length>0) seleccionados++;}
-var pct=numPartidos>0?Math.round((seleccionados/numPartidos)*100):0;
-var elAlt=document.getElementById('p2hAlerta');
-var elPart=document.getElementById('cntPartidos'),elPartT=document.getElementById('cntPartidosTotal');
-var elFill=document.getElementById('cntProgFill');
-var elPrecio=document.getElementById('cntPrecio');
-if(!elPart) return;
-if(elPart) elPart.textContent=seleccionados;
-if(elPartT) elPartT.textContent='/'+numPartidos;
-if(elFill){elFill.style.width=pct+'%';elFill.style.background=pct===100?'var(--gold)':pct>=50?'var(--green)':'var(--text-muted)';}
-if(elPart) elPart.style.color=seleccionados===numPartidos?'var(--gold)':'var(--green)';
-// Precio total en header
-if(elPrecio) elPrecio.textContent='$'+total.toLocaleString('es-MX');
-// Alertas límites
-var alertas=[];
-if(c.dobles>3) alertas.push('🔀 Dobles: '+c.dobles+'/3 — máximo excedido');
-if(c.triples>2) alertas.push('🎲 Triples: '+c.triples+'/2 — máximo excedido');
-if(elAlt){
-if(alertas.length>0){elAlt.textContent=alertas.join(' · ');elAlt.classList.remove('hidden');}
-else{elAlt.classList.add('hidden');}
-}
-}
-
-function actualizarBarraTotal(){
-var total=calcularTotalGeneral();
-var precioEl=document.getElementById('barraTotal'),detEl=document.getElementById('barraDetalle');
-var confirmBtn=document.getElementById('btnConfirmar');
-precioEl.textContent='$'+total.toLocaleString('es-MX');
-actualizarContadorHeader();
-var faltantes=0,excedeLimite=false,avisoLimite='';
-quinielas.forEach(function(_,i){
-if(!estaCompleta(i)) faltantes++;
-var c=contarCombos(i);
-if(c.dobles>3){excedeLimite=true;avisoLimite='⚠️ Quiniela '+getAliasQ(i)+': max 3 Dobles (tienes '+c.dobles+')';}
-if(c.triples>2){excedeLimite=true;avisoLimite='⚠️ Quiniela '+getAliasQ(i)+': max 2 Triples (tienes '+c.triples+')';}
-});
-var av=document.getElementById('aviso2');
-if(faltantes>0){
-precioEl.className='barra-precio incomplete';
-detEl.textContent=faltantes+' quiniela'+(faltantes>1?'s':'')+' incompleta'+(faltantes>1?'s':'');
-confirmBtn.disabled=true;
-if(!excedeLimite) limpiarAviso(av);
-} else if(excedeLimite){
-precioEl.className='barra-precio incomplete'; detEl.textContent='Revisa los límites';
-confirmBtn.disabled=true; mostrarAviso(av,'warn',avisoLimite);
 } else {
-precioEl.className='barra-precio'; limpiarAviso(av);
-var doblesTot=0,triplesTot=0;
-quinielas.forEach(function(_,i){var c=contarCombos(i);doblesTot+=c.dobles;triplesTot+=c.triples;});
-var costoActiva=calcularCostoQuiniela(quinielaActiva);
-detEl.textContent='Esta: $'+costoActiva.toLocaleString('es-MX')+
-(quinielas.length>1?' · Total: $'+total.toLocaleString('es-MX'):'')+
-(doblesTot?' · '+doblesTot+'D':''+(triplesTot?' '+triplesTot+'T':''));
-confirmBtn.disabled=false;
+// Móvil: scroll brusco hacia arriba en el tercio superior
+var _lastScrollY = 0, _lastScrollT = Date.now(), _scrollVel = 0;
+window.addEventListener('scroll', function() {
+var now = Date.now(), dy = window.scrollY - _lastScrollY, dt = now - _lastScrollT;
+if (dt > 0) _scrollVel = dy / dt;
+if (_scrollVel < -1.5 && window.scrollY < document.documentElement.scrollHeight * 0.33) {
+dispararPopup();
 }
-}
-
-// ════════════════════════════════════════════════════
-// ENVIAR QUINIELAS
-// ════════════════════════════════════════════════════
-function enviarQuinielas() {
-for(var i=0;i<quinielas.length;i++){
-if(!estaCompleta(i)){
-var av=document.getElementById('aviso2');
-mostrarAviso(av,'error','⚠️ La quiniela "'+getAliasQ(i)+'" tiene partidos sin seleccionar.');
-activarTab(i); av.scrollIntoView({behavior:'smooth',block:'center'}); return;
-}
-}
-for(var i=0;i<quinielas.length;i++){
-var c=contarCombos(i);
-if(c.dobles>3){
-var av=document.getElementById('aviso2');
-mostrarAviso(av,'error','⚠️ "'+getAliasQ(i)+'" tiene '+c.dobles+' Dobles. Máximo 3.');
-activarTab(i); av.scrollIntoView({behavior:'smooth',block:'center'}); return;
-}
-if(c.triples>2){
-var av=document.getElementById('aviso2');
-mostrarAviso(av,'error','⚠️ "'+getAliasQ(i)+'" tiene '+c.triples+' Triples. Máximo 2.');
-activarTab(i); av.scrollIntoView({behavior:'smooth',block:'center'}); return;
-}
-}
-mostrarModal({
-tipo: 'confirm',
-title: '⚽ CONFIRMAR JUGADA',
-msg: 'Confirmar <strong>' + quinielas.length + ' quiniela' + (quinielas.length>1?'s':'') +
-'</strong> por <strong style="color:var(--green)">$' + calcularTotalGeneral().toLocaleString('es-MX') + ' MXN</strong>',
-onOk: ejecutarEnvioQuinielas
-});
+_lastScrollY = window.scrollY; _lastScrollT = now;
+}, { passive: true });
 }
 
-function ejecutarEnvioQuinielas() {
-var btn=document.getElementById('btnConfirmar');
-btn.disabled=true; btn.innerHTML='<span class="spinner"></span>ENVIANDO';
-var arrQuinielas=quinielas.map(function(q){
-var pronos=[];
-for(var p=0;p<numPartidos;p++){pronos.push((q.selecciones[p]||[]).join(','));}
-return pronos;
-});
-google.script.run
-.withSuccessHandler(onGuardadoOK)
-.withFailureHandler(function(){
-btn.disabled=false; btn.textContent='CONFIRMAR ✓';
-mostrarAviso(document.getElementById('aviso2'),'error','Error de conexión. Intenta de nuevo.');
-})
-.guardarRespuestas({nombre:userData.nombre,whatsapp:userData.whatsapp,alias:aliasBase,quinielas:arrQuinielas});
+function abrirRemind() {
+document.getElementById('remindOverlay').classList.add('show');
+document.body.style.overflow = 'hidden';
+}
+function cerrarRemind() {
+document.getElementById('remindOverlay').classList.remove('show');
+document.body.style.overflow = '';
+}
+function cerrarRemindSiOverlay(e) {
+if (e.target === document.getElementById('remindOverlay')) cerrarRemind();
+}
+function validarRemind() {
+var n=document.getElementById('remind-nombre').value.trim();
+var w=document.getElementById('remind-wp').value.replace(/\D/g,'');
+document.getElementById('remindBtn').disabled = !(n.length>=2 && w.length>=10);
+}
+async function guardarRemind() {
+var nombre=document.getElementById('remind-nombre').value.trim();
+var wa=document.getElementById('remind-wp').value.replace(/\D/g,'');
+if(!nombre||wa.length<10) return;
+// ★ Guardar en localStorage SIEMPRE primero
+try{localStorage.setItem('qpf-reminder',JSON.stringify({nombre:nombre,wa:wa,ts:Date.now()}));_remindData={nombre:nombre,wa:wa};}catch(e){}
+try{localStorage.setItem('qpf_lead','1');}catch(e){}
+// Enviar al backend
+if(WEBHOOK_LEADS){try{await fetch(WEBHOOK_LEADS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre,whatsapp:wa,fuente:'popup_recordatorio',fecha:new Date().toISOString()})});}catch(e){}}
+// Mostrar éxito
+document.getElementById('remindFormWrap').classList.add('hide');
+document.getElementById('remindSuccess').classList.add('show');
+document.getElementById('remindNombreOk').textContent = nombre.toUpperCase();
+window.dataLayer=window.dataLayer||[];
+window.dataLayer.push({event:'generacion_lead',formLocation:'popup_recordatorio',leadNombre:nombre,leadWhatsapp:wa});
 }
 
-function onGuardadoOK(res) {
-var btn=document.getElementById('btnConfirmar');
-if(res.estado&&res.estado!=='OK'){
-btn.disabled=false; btn.textContent='CONFIRMAR ✓';
-var av=document.getElementById('aviso2');
-mostrarAviso(av,'error',res.estado==='ALIAS_DUPLICADO'
-?'❌ El alias "'+(res.alias||'')+'" ya existe. Vuelve y cambia tu alias.'
-:'⚠️ '+res.estado);
-return;
-}
-resultadoGuardado=res;
-if(res.datosPago){
-datosPago=res.datosPago;
-document.getElementById('clabeNombreBanco').textContent=res.datosPago.banco||'BANCO';
-document.getElementById('clabeNumero').textContent=formatClabe(res.datosPago.clabe||'');
-document.getElementById('clabeNombre').textContent=res.datosPago.nombre||'';
-}
-var total=res.costoTotal||calcularTotalGeneral();
-document.getElementById('totalAPagar').textContent='$'+total.toLocaleString('es-MX');
-document.getElementById('clabeMonto').textContent='$'+total.toLocaleString('es-MX')+' MXN';
-var campoTotal=document.getElementById('costoTotalEsperado');
-if(campoTotal) campoTotal.value=String(total);
-
-var lista=document.getElementById('resumenLista'), boletas=document.getElementById('listaBoletas');
-lista.innerHTML=''; if(boletas) boletas.innerHTML='';
-
-(res.desglose||[]).forEach(function(d,i){
-var al=res.aliasGuardados[i]||'';
-var partes=[];
-if(d.dobles>0) partes.push(d.dobles+' Doble'+(d.dobles!==1?'s':''));
-if(d.triples>0) partes.push(d.triples+' Triple'+(d.triples!==1?'s':''));
-var desc=partes.length===0?'Sencilla':partes.join(' · ');
-var item=document.createElement('div');
-item.className='resumen-item';
-item.innerHTML=
-'<div>'+
-'<div class="resumen-alias">'+escapeHtml(al)+'</div>'+
-'<div class="resumen-detalle">'+desc+'</div>'+
-'<div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:700;">'+
-'$'+PRECIO_BASE+(d.dobles>0?' × 2<sup>'+d.dobles+'</sup>':'')+(d.triples>0?' × 3<sup>'+d.triples+'</sup>':'')+
-' = <span style="color:var(--green);">$'+(d.costo||0).toLocaleString('es-MX')+'</span></div>'+
-'</div>'+
-'<div class="resumen-costo">$'+(d.costo||0).toLocaleString('es-MX')+'</div>';
-lista.appendChild(item);
-if(boletas){
-var bBtn=document.createElement('button');
-bBtn.id='boletaBtn_'+i; bBtn.className='btn-boleta-item';
-bBtn.innerHTML='📄 VER Y GUARDAR BOLETA — '+escapeHtml(al)+' · $'+(d.costo||0).toLocaleString('es-MX');
-bBtn.onclick=(function(idx){return function(){verBoleta(idx);};})(i);
-boletas.appendChild(bBtn);
-}
+// ESC cierra overlays
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') { cerrarRemind(); }
 });
 
-var numQ=(res.aliasGuardados||[]).length;
-document.getElementById('totalDetalle').textContent=numQ+' quiniela'+(numQ>1?'s':'')+' registrada'+(numQ>1?'s':'');
+// ════════════════════════════════════════════════════════════
+// ★ ADMIN — abre en pestaña nueva
+// El Admin usa google.script.run que requiere estar
+// directamente en el contexto de Apps Script,
+// no dentro de un iframe. Por eso abrimos en pestaña nueva.
+// ════════════════════════════════════════════════════════════
+function abrirAdmin() {
+window.open(URL_ADMIN, '_blank');
+}
 
-document.getElementById('page2').classList.add('hidden');
-document.getElementById('barraCalc').classList.add('hidden');
-document.getElementById('page3').classList.remove('hidden');
+// ════════════════════════════════════════════════════════════
+// NAVEGACIÓN
+// ════════════════════════════════════════════════════════════
+function ocultarTodas(){
+['vista-landing','vista-registro','vista-seguimiento','vista-analisis'].forEach(function(id){
+var el=document.getElementById(id);
+el.style.display='none'; el.classList.remove('activa');
+});
+}
+function mostrarLanding(){
+ocultarTodas();
+document.getElementById('btnFlotantePartidos').classList.remove('oculto');
+var vl=document.getElementById('vista-landing'); vl.classList.add('activa'); vl.style.display='block';
+document.getElementById('navPrincipal').style.display='flex';
+document.getElementById('countdownBar').style.display='flex';
 window.scrollTo(0,0);
-activarRetoPage3();
+document.title='QuinielaPro Fut — La Quiniela Más Pro de México';
+}
+function mostrarRegistro(){
+window.dataLayer=window.dataLayer||[]; window.dataLayer.push({event:'clic_registro'});
+document.getElementById('btnFlotantePartidos').classList.add('oculto');
+ocultarTodas();
+document.getElementById('navPrincipal').style.display='none';
+document.getElementById('countdownBar').style.display='none';
+document.getElementById('vista-registro').style.display='flex';
+document.title='QuinielaPro Fut — Registrar Quiniela';
+var loading=document.getElementById('loadingRegistro'), iframe=document.getElementById('iframe-registro');
+if(!iframesLoaded.registro){
+loading.classList.add('show'); iframe.style.opacity='0';
+iframe.src=URL_REGISTRO; iframesLoaded.registro=true;
+iframe.onload=function(){loading.classList.remove('show');iframe.style.opacity='1';iframe.style.transition='opacity 0.3s';};
+setTimeout(function(){loading.classList.remove('show');iframe.style.opacity='1';},8000);
+} else {loading.classList.remove('show');iframe.style.opacity='1';}
+}
+function mostrarSeguimiento(){
+window.dataLayer=window.dataLayer||[]; window.dataLayer.push({event:'clic_seguimiento'});
+document.getElementById('btnFlotantePartidos').classList.add('oculto');
+ocultarTodas();
+document.getElementById('navPrincipal').style.display='none';
+document.getElementById('countdownBar').style.display='none';
+document.getElementById('vista-seguimiento').style.display='flex';
+document.title='QuinielaPro Fut — Seguimiento en Vivo';
+var loading=document.getElementById('loadingSeguimiento'), iframe=document.getElementById('iframe-seguimiento');
+if(!iframesLoaded.seguimiento){
+loading.classList.add('show'); iframe.style.opacity='0';
+iframe.src=URL_SEGUIMIENTO; iframesLoaded.seguimiento=true;
+iframe.onload=function(){loading.classList.remove('show');iframe.style.opacity='1';iframe.style.transition='opacity 0.3s';};
+setTimeout(function(){loading.classList.remove('show');iframe.style.opacity='1';},8000);
+} else {loading.classList.remove('show');iframe.style.opacity='1';}
+}
+function irSeccion(id){
+mostrarLanding();
+setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},100);
 }
 
-// ════════════════════════════════════════════════════
-// RETO ENTRE AMIGOS — solo en pageFinal
-// ════════════════════════════════════════════════════
-function activarRetoPage3() {
-// Prepara el mensaje de reto para pageFinal
-var link='https://quinielaprofut.com';
-var primerAlias=resultadoGuardado?(resultadoGuardado.aliasGuardados[0]||aliasBase):aliasBase;
-var jorn=document.getElementById('statJornada').textContent||'esta jornada';
-window._retoMsg='⚽ Le atino más que tú 😤\nYa registré mi quiniela *'+primerAlias+'* en *'+jorn+'*\n¿Te atreves a competir conmigo? 🏆\n📲 Regístrate aquí → '+link;
+// ════════════════════════════════════════════════════════════
+// HAMBURGER
+// ════════════════════════════════════════════════════════════
+var _menuAbierto=false;
+function toggleMenu(){
+_menuAbierto=!_menuAbierto;
+var m=document.getElementById('navMobile'),btn=document.getElementById('hambBtn'),ov=document.getElementById('menuOverlay');
+if(_menuAbierto){m.style.display='flex';m.offsetHeight;m.classList.add('open');btn.classList.add('abierto');ov.classList.add('show');document.body.style.overflow='hidden';}
+else cerrarMenu();
 }
+function cerrarMenu(){
+var m=document.getElementById('navMobile'),btn=document.getElementById('hambBtn'),ov=document.getElementById('menuOverlay');
+m.classList.remove('open');btn.classList.remove('abierto');ov.classList.remove('show');document.body.style.overflow='';_menuAbierto=false;
+setTimeout(function(){if(!_menuAbierto)m.style.display='none';},350);
+}
+window.addEventListener('orientationchange',function(){if(_menuAbierto)cerrarMenu();});
 
-function copiarMensajeRetoPag3() {
-var msg=window._retoMsg||'';
-if(!msg) return;
-navigator.clipboard.writeText(msg).then(function(){
-var label=document.getElementById('retoCopyLabel');
-if(label){label.textContent='✓ ¡Copiado!';label.style.color='var(--green)';setTimeout(function(){label.textContent='Copiar mensaje';label.style.color='';},2500);}
+// ════════════════════════════════════════════════════════════
+// REVEAL + COUNT UP + TILT
+// ════════════════════════════════════════════════════════════
+var io=new IntersectionObserver(function(entries){
+entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('in');},i*70);io.unobserve(e.target);}});
+},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+function countUp(el,to,dur){
+dur=dur||1800;var n=0,step=to/(dur/16);
+var t=setInterval(function(){n+=step;if(n>=to){el.textContent=to;clearInterval(t);}else el.textContent=Math.floor(n);},16);
+}
+var cio=new IntersectionObserver(function(entries){
+entries.forEach(function(e){if(e.isIntersecting){countUp(e.target,+e.target.dataset.to);cio.unobserve(e.target);}});
+},{threshold:0.5});
+document.querySelectorAll('[data-to]').forEach(function(el){cio.observe(el);});
+
+document.querySelectorAll('.liga').forEach(function(c){
+c.addEventListener('click',function(){document.querySelectorAll('.liga').forEach(function(x){x.classList.remove('on');});c.classList.add('on');});
 });
-}
-
-// ════════════════════════════════════════════════════
-// SUBIR COMPROBANTE
-// ════════════════════════════════════════════════════
-function subirComprobante() {
-var fileInput=document.getElementById('archivoPago'), av=document.getElementById('aviso3');
-var btn=document.getElementById('btnSubir');
-limpiarAviso(av);
-if(!fileInput.files||fileInput.files.length===0){mostrarAviso(av,'error','Selecciona tu foto primero.');return;}
-var file=fileInput.files[0];
-if(file.size>10*1024*1024){mostrarAviso(av,'error','La imagen es muy grande. Máx 10MB.');return;}
-btn.disabled=true;
-mostrarProgresoSubida('leyendo');
-var aliases=resultadoGuardado?(resultadoGuardado.aliasGuardados||[aliasBase]):[aliasBase];
-var reader=new FileReader();
-reader.onerror=function(){btn.disabled=false;btn.textContent='📤 SUBIR COMPROBANTE';ocultarProgresoSubida();mostrarAviso(av,'error','No se pudo leer el archivo.');};
-reader.onload=function(e){
-mostrarProgresoSubida('enviando');
-google.script.run
-.withSuccessHandler(function(res){mostrarProgresoSubida('listo');setTimeout(function(){onComprobanteOK(res);},800);})
-.withFailureHandler(function(){btn.disabled=false;btn.textContent='📤 SUBIR COMPROBANTE';ocultarProgresoSubida();mostrarAviso(av,'error','Error al subir. Intenta de nuevo.');})
-.procesarPago(userData.whatsapp,aliases,e.target.result,file.name,file.type);
-};
-reader.readAsDataURL(file);
-}
-
-function mostrarProgresoSubida(paso){
-var box=document.getElementById('progresoSubida');
-if(!box) return; box.style.display='block';
-var pasos={leyendo:{pct:25,txt:'📂 Leyendo imagen...',color:'var(--gold)'},enviando:{pct:70,txt:'☁️ Guardando comprobante...',color:'var(--gold)'},listo:{pct:100,txt:'✅ ¡Comprobante recibido!',color:'var(--green)'}};
-var p=pasos[paso]||pasos.enviando;
-var fill=document.getElementById('progresoFill'), label=document.getElementById('progresoLabel');
-if(fill){fill.style.width=p.pct+'%';fill.style.background=p.color;}
-if(label){label.textContent=p.txt;label.style.color=p.color;}
-}
-
-function ocultarProgresoSubida(){var box=document.getElementById('progresoSubida');if(box) box.style.display='none';}
-
-function onComprobanteOK(res) {
-if(res.estado!=='OK'){
-var btn=document.getElementById('btnSubir');
-btn.disabled=false; btn.textContent='SUBIR COMPROBANTE 🚀';
-mostrarAviso(document.getElementById('aviso3'),'error',res.estado||'Error desconocido.'); return;
-}
-var link='https://quinielaprofut.com';
-var primerAlias=resultadoGuardado?(resultadoGuardado.aliasGuardados[0]||aliasBase):aliasBase;
-var jorn=document.getElementById('statJornada').textContent||'esta jornada';
-var msgReto='⚽ Le atino más que tú 😤\nYa registré mi quiniela *'+primerAlias+'* en *'+jorn+'*\n¿Te atreves a competir conmigo? 🏆\n📲 Regístrate aquí → '+link;
-document.getElementById('btnWA').href='https://wa.me/?text='+encodeURIComponent(msgReto);
-document.getElementById('page3').classList.add('hidden');
-document.getElementById('pageFinal').classList.remove('hidden');
-window.scrollTo(0,0);
-
-// Boletas bajo demanda
-var divBoletas=document.getElementById('boletasGuardadas');
-if(divBoletas&&resultadoGuardado&&(resultadoGuardado.aliasGuardados||[]).length>0){
-divBoletas.style.display='block';
-(resultadoGuardado.aliasGuardados||[]).forEach(function(al,i){
-var costo=(resultadoGuardado.desglose[i]||{}).costo||0;
-var bBtn=document.createElement('button');
-bBtn.className='btn-boleta-item'; bBtn.style.marginBottom='8px';
-bBtn.innerHTML='💾 GUARDAR BOLETA — '+escapeHtml(al)+' · $'+costo.toLocaleString('es-MX');
-bBtn.onclick=(function(idx){return function(){verBoleta(idx);};})(i);
-divBoletas.appendChild(bBtn);
+document.querySelectorAll('.ganador-card,.step,.tcard').forEach(function(card){
+card.addEventListener('mousemove',function(e){
+var r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+card.style.transform='perspective(600px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg) translateY(-6px)';
 });
-}
-}
-
-// ════════════════════════════════════════════════════
-// AGREGAR OTRA QUINIELA DESDE PAGE3
-// ════════════════════════════════════════════════════
-function agregarOtraQuiniela() {
-var ultimoAlias = resultadoGuardado
-? (resultadoGuardado.aliasGuardados[resultadoGuardado.aliasGuardados.length-1] || aliasBase)
-: aliasBase;
-// ★ FIX: modal propio en lugar de prompt() nativo
-mostrarModal({
-tipo: 'input',
-title: '🎟️ NUEVA QUINIELA',
-msg: 'Escribe el alias para tu próxima quiniela:',
-placeholder: ultimoAlias + '_2',
-onOk: function(nuevoAlias) {
-nuevoAlias = (nuevoAlias || '').trim().toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,'');
-if (!nuevoAlias || nuevoAlias.length < 3) {
-mostrarModal({ tipo:'confirm', title:'⚠️ Alias inválido', msg:'El alias debe tener al menos 3 caracteres.', onOk: agregarOtraQuiniela, onCancel: function(){} });
-return;
-}
-aliasBase = nuevoAlias; quinielas = []; quinielaActiva = 0; resultadoGuardado = null;
-quinielas.push({ selecciones:{}, alias: aliasBase });
-quinielaActiva = 0;
-document.getElementById('page3').classList.add('hidden');
-document.getElementById('page2').classList.remove('hidden');
-document.getElementById('barraCalc').classList.remove('hidden');
-document.getElementById('bannerAlias').textContent = aliasBase;
-
-if (numPartidos > 0) inicializarSelecciones(0);
-renderTabs(); renderPartidos(); actualizarBarraTotal();
-window.scrollTo(0,0);
-}
+card.addEventListener('mouseleave',function(){card.style.transform='';});
 });
-}
 
-// ════════════════════════════════════════════════════
-// REINICIAR
-// ════════════════════════════════════════════════════
-function reiniciar() {
-userData={nombre:'',whatsapp:''}; aliasBase=''; quinielas=[]; quinielaActiva=0; resultadoGuardado=null;
-document.getElementById('nombre').value='';
-document.getElementById('whatsapp').value='';
-document.getElementById('alias').value='';
-document.getElementById('archivoPago').value='';
-var btn=document.getElementById('btnIniciar');
-btn.disabled=false; btn.textContent='ARMAR MI JUGADA ⚽';
-limpiarAviso(document.getElementById('aviso1'));
-document.getElementById('pageFinal').classList.add('hidden');
-document.getElementById('page3').classList.add('hidden');
-document.getElementById('page2').classList.add('hidden');
-document.getElementById('barraCalc').classList.add('hidden');
-document.getElementById('page1').classList.remove('hidden');
-partidosGlobal=[]; numPartidos=0;
-window.scrollTo(0,0);
-}
+// Botón flotante — ocultar cuando partidos visibles
+(function(){
+var btn=document.getElementById('btnFlotantePartidos');
+var sec=document.getElementById('partidos-j20');
+if(!btn||!sec) return;
+new IntersectionObserver(function(entries){
+entries.forEach(function(e){if(e.isIntersecting)btn.classList.add('oculto');else btn.classList.remove('oculto');});
+},{threshold:0.15}).observe(sec);
+})();
 
-// ════════════════════════════════════════════════════
-// UTILIDADES
-// ════════════════════════════════════════════════════
-function copiarClabe() {
-var clabe=(datosPago.clabe||document.getElementById('clabeNumero').textContent).replace(/\s/g,'');
-if(navigator.clipboard){
-navigator.clipboard.writeText(clabe).then(function(){
-var btn=document.querySelector('.btn-copy');
-btn.textContent='✅ ¡Copiado!';
-setTimeout(function(){btn.textContent='📋 Copiar CLABE';},2000);
-});
-}
-}
-
-function formatClabe(clabe){return clabe.replace(/(\d{4})(?=\d)/g,'$1 ').trim();}
-
-function escapeHtml(str){
-if(!str) return '';
-return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-function mostrarAviso(el,tipo,msg){el.textContent=msg;el.className='aviso show-'+tipo;}
-function limpiarAviso(el){el.textContent='';el.className='aviso';}
-
-// ════════════════════════════════════════════════════
-// DEBOUNCE + CACHÉ para buscarJugador
-// ════════════════════════════════════════════════════
-var _waBuscado='', _waTimer=null;
-
-function onWhatsappInput(val) {
-if(val.length!==10) return;
-if(val===_waBuscado) return;
-clearTimeout(_waTimer);
-_waTimer=setTimeout(function(){
-if(val===_waBuscado) return;
-_waBuscado=val;
-google.script.run
-.withSuccessHandler(function(jugador){
-if(!jugador) return;
-var frases=['¡Te extrañábamos! 🔥','¡El crack ha vuelto! 👑','¡Sabíamos que regresarías! ⚽','¡A por otra jornada! 💪','¡El de siempre ya llegó! 😤'];
-var frase=frases[Math.floor(Math.random()*frases.length)];
-var nombre=jugador.nombre.split(' ')[0];
-var campoNombre=document.getElementById('nombre');
-if(!campoNombre.value.trim()) campoNombre.value=jugador.nombre;
-mostrarPopupBienvenida(nombre,frase,jugador.veces);
-})
-.withFailureHandler(function(){})
-.buscarJugadorPorWhatsapp(val);
-},300);
-}
-
-function mostrarPopupBienvenida(nombre,frase,veces){
-var overlay=document.createElement('div');
-overlay.id='popupBienvenida';
-overlay.style.cssText='position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);animation:fadeIn .3s ease both;padding:20px;';
-var vecesTexto=veces>1
-?'<div style="margin-top:10px;background:rgba(255,107,0,.15);border:1px solid var(--gold);border-radius:8px;padding:8px 16px;display:inline-block;"><span style="color:var(--gold);font-size:15px;font-weight:800;">🏅 '+veces+' jornadas jugadas</span></div>'
-:'<div style="margin-top:10px;color:var(--text-muted);font-size:13px;font-weight:700;">¡Tu primera jornada con nosotros! 🌟</div>';
-overlay.innerHTML=
-'<div style="background:var(--surface);border:2px solid var(--green);border-radius:20px;padding:32px 28px;max-width:340px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.7);animation:pop .4s cubic-bezier(.18,.89,.32,1.28) both;">'+
-'<div style="font-size:64px;margin-bottom:12px;">👋</div>'+
-'<div style="font-family:var(--font-head);font-size:36px;color:var(--green);letter-spacing:2px;margin-bottom:6px;">¡HOLA,<br>'+escapeHtml(nombre.toUpperCase())+'!</div>'+
-'<div style="font-size:18px;font-weight:800;color:var(--text);margin-bottom:4px;">'+frase+'</div>'+
-'<div style="font-size:14px;color:var(--text-muted);font-weight:600;margin-bottom:8px;">Bienvenido de nuevo a Quiniela Pro Fut</div>'+
-vecesTexto+
-'<button onclick="cerrarPopupBienvenida()" style="margin-top:22px;width:100%;padding:14px;background:linear-gradient(135deg,var(--green),#00c47a);border:none;border-radius:10px;font-family:var(--font-head);font-size:20px;letter-spacing:2px;color:#020a0e;cursor:pointer;box-shadow:0 5px 0 #007a50;">¡VAMOS! ⚽</button>'+
-'</div>';
-document.body.appendChild(overlay);
-overlay.addEventListener('click',function(e){if(e.target===overlay) cerrarPopupBienvenida();});
-}
-
-function cerrarPopupBienvenida(){
-var popup=document.getElementById('popupBienvenida');
-if(popup) popup.remove();
-setTimeout(function(){document.getElementById('alias').focus();},100);
-}
-
-// ★ FIX: borrarTodosPartidos — modal propio en lugar de confirm() nativo
-function borrarTodosPartidos() {
-mostrarModal({
-tipo: 'confirm',
-title: '🗑️ BORRAR SELECCIONES',
-msg: '¿Borrar todas las selecciones de <strong>' + escapeHtml(getAliasQ(quinielaActiva)) + '</strong>?',
-onOk: function() {
-var sel=quinielas[quinielaActiva].selecciones;
-for(var i=0;i<numPartidos;i++){sel[i]=[];}
-renderPartidos(); actualizarBarraTotal(); renderTabs();
-}
-});
-}
-
-function mostrarDespedida(){
-var alias=userData.nombre||aliasBase||'Jugador';
-var panel=document.getElementById('pageFinal');
-if(!panel) return;
-panel.querySelector('.panel').innerHTML=
-'<div class="despedida-screen">'+
-'<span class="despedida-icon">🌟</span>'+
-'<div class="despedida-titulo">¡MUCHO ÉXITO!</div>'+
-'<p class="despedida-msg">¡Gracias <strong>'+escapeHtml(alias)+'</strong>!<br>Tu quiniela está registrada y activa. ⚽</p>'+
-'<p class="despedida-sub">Estamos contigo en cada partido.<br>Sigue los resultados en la pantalla de seguimiento.</p>'+
-'<div style="background:var(--gold-dim);border:1.5px solid var(--gold);border-radius:12px;padding:16px;margin-bottom:20px;">'+
-'<div style="font-size:11px;font-weight:800;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">QUINIELA PRO FUT</div>'+
-'<div style="font-size:13px;color:var(--text);font-weight:700;">Ya puedes cerrar esta ventana. 👋</div>'+
-'</div>'+
-'<button class="btn btn-ghost" onclick="intentarCerrarVentana()" style="width:100%;">✕ CERRAR ESTA VENTANA</button>'+
-'</div>';
-window.scrollTo(0,0);
-}
-
-function intentarCerrarVentana(){try{window.close();}catch(e){}setTimeout(function(){reiniciar();},300);}
-
-// ════════════════════════════════════════════════════
-// COMPROBANTE — Preview
-// ════════════════════════════════════════════════════
-function onArchivoSeleccionado(input){
-if(!input.files||!input.files[0]) return;
-var file=input.files[0], av=document.getElementById('aviso3');
-limpiarAviso(av);
-if(file.size>10*1024*1024){mostrarAviso(av,'error','Imagen muy grande. Máx 10MB.');input.value='';return;}
-var reader=new FileReader();
-reader.onload=function(e){
-var img=document.getElementById('ocrPreviewImg'), panel=document.getElementById('ocrPanel');
-var btn=document.getElementById('btnSubir'), status=document.getElementById('ocrStatus');
-if(img) img.src=e.target.result;
-if(panel) panel.classList.remove('hidden');
-if(status){status.className='ocr-status ocr-ok';status.textContent='✅ Imagen lista — pulsa el botón para enviar';}
-btn.disabled=false; btn.style.opacity='1'; btn.textContent='📤 SUBIR COMPROBANTE';
-};
-reader.readAsDataURL(file);
-}
-
-// ════════════════════════════════════════════════════
-// TABLA DE PRECIOS
-// ════════════════════════════════════════════════════
-function rellenarTablaPrecios(base){
-var tbody=document.getElementById('tablaMatrizBody'), nota=document.getElementById('tablaNotaPrecio');
-var titBase=document.getElementById('tituloPrecioBase');
-if(titBase) titBase.textContent='$'+base.toLocaleString('es-MX');
-if(!tbody) return;
-var filasD=['0 Dobles','1 Doble','2 Dobles','3 Dobles'];
-var colorClass=function(d,t){var lvl=d+t;if(lvl===0)return 'tc-price tc-base';if(lvl===1)return 'tc-price tc-mid';if(lvl===2)return 'tc-price tc-high';return 'tc-price tc-max';};
-var rows='';
-for(var d=0;d<=3;d++){
-rows+='<tr><td>'+filasD[d]+'</td>';
-for(var t=0;t<=2;t++){
-var precio=base*Math.pow(2,d)*Math.pow(3,t);
-rows+='<td class="'+colorClass(d,t)+'">$'+precio.toLocaleString('es-MX')+'</td>';
-}
-rows+='</tr>';
-}
-tbody.innerHTML=rows;
-if(nota){nota.innerHTML='⚡ BASE: <strong style="color:var(--gold);">$'+base.toLocaleString('es-MX')+'</strong> × 2<sup>dobles</sup> × 3<sup>triples</sup> &nbsp;·&nbsp; Máx <strong>3D + 2T</strong>';}
-}
-
-// ════════════════════════════════════════════════════
-// BOLETA / TICKET
-// ════════════════════════════════════════════════════
-function buildTicketHTML(qIdx){
-var q=quinielas[qIdx], combos=contarCombos(qIdx), costo=calcularCostoQuiniela(qIdx);
-var total=calcularTotalGeneral(), alias=getAliasQ(qIdx), numQ=quinielas.length, qNum=qIdx+1;
-var jorn=document.getElementById('statJornada').textContent||'Jornada';
-var now=new Date();
-var fecha=now.toLocaleString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
-var S=q.selecciones, rows='';
-for(var i=0;i<partidosGlobal.length;i++){
-var p=partidosGlobal[i], ops=S[i]||[];
-var esD=ops.length===2, esT=ops.length===3;
-var rowBg=esT?'rgba(255,71,87,.08)':esD?'rgba(245,197,24,.06)':'transparent';
-var badgeHtml='';
-if(esT) badgeHtml='<span style="background:rgba(255,71,87,.25);border:1px solid #ff4757;color:#ff4757;padding:1px 5px;font-size:8px;font-weight:900;border-radius:3px;margin-left:3px;">TRIPLE</span>';
-else if(esD) badgeHtml='<span style="background:rgba(245,197,24,.2);border:1px solid #f5c518;color:#f5c518;padding:1px 5px;font-size:8px;font-weight:900;border-radius:3px;margin-left:3px;">DOBLE</span>';
-var btns='';
-['LOCAL','EMPATE','VISITANTE'].forEach(function(res){
-var sel=ops.indexOf(res)>-1, ltr=res==='LOCAL'?'L':res==='EMPATE'?'E':'V';
-var bg=sel?(res==='LOCAL'?'#01e08f':res==='EMPATE'?'#f5c518':'#60a5fa'):'#1e2740';
-var fg=sel?'#000000':'#3a5070';
-btns+='<span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:'+bg+';color:'+fg+';font-size:10px;font-weight:900;margin-right:2px;border-radius:4px;">'+ltr+'</span>';
-});
-var loc=p.local.length>11?p.local.substring(0,11)+'.':p.local;
-var vis=p.visitante.length>11?p.visitante.substring(0,11)+'.':p.visitante;
-rows+='<div style="display:flex;align-items:center;padding:5px 12px;border-bottom:1px solid #1a2030;background:'+rowBg+';"><span style="width:16px;font-size:9px;color:#6b7a9e;font-weight:800;flex-shrink:0;">'+(i+1)+'</span><span style="flex:1;font-size:9px;font-weight:700;color:#b8c4d8;margin:0 5px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">'+loc+' vs '+vis+'</span><div style="display:flex;align-items:center;flex-shrink:0;">'+btns+badgeHtml+'</div></div>';
-}
-return '<div style="width:360px;background:#0f172a;font-family:Arial,Helvetica,sans-serif;color:#e8ecf5;border:3px solid #f5c518;display:inline-block;">'+
-'<div style="background:linear-gradient(135deg,#1c2d50 0%,#0f172a 100%);padding:14px 16px;text-align:center;border-bottom:2px solid #f5c518;"><div style="font-size:19px;font-weight:900;color:#f5c518;letter-spacing:3px;">&#x26BD; QUINIELA PRO FUT</div><div style="font-size:9px;color:#94a3b8;letter-spacing:2.5px;text-transform:uppercase;margin-top:3px;">'+jorn+'</div></div>'+
-'<div style="padding:8px 14px;background:#0d1120;border-bottom:1px solid #1e2740;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:7px;color:#6b7a9e;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;">JUGADOR</div><div style="font-size:17px;font-weight:900;color:#f5c518;letter-spacing:2px;">'+alias+'</div>'+(numQ>1?'<div style="font-size:8px;color:#94a3b8;">Boleta '+qNum+' de '+numQ+'</div>':'')+
-'</div><div style="text-align:right;"><div style="font-size:7px;color:#6b7a9e;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;">FECHA</div><div style="font-size:9px;color:#c8d4e8;font-weight:700;">'+fecha+'</div></div></div>'+
-'<div style="padding:4px 12px;background:#131829;border-bottom:1px solid #1e2740;display:flex;"><span style="width:16px;font-size:7px;color:#4a5a78;font-weight:800;">#</span><span style="flex:1;font-size:7px;color:#4a5a78;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:0 5px;">PARTIDO</span><span style="font-size:7px;color:#4a5a78;font-weight:800;letter-spacing:1px;text-transform:uppercase;">PRONO</span></div>'+
-rows+
-'<div style="padding:8px 14px;background:#0d1120;border-top:1px solid #1e2740;display:flex;justify-content:space-around;align-items:center;">'+
-'<div style="text-align:center;"><div style="font-size:20px;font-weight:900;color:'+(combos.dobles>3?'#ff4757':'#f5c518')+';">'+combos.dobles+'<span style="font-size:10px;color:#4a5a78;">/3</span></div><div style="font-size:7px;color:#6b7a9e;letter-spacing:1px;text-transform:uppercase;">Dobles</div></div>'+
-'<div style="width:1px;height:36px;background:#1e2740;"></div>'+
-'<div style="text-align:center;"><div style="font-size:20px;font-weight:900;color:'+(combos.triples>2?'#ff4757':'#01e08f')+';">'+combos.triples+'<span style="font-size:10px;color:#4a5a78;">/2</span></div><div style="font-size:7px;color:#6b7a9e;letter-spacing:1px;text-transform:uppercase;">Triples</div></div>'+
-'<div style="width:1px;height:36px;background:#1e2740;"></div>'+
-'<div style="text-align:center;"><div style="font-size:16px;font-weight:900;color:#01e08f;">$'+costo.toLocaleString('es-MX')+'</div><div style="font-size:7px;color:#6b7a9e;letter-spacing:1px;text-transform:uppercase;">Esta boleta</div></div>'+
-'</div>'+
-'<div style="padding:10px 14px;background:#080d1a;border-top:2px solid #01e08f;text-align:center;"><div style="font-size:8px;color:#4a5a78;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;">TOTAL A PAGAR &mdash; '+numQ+' QUINIELA'+(numQ>1?'S':'')+'</div><div style="font-size:30px;font-weight:900;color:#f5c518;letter-spacing:3px;">$'+total.toLocaleString('es-MX')+' MXN</div></div>'+
-'<div style="padding:5px 14px;text-align:center;border-top:1px solid #1e2740;"><div style="font-size:7px;color:#3a4a60;letter-spacing:2px;text-transform:uppercase;">&#x2705; CONSERVA TU BOLETA &nbsp;&#xB7;&nbsp; quinielaprofut.com</div></div>'+
-'</div>';
-}
-
-function verBoleta(qIdx){
-var btn=document.getElementById('boletaBtn_'+qIdx);
-if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Generando imagen...';}
-var container=document.getElementById('boletaRenderContainer');
-container.innerHTML=buildTicketHTML(qIdx);
-container.style.display='block';
+// Precarga seguimiento
+window.addEventListener('load',function(){
 setTimeout(function(){
-html2canvas(container.firstChild,{scale:2,useCORS:false,allowTaint:true,backgroundColor:'#0f172a',logging:false})
-.then(function(canvas){
-var dataUrl=canvas.toDataURL('image/png'), al=getAliasQ(qIdx);
-document.getElementById('boletaImgEl').src=dataUrl;
-var dl=document.getElementById('boletaDownloadLink');
-dl.href=dataUrl; dl.download='Boleta_'+al+'_QPF.png';
-document.getElementById('boletaModal').classList.remove('hidden');
-container.style.display='none';
-if(btn){btn.disabled=false;btn.innerHTML='📄 VER Y GUARDAR BOLETA — '+escapeHtml(al)+' · $'+calcularCostoQuiniela(qIdx).toLocaleString('es-MX');}
-}).catch(function(){
-container.style.display='none';
-if(btn){btn.disabled=false;btn.innerHTML='📄 VER Y GUARDAR BOLETA';}
-alert('Error al generar imagen. Intenta de nuevo.');
-});
-},150);
+if(!iframesLoaded.seguimiento){
+document.getElementById('iframe-seguimiento').src=URL_SEGUIMIENTO;
+iframesLoaded.seguimiento=true;
 }
-function cerrarBoleta(){document.getElementById('boletaModal').classList.add('hidden');document.getElementById('boletaImgEl').src='';}
+},3000);
+});
+
+// ════════════════════════════════════════════════════════════
+// ARRANQUE
+// ════════════════════════════════════════════════════════════
+initRemind();
 </script>
 </body>
 </html>
