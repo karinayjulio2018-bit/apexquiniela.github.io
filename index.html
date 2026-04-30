@@ -772,7 +772,27 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
 </div>
 
 <!-- BOTÓN FLOTANTE -->
+<!-- VISTA SEGUIMIENTO — iframe embebido (sin banner Google) -->
+<div id="vista-seguimiento" style="display:none;flex-direction:column;height:100vh;">
+  <div class="iframe-topbar">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; En Vivo</div>
+    <div class="topbar-badge" style="background:rgba(255,216,77,.12);color:#FFD84D;border-color:rgba(255,216,77,.3);">
+      <div class="ldot-sm" style="background:#FFD84D;"></div>En Vivo
+    </div>
+  </div>
+  <div class="iframe-wrap">
+    <div class="iframe-loading" id="loadingSeguimiento">
+      <div class="il-icon">📊</div>
+      <div class="il-title">Cargando Ranking</div>
+      <div class="il-sub">Un momento...</div>
+      <div class="il-bar"><div class="il-fill"></div></div>
+    </div>
+    <iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" allow="clipboard-write"></iframe>
+  </div>
+</div>
 
+<button id="btnFlotantePartidos" onclick="irSeccion('partidos-j20')">
 <button id="btnFlotantePartidos" onclick="irSeccion('partidos-j20')">
 <div class="fp-dot"></div>⚽ Ver Partidos J20<span class="fp-badge">15</span>
 </button>
@@ -827,7 +847,7 @@ var FECHA_CIERRE_JORNADA = '2026-05-01T12:30:00';
 var TU_WHATSAPP = '5217471193095';
 var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';
 
-var iframesLoaded = { registro: false };
+var iframesLoaded = { registro: false, seguimiento: false };
 
 // ════════════════════════════════════════════════════════════
 // TEMA — manual, sin horario automático
@@ -1024,12 +1044,29 @@ loading.classList.remove('show'); iframe.style.opacity = '1';
 }
 
 // ★ FIX: Seguimiento abre en pestaña nueva — evita bloqueo de cookies en Safari/iOS
-
 function mostrarSeguimiento(){
   window.dataLayer=window.dataLayer||[];
   window.dataLayer.push({event:'clic_seguimiento'});
-  window.open(URL_SEGUIMIENTO, '_blank');
+  document.getElementById('btnFlotantePartidos').classList.add('oculto');
+  document.getElementById('vista-landing').style.display='none';
+  document.getElementById('vista-landing').classList.remove('activa');
+  document.getElementById('vista-registro').style.display='none';
+  document.getElementById('navPrincipal').style.display='none';
+  document.getElementById('countdownBar').style.display='none';
+  document.getElementById('vista-seguimiento').style.display='flex';
+  document.title='QuinielaPro Fut — Seguimiento en Vivo';
+  var loading=document.getElementById('loadingSeguimiento');
+  var iframe=document.getElementById('iframe-seguimiento');
+  if(!iframesLoaded.seguimiento){
+    loading.classList.add('show'); iframe.style.opacity='0';
+    iframe.src=URL_SEGUIMIENTO; iframesLoaded.seguimiento=true;
+    iframe.onload=function(){ loading.classList.remove('show'); iframe.style.opacity='1'; iframe.style.transition='opacity 0.3s'; };
+    setTimeout(function(){ loading.classList.remove('show'); iframe.style.opacity='1'; },8000);
+  } else {
+    loading.classList.remove('show'); iframe.style.opacity='1';
+  }
 }
+
 function irSeccion(id) {
 mostrarLanding();
 setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth'}); }, 100);
