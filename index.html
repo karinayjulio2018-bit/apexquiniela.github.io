@@ -66,7 +66,7 @@ nav{position:sticky;top:0;left:0;right:0;z-index:999;display:flex;align-items:ce
 .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
 .nav-links a,.nav-links button{font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#F0F4F8;text-shadow:0 1px 4px rgba(0,0,0,0.9),0 0 8px rgba(0,0,0,0.6);background:none;border:none;cursor:pointer;transition:color 0.2s;font-family:'Outfit',sans-serif;}
 .nav-links a:hover,.nav-links button:hover{color:var(–texto);}
-.nav-btn-cta{background:var(–verde)!important;color:#06080A!important;padding:0.45rem 1.3rem;border-radius:6px;font-weight:700!important;transition:all 0.2s!important;}
+.nav-btn-cta{background:#00FF87!important;color:#06080A!important;padding:0.45rem 1.3rem;border-radius:6px;font-weight:700!important;transition:all 0.2s!important;}
 .nav-btn-cta:hover{background:var(–verde2)!important;transform:translateY(-1px);}
 .nav-btn-admin{background:rgba(255,109,0,0.1)!important;color:#FF6D00!important;border:1px solid rgba(255,109,0,0.3)!important;padding:0.45rem 1rem;border-radius:6px;font-weight:700!important;}
 .nav-btn-admin:hover{background:rgba(255,109,0,0.2)!important;}
@@ -328,7 +328,7 @@ footer p{font-size:0.82rem;color:var(–muted2);margin-top:0.75rem;}
 /* IFRAMES — solo para registro */
 #vista-registro{display:none;flex-direction:column;height:100vh;}
 .iframe-topbar{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.5rem;background:var(–topbar-bg);border-bottom:1px solid var(–topbar-borde);flex-shrink:0;transition:background 0.4s,border-color 0.4s;}
-.btn-back-home{background:none;border:1px solid var(–borde2);color:var(–btn-back-col);font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;cursor:pointer;font-family:‘Outfit’,sans-serif;transition:all 0.2s;}
+.btn-back-home{background:none;border:1px solid rgba(255,255,255,0.3);color:#F0F4F8;font-size:0.82rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;cursor:pointer;font-family:‘Outfit’,sans-serif;transition:all 0.2s;}
 .btn-back-home:hover{border-color:var(–verde);color:var(–verde);}
 .topbar-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(–topbar-texto);}
 .topbar-title em{color:var(–verde);font-style:normal;}
@@ -1017,7 +1017,6 @@ document.getElementById('navPrincipal').style.display = 'flex';
 document.getElementById('countdownBar').style.display = 'flex';
 window.scrollTo(0,0);
 document.title = 'QuinielaPro Fut — La Quiniela Más Pro de México';
-_precargarSeguimiento();
 }
 function _precargarSeguimiento(){
   if(iframesLoaded.seguimiento) return;
@@ -1065,11 +1064,9 @@ function mostrarSeguimiento(){
     iframe.src=URL_SEGUIMIENTO; iframesLoaded.seguimiento=true;
     iframe.onload=function(){ loading.classList.remove('show'); iframe.style.opacity='1'; iframe.style.transition='opacity 0.3s'; };
     setTimeout(function(){ loading.classList.remove('show'); iframe.style.opacity='1'; },8000);
-  } else {
+} else {
     loading.classList.remove('show'); iframe.style.opacity='1';
-  }
 }
-
 function irSeccion(id) {
 mostrarLanding();
 setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth'}); }, 100);
@@ -1133,6 +1130,7 @@ entries.forEach(function(e){ if (e.isIntersecting) btn.classList.add('oculto'); 
 // ARRANQUE
 // ════════════════════════════════════════════════════════════
 initRemind();
+setTimeout(function(){ _precargarSeguimiento(); }, 3000);
 </script>
 </body>
 </html>
