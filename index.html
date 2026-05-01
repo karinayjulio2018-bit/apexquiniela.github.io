@@ -28,7 +28,7 @@ html{scroll-behavior:smooth;}
 }
 :root.dia{
 --negro:#F5F7FA;--card:#FFFFFF;--card2:#EEF1F5;--borde:#D8DEE8;--borde2:#C4CDD8;
---texto:#0D1B2A;--muted:#4A5568;--muted2:#718096;--nav-bg:rgba(245,247,250,0.95);
+--texto:#0D1B2A;--muted:#4A5568;--muted2:#718096;--nav-bg:rgba(245,247,250,0.95);--nav-texto:#0D1B2A;
 --verde:#009955;--verde2:#007740;--oro:#C8860A;--rojo:#D63650;--glow:rgba(0,153,85,0.1);
 --ham-color:#06080A;--topbar-bg:rgba(255,255,255,0.98);--topbar-borde:#D8DEE8;
 --topbar-texto:#0D1B2A;--btn-back-col:#2D3748;--badge-bg:#007740;--badge-color:#FFFFFF;
@@ -64,7 +64,7 @@ nav{position:sticky;top:0;left:0;right:0;z-index:999;display:flex;align-items:ce
 .logo{font-family:‘Bebas Neue’,sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(–texto);cursor:pointer;transition:color 0.3s;}
 .logo em{color:var(–verde);font-style:normal;}
 .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
-.nav-links a,.nav-links button{font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(–texto);background:none;border:none;cursor:pointer;transition:color 0.2s;font-family:‘Outfit’,sans-serif;}
+.nav-links a,.nav-links button{font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#F0F4F8;text-shadow:0 1px 3px rgba(0,0,0,0.8);background:none;border:none;cursor:pointer;transition:color 0.2s;font-family:‘Outfit’,sans-serif;}
 .nav-links a:hover,.nav-links button:hover{color:var(–texto);}
 .nav-btn-cta{background:var(–verde)!important;color:#06080A!important;padding:0.45rem 1.3rem;border-radius:6px;font-weight:700!important;transition:all 0.2s!important;}
 .nav-btn-cta:hover{background:var(–verde2)!important;transform:translateY(-1px);}
@@ -471,7 +471,6 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
 <button onclick="irSeccion('como-funciona');cerrarMenu()">❓ Cómo funciona</button>
 <button onclick="irSeccion('premios');cerrarMenu()">💰 Premios</button>
 <button onclick="mostrarSeguimiento();cerrarMenu()">📊 En Vivo</button>
-<button onclick="abrirAdmin();cerrarMenu()" style="color:#FF6D00;">⚙️ Admin</button>
 <button class="cta-mobile" onclick="mostrarRegistro();cerrarMenu()">⚽ Jugar Ahora — $100 MXN</button>
 </div>
 
@@ -793,7 +792,6 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
 </div>
 
 <button id="btnFlotantePartidos" onclick="irSeccion('partidos-j20')">
-<button id="btnFlotantePartidos" onclick="irSeccion('partidos-j20')">
 <div class="fp-dot"></div>⚽ Ver Partidos J20<span class="fp-badge">15</span>
 </button>
 
@@ -1020,8 +1018,14 @@ document.getElementById('navPrincipal').style.display = 'flex';
 document.getElementById('countdownBar').style.display = 'flex';
 window.scrollTo(0,0);
 document.title = 'QuinielaPro Fut — La Quiniela Más Pro de México';
+_precargarSeguimiento();
 }
-
+function _precargarSeguimiento(){
+  if(iframesLoaded.seguimiento) return;
+  var iframe = document.getElementById('iframe-seguimiento');
+  iframe.src = URL_SEGUIMIENTO;
+  iframesLoaded.seguimiento = true;
+}
 function mostrarRegistro() {
 window.dataLayer = window.dataLayer || []; window.dataLayer.push({event:'clic_registro'});
 document.getElementById('btnFlotantePartidos').classList.add('oculto');
