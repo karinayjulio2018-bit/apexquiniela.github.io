@@ -1025,6 +1025,12 @@ function _precargarSeguimiento(){
   iframe.src = URL_SEGUIMIENTO;
   iframesLoaded.seguimiento = true;
 }
+function _precargarRegistro(){
+  if(iframesLoaded.registro) return;
+  var iframe = document.getElementById('iframe-registro');
+  iframe.src = URL_REGISTRO;
+  iframesLoaded.registro = true;
+}
 function mostrarRegistro() {
 window.dataLayer = window.dataLayer || []; window.dataLayer.push({event:'clic_registro'});
 document.getElementById('btnFlotantePartidos').classList.add('oculto');
@@ -1133,6 +1139,7 @@ entries.forEach(function(e){ if (e.isIntersecting) btn.classList.add('oculto'); 
 // ════════════════════════════════════════════════════════════
 initRemind();
 setTimeout(function(){ _precargarSeguimiento(); }, 3000);
+setTimeout(function(){ _precargarRegistro(); }, 5000);
 </script>
 </body>
 </html>
