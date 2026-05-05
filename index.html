@@ -459,7 +459,7 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
 <nav id="navPrincipal">
   <div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
   <ul class="nav-links">
-    <li><button onclick="irSeccion('partidos-j20')">Partidos J20</button></li>
+    <li><button onclick="irSeccion('partidos-j20')">Partidos J21</button></li>
     <li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
     <li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
     <li><button onclick="irSeccion('premios')">Premios</button></li>
@@ -479,7 +479,7 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
 
 <!-- MENÚ MÓVIL -->
 <div class="nav-mobile" id="navMobile">
-  <button onclick="irSeccion('partidos-j20');cerrarMenu()">⚽ Partidos J20</button>
+  <button onclick="irSeccion('partidos-j20');cerrarMenu()">⚽ Partidos J21</button>
   <button onclick="irSeccion('ganadores');cerrarMenu()">🏆 Ganadores</button>
   <button onclick="irSeccion('como-funciona');cerrarMenu()">❓ Cómo funciona</button>
   <button onclick="irSeccion('premios');cerrarMenu()">💰 Premios</button>
@@ -495,23 +495,23 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
     <div class="hero-hex"></div>
     <div class="hero-grid">
       <div class="hero-content">
-        <div class="hero-tag"><div class="pdot"></div>Jornada 20 — Inscripciones Abiertas</div>
+        <div class="hero-tag"><div class="pdot"></div>Jornada 21 — Inscripciones Abiertas</div>
         <h1 class="hero-title"><span class="v">Quiniela</span><br><span class="o">Pro</span> Fut</h1>
         <p class="hero-desc">Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.</p>
-        <div class="hero-referido"><div class="ref-icon">🔥</div><div class="ref-text"><strong>Premio especial J20:</strong> <span>$2,000 si aciertas 15/15</span> · $1,200 si aciertas 14/15</div></div>
+        <div class="hero-referido"><div class="ref-icon">🔥</div><div class="ref-text"><strong>Premio especial J21:</strong> <span>$2,000 si aciertas 15/15</span> · $1,200 si aciertas 14/15</div></div>
         <div class="hero-btns" id="heroBtns">
           <button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
           <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
         </div>
       </div>
       <div class="hero-right">
-        <div class="hero-stat-card"><div class="hsc-icon">🏆</div><div><div class="hsc-label">Ganador J19</div><div class="hsc-val oro" style="font-size:1.1rem;">CHRIS_</div></div></div>
-        <div class="hero-stat-card"><div class="hsc-icon">💰</div><div><div class="hsc-label">Premio J19</div><div class="hsc-val oro">$720 MXN</div></div></div>
+        <div class="hero-stat-card"><div class="hsc-icon">🏆</div><div><div class="hsc-label">Ganador J20</div><div class="hsc-val oro" style="font-size:1.1rem;">CHECO10</div></div></div>
+        <div class="hero-stat-card"><div class="hsc-icon">💰</div><div><div class="hsc-label">Premio J20</div><div class="hsc-val oro">$880 MXN</div></div></div>
         <div class="hero-stat-card"><div class="hsc-icon">⚡</div><div><div class="hsc-label">Pagos en tiempo</div><div class="hsc-val">100%</div></div></div>
         <div class="hero-right-cta">
-          <div class="hrc-title">⚽ Jornada 20 — 15 Partidos</div>
+          <div class="hrc-title">⚽ Jornada 21 — 15 Partidos</div>
           <div class="hrc-ligas"><span class="hrc-liga">🇲🇽 Liga MX</span><span class="hrc-liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</span><span class="hrc-liga">🇩🇪 Bundesliga</span><span class="hrc-liga">🇮🇹 Serie A</span><span class="hrc-liga">🇪🇸 LaLiga</span></div>
-          <div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 20</div>
+          <div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 21</div>
         </div>
       </div>
     </div>
@@ -530,16 +530,16 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
   </div>
 
   <div class="stats-bar">
-    <div class="stat"><span class="stat-n" data-to="19">0</span><span class="stat-l">Jornadas Jugadas</span></div>
-    <div class="stat"><span class="stat-n" data-to="900" style="color:var(--oro)">0</span><span class="stat-l">Pozo Estimado J20 $MXN</span></div>
-    <div class="stat"><span class="stat-n" data-to="9">0</span><span class="stat-l">Jugadores J19</span></div>
+    <div class="stat"><span class="stat-n" data-to="20">0</span><span class="stat-l">Jornadas Jugadas</span></div>
+    <div class="stat"><span class="stat-n" data-to="1100" style="color:var(--oro)">0</span><span class="stat-l">Pozo Estimado J21 $MXN</span></div>
+    <div class="stat"><span class="stat-n" data-to="11">0</span><span class="stat-l">Jugadores J20</span></div>
     <div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
   </div>
 
   <!-- PARTIDOS -->
   <div class="partidos-section ocultar-en-vivo" id="partidos-j20">
     <section class="sec">
-      <span class="chip reveal">Jornada 20</span>
+      <span class="chip reveal">Jornada 21</span>
       <h2 class="stitle reveal">Partidos a<br><span style="color:var(--verde)">pronosticar</span></h2>
       <p class="sdesc reveal">15 partidos de las mejores ligas del mundo. ¿Cuántos puedes acertar?</p>
       <div class="pozo-preview reveal">
@@ -594,11 +594,12 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
       <h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
       <p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
       <div class="ganadores-grid">
+        <div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 20</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">CHECO10</div><div class="ganador-alias">Sergio Castañeda Díaz · Ganador J20</div><div class="ganador-premio">$880</div><div class="ganador-meta"><div class="ganador-dot"></div>10 aciertos · 67% efectividad · Jornada 20</div></div>
         <div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 19</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">CHRIS_</div><div class="ganador-alias">Christhian H. Rodriguez · Ganador J19</div><div class="ganador-premio">$720</div><div class="ganador-meta"><div class="ganador-dot"></div>11 aciertos · 73% efectividad · Jornada 19</div></div>
-        <div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 18</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">APLES & MR.HAPPY</div><div class="ganador-alias">Empate 1er lugar · J18</div><div class="ganador-premio">$440</div><div class="ganador-meta"><div class="ganador-dot"></div>8 aciertos · Empate · Jornada 18</div></div>
       </div>
       <div class="historial reveal" style="margin-top:2.5rem;">
         <div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">CHECO10 <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 20</span></span><span class="h-aciertos">10</span><span class="h-premio">$880</span></div>
         <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">CHRIS_ <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 19</span></span><span class="h-aciertos">11</span><span class="h-premio">$720</span></div>
         <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">APLES <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
         <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">MR. HAPPY <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
@@ -650,7 +651,7 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
         </div>
         <div class="lead-social-proof" id="leadSocialProof">
           <div class="lsp-avatars"><div class="lsp-ava">C</div><div class="lsp-ava">A</div><div class="lsp-ava">M</div><div class="lsp-ava">+</div></div>
-          <div class="lsp-text"><strong>+9 jugadores activos</strong> en J19.<br>CHRIS_ ganó $720 con 11 aciertos 🏆</div>
+          <div class="lsp-text"><strong>+11 jugadores activos</strong> en J20.<br>CHECO10 ganó $880 con 10 aciertos 🏆</div>
         </div>
       </div>
     </div>
@@ -671,12 +672,12 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
       <h2 class="stitle reveal">Sigue el ranking<br>mientras pasa</h2>
       <p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones.</p>
       <div class="tbox reveal">
-        <div class="thead"><span class="thead-t">Jornada 19 — Resultado Final</span><span class="live"><div class="ldot"></div>Completada</span></div>
+        <div class="thead"><span class="thead-t">Jornada 20 — Resultado Final</span><span class="live"><div class="ldot"></div>Completada</span></div>
         <div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
-        <div class="trow"><span class="rk r1">1</span><span class="pname">CHRIS_</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">11</div></div>
-        <div class="trow"><span class="rk r2">2</span><span class="pname">CATO ROJO</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">9</div></div>
-        <div class="trow"><span class="rk r3">3</span><span class="pname">VJBA</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">9</div></div>
-        <div class="trow"><span class="rk r4">4</span><span class="pname">PERKYS_</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">9</div></div>
+        <div class="trow"><span class="rk r1">1</span><span class="pname">CHECO10</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">10</div></div>
+        <div class="trow"><span class="rk r2">2</span><span class="pname">XAVIER C.</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">9</div></div>
+        <div class="trow"><span class="rk r3">3</span><span class="pname">M.A. OCAMPO</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">9</div></div>
+        <div class="trow"><span class="rk r4">4</span><span class="pname">APEX</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">8</div></div>
       </div>
       <div style="text-align:center;margin-top:2rem;"><button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button></div>
     </section>
@@ -699,7 +700,7 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
       <div class="promo-referido reveal" style="background:linear-gradient(135deg,rgba(255,109,0,0.06),rgba(255,216,77,0.06));border-color:rgba(255,109,0,0.4);">
         <div style="font-size:3.5rem;flex-shrink:0;">🔥</div>
         <div style="flex:1;min-width:220px;">
-          <div class="promo-badge" style="background:#FF6D00;">EXCLUSIVO J20</div>
+          <div class="promo-badge" style="background:#FF6D00;">EXCLUSIVO J21</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#FF6D00;line-height:1.1;margin-bottom:0.5rem;">BOLSA ESPECIAL<br>ESTA JORNADA</div>
           <div style="font-size:0.9rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--oro);">15/15 aciertos → $2,000 MXN garantizados</strong><br><strong style="color:var(--texto);">14/15 aciertos → $1,200 MXN garantizados</strong></div>
         </div>
@@ -731,7 +732,7 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
       <span class="chip reveal">La Comunidad Habla</span>
       <h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
       <div class="tgrid">
-        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Jornada 19 fue mía. 11 aciertos, $720 al bolsillo. La próxima los barro de nuevo 🔥</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CHRIS_</div><div class="ameta">Ganador Jornada 19 · $720 MXN</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Jornada 20 fue mía. 10 aciertos, $880 al bolsillo. A ver quién me quita el título en la J21 🔥</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CHECO10</div><div class="ameta">Ganador Jornada 20 · $880 MXN</div></div></div></div>
         <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela, intentenlo y les ira muy mal !!!</p><div class="tauthor"><div class="ava">K</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornadas 17 y 15</div></div></div></div>
         <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo.</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CATO</div><div class="ameta">Jugador recurrente</div></div></div></div>
         <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que se puede meter dobles o triples, me ayuda a asegurar mi victoria.</p><div class="tauthor"><div class="ava">Ap</div><div><div class="aname">A_P_E_X_</div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
@@ -743,7 +744,7 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
   <div class="cta-wrap ocultar-en-vivo" id="registro-cta">
     <div class="cta-inner">
       <span class="chip reveal">¿Listo?</span>
-      <h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">Jornada 20</span></h2>
+      <h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">Jornada 21</span></h2>
       <p class="sdesc reveal">15 partidos. 1 ganador. El pozo completo.</p>
       <div class="cta-btns reveal">
         <button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button>
@@ -805,7 +806,7 @@ nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}
 
 <!-- BOTÓN FLOTANTE -->
 <button id="btnFlotantePartidos" class="ocultar-en-vivo" onclick="irSeccion('partidos-j20')">
-  <div class="fp-dot"></div>⚽ Ver Partidos J20<span class="fp-badge">15</span>
+  <div class="fp-dot"></div>⚽ Ver Partidos J21<span class="fp-badge">15</span>
 </button>
 
 <!-- POPUP RECORDATORIO -->
@@ -854,7 +855,7 @@ var URL_ADMIN       = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_
 
 // ── FECHA FALLBACK (se sobreescribe con la de tu CONFIG sheet) ──
 // Formato ISO local: 'YYYY-MM-DDTHH:MM:SS'  (hora de México)
-var FECHA_CIERRE_FALLBACK = '2026-05-15T12:30:00';
+var FECHA_CIERRE_FALLBACK = '2026-05-01T12:30:00';
 
 var TU_WHATSAPP  = '5217471193095';
 var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';
@@ -919,7 +920,7 @@ function iniciarCountdown(fechaISO) {
 
       // Transformar hero (sin tocar botones con listeners activos — uso clases CSS)
       var heroTag = document.querySelector('.hero-tag');
-      if (heroTag) heroTag.innerHTML = '<div class="pdot"></div>Jornada 20 — En Curso';
+      if (heroTag) heroTag.innerHTML = '<div class="pdot"></div>Jornada 21 — En Curso';
 
       var heroTitle = document.querySelector('.hero-title');
       if (heroTitle) heroTitle.innerHTML = '<span class="o">Quiniela</span><br><span class="v">En Vivo</span>';
