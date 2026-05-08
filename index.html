@@ -14,8 +14,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
 /* ════════════════════════════════════════
-TOKENS VISUALES — UNIFICADOS AL SISTEMA
-════════════════════════════════════════ */
+   TOKENS VISUALES — UNIFICADOS AL SISTEMA
+   ════════════════════════════════════════ */
 *{box-sizing:border-box;margin:0;padding:0;}
 a{color:inherit;text-decoration:none;}
 html{scroll-behavior:smooth;}
@@ -331,18 +331,18 @@ animation:fadeUp 0.6s ease 0.25s both;
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.3s both;}
 .btn-v{
 display:inline-flex;align-items:center;gap:0.6rem;
-background:var(–verde);color:#06080A;
+background:#00e87a;color:#06080A;
 font-size:0.95rem;font-weight:800;padding:0.9rem 2rem;border-radius:8px;border:none;cursor:pointer;
-transition:all 0.2s;box-shadow:0 0 30px rgba(0,232,122,0.25);font-family:var(–font);
+transition:all 0.2s;box-shadow:0 0 30px rgba(0,232,122,0.35);font-family:var(–font);
 }
-.btn-v:hover{background:var(–verde2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,232,122,0.4);}
+.btn-v:hover{background:#00c469;transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,232,122,0.5);}
 .btn-o{
 display:inline-flex;align-items:center;gap:0.6rem;
-background:var(–naranja);color:#fff;
+background:#ff6b00;color:#fff;
 font-size:0.95rem;font-weight:900;padding:0.9rem 2rem;border-radius:8px;border:none;cursor:pointer;
-transition:all 0.2s;box-shadow:0 0 30px rgba(255,107,0,0.25);font-family:var(–font);
+transition:all 0.2s;box-shadow:0 0 30px rgba(255,107,0,0.35);font-family:var(–font);
 }
-.btn-o:hover{background:var(–naranja2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,0,0.4);color:#fff;}
+.btn-o:hover{background:#e05e00;transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,0,0.5);color:#fff;}
 
 /* ════════════════════════════════════════
 STATS BAR
@@ -831,36 +831,36 @@ nav{padding:0.85rem 1rem;}
 <!-- COUNTDOWN BAR -->
 
 <div id="countdownBar">
-<div class="cd-label"><span class="cd-blink">⏳</span> Cierre de jornada en:</div>
-<div class="cd-digits">
-<div class="cd-block"><span class="cd-num" id="cd-hrs">--</span><span class="cd-lbl">hrs</span></div>
-<span class="cd-sep">:</span>
-<div class="cd-block"><span class="cd-num" id="cd-min">--</span><span class="cd-lbl">min</span></div>
-<span class="cd-sep">:</span>
-<div class="cd-block"><span class="cd-num" id="cd-sec">--</span><span class="cd-lbl">seg</span></div>
-</div>
-<button class="cd-cta" onclick="mostrarRegistro()">⚽ Registrarme ahora</button>
+  <div class="cd-label"><span class="cd-blink">⏳</span> Cierre de jornada en:</div>
+  <div class="cd-digits">
+    <div class="cd-block"><span class="cd-num" id="cd-hrs">--</span><span class="cd-lbl">hrs</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-block"><span class="cd-num" id="cd-min">--</span><span class="cd-lbl">min</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-block"><span class="cd-num" id="cd-sec">--</span><span class="cd-lbl">seg</span></div>
+  </div>
+  <button class="cd-cta" onclick="mostrarRegistro()">⚽ Registrarme ahora</button>
 </div>
 
 <!-- NAV -->
 
 <nav id="navPrincipal">
-<div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
-<ul class="nav-links">
-<li><button onclick="irSeccion('partidos-j20')">Partidos J21</button></li>
-<li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
-<li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
-<li><button onclick="irSeccion('premios')">Premios</button></li>
-<li><button onclick="mostrarSeguimiento()">En Vivo</button></li>
-<li><button class="btn-tema" id="btnTema" onclick="toggleTema()">🌙</button></li>
-<li><button class="nav-btn-cta ocultar-en-vivo" onclick="mostrarRegistro()">⚽ Jugar Ahora</button></li>
-</ul>
-<div style="display:flex;align-items:center;gap:0.75rem;">
-<button class="btn-tema" id="btnTemaMobile" onclick="toggleTema()">🌙</button>
-<button class="hamburger" id="hambBtn" onclick="toggleMenu()" aria-label="Menú">
-<span></span><span></span><span></span>
-</button>
-</div>
+  <div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
+  <ul class="nav-links">
+    <li><button onclick="irSeccion('partidos-j20')">Partidos J21</button></li>
+    <li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
+    <li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
+    <li><button onclick="irSeccion('premios')">Premios</button></li>
+    <li><button onclick="mostrarSeguimiento()">En Vivo</button></li>
+    <li><button class="btn-tema" id="btnTema" onclick="toggleTema()">🌙</button></li>
+    <li><button class="nav-btn-cta ocultar-en-vivo" onclick="mostrarRegistro()">⚽ Jugar Ahora</button></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="btn-tema" id="btnTemaMobile" onclick="toggleTema()">🌙</button>
+    <button class="hamburger" id="hambBtn" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div id="menuOverlay" onclick="cerrarMenu()"></div>
@@ -868,384 +868,384 @@ nav{padding:0.85rem 1rem;}
 <!-- MENÚ MÓVIL -->
 
 <div class="nav-mobile" id="navMobile">
-<button onclick="irSeccion('partidos-j20');cerrarMenu()">⚽ Partidos J21</button>
-<button onclick="irSeccion('ganadores');cerrarMenu()">🏆 Ganadores</button>
-<button onclick="irSeccion('como-funciona');cerrarMenu()">❓ Cómo funciona</button>
-<button onclick="irSeccion('premios');cerrarMenu()">💰 Premios</button>
-<button onclick="mostrarSeguimiento();cerrarMenu()">📊 En Vivo</button>
-<button class="cta-mobile ocultar-en-vivo" onclick="mostrarRegistro();cerrarMenu()">⚽ Jugar Ahora — $100 MXN</button>
+  <button onclick="irSeccion('partidos-j20');cerrarMenu()">⚽ Partidos J21</button>
+  <button onclick="irSeccion('ganadores');cerrarMenu()">🏆 Ganadores</button>
+  <button onclick="irSeccion('como-funciona');cerrarMenu()">❓ Cómo funciona</button>
+  <button onclick="irSeccion('premios');cerrarMenu()">💰 Premios</button>
+  <button onclick="mostrarSeguimiento();cerrarMenu()">📊 En Vivo</button>
+  <button class="cta-mobile ocultar-en-vivo" onclick="mostrarRegistro();cerrarMenu()">⚽ Jugar Ahora — $100 MXN</button>
 </div>
 
 <!-- VISTA LANDING -->
 
 <div id="vista-landing" class="vista activa">
 
-<section id="hero">
-<div class="hero-bg-3d"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
-<div class="hero-hex"></div>
-<div class="hero-grid">
-<div class="hero-content">
-<div class="hero-tag"><div class="pdot"></div>Jornada 21 — Inscripciones Abiertas</div>
-<h1 class="hero-title"><span class="v">Quiniela</span><br><span class="o">Pro</span> Fut</h1>
-<p class="hero-desc">Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.</p>
-<div class="hero-referido">
-<div class="ref-icon">🔥</div>
-<div class="ref-text"><strong>Premio especial J21:</strong> <span>$2,000 si aciertas 15/15</span> · $1,200 si aciertas 14/15</div>
-</div>
-<div class="hero-btns" id="heroBtns">
-<button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
-<button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
-</div>
-</div>
-<div class="hero-right">
-<div class="hero-stat-card"><div class="hsc-icon">🏆</div><div><div class="hsc-label">Ganador J20</div><div class="hsc-val oro" style="font-size:1.1rem;">CHECO10</div></div></div>
-<div class="hero-stat-card"><div class="hsc-icon">💰</div><div><div class="hsc-label">Premio J20</div><div class="hsc-val oro">$880 MXN</div></div></div>
-<div class="hero-stat-card"><div class="hsc-icon">⚡</div><div><div class="hsc-label">Pagos en tiempo</div><div class="hsc-val">100%</div></div></div>
-<div class="hero-right-cta">
-<div class="hrc-title">⚽ Jornada 21 — 15 Partidos</div>
-<div class="hrc-ligas"><span class="hrc-liga">🇲🇽 Liga MX</span><span class="hrc-liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</span><span class="hrc-liga">🇩🇪 Bundesliga</span><span class="hrc-liga">🇮🇹 Serie A</span><span class="hrc-liga">🇪🇸 LaLiga</span></div>
-<div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 21</div>
-</div>
-</div>
-</div>
-</section>
+  <section id="hero">
+    <div class="hero-bg-3d"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+    <div class="hero-hex"></div>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag"><div class="pdot"></div>Jornada 21 — Inscripciones Abiertas</div>
+        <h1 class="hero-title"><span class="v">Quiniela</span><br><span class="o">Pro</span> Fut</h1>
+        <p class="hero-desc">Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.</p>
+        <div class="hero-referido">
+          <div class="ref-icon">🔥</div>
+          <div class="ref-text"><strong>Premio especial J21:</strong> <span>$2,000 si aciertas 15/15</span> · $1,200 si aciertas 14/15</div>
+        </div>
+        <div class="hero-btns" id="heroBtns">
+          <button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
+          <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stat-card"><div class="hsc-icon">🏆</div><div><div class="hsc-label">Ganador J20</div><div class="hsc-val oro" style="font-size:1.1rem;">CHECO10</div></div></div>
+        <div class="hero-stat-card"><div class="hsc-icon">💰</div><div><div class="hsc-label">Premio J20</div><div class="hsc-val oro">$880 MXN</div></div></div>
+        <div class="hero-stat-card"><div class="hsc-icon">⚡</div><div><div class="hsc-label">Pagos en tiempo</div><div class="hsc-val">100%</div></div></div>
+        <div class="hero-right-cta">
+          <div class="hrc-title">⚽ Jornada 21 — 15 Partidos</div>
+          <div class="hrc-ligas"><span class="hrc-liga">🇲🇽 Liga MX</span><span class="hrc-liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</span><span class="hrc-liga">🇩🇪 Bundesliga</span><span class="hrc-liga">🇮🇹 Serie A</span><span class="hrc-liga">🇪🇸 LaLiga</span></div>
+          <div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 21</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- FOMO — SOLO EN VIVO -->
+  <!-- FOMO — SOLO EN VIVO -->
 
-<div class="mostrar-en-vivo sec" style="background:var(--card2);border-bottom:1px solid var(--borde);text-align:center;">
-<div style="max-width:600px;margin:0 auto;">
-<span class="chip" style="background:rgba(255,77,106,0.1);border-color:rgba(255,77,106,0.2);color:#FF8FA3;">Inscripciones Cerradas</span>
-<h2 class="stitle">La jornada se está <span style="color:var(--naranja)">jugando</span></h2>
-<p class="sdesc" style="margin:0 auto 2rem;">Alguien se va a llevar el pozo esta semana y tú estás fuera. Déjanos tu WhatsApp y te avisaremos 24 horas antes de abrir la siguiente bolsa.</p>
-<button class="lead-btn" onclick="abrirRemind()" style="max-width:350px;margin:0 auto;">
-<span class="btn-text-inner">🔔 Avisarme de la Próxima</span>
-</button>
-</div>
-</div>
+  <div class="mostrar-en-vivo sec" style="background:var(--card2);border-bottom:1px solid var(--borde);text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+      <span class="chip" style="background:rgba(255,77,106,0.1);border-color:rgba(255,77,106,0.2);color:#FF8FA3;">Inscripciones Cerradas</span>
+      <h2 class="stitle">La jornada se está <span style="color:var(--naranja)">jugando</span></h2>
+      <p class="sdesc" style="margin:0 auto 2rem;">Alguien se va a llevar el pozo esta semana y tú estás fuera. Déjanos tu WhatsApp y te avisaremos 24 horas antes de abrir la siguiente bolsa.</p>
+      <button class="lead-btn" onclick="abrirRemind()" style="max-width:350px;margin:0 auto;">
+        <span class="btn-text-inner">🔔 Avisarme de la Próxima</span>
+      </button>
+    </div>
+  </div>
 
-<!-- STATS BAR -->
+  <!-- STATS BAR -->
 
-<div class="stats-bar">
-<div class="stat"><span class="stat-n" data-to="20">0</span><span class="stat-l">Jornadas Jugadas</span></div>
-<div class="stat"><span class="stat-n" data-to="1100" style="color:var(--naranja)">0</span><span class="stat-l">Pozo Estimado J21 $MXN</span></div>
-<div class="stat"><span class="stat-n" data-to="11">0</span><span class="stat-l">Jugadores J20</span></div>
-<div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
-</div>
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-n" data-to="20">0</span><span class="stat-l">Jornadas Jugadas</span></div>
+    <div class="stat"><span class="stat-n" data-to="1100" style="color:var(--naranja)">0</span><span class="stat-l">Pozo Estimado J21 $MXN</span></div>
+    <div class="stat"><span class="stat-n" data-to="11">0</span><span class="stat-l">Jugadores J20</span></div>
+    <div class="stat"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
+  </div>
 
-<!-- PARTIDOS -->
+  <!-- PARTIDOS -->
 
-<div class="partidos-section ocultar-en-vivo" id="partidos-j20">
-<section class="sec">
-<span class="chip reveal">Jornada 21</span>
-<h2 class="stitle reveal">Partidos a<br><span style="color:var(--verde)">pronosticar</span></h2>
-<p class="sdesc reveal">15 partidos de las mejores ligas del mundo. ¿Cuántos puedes acertar?</p>
-<div class="pozo-preview reveal">
-<div><div class="pozo-preview-label">Premio especial</div><div class="pozo-preview-num">$2,000 MXN</div></div>
-<div style="width:1px;background:rgba(255,107,0,0.3);align-self:stretch;"></div>
-<div><div class="pozo-preview-label">Partidos</div><div class="pozo-preview-num" style="color:var(--verde);">15</div></div>
-<div style="width:1px;background:rgba(255,107,0,0.3);align-self:stretch;"></div>
-<div><div class="pozo-preview-label">Entrada</div><div class="pozo-preview-num" style="font-size:2rem;">$100 MXN</div></div>
-</div>
-<div class="partidos-grid reveal">
-<div class="partidos-dia">
-<div class="partidos-dia-label"><div class="dia-badge dia-sabado">📅 Sábado 9 Mayo</div><div class="dia-line"></div></div>
-<div class="partidos-lista">
-<div class="partido-card"><div class="partido-num">1</div><div class="partido-liga-icon">🇮🇹</div><div class="partido-info"><div class="partido-equipos">Cagliari <span class="vs">vs</span> Udinese</div><div class="partido-liga-tag">Serie A · 08:00 — Duelo no descenso</div></div></div>
-<div class="partido-card"><div class="partido-num">2</div><div class="partido-liga-icon">🇩🇪</div><div class="partido-info"><div class="partido-equipos">FC Augsburg <span class="vs">vs</span> B. Mönchengladbach</div><div class="partido-liga-tag">Bundesliga · 08:30</div></div></div>
-<div class="partido-card"><div class="partido-num">3</div><div class="partido-liga-icon">🇩🇪</div><div class="partido-info"><div class="partido-equipos">VfB Stuttgart <span class="vs">vs</span> Bayer Leverkusen</div><div class="partido-liga-tag">Bundesliga · 08:30</div></div></div>
-<div class="partido-card"><div class="partido-num">4</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Fulham <span class="vs">vs</span> AFC Bournemouth</div><div class="partido-liga-tag">Premier League · 09:00</div></div></div>
-<div class="partido-card partido-destacado"><div class="partido-num">5</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Sunderland <span class="vs">vs</span> Manchester United</div><div class="partido-liga-tag">Premier League · 09:00 — El United siempre vende 🔥</div></div></div>
-<div class="partido-card"><div class="partido-num">6</div><div class="partido-liga-icon">🇪🇸</div><div class="partido-info"><div class="partido-equipos">Sevilla <span class="vs">vs</span> Espanyol</div><div class="partido-liga-tag">LaLiga · 09:15</div></div></div>
-<div class="partido-card"><div class="partido-num">7</div><div class="partido-liga-icon">🇮🇹</div><div class="partido-info"><div class="partido-equipos">Lazio <span class="vs">vs</span> Inter Milano</div><div class="partido-liga-tag">Serie A · 11:00 — Inter pelea el título</div></div></div>
-<div class="partido-card"><div class="partido-num">8</div><div class="partido-liga-icon">🇪🇸</div><div class="partido-info"><div class="partido-equipos">Real Sociedad <span class="vs">vs</span> Real Betis</div><div class="partido-liga-tag">LaLiga · 14:00</div></div></div>
-<div class="partido-card partido-destacado"><div class="partido-num">9</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Chivas <span class="vs">vs</span> Tigres UANL</div><div class="partido-liga-tag">Liga MX Liguilla · 19:07 — Vuelta QF · Amazon Prime</div></div></div>
-<div class="partido-card partido-destacado"><div class="partido-num">10</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Cruz Azul <span class="vs">vs</span> Atlas</div><div class="partido-liga-tag">Liga MX Liguilla · 21:15 — Vuelta QF · TUDN</div></div></div>
-</div>
-</div>
-<div class="partidos-dia">
-<div class="partidos-dia-label"><div class="dia-badge dia-domingo">📅 Domingo 10 Mayo</div><div class="dia-line"></div></div>
-<div class="partidos-lista">
-<div class="partido-card"><div class="partido-num">11</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Crystal Palace <span class="vs">vs</span> Everton</div><div class="partido-liga-tag">Premier League · 08:00</div></div></div>
-<div class="partido-card"><div class="partido-num">12</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Nottingham Forest <span class="vs">vs</span> Newcastle</div><div class="partido-liga-tag">Premier League · 08:00</div></div></div>
-<div class="partido-card partido-destacado"><div class="partido-num">13</div><div class="partido-liga-icon">🇮🇹</div><div class="partido-info"><div class="partido-equipos">AC Milan <span class="vs">vs</span> Atalanta BC</div><div class="partido-liga-tag">Serie A · 13:45 — Duelo explosivo</div></div></div>
-<div class="partido-card partido-destacado"><div class="partido-num">14</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Pachuca <span class="vs">vs</span> Toluca</div><div class="partido-liga-tag">Liga MX Liguilla · 17:00 — Vuelta QF · TUDN</div></div></div>
-<div class="partido-card partido-destacado"><div class="partido-num">15</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Pumas UNAM <span class="vs">vs</span> América</div><div class="partido-liga-tag">Liga MX Liguilla · 19:15 — Clásico Capitalino · Canal 5</div></div></div>
-</div>
-</div>
-</div>
-<div class="partidos-cta reveal">
-<button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()" style="font-size:1.1rem;padding:1.1rem 2.5rem;">⚽ Registrar mi Quiniela — $100 MXN</button>
-</div>
-</section>
-</div>
+  <div class="partidos-section ocultar-en-vivo" id="partidos-j20">
+    <section class="sec">
+      <span class="chip reveal">Jornada 21</span>
+      <h2 class="stitle reveal">Partidos a<br><span style="color:var(--verde)">pronosticar</span></h2>
+      <p class="sdesc reveal">15 partidos de las mejores ligas del mundo. ¿Cuántos puedes acertar?</p>
+      <div class="pozo-preview reveal">
+        <div><div class="pozo-preview-label">Premio especial</div><div class="pozo-preview-num">$2,000 MXN</div></div>
+        <div style="width:1px;background:rgba(255,107,0,0.3);align-self:stretch;"></div>
+        <div><div class="pozo-preview-label">Partidos</div><div class="pozo-preview-num" style="color:var(--verde);">15</div></div>
+        <div style="width:1px;background:rgba(255,107,0,0.3);align-self:stretch;"></div>
+        <div><div class="pozo-preview-label">Entrada</div><div class="pozo-preview-num" style="font-size:2rem;">$100 MXN</div></div>
+      </div>
+      <div class="partidos-grid reveal">
+        <div class="partidos-dia">
+          <div class="partidos-dia-label"><div class="dia-badge dia-sabado">📅 Sábado 9 Mayo</div><div class="dia-line"></div></div>
+          <div class="partidos-lista">
+            <div class="partido-card"><div class="partido-num">1</div><div class="partido-liga-icon">🇮🇹</div><div class="partido-info"><div class="partido-equipos">Cagliari <span class="vs">vs</span> Udinese</div><div class="partido-liga-tag">Serie A · 08:00 — Duelo no descenso</div></div></div>
+            <div class="partido-card"><div class="partido-num">2</div><div class="partido-liga-icon">🇩🇪</div><div class="partido-info"><div class="partido-equipos">FC Augsburg <span class="vs">vs</span> B. Mönchengladbach</div><div class="partido-liga-tag">Bundesliga · 08:30</div></div></div>
+            <div class="partido-card"><div class="partido-num">3</div><div class="partido-liga-icon">🇩🇪</div><div class="partido-info"><div class="partido-equipos">VfB Stuttgart <span class="vs">vs</span> Bayer Leverkusen</div><div class="partido-liga-tag">Bundesliga · 08:30</div></div></div>
+            <div class="partido-card"><div class="partido-num">4</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Fulham <span class="vs">vs</span> AFC Bournemouth</div><div class="partido-liga-tag">Premier League · 09:00</div></div></div>
+            <div class="partido-card partido-destacado"><div class="partido-num">5</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Sunderland <span class="vs">vs</span> Manchester United</div><div class="partido-liga-tag">Premier League · 09:00 — El United siempre vende 🔥</div></div></div>
+            <div class="partido-card"><div class="partido-num">6</div><div class="partido-liga-icon">🇪🇸</div><div class="partido-info"><div class="partido-equipos">Sevilla <span class="vs">vs</span> Espanyol</div><div class="partido-liga-tag">LaLiga · 09:15</div></div></div>
+            <div class="partido-card"><div class="partido-num">7</div><div class="partido-liga-icon">🇮🇹</div><div class="partido-info"><div class="partido-equipos">Lazio <span class="vs">vs</span> Inter Milano</div><div class="partido-liga-tag">Serie A · 11:00 — Inter pelea el título</div></div></div>
+            <div class="partido-card"><div class="partido-num">8</div><div class="partido-liga-icon">🇪🇸</div><div class="partido-info"><div class="partido-equipos">Real Sociedad <span class="vs">vs</span> Real Betis</div><div class="partido-liga-tag">LaLiga · 14:00</div></div></div>
+            <div class="partido-card partido-destacado"><div class="partido-num">9</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Chivas <span class="vs">vs</span> Tigres UANL</div><div class="partido-liga-tag">Liga MX Liguilla · 19:07 — Vuelta QF · Amazon Prime</div></div></div>
+            <div class="partido-card partido-destacado"><div class="partido-num">10</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Cruz Azul <span class="vs">vs</span> Atlas</div><div class="partido-liga-tag">Liga MX Liguilla · 21:15 — Vuelta QF · TUDN</div></div></div>
+          </div>
+        </div>
+        <div class="partidos-dia">
+          <div class="partidos-dia-label"><div class="dia-badge dia-domingo">📅 Domingo 10 Mayo</div><div class="dia-line"></div></div>
+          <div class="partidos-lista">
+            <div class="partido-card"><div class="partido-num">11</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Crystal Palace <span class="vs">vs</span> Everton</div><div class="partido-liga-tag">Premier League · 08:00</div></div></div>
+            <div class="partido-card"><div class="partido-num">12</div><div class="partido-liga-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="partido-info"><div class="partido-equipos">Nottingham Forest <span class="vs">vs</span> Newcastle</div><div class="partido-liga-tag">Premier League · 08:00</div></div></div>
+            <div class="partido-card partido-destacado"><div class="partido-num">13</div><div class="partido-liga-icon">🇮🇹</div><div class="partido-info"><div class="partido-equipos">AC Milan <span class="vs">vs</span> Atalanta BC</div><div class="partido-liga-tag">Serie A · 13:45 — Duelo explosivo</div></div></div>
+            <div class="partido-card partido-destacado"><div class="partido-num">14</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Pachuca <span class="vs">vs</span> Toluca</div><div class="partido-liga-tag">Liga MX Liguilla · 17:00 — Vuelta QF · TUDN</div></div></div>
+            <div class="partido-card partido-destacado"><div class="partido-num">15</div><div class="partido-liga-icon">🇲🇽</div><div class="partido-info"><div class="partido-equipos">Pumas UNAM <span class="vs">vs</span> América</div><div class="partido-liga-tag">Liga MX Liguilla · 19:15 — Clásico Capitalino · Canal 5</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="partidos-cta reveal">
+        <button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()" style="font-size:1.1rem;padding:1.1rem 2.5rem;">⚽ Registrar mi Quiniela — $100 MXN</button>
+      </div>
+    </section>
+  </div>
 
-<!-- GANADORES -->
+  <!-- GANADORES -->
 
-<div class="ganadores-section" id="ganadores">
-<section class="sec">
-<span class="chip reveal">Ganadores Reales</span>
-<h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
-<p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
-<div class="ganadores-grid">
-<div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 20</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">CHECO10</div><div class="ganador-alias">Sergio Castañeda Díaz · Ganador J20</div><div class="ganador-premio">$880</div><div class="ganador-meta"><div class="ganador-dot"></div>10 aciertos · 67% efectividad · Jornada 20</div></div>
-<div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 19</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">CHRIS_</div><div class="ganador-alias">Christhian H. Rodriguez · Ganador J19</div><div class="ganador-premio">$720</div><div class="ganador-meta"><div class="ganador-dot"></div>11 aciertos · 73% efectividad · Jornada 19</div></div>
-</div>
-<div class="historial reveal" style="margin-top:2.5rem;">
-<div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">CHECO10 <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 20</span></span><span class="h-aciertos">10</span><span class="h-premio">$880</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">CHRIS_ <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 19</span></span><span class="h-aciertos">11</span><span class="h-premio">$720</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">APLES <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">MR. HAPPY <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span><span class="h-aciertos">9</span><span class="h-premio">$880</span></div>
-<div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
-<div class="historial-row" style="opacity:0.4;"><span class="h-pos" style="color:var(--muted);">—</span><span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span><span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span><span class="h-premio" style="color:var(--verde);">$???</span></div>
-</div>
-</section>
-</div>
+  <div class="ganadores-section" id="ganadores">
+    <section class="sec">
+      <span class="chip reveal">Ganadores Reales</span>
+      <h2 class="stitle reveal">Jugadores que<br><span style="color:var(--oro)">ya cobraron</span></h2>
+      <p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
+      <div class="ganadores-grid">
+        <div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 20</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">CHECO10</div><div class="ganador-alias">Sergio Castañeda Díaz · Ganador J20</div><div class="ganador-premio">$880</div><div class="ganador-meta"><div class="ganador-dot"></div>10 aciertos · 67% efectividad · Jornada 20</div></div>
+        <div class="ganador-card reveal"><div class="ganador-badge">🏆 JORNADA 19</div><div class="ganador-trophy">🥇</div><div class="ganador-nombre">CHRIS_</div><div class="ganador-alias">Christhian H. Rodriguez · Ganador J19</div><div class="ganador-premio">$720</div><div class="ganador-meta"><div class="ganador-dot"></div>11 aciertos · 73% efectividad · Jornada 19</div></div>
+      </div>
+      <div class="historial reveal" style="margin-top:2.5rem;">
+        <div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">CHECO10 <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 20</span></span><span class="h-aciertos">10</span><span class="h-premio">$880</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">CHRIS_ <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 19</span></span><span class="h-aciertos">11</span><span class="h-premio">$720</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">APLES <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">MR. HAPPY <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 18</span></span><span class="h-aciertos">8</span><span class="h-premio">$440</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">KAKAROTTO <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 17</span></span><span class="h-aciertos">9</span><span class="h-premio">$880</span></div>
+        <div class="historial-row"><span class="h-pos">🥇</span><span class="h-nombre">Perkys <span style="color:var(--muted2);font-size:0.78rem;font-weight:400;">· Jornada 16</span></span><span class="h-aciertos">—</span><span class="h-premio">$400</span></div>
+        <div class="historial-row" style="opacity:0.4;"><span class="h-pos" style="color:var(--muted);">—</span><span class="h-nombre" style="color:var(--muted2);">Próximo ganador... ¿serás tú?</span><span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:var(--muted2);">?</span><span class="h-premio" style="color:var(--verde);">$???</span></div>
+      </div>
+    </section>
+  </div>
 
-<!-- CÓMO FUNCIONA -->
+  <!-- CÓMO FUNCIONA -->
 
-<div style="background:var(--negro);">
-<section class="sec" id="como-funciona">
-<span class="chip reveal">El Proceso</span>
-<h2 class="stitle reveal">Así de fácil<br>es participar</h2>
-<p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
-<div class="steps">
-<div class="step reveal"><div class="step-bg">01</div><div class="step-icon">⚽</div><h3>Entra al formulario</h3><p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p></div>
-<div class="step reveal"><div class="step-bg">02</div><div class="step-icon">🔀</div><h3>Juega con Dobles y Triples</h3><p>Marca 2 o 3 opciones por partido para multiplicar tu boleta.</p></div>
-<div class="step reveal"><div class="step-bg">03</div><div class="step-icon">📊</div><h3>Sigue tu posición en vivo</h3><p>Ranking actualizado en tiempo real conforme caen los resultados.</p></div>
-<div class="step reveal"><div class="step-bg">04</div><div class="step-icon">🏆</div><h3>Cobra tu premio</h3><p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p></div>
-</div>
-</section>
-</div>
+  <div style="background:var(--negro);">
+    <section class="sec" id="como-funciona">
+      <span class="chip reveal">El Proceso</span>
+      <h2 class="stitle reveal">Así de fácil<br>es participar</h2>
+      <p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-bg">01</div><div class="step-icon">⚽</div><h3>Entra al formulario</h3><p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p></div>
+        <div class="step reveal"><div class="step-bg">02</div><div class="step-icon">🔀</div><h3>Juega con Dobles y Triples</h3><p>Marca 2 o 3 opciones por partido para multiplicar tu boleta.</p></div>
+        <div class="step reveal"><div class="step-bg">03</div><div class="step-icon">📊</div><h3>Sigue tu posición en vivo</h3><p>Ranking actualizado en tiempo real conforme caen los resultados.</p></div>
+        <div class="step reveal"><div class="step-bg">04</div><div class="step-icon">🏆</div><h3>Cobra tu premio</h3><p>El ganador recibe su dinero directo. Transparente, rápido y sin rollos.</p></div>
+      </div>
+    </section>
+  </div>
 
-<!-- LEAD CAPTURE -->
+  <!-- LEAD CAPTURE -->
 
-<div class="lead-section" id="unete">
-<div class="lead-inner">
-<div class="lead-badge-wrap reveal"><div class="lead-live-badge"><div class="pdot"></div>¿Primera vez aquí?</div></div>
-<div class="lead-card reveal">
-<h2 class="lead-title">¿Nuevo en las<br><span class="v">Quinielas?</span></h2>
-<p class="lead-sub">Déjanos tu WhatsApp y te explicamos cómo funciona, cuándo arranca la próxima jornada y cómo ganar desde tu primera jugada.</p>
-<div class="lead-benefits"><div class="lead-chip">⚽ Multi-liga</div><div class="lead-chip">🏆 Ganas el pozo</div><div class="lead-chip">📊 Ranking en vivo</div><div class="lead-chip">💸 Desde $100 MXN</div></div>
-<div class="lead-form-inner" id="leadFormInner">
-<div class="lead-form-grid">
-<div class="lf-group"><label class="lf-label">Tu nombre</label><input class="lf-input" type="text" id="lf-nombre" placeholder="Ej. Carlos, El Chino, Perkys…" autocomplete="given-name"><span class="lf-error" id="lferr-nombre">Escribe tu nombre para continuar.</span></div>
-<div class="lf-group"><label class="lf-label">WhatsApp</label><input class="lf-input" type="tel" id="lf-wp" placeholder="10 dígitos — Ej. 5512345678" maxlength="10" inputmode="numeric" autocomplete="tel"><span class="lf-error" id="lferr-wp">Ingresa un número de 10 dígitos.</span></div>
-<div class="lf-group"><label class="lf-label">Email <span style="opacity:.8;font-weight:400;font-size:10px">(opcional)</span></label><input class="lf-input" type="email" id="lf-email" placeholder="tu@correo.com" autocomplete="email"></div>
-<label class="lf-check-wrap" for="lf-notif"><input type="checkbox" id="lf-notif" checked><div class="lf-checkbox" id="lfCheckIcon">✓</div><span class="lf-check-text">Avísame cuando <strong>inicie la siguiente jornada</strong> 🔔</span></label>
-</div>
-<button class="lead-btn" id="leadBtn" onclick="handleLeadSubmit()"><span class="btn-text-inner">📲 Quiero Info — Mándame Todo</span><div class="lead-spinner"></div></button>
-<p class="lead-privacy">🔒 Solo usamos tus datos para avisarte de Quiniela Pro Fut. Sin spam.</p>
-</div>
-<div class="lead-success" id="leadSuccess">
-<span class="lead-success-icon">🎉</span>
-<h3 class="lead-success-title">¡Ya estás dentro!</h3>
-<p class="lead-success-text">En breve te mandamos todo por WhatsApp.</p>
-<a class="lead-wa-btn" id="leadWaLink" href="#" target="_blank">💬 Escríbenos en WhatsApp</a>
-</div>
-<div class="lead-social-proof" id="leadSocialProof">
-<div class="lsp-avatars"><div class="lsp-ava">C</div><div class="lsp-ava">A</div><div class="lsp-ava">M</div><div class="lsp-ava">+</div></div>
-<div class="lsp-text"><strong>+11 jugadores activos</strong> en J20.<br>CHECO10 ganó $880 con 10 aciertos 🏆</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="lead-section" id="unete">
+    <div class="lead-inner">
+      <div class="lead-badge-wrap reveal"><div class="lead-live-badge"><div class="pdot"></div>¿Primera vez aquí?</div></div>
+      <div class="lead-card reveal">
+        <h2 class="lead-title">¿Nuevo en las<br><span class="v">Quinielas?</span></h2>
+        <p class="lead-sub">Déjanos tu WhatsApp y te explicamos cómo funciona, cuándo arranca la próxima jornada y cómo ganar desde tu primera jugada.</p>
+        <div class="lead-benefits"><div class="lead-chip">⚽ Multi-liga</div><div class="lead-chip">🏆 Ganas el pozo</div><div class="lead-chip">📊 Ranking en vivo</div><div class="lead-chip">💸 Desde $100 MXN</div></div>
+        <div class="lead-form-inner" id="leadFormInner">
+          <div class="lead-form-grid">
+            <div class="lf-group"><label class="lf-label">Tu nombre</label><input class="lf-input" type="text" id="lf-nombre" placeholder="Ej. Carlos, El Chino, Perkys…" autocomplete="given-name"><span class="lf-error" id="lferr-nombre">Escribe tu nombre para continuar.</span></div>
+            <div class="lf-group"><label class="lf-label">WhatsApp</label><input class="lf-input" type="tel" id="lf-wp" placeholder="10 dígitos — Ej. 5512345678" maxlength="10" inputmode="numeric" autocomplete="tel"><span class="lf-error" id="lferr-wp">Ingresa un número de 10 dígitos.</span></div>
+            <div class="lf-group"><label class="lf-label">Email <span style="opacity:.8;font-weight:400;font-size:10px">(opcional)</span></label><input class="lf-input" type="email" id="lf-email" placeholder="tu@correo.com" autocomplete="email"></div>
+            <label class="lf-check-wrap" for="lf-notif"><input type="checkbox" id="lf-notif" checked><div class="lf-checkbox" id="lfCheckIcon">✓</div><span class="lf-check-text">Avísame cuando <strong>inicie la siguiente jornada</strong> 🔔</span></label>
+          </div>
+          <button class="lead-btn" id="leadBtn" onclick="handleLeadSubmit()"><span class="btn-text-inner">📲 Quiero Info — Mándame Todo</span><div class="lead-spinner"></div></button>
+          <p class="lead-privacy">🔒 Solo usamos tus datos para avisarte de Quiniela Pro Fut. Sin spam.</p>
+        </div>
+        <div class="lead-success" id="leadSuccess">
+          <span class="lead-success-icon">🎉</span>
+          <h3 class="lead-success-title">¡Ya estás dentro!</h3>
+          <p class="lead-success-text">En breve te mandamos todo por WhatsApp.</p>
+          <a class="lead-wa-btn" id="leadWaLink" href="#" target="_blank">💬 Escríbenos en WhatsApp</a>
+        </div>
+        <div class="lead-social-proof" id="leadSocialProof">
+          <div class="lsp-avatars"><div class="lsp-ava">C</div><div class="lsp-ava">A</div><div class="lsp-ava">M</div><div class="lsp-ava">+</div></div>
+          <div class="lsp-text"><strong>+11 jugadores activos</strong> en J20.<br>CHECO10 ganó $880 con 10 aciertos 🏆</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- LIGAS -->
+  <!-- LIGAS -->
 
-<section class="sec" id="ligas">
-<span class="chip reveal">Cobertura</span>
-<h2 class="stitle reveal">Todas las ligas<br>que importan</h2>
-<p class="sdesc reveal">Cada jornada incluye los mejores partidos de las competencias más importantes.</p>
-<div class="ligas reveal"><div class="liga on">🇲🇽 Liga MX</div><div class="liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</div><div class="liga">🌍 Champions League</div><div class="liga">🇪🇸 LaLiga</div><div class="liga">🇩🇪 Bundesliga</div><div class="liga">🌎 Copa MX</div></div>
-</section>
+  <section class="sec" id="ligas">
+    <span class="chip reveal">Cobertura</span>
+    <h2 class="stitle reveal">Todas las ligas<br>que importan</h2>
+    <p class="sdesc reveal">Cada jornada incluye los mejores partidos de las competencias más importantes.</p>
+    <div class="ligas reveal"><div class="liga on">🇲🇽 Liga MX</div><div class="liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</div><div class="liga">🌍 Champions League</div><div class="liga">🇪🇸 LaLiga</div><div class="liga">🇩🇪 Bundesliga</div><div class="liga">🌎 Copa MX</div></div>
+  </section>
 
-<!-- TRACKING PREVIEW -->
+  <!-- TRACKING PREVIEW -->
 
-<div style="background:var(--card);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
-<section class="sec">
-<span class="chip reveal">En Tiempo Real</span>
-<h2 class="stitle reveal">Sigue el ranking<br>mientras pasa</h2>
-<p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones.</p>
-<div class="tbox reveal">
-<div class="thead"><span class="thead-t">Jornada 20 — Resultado Final</span><span class="live"><div class="ldot"></div>Completada</span></div>
-<div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
-<div class="trow"><span class="rk r1">1</span><span class="pname">CHECO10</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">10</div></div>
-<div class="trow"><span class="rk r2">2</span><span class="pname">XAVIER C.</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">9</div></div>
-<div class="trow"><span class="rk r3">3</span><span class="pname">M.A. OCAMPO</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">9</div></div>
-<div class="trow"><span class="rk r4">4</span><span class="pname">APEX</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">8</div></div>
-</div>
-<div style="text-align:center;margin-top:2rem;"><button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button></div>
-</section>
-</div>
+  <div style="background:var(--card);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
+    <section class="sec">
+      <span class="chip reveal">En Tiempo Real</span>
+      <h2 class="stitle reveal">Sigue el ranking<br>mientras pasa</h2>
+      <p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones.</p>
+      <div class="tbox reveal">
+        <div class="thead"><span class="thead-t">Jornada 20 — Resultado Final</span><span class="live"><div class="ldot"></div>Completada</span></div>
+        <div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
+        <div class="trow"><span class="rk r1">1</span><span class="pname">CHECO10</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">10</div></div>
+        <div class="trow"><span class="rk r2">2</span><span class="pname">XAVIER C.</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">9</div></div>
+        <div class="trow"><span class="rk r3">3</span><span class="pname">M.A. OCAMPO</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">9</div></div>
+        <div class="trow"><span class="rk r4">4</span><span class="pname">APEX</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">8</div></div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;"><button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button></div>
+    </section>
+  </div>
 
-<!-- PREMIOS -->
+  <!-- PREMIOS -->
 
-<div style="background:var(--card2);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
-<section class="sec" id="premios">
-<span class="chip reveal">Premio</span>
-<h2 class="stitle reveal">El ganador<br><span style="color:var(--oro)">se lleva todo</span></h2>
-<p class="sdesc reveal">Una quiniela. Un campeón. El pozo completo de la jornada.</p>
-<div class="premio-principal reveal">
-<div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:900;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
-<div style="font-size:0.75rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);">EL POZO</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--oro);opacity:0.8;margin-bottom:1rem;">COMPLETO</div>
-<div style="font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.7;">El jugador con más aciertos gana <strong style="color:var(--texto)">el pozo completo acumulado</strong>.</div>
-<div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.25);border-radius:8px;padding:0.75rem 1.5rem;"><span>🤝</span><span style="font-size:0.82rem;color:#FF8FA3;font-weight:600;line-height:1.5;">En caso de empate, el pozo se divide a partes iguales.</span></div>
-</div>
-<div class="promo-referido reveal">
-<div style="font-size:3.5rem;flex-shrink:0;">🔥</div>
-<div style="flex:1;min-width:220px;">
-<div class="promo-badge">EXCLUSIVO J21</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--naranja);line-height:1.1;margin-bottom:0.5rem;">BOLSA ESPECIAL<br>ESTA JORNADA</div>
-<div style="font-size:0.9rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--oro);">15/15 aciertos → $2,000 MXN garantizados</strong><br><strong style="color:var(--texto);">14/15 aciertos → $1,200 MXN garantizados</strong></div>
-</div>
-<button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()" style="flex-shrink:0;background:var(--naranja);color:#fff;">⚽ Quiero ganar</button>
-</div>
-</section>
-</div>
+  <div style="background:var(--card2);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);">
+    <section class="sec" id="premios">
+      <span class="chip reveal">Premio</span>
+      <h2 class="stitle reveal">El ganador<br><span style="color:var(--oro)">se lleva todo</span></h2>
+      <p class="sdesc reveal">Una quiniela. Un campeón. El pozo completo de la jornada.</p>
+      <div class="premio-principal reveal">
+        <div style="position:absolute;top:0;right:0;background:var(--oro);color:var(--negro);font-size:0.7rem;font-weight:900;letter-spacing:0.1em;padding:0.35rem 1rem;border-bottom-left-radius:8px;">★ PREMIO ÚNICO</div>
+        <div style="font-size:0.75rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">🥇 Primer y Único Lugar</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--oro);">EL POZO</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--oro);opacity:0.8;margin-bottom:1rem;">COMPLETO</div>
+        <div style="font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto;line-height:1.7;">El jugador con más aciertos gana <strong style="color:var(--texto)">el pozo completo acumulado</strong>.</div>
+        <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.25);border-radius:8px;padding:0.75rem 1.5rem;"><span>🤝</span><span style="font-size:0.82rem;color:#FF8FA3;font-weight:600;line-height:1.5;">En caso de empate, el pozo se divide a partes iguales.</span></div>
+      </div>
+      <div class="promo-referido reveal">
+        <div style="font-size:3.5rem;flex-shrink:0;">🔥</div>
+        <div style="flex:1;min-width:220px;">
+          <div class="promo-badge">EXCLUSIVO J21</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--naranja);line-height:1.1;margin-bottom:0.5rem;">BOLSA ESPECIAL<br>ESTA JORNADA</div>
+          <div style="font-size:0.9rem;color:var(--muted);line-height:1.7;"><strong style="color:var(--oro);">15/15 aciertos → $2,000 MXN garantizados</strong><br><strong style="color:var(--texto);">14/15 aciertos → $1,200 MXN garantizados</strong></div>
+        </div>
+        <button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()" style="flex-shrink:0;background:var(--naranja);color:#fff;">⚽ Quiero ganar</button>
+      </div>
+    </section>
+  </div>
 
-<!-- TRANSPARENCIA -->
+  <!-- TRANSPARENCIA -->
 
-<div class="transparencia-section" id="transparencia">
-<section class="sec">
-<span class="chip reveal">Transparencia Total</span>
-<h2 class="stitle reveal">¿A dónde va<br><span style="color:var(--verde)">tu dinero?</span></h2>
-<p class="sdesc reveal">Aquí no hay sorpresas. Te decimos exactamente cómo se distribuye el pozo.</p>
-<div class="transparencia-card reveal">
-<div class="t-row">
-<div class="t-bloque"><div class="t-pct v">80%</div><div class="t-label">🏆 Para el Ganador</div><div class="t-desc">Pago inmediato vía transferencia al jugador con más aciertos.</div></div>
-<div class="t-sep"></div>
-<div class="t-bloque"><div class="t-pct g">20%</div><div class="t-label">⚙️ Gastos de Operación</div><div class="t-desc">Cubre la plataforma, curación de partidos y administración.</div></div>
-</div>
-<div class="t-ejemplo"><span class="t-ejemplo-icon">💡</span><span>10 jugadores × $100 = $1,000 pozo. El ganador recibe <strong style="color:var(--verde)">$800 MXN</strong> directo.</span></div>
-</div>
-</section>
-</div>
+  <div class="transparencia-section" id="transparencia">
+    <section class="sec">
+      <span class="chip reveal">Transparencia Total</span>
+      <h2 class="stitle reveal">¿A dónde va<br><span style="color:var(--verde)">tu dinero?</span></h2>
+      <p class="sdesc reveal">Aquí no hay sorpresas. Te decimos exactamente cómo se distribuye el pozo.</p>
+      <div class="transparencia-card reveal">
+        <div class="t-row">
+          <div class="t-bloque"><div class="t-pct v">80%</div><div class="t-label">🏆 Para el Ganador</div><div class="t-desc">Pago inmediato vía transferencia al jugador con más aciertos.</div></div>
+          <div class="t-sep"></div>
+          <div class="t-bloque"><div class="t-pct g">20%</div><div class="t-label">⚙️ Gastos de Operación</div><div class="t-desc">Cubre la plataforma, curación de partidos y administración.</div></div>
+        </div>
+        <div class="t-ejemplo"><span class="t-ejemplo-icon">💡</span><span>10 jugadores × $100 = $1,000 pozo. El ganador recibe <strong style="color:var(--verde)">$800 MXN</strong> directo.</span></div>
+      </div>
+    </section>
+  </div>
 
-<!-- TESTIMONIALES -->
+  <!-- TESTIMONIALES -->
 
-<div style="background:var(--card);border-top:1px solid var(--borde);">
-<section class="sec" id="testimonios">
-<span class="chip reveal">La Comunidad Habla</span>
-<h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
-<div class="tgrid">
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Jornada 20 fue mía. 10 aciertos, $880 al bolsillo. A ver quién me quita el título en la J21 🔥</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CHECO10</div><div class="ameta">Ganador Jornada 20 · $880 MXN</div></div></div></div>
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela, intentenlo y les ira muy mal !!!</p><div class="tauthor"><div class="ava">K</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornadas 17 y 15</div></div></div></div>
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo.</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CATO</div><div class="ameta">Jugador recurrente</div></div></div></div>
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que se puede meter dobles o triples, me ayuda a asegurar mi victoria.</p><div class="tauthor"><div class="ava">Ap</div><div><div class="aname">A_P_E_X_</div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
-</div>
-</section>
-</div>
+  <div style="background:var(--card);border-top:1px solid var(--borde);">
+    <section class="sec" id="testimonios">
+      <span class="chip reveal">La Comunidad Habla</span>
+      <h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
+      <div class="tgrid">
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Jornada 20 fue mía. 10 aciertos, $880 al bolsillo. A ver quién me quita el título en la J21 🔥</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CHECO10</div><div class="ameta">Ganador Jornada 20 · $880 MXN</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela, intentenlo y les ira muy mal !!!</p><div class="tauthor"><div class="ava">K</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornadas 17 y 15</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Muy transparente todo. Ves en tiempo real quién va ganando y cuánto vale el pozo.</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CATO</div><div class="ameta">Jugador recurrente</div></div></div></div>
+        <div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que se puede meter dobles o triples, me ayuda a asegurar mi victoria.</p><div class="tauthor"><div class="ava">Ap</div><div><div class="aname">A_P_E_X_</div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
+      </div>
+    </section>
+  </div>
 
-<!-- CTA FINAL -->
+  <!-- CTA FINAL -->
 
-<div class="cta-wrap ocultar-en-vivo" id="registro-cta">
-<div class="cta-inner">
-<span class="chip reveal">¿Listo?</span>
-<h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">Jornada 21</span></h2>
-<p class="sdesc reveal">15 partidos. 1 ganador. El pozo completo.</p>
-<div class="cta-btns reveal">
-<button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button>
-<button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
-</div>
-<div style="margin-top:1.5rem;" class="reveal">
-<button onclick="abrirRemind()" style="background:none;border:1px solid rgba(0,232,122,0.25);color:var(--verde);padding:0.7rem 1.8rem;border-radius:8px;font-size:0.88rem;font-weight:800;cursor:pointer;font-family:var(--font);transition:all 0.2s;">🔔 Avísame de la próxima jornada</button>
-</div>
-<div class="trust reveal">
-<div class="ti"><span>🔒</span> Pago seguro</div>
-<div class="ti"><span>⚡</span> Resultados en tiempo real</div>
-<div class="ti"><span>🏆</span> Premios garantizados</div>
-<div class="ti"><span>📱</span> 100% desde el celular</div>
-</div>
-</div>
-</div>
+  <div class="cta-wrap ocultar-en-vivo" id="registro-cta">
+    <div class="cta-inner">
+      <span class="chip reveal">¿Listo?</span>
+      <h2 class="stitle reveal">Únete a la<br><span style="color:var(--verde)">Jornada 21</span></h2>
+      <p class="sdesc reveal">15 partidos. 1 ganador. El pozo completo.</p>
+      <div class="cta-btns reveal">
+        <button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button>
+        <button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button>
+      </div>
+      <div style="margin-top:1.5rem;" class="reveal">
+        <button onclick="abrirRemind()" style="background:none;border:1px solid rgba(0,232,122,0.25);color:var(--verde);padding:0.7rem 1.8rem;border-radius:8px;font-size:0.88rem;font-weight:800;cursor:pointer;font-family:var(--font);transition:all 0.2s;">🔔 Avísame de la próxima jornada</button>
+      </div>
+      <div class="trust reveal">
+        <div class="ti"><span>🔒</span> Pago seguro</div>
+        <div class="ti"><span>⚡</span> Resultados en tiempo real</div>
+        <div class="ti"><span>🏆</span> Premios garantizados</div>
+        <div class="ti"><span>📱</span> 100% desde el celular</div>
+      </div>
+    </div>
+  </div>
 
-<footer>
-<span class="flogo">Quiniela<em>Pro</em>Fut</span>
-<p>©️ 2026 quinielaprofut.com — Todos los derechos reservados</p>
-<p>contacto@quinielaprofut.com</p>
-<p class="footer-legal">* Los premios se entregan sobre el monto neto del pozo total recaudado, descontando el 20% correspondiente a gastos de administración, operación y tecnología.</p>
-</footer>
+  <footer>
+    <span class="flogo">Quiniela<em>Pro</em>Fut</span>
+    <p>©️ 2026 quinielaprofut.com — Todos los derechos reservados</p>
+    <p>contacto@quinielaprofut.com</p>
+    <p class="footer-legal">* Los premios se entregan sobre el monto neto del pozo total recaudado, descontando el 20% correspondiente a gastos de administración, operación y tecnología.</p>
+  </footer>
 
 </div><!-- /vista-landing -->
 
 <!-- VISTA REGISTRO -->
 
 <div id="vista-registro">
-<div class="iframe-topbar">
-<button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
-<div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Registro</div>
-<div class="topbar-badge"><div class="ldot-sm"></div>Jornada Activa</div>
-</div>
-<div class="iframe-wrap">
-<div class="iframe-loading" id="loadingRegistro"><div class="il-icon">⚽</div><div class="il-title">Cargando Registro</div><div class="il-sub">Preparando tu quiniela...</div><div class="il-bar"><div class="il-fill"></div></div></div>
-<iframe id="iframe-registro" class="iframe-main" src="" title="Registro de Quiniela" allow="clipboard-write"></iframe>
-</div>
+  <div class="iframe-topbar">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; Registro</div>
+    <div class="topbar-badge"><div class="ldot-sm"></div>Jornada Activa</div>
+  </div>
+  <div class="iframe-wrap">
+    <div class="iframe-loading" id="loadingRegistro"><div class="il-icon">⚽</div><div class="il-title">Cargando Registro</div><div class="il-sub">Preparando tu quiniela...</div><div class="il-bar"><div class="il-fill"></div></div></div>
+    <iframe id="iframe-registro" class="iframe-main" src="" title="Registro de Quiniela" allow="clipboard-write"></iframe>
+  </div>
 </div>
 
 <!-- VISTA SEGUIMIENTO -->
 
 <div id="vista-seguimiento" style="display:none;flex-direction:column;height:100vh;">
-<div class="iframe-topbar">
-<button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
-<div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; En Vivo</div>
-<div class="topbar-badge" style="background:rgba(255,216,77,.12);color:#FFD84D;border-color:rgba(255,216,77,.3);">
-<div class="ldot-sm" style="background:#FFD84D;"></div>En Vivo
-</div>
-</div>
-<div class="iframe-wrap">
-<div class="iframe-loading" id="loadingSeguimiento">
-<div class="il-icon">📊</div>
-<div class="il-title">Cargando Ranking</div>
-<div class="il-sub">Un momento...</div>
-<div class="il-bar"><div class="il-fill"></div></div>
-</div>
-<iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" allow="clipboard-write"></iframe>
-</div>
+  <div class="iframe-topbar">
+    <button class="btn-back-home" onclick="mostrarLanding()">← Inicio</button>
+    <div class="topbar-title">Quiniela<em>Pro</em>Fut &nbsp;·&nbsp; En Vivo</div>
+    <div class="topbar-badge" style="background:rgba(255,216,77,.12);color:#FFD84D;border-color:rgba(255,216,77,.3);">
+      <div class="ldot-sm" style="background:#FFD84D;"></div>En Vivo
+    </div>
+  </div>
+  <div class="iframe-wrap">
+    <div class="iframe-loading" id="loadingSeguimiento">
+      <div class="il-icon">📊</div>
+      <div class="il-title">Cargando Ranking</div>
+      <div class="il-sub">Un momento...</div>
+      <div class="il-bar"><div class="il-fill"></div></div>
+    </div>
+    <iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" allow="clipboard-write"></iframe>
+  </div>
 </div>
 
 <!-- BOTÓN FLOTANTE -->
 
 <button id="btnFlotantePartidos" class="ocultar-en-vivo" onclick="irSeccion('partidos-j20')">
-<div class="fp-dot"></div>⚽ Ver Partidos J21<span class="fp-badge">15</span>
+  <div class="fp-dot"></div>⚽ Ver Partidos J21<span class="fp-badge">15</span>
 </button>
 
 <!-- POPUP RECORDATORIO -->
 
 <div class="remind-overlay" id="remindOverlay" onclick="cerrarRemindSiOverlay(event)">
-<div class="remind-modal">
-<button class="remind-close" onclick="cerrarRemind()">✕</button>
-<div class="remind-form-wrap" id="remindFormWrap">
-<span class="remind-ico">🔔</span>
-<h3 class="remind-title">¡Espera!<br><span>Te avisamos</span></h3>
-<p class="remind-sub">Déjanos tu nombre y WhatsApp. Te mandamos mensaje directo cuando abra el registro de la próxima jornada.</p>
-<div class="remind-saved" id="remindSavedBadge">✓ Datos guardados — puedes actualizar</div>
-<input class="remind-input" type="text" id="remind-nombre" placeholder="Tu nombre o apodo" maxlength="40" oninput="validarRemind()">
-<input class="remind-input" type="tel" id="remind-wp" placeholder="WhatsApp (10 dígitos)" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10);validarRemind()">
-<button class="remind-btn" id="remindBtn" onclick="guardarRemind()" disabled>🔔 Regístrame — avísame</button>
-<button class="remind-skip" onclick="cerrarRemind()">Ahora no</button>
-</div>
-<div class="remind-success" id="remindSuccess">
-<span class="remind-ok-ico">✅</span>
-<h3 class="remind-ok-title">¡Listo!</h3>
-<p class="remind-ok-text">Te mandamos WhatsApp en cuanto abra la próxima jornada. ⚽</p>
-<p id="remindNombreOk" style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--verde);margin-top:8px;"></p>
-<button class="remind-btn" onclick="cerrarRemind()" style="margin-top:14px;">Perfecto 👊</button>
-</div>
-</div>
+  <div class="remind-modal">
+    <button class="remind-close" onclick="cerrarRemind()">✕</button>
+    <div class="remind-form-wrap" id="remindFormWrap">
+      <span class="remind-ico">🔔</span>
+      <h3 class="remind-title">¡Espera!<br><span>Te avisamos</span></h3>
+      <p class="remind-sub">Déjanos tu nombre y WhatsApp. Te mandamos mensaje directo cuando abra el registro de la próxima jornada.</p>
+      <div class="remind-saved" id="remindSavedBadge">✓ Datos guardados — puedes actualizar</div>
+      <input class="remind-input" type="text" id="remind-nombre" placeholder="Tu nombre o apodo" maxlength="40" oninput="validarRemind()">
+      <input class="remind-input" type="tel" id="remind-wp" placeholder="WhatsApp (10 dígitos)" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10);validarRemind()">
+      <button class="remind-btn" id="remindBtn" onclick="guardarRemind()" disabled>🔔 Regístrame — avísame</button>
+      <button class="remind-skip" onclick="cerrarRemind()">Ahora no</button>
+    </div>
+    <div class="remind-success" id="remindSuccess">
+      <span class="remind-ok-ico">✅</span>
+      <h3 class="remind-ok-title">¡Listo!</h3>
+      <p class="remind-ok-text">Te mandamos WhatsApp en cuanto abra la próxima jornada. ⚽</p>
+      <p id="remindNombreOk" style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--verde);margin-top:8px;"></p>
+      <button class="remind-btn" onclick="cerrarRemind()" style="margin-top:14px;">Perfecto 👊</button>
+    </div>
+  </div>
 </div>
 
 <!-- SPLASH -->
 
 <div id="splashScreen">
-<div class="splash-logo">Quiniela<em>Pro</em>Fut</div>
-<div class="splash-titulo">Cargando...</div>
-<div class="splash-sub">Un momento por favor</div>
-<div class="splash-barra"><div class="splash-barra-fill"></div></div>
-<div class="splash-dots"><div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div></div>
+  <div class="splash-logo">Quiniela<em>Pro</em>Fut</div>
+  <div class="splash-titulo">Cargando...</div>
+  <div class="splash-sub">Un momento por favor</div>
+  <div class="splash-barra"><div class="splash-barra-fill"></div></div>
+  <div class="splash-dots"><div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div></div>
 </div>
 
 <div class="remind-banner" id="remindBanner"></div>
@@ -1254,10 +1254,10 @@ nav{padding:0.85rem 1rem;}
 // ════════════════════════════════════════════════════════════
 // CONFIGURACIÓN
 // ════════════════════════════════════════════════════════════
-var URL_REGISTRO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
+var URL_REGISTRO    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
 var FECHA_CIERRE_FALLBACK = '2026-05-08T21:00:00';
-var TU_WHATSAPP = '5217471193095';
+var TU_WHATSAPP  = '5217471193095';
 var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';
 var URL_CONFIG = URL_REGISTRO + '&p=config';
 var iframesLoaded = { registro: false, seguimiento: false };
@@ -1267,19 +1267,19 @@ var FECHA_CIERRE_JORNADA = FECHA_CIERRE_FALLBACK;
 // TEMA
 // ════════════════════════════════════════════════════════════
 function aplicarTema(dia) {
-var html = document.documentElement;
-var btns = document.querySelectorAll('#btnTema,#btnTemaMobile');
-if (dia) { html.classList.add('dia'); btns.forEach(function(b){ b.textContent = '🌙'; }); }
-else { html.classList.remove('dia'); btns.forEach(function(b){ b.textContent = '☀️'; }); }
+  var html = document.documentElement;
+  var btns = document.querySelectorAll('#btnTema,#btnTemaMobile');
+  if (dia) { html.classList.add('dia'); btns.forEach(function(b){ b.textContent = '🌙'; }); }
+  else { html.classList.remove('dia'); btns.forEach(function(b){ b.textContent = '☀️'; }); }
 }
 function toggleTema() {
-var dia = !document.documentElement.classList.contains('dia');
-aplicarTema(dia);
-try { localStorage.setItem('qpf-tema', dia ? 'dia' : 'noche'); } catch(e) {}
+  var dia = !document.documentElement.classList.contains('dia');
+  aplicarTema(dia);
+  try { localStorage.setItem('qpf-tema', dia ? 'dia' : 'noche'); } catch(e) {}
 }
 (function(){
-var g = ''; try { g = localStorage.getItem('qpf-tema') || ''; } catch(e) {}
-aplicarTema(g === 'dia');
+  var g = ''; try { g = localStorage.getItem('qpf-tema') || ''; } catch(e) {}
+  aplicarTema(g === 'dia');
 })();
 
 // ════════════════════════════════════════════════════════════
@@ -1288,117 +1288,117 @@ aplicarTema(g === 'dia');
 var _countdownInterval = null;
 
 function iniciarCountdown(fechaISO) {
-if (_countdownInterval) clearInterval(_countdownInterval);
-var bar = document.getElementById('countdownBar');
-var ts = new Date(fechaISO).getTime();
+  if (_countdownInterval) clearInterval(_countdownInterval);
+  var bar = document.getElementById('countdownBar');
+  var ts  = new Date(fechaISO).getTime();
 
-function tick() {
-var diff = ts - Date.now();
-if (diff <= 0) {
-bar.classList.add('cerrado');
-['cd-hrs','cd-min','cd-sec'].forEach(function(id){
-document.getElementById(id).textContent = '00';
-});
-var lbl = bar.querySelector('.cd-label');
-if (lbl) lbl.innerHTML = '<span>🏆</span> Jornada en curso — Inscripciones cerradas';
-var cta = bar.querySelector('.cd-cta');
-if (cta) { cta.textContent = '🔔 Apuntarme a la próxima'; cta.onclick = function(){ abrirRemind(); }; }
-document.body.classList.add('modo-envivo');
-var heroTag = document.querySelector('.hero-tag');
-if (heroTag) heroTag.innerHTML = '<div class="pdot"></div>Jornada 21 — En Curso';
-var heroTitle = document.querySelector('.hero-title');
-if (heroTitle) heroTitle.innerHTML = '<span class="o">Quiniela</span><br><span class="v">En Vivo</span>';
-var heroDesc = document.querySelector('.hero-desc');
-if (heroDesc) heroDesc.innerHTML = 'El pozo actual está en disputa <strong>ahora mismo</strong>. Mira el ranking en tiempo real, analiza los resultados y prepárate para la próxima jornada.';
-clearInterval(_countdownInterval);
-return;
-}
-var s = Math.floor(diff / 1000);
-var h = Math.floor(s / 3600);
-var m = Math.floor((s % 3600) / 60);
-var sec = s % 60;
-document.getElementById('cd-hrs').textContent = String(h).padStart(2,'0');
-document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
-document.getElementById('cd-sec').textContent = String(sec).padStart(2,'0');
-if (h < 2) bar.style.background = 'linear-gradient(90deg,#1a0000,#2d0505,#1a0000)';
-}
-tick();
-_countdownInterval = setInterval(tick, 1000);
+  function tick() {
+    var diff = ts - Date.now();
+    if (diff <= 0) {
+      bar.classList.add('cerrado');
+      ['cd-hrs','cd-min','cd-sec'].forEach(function(id){
+        document.getElementById(id).textContent = '00';
+      });
+      var lbl = bar.querySelector('.cd-label');
+      if (lbl) lbl.innerHTML = '<span>🏆</span> Jornada en curso — Inscripciones cerradas';
+      var cta = bar.querySelector('.cd-cta');
+      if (cta) { cta.textContent = '🔔 Apuntarme a la próxima'; cta.onclick = function(){ abrirRemind(); }; }
+      document.body.classList.add('modo-envivo');
+      var heroTag = document.querySelector('.hero-tag');
+      if (heroTag) heroTag.innerHTML = '<div class="pdot"></div>Jornada 21 — En Curso';
+      var heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) heroTitle.innerHTML = '<span class="o">Quiniela</span><br><span class="v">En Vivo</span>';
+      var heroDesc = document.querySelector('.hero-desc');
+      if (heroDesc) heroDesc.innerHTML = 'El pozo actual está en disputa <strong>ahora mismo</strong>. Mira el ranking en tiempo real, analiza los resultados y prepárate para la próxima jornada.';
+      clearInterval(_countdownInterval);
+      return;
+    }
+    var s = Math.floor(diff / 1000);
+    var h = Math.floor(s / 3600);
+    var m = Math.floor((s % 3600) / 60);
+    var sec = s % 60;
+    document.getElementById('cd-hrs').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-sec').textContent = String(sec).padStart(2,'0');
+    if (h < 2) bar.style.background = 'linear-gradient(90deg,#1a0000,#2d0505,#1a0000)';
+  }
+  tick();
+  _countdownInterval = setInterval(tick, 1000);
 }
 
 // ════════════════════════════════════════════════════════════
 // FETCH FECHA DESDE CONFIG SHEET
 // ════════════════════════════════════════════════════════════
 (function cargarFechaDesdeSheet() {
-iniciarCountdown(FECHA_CIERRE_FALLBACK);
-fetch(URL_CONFIG, { mode: 'cors', cache: 'no-cache' })
-.then(function(r) { return r.json(); })
-.then(function(data) {
-var fechaSheet = data && (data.fechaCierre || data.FECHA_CIERRE || data.fecha_cierre);
-if (fechaSheet && typeof fechaSheet === 'string' && fechaSheet.length >= 10) {
-FECHA_CIERRE_JORNADA = fechaSheet;
-iniciarCountdown(FECHA_CIERRE_JORNADA);
-console.log('[QPF] Fecha cargada desde sheet:', FECHA_CIERRE_JORNADA);
-}
-})
-.catch(function(err) {
-console.warn('[QPF] Usando fallback:', FECHA_CIERRE_FALLBACK, err);
-})
-.finally(function() {
-document.body.classList.remove('cargando-fecha');
-});
+  iniciarCountdown(FECHA_CIERRE_FALLBACK);
+  fetch(URL_CONFIG, { mode: 'cors', cache: 'no-cache' })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var fechaSheet = data && (data.fechaCierre || data.FECHA_CIERRE || data.fecha_cierre);
+      if (fechaSheet && typeof fechaSheet === 'string' && fechaSheet.length >= 10) {
+        FECHA_CIERRE_JORNADA = fechaSheet;
+        iniciarCountdown(FECHA_CIERRE_JORNADA);
+        console.log('[QPF] Fecha cargada desde sheet:', FECHA_CIERRE_JORNADA);
+      }
+    })
+    .catch(function(err) {
+      console.warn('[QPF] Usando fallback:', FECHA_CIERRE_FALLBACK, err);
+    })
+    .finally(function() {
+      document.body.classList.remove('cargando-fecha');
+    });
 })();
 
 // ════════════════════════════════════════════════════════════
 // LEAD FORM
 // ════════════════════════════════════════════════════════════
 document.getElementById('lf-notif').addEventListener('change', function(){
-document.getElementById('lfCheckIcon').textContent = this.checked ? '✓' : '';
+  document.getElementById('lfCheckIcon').textContent = this.checked ? '✓' : '';
 });
 document.getElementById('lf-wp').addEventListener('input', function(){
-this.value = this.value.replace(/\D/g,'').slice(0,10);
+  this.value = this.value.replace(/\D/g,'').slice(0,10);
 });
 async function handleLeadSubmit() {
-var nombre = document.getElementById('lf-nombre').value.trim();
-var wp = document.getElementById('lf-wp').value.replace(/\D/g,'');
-var email = document.getElementById('lf-email').value.trim();
-var notif = document.getElementById('lf-notif').checked;
-var ok = true;
-if (!nombre) {
-document.getElementById('lferr-nombre').classList.add('show');
-document.getElementById('lf-nombre').classList.add('err'); ok = false;
-} else {
-document.getElementById('lferr-nombre').classList.remove('show');
-document.getElementById('lf-nombre').classList.remove('err');
-}
-if (wp.length !== 10) {
-document.getElementById('lferr-wp').classList.add('show');
-document.getElementById('lf-wp').classList.add('err'); ok = false;
-} else {
-document.getElementById('lferr-wp').classList.remove('show');
-document.getElementById('lf-wp').classList.remove('err');
-}
-if (!ok) return;
-var btn = document.getElementById('leadBtn'); btn.classList.add('loading'); btn.disabled = true;
-try { localStorage.setItem('qpf-reminder', JSON.stringify({nombre:nombre, wa:wp, ts:Date.now()})); } catch(e) {}
-try { localStorage.setItem('qpf_lead', '1'); } catch(e) {}
-if (WEBHOOK_LEADS) {
-try {
-await fetch(WEBHOOK_LEADS, {
-method:'POST', mode:'no-cors',
-headers:{'Content-Type':'application/json'},
-body: JSON.stringify({nombre:nombre, whatsapp:wp, email:email, notif:notif, fuente:'landing_lead_form', fecha:new Date().toISOString()})
-});
-} catch(e) {}
-}
-await new Promise(function(r){ setTimeout(r, 900); });
-var msg = encodeURIComponent('Hola, soy ' + nombre + '! Me registré en quinielaprofut.com y quiero saber cómo participar en la siguiente jornada 🔥⚽');
-document.getElementById('leadWaLink').href = 'https://wa.me/' + TU_WHATSAPP + '?text=' + msg;
-document.getElementById('leadFormInner').classList.add('hide');
-document.getElementById('leadSocialProof').style.display = 'none';
-document.getElementById('leadSuccess').classList.add('show');
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({event:'generacion_lead', formLocation:'landing_section', leadNombre:nombre, leadWhatsapp:wp});
+  var nombre = document.getElementById('lf-nombre').value.trim();
+  var wp     = document.getElementById('lf-wp').value.replace(/\D/g,'');
+  var email  = document.getElementById('lf-email').value.trim();
+  var notif  = document.getElementById('lf-notif').checked;
+  var ok = true;
+  if (!nombre) {
+    document.getElementById('lferr-nombre').classList.add('show');
+    document.getElementById('lf-nombre').classList.add('err'); ok = false;
+  } else {
+    document.getElementById('lferr-nombre').classList.remove('show');
+    document.getElementById('lf-nombre').classList.remove('err');
+  }
+  if (wp.length !== 10) {
+    document.getElementById('lferr-wp').classList.add('show');
+    document.getElementById('lf-wp').classList.add('err'); ok = false;
+  } else {
+    document.getElementById('lferr-wp').classList.remove('show');
+    document.getElementById('lf-wp').classList.remove('err');
+  }
+  if (!ok) return;
+  var btn = document.getElementById('leadBtn'); btn.classList.add('loading'); btn.disabled = true;
+  try { localStorage.setItem('qpf-reminder', JSON.stringify({nombre:nombre, wa:wp, ts:Date.now()})); } catch(e) {}
+  try { localStorage.setItem('qpf_lead', '1'); } catch(e) {}
+  if (WEBHOOK_LEADS) {
+    try {
+      await fetch(WEBHOOK_LEADS, {
+        method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({nombre:nombre, whatsapp:wp, email:email, notif:notif, fuente:'landing_lead_form', fecha:new Date().toISOString()})
+      });
+    } catch(e) {}
+  }
+  await new Promise(function(r){ setTimeout(r, 900); });
+  var msg = encodeURIComponent('Hola, soy ' + nombre + '! Me registré en quinielaprofut.com y quiero saber cómo participar en la siguiente jornada 🔥⚽');
+  document.getElementById('leadWaLink').href = 'https://wa.me/' + TU_WHATSAPP + '?text=' + msg;
+  document.getElementById('leadFormInner').classList.add('hide');
+  document.getElementById('leadSocialProof').style.display = 'none';
+  document.getElementById('leadSuccess').classList.add('show');
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({event:'generacion_lead', formLocation:'landing_section', leadNombre:nombre, leadWhatsapp:wp});
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1408,73 +1408,73 @@ var _remindMostrado = false;
 var _remindData = null;
 
 function initRemind() {
-try { var r = localStorage.getItem('qpf-reminder'); if (r) _remindData = JSON.parse(r); } catch(e) {}
-if (_remindData && _remindData.nombre && _remindData.wa) {
-document.getElementById('remind-nombre').value = _remindData.nombre;
-document.getElementById('remind-wp').value = _remindData.wa;
-document.getElementById('remindSavedBadge').classList.add('show');
-validarRemind();
-var b = document.getElementById('remindBanner');
-b.textContent = '✓ ' + _remindData.nombre.toUpperCase() + ' — ya estás en la lista';
-b.classList.add('show');
-setTimeout(function(){ b.classList.remove('show'); }, 5000);
-}
+  try { var r = localStorage.getItem('qpf-reminder'); if (r) _remindData = JSON.parse(r); } catch(e) {}
+  if (_remindData && _remindData.nombre && _remindData.wa) {
+    document.getElementById('remind-nombre').value = _remindData.nombre;
+    document.getElementById('remind-wp').value = _remindData.wa;
+    document.getElementById('remindSavedBadge').classList.add('show');
+    validarRemind();
+    var b = document.getElementById('remindBanner');
+    b.textContent = '✓ ' + _remindData.nombre.toUpperCase() + ' — ya estás en la lista';
+    b.classList.add('show');
+    setTimeout(function(){ b.classList.remove('show'); }, 5000);
+  }
 }
 function debeAparecer() {
-try { if (localStorage.getItem('qpf_lead')) return false; } catch(e) {}
-return true;
+  try { if (localStorage.getItem('qpf_lead')) return false; } catch(e) {}
+  return true;
 }
 function dispararPopup() {
-if (_remindMostrado) return;
-if (!debeAparecer()) return;
-_remindMostrado = true;
-abrirRemind();
+  if (_remindMostrado) return;
+  if (!debeAparecer()) return;
+  _remindMostrado = true;
+  abrirRemind();
 }
 setTimeout(function(){ dispararPopup(); }, 30000);
 window.addEventListener('scroll', function(){
-var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-if (pct >= 0.60) dispararPopup();
+  var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+  if (pct >= 0.60) dispararPopup();
 }, { passive: true });
 var _esMovil = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 if (!_esMovil) {
-document.addEventListener('mouseleave', function(e){ if (e.clientY < 15) dispararPopup(); });
+  document.addEventListener('mouseleave', function(e){ if (e.clientY < 15) dispararPopup(); });
 } else {
-var _lastScrollY = 0, _lastScrollT = Date.now(), _scrollVel = 0;
-window.addEventListener('scroll', function(){
-var now = Date.now(), dy = window.scrollY - _lastScrollY, dt = now - _lastScrollT;
-if (dt > 0) _scrollVel = dy / dt;
-if (_scrollVel < -1.5 && window.scrollY < document.documentElement.scrollHeight * 0.33) dispararPopup();
-_lastScrollY = window.scrollY; _lastScrollT = now;
-}, { passive: true });
+  var _lastScrollY = 0, _lastScrollT = Date.now(), _scrollVel = 0;
+  window.addEventListener('scroll', function(){
+    var now = Date.now(), dy = window.scrollY - _lastScrollY, dt = now - _lastScrollT;
+    if (dt > 0) _scrollVel = dy / dt;
+    if (_scrollVel < -1.5 && window.scrollY < document.documentElement.scrollHeight * 0.33) dispararPopup();
+    _lastScrollY = window.scrollY; _lastScrollT = now;
+  }, { passive: true });
 }
 function abrirRemind() { document.getElementById('remindOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; }
 function cerrarRemind() { document.getElementById('remindOverlay').classList.remove('show'); document.body.style.overflow = ''; }
 function cerrarRemindSiOverlay(e) { if (e.target === document.getElementById('remindOverlay')) cerrarRemind(); }
 function validarRemind() {
-var n = document.getElementById('remind-nombre').value.trim();
-var w = document.getElementById('remind-wp').value.replace(/\D/g,'');
-document.getElementById('remindBtn').disabled = !(n.length >= 2 && w.length >= 10);
+  var n = document.getElementById('remind-nombre').value.trim();
+  var w = document.getElementById('remind-wp').value.replace(/\D/g,'');
+  document.getElementById('remindBtn').disabled = !(n.length >= 2 && w.length >= 10);
 }
 async function guardarRemind() {
-var nombre = document.getElementById('remind-nombre').value.trim();
-var wa = document.getElementById('remind-wp').value.replace(/\D/g,'');
-if (!nombre || wa.length < 10) return;
-try { localStorage.setItem('qpf-reminder', JSON.stringify({nombre:nombre, wa:wa, ts:Date.now()})); _remindData = {nombre:nombre, wa:wa}; } catch(e) {}
-try { localStorage.setItem('qpf_lead', '1'); } catch(e) {}
-if (WEBHOOK_LEADS) {
-try {
-await fetch(WEBHOOK_LEADS, {
-method:'POST', mode:'no-cors',
-headers:{'Content-Type':'application/json'},
-body: JSON.stringify({nombre:nombre, whatsapp:wa, fuente:'popup_recordatorio', fecha:new Date().toISOString()})
-});
-} catch(e) {}
-}
-document.getElementById('remindFormWrap').classList.add('hide');
-document.getElementById('remindSuccess').classList.add('show');
-document.getElementById('remindNombreOk').textContent = nombre.toUpperCase();
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({event:'generacion_lead', formLocation:'popup_recordatorio', leadNombre:nombre, leadWhatsapp:wa});
+  var nombre = document.getElementById('remind-nombre').value.trim();
+  var wa     = document.getElementById('remind-wp').value.replace(/\D/g,'');
+  if (!nombre || wa.length < 10) return;
+  try { localStorage.setItem('qpf-reminder', JSON.stringify({nombre:nombre, wa:wa, ts:Date.now()})); _remindData = {nombre:nombre, wa:wa}; } catch(e) {}
+  try { localStorage.setItem('qpf_lead', '1'); } catch(e) {}
+  if (WEBHOOK_LEADS) {
+    try {
+      await fetch(WEBHOOK_LEADS, {
+        method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({nombre:nombre, whatsapp:wa, fuente:'popup_recordatorio', fecha:new Date().toISOString()})
+      });
+    } catch(e) {}
+  }
+  document.getElementById('remindFormWrap').classList.add('hide');
+  document.getElementById('remindSuccess').classList.add('show');
+  document.getElementById('remindNombreOk').textContent = nombre.toUpperCase();
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({event:'generacion_lead', formLocation:'popup_recordatorio', leadNombre:nombre, leadWhatsapp:wa});
 }
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape') cerrarRemind(); });
 
@@ -1482,74 +1482,74 @@ document.addEventListener('keydown', function(e){ if (e.key === 'Escape') cerrar
 // NAVEGACIÓN
 // ════════════════════════════════════════════════════════════
 function mostrarLanding() {
-document.getElementById('vista-registro').style.display = 'none';
-document.getElementById('vista-seguimiento').style.display = 'none';
-if (!document.body.classList.contains('modo-envivo')) {
-document.getElementById('btnFlotantePartidos').classList.remove('oculto');
-}
-var vl = document.getElementById('vista-landing');
-vl.classList.add('activa'); vl.style.display = 'block';
-document.getElementById('navPrincipal').style.display = 'flex';
-document.getElementById('countdownBar').style.display = 'flex';
-window.scrollTo(0, 0);
-document.title = 'QuinielaPro Fut — La Quiniela Más Pro de México';
+  document.getElementById('vista-registro').style.display = 'none';
+  document.getElementById('vista-seguimiento').style.display = 'none';
+  if (!document.body.classList.contains('modo-envivo')) {
+    document.getElementById('btnFlotantePartidos').classList.remove('oculto');
+  }
+  var vl = document.getElementById('vista-landing');
+  vl.classList.add('activa'); vl.style.display = 'block';
+  document.getElementById('navPrincipal').style.display = 'flex';
+  document.getElementById('countdownBar').style.display = 'flex';
+  window.scrollTo(0, 0);
+  document.title = 'QuinielaPro Fut — La Quiniela Más Pro de México';
 }
 function _precargarSeguimiento() {
-if (iframesLoaded.seguimiento) return;
-document.getElementById('iframe-seguimiento').src = URL_SEGUIMIENTO;
-iframesLoaded.seguimiento = true;
+  if (iframesLoaded.seguimiento) return;
+  document.getElementById('iframe-seguimiento').src = URL_SEGUIMIENTO;
+  iframesLoaded.seguimiento = true;
 }
 function _precargarRegistro() {
-if (iframesLoaded.registro) return;
-document.getElementById('iframe-registro').src = URL_REGISTRO;
-iframesLoaded.registro = true;
+  if (iframesLoaded.registro) return;
+  document.getElementById('iframe-registro').src = URL_REGISTRO;
+  iframesLoaded.registro = true;
 }
 function mostrarRegistro() {
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({event:'clic_registro'});
-document.getElementById('btnFlotantePartidos').classList.add('oculto');
-document.getElementById('vista-landing').style.display = 'none';
-document.getElementById('vista-landing').classList.remove('activa');
-document.getElementById('navPrincipal').style.display = 'none';
-document.getElementById('countdownBar').style.display = 'none';
-document.getElementById('vista-registro').style.display = 'flex';
-document.title = 'QuinielaPro Fut — Registrar Quiniela';
-var loading = document.getElementById('loadingRegistro');
-var iframe = document.getElementById('iframe-registro');
-if (!iframesLoaded.registro) {
-loading.classList.add('show'); iframe.style.opacity = '0';
-iframe.src = URL_REGISTRO; iframesLoaded.registro = true;
-iframe.onload = function(){ loading.classList.remove('show'); iframe.style.opacity = '1'; iframe.style.transition = 'opacity 0.3s'; };
-setTimeout(function(){ loading.classList.remove('show'); iframe.style.opacity = '1'; }, 8000);
-} else {
-loading.classList.remove('show'); iframe.style.opacity = '1';
-}
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({event:'clic_registro'});
+  document.getElementById('btnFlotantePartidos').classList.add('oculto');
+  document.getElementById('vista-landing').style.display = 'none';
+  document.getElementById('vista-landing').classList.remove('activa');
+  document.getElementById('navPrincipal').style.display = 'none';
+  document.getElementById('countdownBar').style.display = 'none';
+  document.getElementById('vista-registro').style.display = 'flex';
+  document.title = 'QuinielaPro Fut — Registrar Quiniela';
+  var loading = document.getElementById('loadingRegistro');
+  var iframe  = document.getElementById('iframe-registro');
+  if (!iframesLoaded.registro) {
+    loading.classList.add('show'); iframe.style.opacity = '0';
+    iframe.src = URL_REGISTRO; iframesLoaded.registro = true;
+    iframe.onload = function(){ loading.classList.remove('show'); iframe.style.opacity = '1'; iframe.style.transition = 'opacity 0.3s'; };
+    setTimeout(function(){ loading.classList.remove('show'); iframe.style.opacity = '1'; }, 8000);
+  } else {
+    loading.classList.remove('show'); iframe.style.opacity = '1';
+  }
 }
 function mostrarSeguimiento() {
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({event:'clic_seguimiento'});
-document.getElementById('btnFlotantePartidos').classList.add('oculto');
-document.getElementById('vista-landing').style.display = 'none';
-document.getElementById('vista-landing').classList.remove('activa');
-document.getElementById('vista-registro').style.display = 'none';
-document.getElementById('navPrincipal').style.display = 'none';
-document.getElementById('countdownBar').style.display = 'none';
-document.getElementById('vista-seguimiento').style.display = 'flex';
-document.title = 'QuinielaPro Fut — Seguimiento en Vivo';
-var loading = document.getElementById('loadingSeguimiento');
-var iframe = document.getElementById('iframe-seguimiento');
-if (!iframesLoaded.seguimiento) {
-loading.classList.add('show'); iframe.style.opacity = '0';
-iframe.src = URL_SEGUIMIENTO; iframesLoaded.seguimiento = true;
-iframe.onload = function(){ loading.classList.remove('show'); iframe.style.opacity = '1'; iframe.style.transition = 'opacity 0.3s'; };
-setTimeout(function(){ loading.classList.remove('show'); iframe.style.opacity = '1'; }, 8000);
-} else {
-loading.classList.remove('show'); iframe.style.opacity = '1';
-}
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({event:'clic_seguimiento'});
+  document.getElementById('btnFlotantePartidos').classList.add('oculto');
+  document.getElementById('vista-landing').style.display = 'none';
+  document.getElementById('vista-landing').classList.remove('activa');
+  document.getElementById('vista-registro').style.display = 'none';
+  document.getElementById('navPrincipal').style.display = 'none';
+  document.getElementById('countdownBar').style.display = 'none';
+  document.getElementById('vista-seguimiento').style.display = 'flex';
+  document.title = 'QuinielaPro Fut — Seguimiento en Vivo';
+  var loading = document.getElementById('loadingSeguimiento');
+  var iframe  = document.getElementById('iframe-seguimiento');
+  if (!iframesLoaded.seguimiento) {
+    loading.classList.add('show'); iframe.style.opacity = '0';
+    iframe.src = URL_SEGUIMIENTO; iframesLoaded.seguimiento = true;
+    iframe.onload = function(){ loading.classList.remove('show'); iframe.style.opacity = '1'; iframe.style.transition = 'opacity 0.3s'; };
+    setTimeout(function(){ loading.classList.remove('show'); iframe.style.opacity = '1'; }, 8000);
+  } else {
+    loading.classList.remove('show'); iframe.style.opacity = '1';
+  }
 }
 function irSeccion(id) {
-mostrarLanding();
-setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth'}); }, 100);
+  mostrarLanding();
+  setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth'}); }, 100);
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1557,18 +1557,18 @@ setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIn
 // ════════════════════════════════════════════════════════════
 var _menuAbierto = false;
 function toggleMenu() {
-_menuAbierto = !_menuAbierto;
-var m = document.getElementById('navMobile'), btn = document.getElementById('hambBtn'), ov = document.getElementById('menuOverlay');
-if (_menuAbierto) {
-m.style.display = 'flex'; m.offsetHeight; m.classList.add('open');
-btn.classList.add('abierto'); ov.classList.add('show'); document.body.style.overflow = 'hidden';
-} else cerrarMenu();
+  _menuAbierto = !_menuAbierto;
+  var m = document.getElementById('navMobile'), btn = document.getElementById('hambBtn'), ov = document.getElementById('menuOverlay');
+  if (_menuAbierto) {
+    m.style.display = 'flex'; m.offsetHeight; m.classList.add('open');
+    btn.classList.add('abierto'); ov.classList.add('show'); document.body.style.overflow = 'hidden';
+  } else cerrarMenu();
 }
 function cerrarMenu() {
-var m = document.getElementById('navMobile'), btn = document.getElementById('hambBtn'), ov = document.getElementById('menuOverlay');
-m.classList.remove('open'); btn.classList.remove('abierto'); ov.classList.remove('show');
-document.body.style.overflow = ''; _menuAbierto = false;
-setTimeout(function(){ if (!_menuAbierto) m.style.display = 'none'; }, 350);
+  var m = document.getElementById('navMobile'), btn = document.getElementById('hambBtn'), ov = document.getElementById('menuOverlay');
+  m.classList.remove('open'); btn.classList.remove('abierto'); ov.classList.remove('show');
+  document.body.style.overflow = ''; _menuAbierto = false;
+  setTimeout(function(){ if (!_menuAbierto) m.style.display = 'none'; }, 350);
 }
 window.addEventListener('orientationchange', function(){ if (_menuAbierto) cerrarMenu(); });
 
@@ -1576,49 +1576,49 @@ window.addEventListener('orientationchange', function(){ if (_menuAbierto) cerra
 // REVEAL + COUNT UP + TILT
 // ════════════════════════════════════════════════════════════
 var io = new IntersectionObserver(function(entries){
-entries.forEach(function(e, i){
-if (e.isIntersecting){ setTimeout(function(){ e.target.classList.add('in'); }, i * 70); io.unobserve(e.target); }
-});
+  entries.forEach(function(e, i){
+    if (e.isIntersecting){ setTimeout(function(){ e.target.classList.add('in'); }, i * 70); io.unobserve(e.target); }
+  });
 }, {threshold:0.1, rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
 function countUp(el, to, dur) {
-dur = dur || 1800; var n = 0, step = to / (dur / 16);
-var t = setInterval(function(){
-n += step;
-if (n >= to){ el.textContent = to; clearInterval(t); }
-else el.textContent = Math.floor(n);
-}, 16);
+  dur = dur || 1800; var n = 0, step = to / (dur / 16);
+  var t = setInterval(function(){
+    n += step;
+    if (n >= to){ el.textContent = to; clearInterval(t); }
+    else el.textContent = Math.floor(n);
+  }, 16);
 }
 var cio = new IntersectionObserver(function(entries){
-entries.forEach(function(e){ if (e.isIntersecting){ countUp(e.target, +e.target.dataset.to); cio.unobserve(e.target); } });
+  entries.forEach(function(e){ if (e.isIntersecting){ countUp(e.target, +e.target.dataset.to); cio.unobserve(e.target); } });
 }, {threshold:0.5});
 document.querySelectorAll('[data-to]').forEach(function(el){ cio.observe(el); });
 
 document.querySelectorAll('.liga').forEach(function(c){
-c.addEventListener('click', function(){
-document.querySelectorAll('.liga').forEach(function(x){ x.classList.remove('on'); });
-c.classList.add('on');
-});
+  c.addEventListener('click', function(){
+    document.querySelectorAll('.liga').forEach(function(x){ x.classList.remove('on'); });
+    c.classList.add('on');
+  });
 });
 document.querySelectorAll('.ganador-card,.step,.tcard').forEach(function(card){
-card.addEventListener('mousemove', function(e){
-var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-card.style.transform = 'perspective(600px) rotateX(' + (-y * 8) + 'deg) rotateY(' + (x * 8) + 'deg) translateY(-6px)';
-});
-card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+  card.addEventListener('mousemove', function(e){
+    var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = 'perspective(600px) rotateX(' + (-y * 8) + 'deg) rotateY(' + (x * 8) + 'deg) translateY(-6px)';
+  });
+  card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
 });
 
 (function(){
-var btn = document.getElementById('btnFlotantePartidos');
-var sec = document.getElementById('partidos-j20');
-if (!btn || !sec) return;
-new IntersectionObserver(function(entries){
-entries.forEach(function(e){
-if (e.isIntersecting) btn.classList.add('oculto');
-else btn.classList.remove('oculto');
-});
-}, {threshold:0.15}).observe(sec);
+  var btn = document.getElementById('btnFlotantePartidos');
+  var sec = document.getElementById('partidos-j20');
+  if (!btn || !sec) return;
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) btn.classList.add('oculto');
+      else btn.classList.remove('oculto');
+    });
+  }, {threshold:0.15}).observe(sec);
 })();
 
 // ════════════════════════════════════════════════════════════
