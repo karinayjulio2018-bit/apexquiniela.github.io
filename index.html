@@ -447,6 +447,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 
 <script>
 var URL_REGISTRO    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
+var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';  
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
 var FECHA_CIERRE_FALLBACK = '2026-05-15T21:00:00';
 var URL_CONFIG = URL_REGISTRO + '&p=config';
@@ -500,9 +501,13 @@ async function handleLeadSubmit(){
   try{localStorage.setItem('qpf_lead','1');}catch(e){}
   // ── FORM-URLENCODED — compatible con GAS no-cors ──
   try{
-    var params='nombre='+encodeURIComponent(nombre)+'&whatsapp='+encodeURIComponent(wp)+'&email='+encodeURIComponent(email)+'&notif='+notif+'&fuente=landing_lead_form';
-    await fetch(URL_REGISTRO,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:params});
-  }catch(e){}
+  await fetch(WEBHOOK_LEADS, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nombre:nombre, whatsapp:wp, email:email, notif:notif, fuente:'landing_lead_form' })
+  });
+}catch(e){} 
   await new Promise(function(r){setTimeout(r,900);});
   document.getElementById('leadFormInner').classList.add('hide');
   document.getElementById('leadSocialProof').style.display='none';
@@ -541,9 +546,13 @@ async function guardarRemind(){
   try{localStorage.setItem('qpf_lead','1');}catch(e){}
   // ── FORM-URLENCODED — compatible con GAS no-cors ──
   try{
-    var params='nombre='+encodeURIComponent(nombre)+'&whatsapp='+encodeURIComponent(wa)+'&fuente=popup_recordatorio';
-    await fetch(URL_REGISTRO,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:params});
-  }catch(e){}
+  await fetch(WEBHOOK_LEADS, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nombre:nombre, whatsapp:wa, fuente:'popup_recordatorio' })
+  });
+}catch(e){}
   document.getElementById('remindFormWrap').classList.add('hide');
   document.getElementById('remindSuccess').classList.add('show');
   document.getElementById('remindNombreOk').textContent=nombre.toUpperCase();
