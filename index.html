@@ -1404,17 +1404,15 @@ if (!ok) return;
 var btn = document.getElementById('leadBtn'); btn.classList.add('loading'); btn.disabled = true;
 try { localStorage.setItem('qpf-reminder', JSON.stringify({nombre:nombre, wa:wp, ts:Date.now()})); } catch(e) {}
 try { localStorage.setItem('qpf_lead', '1'); } catch(e) {}
-if (WEBHOOK_LEADS) {
 try {
-await fetch(WEBHOOK_LEADS, {
-method:'POST', mode:'no-cors',
-headers:{'Content-Type':'application/json'},
-body: JSON.stringify({accion:'guardarLead', nombre:nombre, whatsapp:wp, fuente:'landing_lead_form'})
-});
+var urlLead = URL_REGISTRO + '&p=lead'
+  + '&nombre=' + encodeURIComponent(nombre)
+  + '&wa='     + encodeURIComponent(wp)
+  + '&fuente=landing_lead_form';
+await fetch(urlLead, { mode:'cors' });
 } catch(e) {}
-}
 await new Promise(function(r){ setTimeout(r, 900); });
-document.getElementById('leadFormInner').classList.add('hide');
+document.getElementById('leadFormInner').classList.add('hide');  
 document.getElementById('leadSocialProof').style.display = 'none';
 document.getElementById('leadSuccess').classList.add('show');
 window.dataLayer = window.dataLayer || [];
@@ -1481,15 +1479,13 @@ var wa = document.getElementById('remind-wp').value.replace(/\D/g,'');
 if (!nombre || wa.length < 10) return;
 try { localStorage.setItem('qpf-reminder', JSON.stringify({nombre:nombre, wa:wa, ts:Date.now()})); _remindData = {nombre:nombre, wa:wa}; } catch(e) {}
 try { localStorage.setItem('qpf_lead', '1'); } catch(e) {}
-if (WEBHOOK_LEADS) {
 try {
-await fetch(WEBHOOK_LEADS, {
-method:'POST', mode:'no-cors',
-headers:{'Content-Type':'application/json'},
-body: JSON.stringify({accion:'guardarLead', nombre:nombre, whatsapp:wa, fuente:'popup_recordatorio'})
-});
+var urlLead = URL_REGISTRO + '&p=lead'
+  + '&nombre=' + encodeURIComponent(nombre)
+  + '&wa='     + encodeURIComponent(wa)
+  + '&fuente=popup_recordatorio';
+await fetch(urlLead, { mode:'cors' });
 } catch(e) {}
-}
 document.getElementById('remindFormWrap').classList.add('hide');
 document.getElementById('remindSuccess').classList.add('show');
 document.getElementById('remindNombreOk').textContent = nombre.toUpperCase();
