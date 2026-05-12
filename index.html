@@ -1080,7 +1080,7 @@ nav{padding:0.85rem 1rem;}
 <span class="lead-success-icon">🎉</span>
 <h3 class="lead-success-title">¡Ya estás dentro!</h3>
 <p class="lead-success-text">En breve te mandamos todo por WhatsApp.</p>
-<a class="lead-wa-btn" id="leadWaLink" href="#" target="_blank">💬 Escríbenos en WhatsApp</a>
+<p style="font-size:.85rem;color:#00e87a;font-weight:700;">✅ Te contactamos pronto por WhatsApp</p>
 </div>
 <div class="lead-social-proof" id="leadSocialProof">
 <div class="lsp-avatars"><div class="lsp-ava">C</div><div class="lsp-ava">A</div><div class="lsp-ava">M</div><div class="lsp-ava">+</div></div>
@@ -1295,8 +1295,7 @@ nav{padding:0.85rem 1rem;}
 var URL_REGISTRO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
 var FECHA_CIERRE_FALLBACK = '2026-05-08T21:00:00';
-var TU_WHATSAPP = '5217471193095';
-var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';
+var WEBHOOK_LEADS = URL_REGISTRO;
 var URL_CONFIG = URL_REGISTRO + '&p=config';
 var iframesLoaded = { registro: false, seguimiento: false };
 var FECHA_CIERRE_JORNADA = FECHA_CIERRE_FALLBACK;
@@ -1410,13 +1409,11 @@ try {
 await fetch(WEBHOOK_LEADS, {
 method:'POST', mode:'no-cors',
 headers:{'Content-Type':'application/json'},
-body: JSON.stringify({nombre:nombre, whatsapp:wp, email:email, notif:notif, fuente:'landing_lead_form', fecha:new Date().toISOString()})
+body: JSON.stringify({accion:'guardarLead', nombre:nombre, whatsapp:wp, fuente:'landing_lead_form'})
 });
 } catch(e) {}
 }
 await new Promise(function(r){ setTimeout(r, 900); });
-var msg = encodeURIComponent('Hola, soy ' + nombre + '! Me registré en quinielaprofut.com y quiero saber cómo participar en la siguiente jornada 🔥⚽');
-document.getElementById('leadWaLink').href = 'https://wa.me/' + TU_WHATSAPP + '?text=' + msg;
 document.getElementById('leadFormInner').classList.add('hide');
 document.getElementById('leadSocialProof').style.display = 'none';
 document.getElementById('leadSuccess').classList.add('show');
@@ -1489,7 +1486,7 @@ try {
 await fetch(WEBHOOK_LEADS, {
 method:'POST', mode:'no-cors',
 headers:{'Content-Type':'application/json'},
-body: JSON.stringify({nombre:nombre, whatsapp:wa, fuente:'popup_recordatorio', fecha:new Date().toISOString()})
+body: JSON.stringify({accion:'guardarLead', nombre:nombre, whatsapp:wa, fuente:'popup_recordatorio'})
 });
 } catch(e) {}
 }
