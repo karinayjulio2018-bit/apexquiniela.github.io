@@ -612,7 +612,7 @@ var LIGAS_DIA = {
 };
 
 function cargarPartidosDinamicos() {
-  fetch(URL_REGISTRO + '&p=partidos', { mode: 'cors', cache: 'no-cache' })
+ fetch(URL_REGISTRO + '&p=partidos')
     .then(function(r) { return r.json(); })
     .then(function(data) {
       var partidos = data.partidos || [];
