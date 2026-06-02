@@ -163,8 +163,8 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 #btnFlotantePartidos:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 30px rgba(255,107,0,0.55);}#btnFlotantePartidos.oculto{opacity:0;pointer-events:none;transform:translateY(20px);}#btnFlotantePartidos .fp-dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulseAnim 1.5s infinite;flex-shrink:0;}#btnFlotantePartidos .fp-badge{background:rgba(255,255,255,0.25);border-radius:100px;padding:2px 8px;font-size:0.72rem;font-weight:800;}@keyframes floatIn{from{opacity:0;transform:translateY(40px) scale(0.8);}to{opacity:1;transform:translateY(0) scale(1);}}
 @media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}.stats-bar{grid-template-columns:repeat(2,1fr);}.trow{grid-template-columns:2rem 1fr repeat(4,2rem) 2.5rem;}.trow .cell:nth-child(6),.trow .cell:nth-child(7){display:none;}.hero-referido{flex-direction:column;align-items:flex-start;gap:0.5rem;}.historial-row{grid-template-columns:2rem 1fr auto;}.historial-row .h-aciertos{display:none;}.lead-card{padding:1.75rem 1.25rem;}nav{padding:0.85rem 1rem;}#hero{padding-top:3rem;}.partidos-lista{grid-template-columns:1fr;}}
 @keyframes skPulse {
-  0%,100% { opacity: 0.4; }
-  50%      { opacity: 0.8; }
+0%,100% { opacity: 0.4; }
+50% { opacity: 0.8; }
 }
 </style>
 </head>
@@ -251,37 +251,37 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 </div>
 
 <div class="partidos-section ocultar-en-vivo" id="partidos-j22">
-  <section class="sec">
-    <span class="chip reveal">Jornada 22</span>
-    <h2 class="stitle reveal">Partidos a<br><span style="color:#00e87a">pronosticar</span></h2>
-    <p class="sdesc reveal">15 partidos de las mejores ligas del mundo. ¿Cuántos puedes acertar?</p>
-    <div class="pozo-preview reveal">
-      <div><div class="pozo-preview-label">Premio especial</div><div class="pozo-preview-num">$2,000 MXN</div></div>
-      <div style="width:1px;background:rgba(255,107,0,0.3);align-self:stretch;"></div>
-      <div><div class="pozo-preview-label">Partidos</div><div class="pozo-preview-num" id="totalPartidosNum" style="color:#00e87a;">15</div></div>
-      <div style="width:1px;background:rgba(255,107,0,0.3);align-self:stretch;"></div>
-      <div><div class="pozo-preview-label">Entrada</div><div class="pozo-preview-num" style="font-size:2rem;">$100 MXN</div></div>
-    </div>
+<section class="sec">
+<span class="chip reveal">Jornada 22</span>
+<h2 class="stitle reveal">Partidos a<br><span style="color:#00e87a">pronosticar</span></h2>
+<p class="sdesc reveal">15 partidos de las mejores ligas del mundo. ¿Cuántos puedes acertar?</p>
+<div class="pozo-preview reveal">
+<div><div class="pozo-preview-label">Premio especial</div><div class="pozo-preview-num">$2,000 MXN</div></div>
+<div style="width:1px;background:rgba(255,107,0,0.3);align-self:stretch;"></div>
+<div><div class="pozo-preview-label">Partidos</div><div class="pozo-preview-num" id="totalPartidosNum" style="color:#00e87a;">15</div></div>
+<div style="width:1px;background:rgba(255,107,0,0.3);align-self:stretch;"></div>
+<div><div class="pozo-preview-label">Entrada</div><div class="pozo-preview-num" style="font-size:2rem;">$100 MXN</div></div>
+</div>
 
-    <!-- Contenedor dinámico -->
-    <div id="partidosDinamicos" style="margin-top:1.5rem;">
-      <!-- Skeleton mientras carga -->
-      <div id="partidosSkeleton" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.75rem;">
-        <!-- 6 skeletons -->
-        <div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite;"></div>
-        <div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.1s;"></div>
-        <div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.2s;"></div>
-        <div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.3s;"></div>
-        <div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.4s;"></div>
-        <div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.5s;"></div>
-      </div>
-      <div id="partidosLista"></div>
-    </div>
+<!-- Contenedor dinámico -->
+<div id="partidosDinamicos" style="margin-top:1.5rem;">
+<!-- Skeleton mientras carga -->
+<div id="partidosSkeleton" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.75rem;">
+<!-- 6 skeletons -->
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.1s;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.2s;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.3s;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.4s;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:12px;padding:0.85rem 1rem;height:70px;animation:skPulse 1.4s infinite 0.5s;"></div>
+</div>
+<div id="partidosLista"></div>
+</div>
 
-    <div class="partidos-cta reveal" style="margin-top:1.5rem;">
-      <button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()" style="font-size:1.1rem;padding:1.1rem 2.5rem;">⚽ Registrar mi Quiniela — $100 MXN</button>
-    </div>
-  </section>
+<div class="partidos-cta reveal" style="margin-top:1.5rem;">
+<button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()" style="font-size:1.1rem;padding:1.1rem 2.5rem;">⚽ Registrar mi Quiniela — $100 MXN</button>
+</div>
+</section>
 </div>
 
 <div class="ganadores-section" id="ganadores">
@@ -505,8 +505,8 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <div class="remind-banner" id="remindBanner"></div>
 
 <script>
-var URL_REGISTRO    = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
-var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';  
+var URL_REGISTRO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
+var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbxVlFa3hVeyvEAnpkWiKBNi8jRjkPwi4WCpwJTLHGFh080xibqg_tBgYKHP2Sxq9OBadg/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
 var FECHA_CIERRE_FALLBACK = '2026-06-10T21:00:00';
 var URL_CONFIG = URL_REGISTRO + '?p=config';
@@ -515,76 +515,75 @@ var FECHA_CIERRE_JORNADA = FECHA_CIERRE_FALLBACK;
 
 var _countdownInterval = null;
 function iniciarCountdown(fechaISO){
-  if(_countdownInterval)clearInterval(_countdownInterval);
-  var bar=document.getElementById('countdownBar'),ts=new Date(fechaISO).getTime();
-  function tick(){
-    var diff=ts-Date.now();
-    if(diff<=0){
-      bar.classList.add('cerrado');
-      ['cd-hrs','cd-min','cd-sec'].forEach(function(id){document.getElementById(id).textContent='00';});
-      var lbl=bar.querySelector('.cd-label');if(lbl)lbl.innerHTML='<span>🏆</span> Jornada en curso — Inscripciones cerradas';
-      var cta=bar.querySelector('.cd-cta');if(cta){cta.textContent='🔔 Apuntarme a la próxima';cta.onclick=function(){abrirRemind();};}
-      document.body.classList.add('modo-envivo');
-      var heroTag=document.querySelector('.hero-tag');if(heroTag)heroTag.innerHTML='<div class="pdot"></div>Jornada 22 — En Curso';
-      var heroTitle=document.querySelector('.hero-title');if(heroTitle)heroTitle.innerHTML='<span class="o">Quiniela</span><br><span class="v">En Vivo</span>';
-      var heroDesc=document.querySelector('.hero-desc');if(heroDesc)heroDesc.innerHTML='El pozo actual está en disputa <strong>ahora mismo</strong>. Mira el ranking en tiempo real y prepárate para la próxima jornada.';
-      clearInterval(_countdownInterval);return;
-    }
-    var s=Math.floor(diff/1000),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
-    document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
-    document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
-    document.getElementById('cd-sec').textContent=String(sec).padStart(2,'0');
-    if(h<2)bar.style.background='linear-gradient(90deg,#1a0000,#2d0505,#1a0000)';
-  }
-  tick();_countdownInterval=setInterval(tick,1000);
+if(_countdownInterval)clearInterval(_countdownInterval);
+var bar=document.getElementById('countdownBar'),ts=new Date(fechaISO).getTime();
+function tick(){
+var diff=ts-Date.now();
+if(diff<=0){
+bar.classList.add('cerrado');
+['cd-hrs','cd-min','cd-sec'].forEach(function(id){document.getElementById(id).textContent='00';});
+var lbl=bar.querySelector('.cd-label');if(lbl)lbl.innerHTML='<span>🏆</span> Jornada en curso — Inscripciones cerradas';
+var cta=bar.querySelector('.cd-cta');if(cta){cta.textContent='🔔 Apuntarme a la próxima';cta.onclick=function(){abrirRemind();};}
+document.body.classList.add('modo-envivo');
+var heroTag=document.querySelector('.hero-tag');if(heroTag)heroTag.innerHTML='<div class="pdot"></div>Jornada 22 — En Curso';
+var heroTitle=document.querySelector('.hero-title');if(heroTitle)heroTitle.innerHTML='<span class="o">Quiniela</span><br><span class="v">En Vivo</span>';
+var heroDesc=document.querySelector('.hero-desc');if(heroDesc)heroDesc.innerHTML='El pozo actual está en disputa <strong>ahora mismo</strong>. Mira el ranking en tiempo real y prepárate para la próxima jornada.';
+clearInterval(_countdownInterval);return;
+}
+var s=Math.floor(diff/1000),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
+document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+document.getElementById('cd-sec').textContent=String(sec).padStart(2,'0');
+if(h<2)bar.style.background='linear-gradient(90deg,#1a0000,#2d0505,#1a0000)';
+}
+tick();_countdownInterval=setInterval(tick,1000);
 }
 (function(){
-  iniciarCountdown(FECHA_CIERRE_FALLBACK);
-  fetch(URL_CONFIG,{mode:'cors',cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){var f=d&&(d.fechaCierre||d.FECHA_CIERRE||d.fecha_cierre);if(f&&typeof f==='string'&&f.length>=10){FECHA_CIERRE_JORNADA=f;iniciarCountdown(FECHA_CIERRE_JORNADA);}}).catch(function(){}).finally(function(){document.body.classList.remove('cargando-fecha');});
+iniciarCountdown(FECHA_CIERRE_FALLBACK);
+fetch(URL_CONFIG,{mode:'cors',cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){var f=d&&(d.fechaCierre||d.FECHA_CIERRE||d.fecha_cierre);if(f&&typeof f==='string'&&f.length>=10){FECHA_CIERRE_JORNADA=f;iniciarCountdown(FECHA_CIERRE_JORNADA);}}).catch(function(){}).finally(function(){document.body.classList.remove('cargando-fecha');});
 })();
 
 document.getElementById('lf-notif').addEventListener('change',function(){document.getElementById('lfCheckIcon').textContent=this.checked?'✓':'';});
 document.getElementById('lf-wp').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,10);});
 
 async function handleLeadSubmit(){
-  var nombre=document.getElementById('lf-nombre').value.trim();
-  var wp=document.getElementById('lf-wp').value.replace(/\D/g,'');
-  var email=document.getElementById('lf-email').value.trim();
-  var notif=document.getElementById('lf-notif').checked;
-  var ok=true;
-  if(!nombre){document.getElementById('lferr-nombre').classList.add('show');document.getElementById('lf-nombre').classList.add('err');ok=false;}else{document.getElementById('lferr-nombre').classList.remove('show');document.getElementById('lf-nombre').classList.remove('err');}
-  if(wp.length!==10){document.getElementById('lferr-wp').classList.add('show');document.getElementById('lf-wp').classList.add('err');ok=false;}else{document.getElementById('lferr-wp').classList.remove('show');document.getElementById('lf-wp').classList.remove('err');}
-  if(!ok)return;
-  var btn=document.getElementById('leadBtn');btn.classList.add('loading');btn.disabled=true;
-  try{localStorage.setItem('qpf-reminder',JSON.stringify({nombre:nombre,wa:wp,ts:Date.now()}));}catch(e){}
-  try{localStorage.setItem('qpf_lead','1');}catch(e){}
-  // ── FORM-URLENCODED — compatible con GAS no-cors ──
-  try{
-  await fetch(WEBHOOK_LEADS, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nombre:nombre, whatsapp:wp, email:email, notif:notif, fuente:'landing_lead_form' })
-  });
-}catch(e){} 
-  await new Promise(function(r){setTimeout(r,900);});
-  document.getElementById('leadFormInner').classList.add('hide');
-  document.getElementById('leadSocialProof').style.display='none';
-  document.getElementById('leadSuccess').classList.add('show');
-  window.dataLayer=window.dataLayer||[];
-  window.dataLayer.push({event:'generacion_lead',formLocation:'landing_section',leadNombre:nombre,leadWhatsapp:wp});
+var nombre=document.getElementById('lf-nombre').value.trim();
+var wp=document.getElementById('lf-wp').value.replace(/\D/g,'');
+var email=document.getElementById('lf-email').value.trim();
+var notif=document.getElementById('lf-notif').checked;
+var ok=true;
+if(!nombre){document.getElementById('lferr-nombre').classList.add('show');document.getElementById('lf-nombre').classList.add('err');ok=false;}else{document.getElementById('lferr-nombre').classList.remove('show');document.getElementById('lf-nombre').classList.remove('err');}
+if(wp.length!==10){document.getElementById('lferr-wp').classList.add('show');document.getElementById('lf-wp').classList.add('err');ok=false;}else{document.getElementById('lferr-wp').classList.remove('show');document.getElementById('lf-wp').classList.remove('err');}
+if(!ok)return;
+var btn=document.getElementById('leadBtn');btn.classList.add('loading');btn.disabled=true;
+try{localStorage.setItem('qpf-reminder',JSON.stringify({nombre:nombre,wa:wp,ts:Date.now()}));}catch(e){}
+try{localStorage.setItem('qpf_lead','1');}catch(e){}
+try{
+await fetch(WEBHOOK_LEADS, {
+method: 'POST',
+mode: 'no-cors',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ nombre:nombre, whatsapp:wp, email:email, notif:notif, fuente:'landing_lead_form' })
+});
+}catch(e){}
+await new Promise(function(r){setTimeout(r,900);});
+document.getElementById('leadFormInner').classList.add('hide');
+document.getElementById('leadSocialProof').style.display='none';
+document.getElementById('leadSuccess').classList.add('show');
+window.dataLayer=window.dataLayer||[];
+window.dataLayer.push({event:'generacion_lead',formLocation:'landing_section',leadNombre:nombre,leadWhatsapp:wp});
 }
 
 var _remindMostrado=false,_remindData=null;
 function initRemind(){
-  try{var r=localStorage.getItem('qpf-reminder');if(r)_remindData=JSON.parse(r);}catch(e){}
-  if(_remindData&&_remindData.nombre&&_remindData.wa){
-    document.getElementById('remind-nombre').value=_remindData.nombre;
-    document.getElementById('remind-wp').value=_remindData.wa;
-    document.getElementById('remindSavedBadge').classList.add('show');
-    validarRemind();
-    var b=document.getElementById('remindBanner');b.textContent='✓ '+_remindData.nombre.toUpperCase()+' — ya estás en la lista';b.classList.add('show');setTimeout(function(){b.classList.remove('show');},5000);
-  }
+try{var r=localStorage.getItem('qpf-reminder');if(r)_remindData=JSON.parse(r);}catch(e){}
+if(_remindData&&_remindData.nombre&&_remindData.wa){
+document.getElementById('remind-nombre').value=_remindData.nombre;
+document.getElementById('remind-wp').value=_remindData.wa;
+document.getElementById('remindSavedBadge').classList.add('show');
+validarRemind();
+var b=document.getElementById('remindBanner');b.textContent='✓ '+_remindData.nombre.toUpperCase()+' — ya estás en la lista';b.classList.add('show');setTimeout(function(){b.classList.remove('show');},5000);
+}
 }
 function debeAparecer(){try{if(localStorage.getItem('qpf_lead'))return false;}catch(e){}return true;}
 function dispararPopup(){if(_remindMostrado)return;if(!debeAparecer())return;_remindMostrado=true;abrirRemind();}
@@ -598,24 +597,23 @@ function cerrarRemind(){document.getElementById('remindOverlay').classList.remov
 function cerrarRemindSiOverlay(e){if(e.target===document.getElementById('remindOverlay'))cerrarRemind();}
 function validarRemind(){var n=document.getElementById('remind-nombre').value.trim(),w=document.getElementById('remind-wp').value.replace(/\D/g,'');document.getElementById('remindBtn').disabled=!(n.length>=2&&w.length>=10);}
 async function guardarRemind(){
-  var nombre=document.getElementById('remind-nombre').value.trim();
-  var wa=document.getElementById('remind-wp').value.replace(/\D/g,'');
-  if(!nombre||wa.length<10)return;
-  try{localStorage.setItem('qpf-reminder',JSON.stringify({nombre:nombre,wa:wa,ts:Date.now()}));_remindData={nombre:nombre,wa:wa};}catch(e){}
-  try{localStorage.setItem('qpf_lead','1');}catch(e){}
-  // ── FORM-URLENCODED — compatible con GAS no-cors ──
-  try{
-  await fetch(WEBHOOK_LEADS, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nombre:nombre, whatsapp:wa, fuente:'popup_recordatorio' })
-  });
+var nombre=document.getElementById('remind-nombre').value.trim();
+var wa=document.getElementById('remind-wp').value.replace(/\D/g,'');
+if(!nombre||wa.length<10)return;
+try{localStorage.setItem('qpf-reminder',JSON.stringify({nombre:nombre,wa:wa,ts:Date.now()}));_remindData={nombre:nombre,wa:wa};}catch(e){}
+try{localStorage.setItem('qpf_lead','1');}catch(e){}
+try{
+await fetch(WEBHOOK_LEADS, {
+method: 'POST',
+mode: 'no-cors',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ nombre:nombre, whatsapp:wa, fuente:'popup_recordatorio' })
+});
 }catch(e){}
-  document.getElementById('remindFormWrap').classList.add('hide');
-  document.getElementById('remindSuccess').classList.add('show');
-  document.getElementById('remindNombreOk').textContent=nombre.toUpperCase();
-  window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generacion_lead',formLocation:'popup_recordatorio',leadNombre:nombre,leadWhatsapp:wa});
+document.getElementById('remindFormWrap').classList.add('hide');
+document.getElementById('remindSuccess').classList.add('show');
+document.getElementById('remindNombreOk').textContent=nombre.toUpperCase();
+window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generacion_lead',formLocation:'popup_recordatorio',leadNombre:nombre,leadWhatsapp:wa});
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarRemind();});
 
@@ -641,176 +639,174 @@ document.querySelectorAll('.ganador-card,.step,.tcard').forEach(function(card){c
 initRemind();
 // ── CARGA DINÁMICA DE PARTIDOS ──
 var LIGAS_DIA = {
-  'Bundesliga':        'Sáb 16',
-  'Liga MX':           'Sáb 16 / Dom 17',
-  'Premier League':    'Dom 17',
-  'LaLiga':            'Dom 17',
-  'Serie A':           'Dom 17',
-  'Champions League':  'Mar-Mié',
-  'Copa MX':           ''
+'Bundesliga': 'Sáb 16',
+'Liga MX': 'Sáb 16 / Dom 17',
+'Premier League': 'Dom 17',
+'LaLiga': 'Dom 17',
+'Serie A': 'Dom 17',
+'Champions League': 'Mar-Mié',
+'Copa MX': ''
 };
 
 function cargarPartidosDinamicos() {
- fetch(URL_REGISTRO + '?p=partidos')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      var partidos = data.partidos || [];
-      if (!partidos.length) return;
+fetch(URL_REGISTRO + '?p=partidos')
+.then(function(r) { return r.json(); })
+.then(function(data) {
+var partidos = data.partidos || [];
+if (!partidos.length) return;
 
-      document.getElementById('totalPartidosNum').textContent = partidos.length;
+document.getElementById('totalPartidosNum').textContent = partidos.length;
 
-      // Agrupar por liga
-      var grupos = {};
-      var ordenLigas = [];
-      partidos.forEach(function(p) {
-        if (!grupos[p.liga]) { grupos[p.liga] = []; ordenLigas.push(p.liga); }
-        grupos[p.liga].push(p);
-      });
+// Agrupar por liga
+var grupos = {};
+var ordenLigas = [];
+partidos.forEach(function(p) {
+if (!grupos[p.liga]) { grupos[p.liga] = []; ordenLigas.push(p.liga); }
+grupos[p.liga].push(p);
+});
 
-      var html = '';
-      ordenLigas.forEach(function(liga) {
-        var ps = grupos[liga];
-        var emoji = ps[0].emoji;
-        html += '<div class="partidos-dia">';
-        html += '<div class="partidos-dia-label">';
-        html += '<span class="dia-badge dia-sabado">' + emoji + ' ' + liga + '</span>';
-        html += '<div class="dia-line"></div>';
-        html += '</div>';
-        html += '<div class="partidos-lista">';
-        ps.forEach(function(p, idx) {
-          var esDestacado = (p.liga === 'Liga MX');
-          html += '<div class="partido-card' + (esDestacado ? ' partido-destacado' : '') + '">';
-          html += '<span class="partido-num">' + p.id + '</span>';
-          html += '<div class="partido-liga-icon">' + p.emoji + '</div>';
-          html += '<div class="partido-info">';
-          html += '<div class="partido-equipos">' + p.local + '<span class="vs"> vs </span>' + p.visitante + '</div>';
-          html += '<div class="partido-liga-tag">' + p.liga + ' · ' + p.fecha + '</div>';
-          html += '</div></div>';
-        });
-        html += '</div></div>';
-      });
+var html = '';
+ordenLigas.forEach(function(liga) {
+var ps = grupos[liga];
+var emoji = ps[0].emoji;
+html += '<div class="partidos-dia">';
+html += '<div class="partidos-dia-label">';
+html += '<span class="dia-badge dia-sabado">' + emoji + ' ' + liga + '</span>';
+html += '<div class="dia-line"></div>';
+html += '</div>';
+html += '<div class="partidos-lista">';
+ps.forEach(function(p, idx) {
+var esDestacado = (p.liga === 'Liga MX');
+html += '<div class="partido-card' + (esDestacado ? ' partido-destacado' : '') + '">';
+html += '<span class="partido-num">' + p.id + '</span>';
+html += '<div class="partido-liga-icon">' + p.emoji + '</div>';
+html += '<div class="partido-info">';
+html += '<div class="partido-equipos">' + p.local + '<span class="vs"> vs </span>' + p.visitante + '</div>';
+html += '<div class="partido-liga-tag">' + p.liga + ' · ' + p.fecha + '</div>';
+html += '</div></div>';
+});
+html += '</div></div>';
+});
 
-      document.getElementById('partidosSkeleton').style.display = 'none';
-      document.getElementById('partidosLista').innerHTML = html;
-    })
-    .catch(function() {
-      // Si falla el fetch, oculta skeleton silenciosamente
-      document.getElementById('partidosSkeleton').style.display = 'none';
-    });
+document.getElementById('partidosSkeleton').style.display = 'none';
+document.getElementById('partidosLista').innerHTML = html;
+})
+.catch(function() {
+// Si falla el fetch, oculta skeleton silenciosamente
+document.getElementById('partidosSkeleton').style.display = 'none';
+});
 }
+
+
+// ── CARGA DINÁMICA DE GANADORES ──
 function cargarGanadoresDinamicos() {
-  fetch(URL_REGISTRO + '?p=ganadores')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      var ganadores = data.ganadores || [];
-      if (!ganadores.length) return;
+var paleta = {
+verde: { border:'rgba(0,232,122,0.5)', bg:'linear-gradient(160deg,#001a0a 0%,#111 40%,#001a0a 100%)', badgeBg:'linear-gradient(135deg,#00e87a,#00c469)', badgeColor:'#06080A', grad:'linear-gradient(135deg,#00e87a,#fff,#00e87a)', dot:'#00e87a', glow:'rgba(0,232,122,0.6)', ava:'#00e87a', star:'#00e87a' },
+oro: { border:'rgba(255,216,77,0.5)', bg:'linear-gradient(160deg,#1a1500 0%,#111 40%,#1c1a00 100%)', badgeBg:'linear-gradient(135deg,#FFD84D,#ff9900)', badgeColor:'#06080A', grad:'linear-gradient(135deg,#FFD84D,#fff9e6,#FFD84D)', dot:'#FFD84D', glow:'rgba(255,216,77,0.6)', ava:'#FFD84D', star:'#FFD84D' },
+naranja: { border:'rgba(255,107,0,0.5)', bg:'linear-gradient(160deg,#1a0800 0%,#111 40%,#1c1400 100%)', badgeBg:'linear-gradient(135deg,#ff6b00,#ff9900)', badgeColor:'#fff', grad:'linear-gradient(135deg,#ff6b00,#ffcc00,#ff6b00)', dot:'#ff6b00', glow:'rgba(255,107,0,0.6)', ava:'#ff6b00', star:'#ff6b00' }
+};
 
-      // Paleta de colores por tipo
-      var paleta = {
-        verde:   { border:'rgba(0,232,122,0.5)',  bg:'linear-gradient(160deg,#001a0a 0%,#111 40%,#001a0a 100%)', badgeBg:'linear-gradient(135deg,#00e87a,#00c469)', badgeColor:'#06080A', nombreGrad:'linear-gradient(135deg,#00e87a,#fff,#00e87a)', dotColor:'#00e87a', dotGlow:'rgba(0,232,122,0.6)', avaColor:'#00e87a', metaColor:'#00e87a', starsColor:'#00e87a' },
-        oro:     { border:'rgba(255,216,77,0.5)',  bg:'linear-gradient(160deg,#1a1500 0%,#111 40%,#1c1a00 100%)', badgeBg:'linear-gradient(135deg,#FFD84D,#ff9900)', badgeColor:'#06080A', nombreGrad:'linear-gradient(135deg,#FFD84D,#fff9e6,#FFD84D)', dotColor:'#FFD84D', dotGlow:'rgba(255,216,77,0.6)',  avaColor:'#FFD84D', metaColor:'#FFD84D', starsColor:'#FFD84D' },
-        naranja: { border:'rgba(255,107,0,0.5)',   bg:'linear-gradient(160deg,#1a0800 0%,#111 40%,#1c1400 100%)', badgeBg:'linear-gradient(135deg,#ff6b00,#ff9900)', badgeColor:'#fff',    nombreGrad:'linear-gradient(135deg,#ff6b00,#ffcc00,#ff6b00)',    dotColor:'#ff6b00', dotGlow:'rgba(255,107,0,0.6)',  avaColor:'#ff6b00', metaColor:'#ff6b00', starsColor:'#ff6b00' }
-      };
+fetch(URL_REGISTRO + '?p=ganadores')
+.then(function(r) { return r.json(); })
+.then(function(data) {
+var gs = data.ganadores || [];
+if (!gs.length) return;
 
-      // ── HERO STAT CARDS ──
-      var heroRight = document.querySelector('.hero-right');
-      if (heroRight) {
-        var existentes = heroRight.querySelectorAll('.hero-stat-card');
-        if (existentes.length) {
-          var primero = existentes[0];
-          // Tomar solo los 2 más recientes para hero
-          var recientes = ganadores.slice(0, 2);
-          recientes.reverse().forEach(function(g) {
-            var c = paleta[g.color] || paleta.verde;
-            var esBicampeon = g.alias === ganadores[0].alias && ganadores.filter(function(x){return x.alias===g.alias;}).length > 1;
-            var label = 'Ganador J' + g.jornada + (esBicampeon ? ' 👑' : '');
-            var cardH = '<div class="hero-stat-card" style="border-color:' + c.border + ';animation-delay:0.2s"><div class="hsc-icon">🏆</div><div><div class="hsc-label">' + label + '</div><div class="hsc-val oro" style="font-size:1rem;color:' + c.avaColor + ';">' + g.alias + '</div></div></div>' +
-              '<div class="hero-stat-card" style="animation-delay:0.25s"><div class="hsc-icon">💰</div><div><div class="hsc-label">Premio J' + g.jornada + '</div><div class="hsc-val oro">$' + Number(g.premio).toLocaleString('es-MX') + ' MXN</div></div></div>';
-            primero.insertAdjacentHTML('beforebegin', cardH);
-          });
-        }
-      }
-
-      // ── GANADOR CARDS (top 3 únicos) ──
-      var grid = document.querySelector('.ganadores-grid');
-      if (grid) {
-        grid.innerHTML = '';
-        var vistos = {};
-        var top = ganadores.filter(function(g) {
-          var key = g.alias + '_' + g.jornada;
-          if (vistos[key]) return false;
-          vistos[key] = true;
-          return true;
-        }).slice(0, 4);
-
-        top.forEach(function(g) {
-          var c = paleta[g.color] || paleta.verde;
-          var pct = Math.round((g.aciertos / 15) * 100);
-          var empate = ganadores.filter(function(x){ return x.jornada == g.jornada; }).length > 1;
-          var badgeLabel = empate ? '🤝 JORNADA ' + g.jornada + ' — EMPATE' : '🏆 JORNADA ' + g.jornada;
-          var extraMeta = empate ? ' — Pozo dividido' : '';
-          var card = '<div class="ganador-card reveal" style="border-color:' + c.border + ';background:' + c.bg + ';">' +
-            '<div class="ganador-badge" style="background:' + c.badgeBg + ';color:' + c.badgeColor + ';">' + badgeLabel + '</div>' +
-            '<div class="ganador-trophy" style="filter:drop-shadow(0 4px 12px ' + c.dotGlow + ');">🥇</div>' +
-            '<div class="ganador-nombre" style="background:' + c.nombreGrad + ';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">' + g.alias + '</div>' +
-            '<div class="ganador-alias">' + g.nombre + ' · Ganador J' + g.jornada + '</div>' +
-            '<div class="ganador-premio">$' + Number(g.premio).toLocaleString('es-MX') + '</div>' +
-            '<div class="ganador-meta"><div class="ganador-dot" style="background:' + c.dotColor + ';box-shadow:0 0 8px ' + c.dotGlow + ';"></div>' + g.aciertos + ' aciertos · ' + pct + '% efectividad · J' + g.jornada + extraMeta + '</div>' +
-            '</div>';
-          grid.innerHTML += card;
-        });
-
-        // Re-observar reveal
-        document.querySelectorAll('.ganador-card.reveal').forEach(function(el){ io.observe(el); });
-      }
-
-      // ── HISTORIAL ──
-      var historial = document.querySelector('.historial');
-      if (historial) {
-        var hdrHTML = '<div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>';
-        var rowsHTML = ganadores.map(function(g) {
-          var c = paleta[g.color] || paleta.verde;
-          var esRecord = (g.aciertos >= 12);
-          var pos = esRecord ? '🎯' : '🥇';
-          var extra = esRecord ? ' 🏆 Récord' : '';
-          return '<div class="historial-row">' +
-            '<span class="h-pos">' + pos + '</span>' +
-            '<span class="h-nombre">' + g.alias + ' <span style="color:#7A8B9A;font-size:0.78rem;font-weight:400;">· J' + g.jornada + extra + '</span></span>' +
-            '<span class="h-aciertos" style="border-color:' + c.border + ';color:' + c.dotColor + ';">' + g.aciertos + '</span>' +
-            '<span class="h-premio" style="color:' + c.dotColor + ';">$' + Number(g.premio).toLocaleString('es-MX') + '</span>' +
-            '</div>';
-        }).join('');
-        var footerHTML = '<div class="historial-row" style="opacity:0.4;"><span class="h-pos" style="color:#8A9BB0;">—</span><span class="h-nombre" style="color:#7A8B9A;">Próximo ganador... ¿serás tú?</span><span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:#7A8B9A;">?</span><span class="h-premio" style="color:#00e87a;">$???</span></div>';
-        historial.innerHTML = hdrHTML + rowsHTML + footerHTML;
-      }
-
-      // ── TESTIMONIOS ──
-      var tgrid = document.querySelector('.tgrid');
-      if (tgrid) {
-        var testimosHTML = ganadores.filter(function(g){ return g.testimonio && g.testimonio.length > 5; })
-          .map(function(g) {
-            var c = paleta[g.color] || paleta.verde;
-            var iniciales = g.alias.substring(0,2).toUpperCase();
-            return '<div class="tcard reveal" style="border-color:' + c.border + ';background:linear-gradient(135deg,#0E1318 0%,rgba(0,0,0,0.03) 100%);">' +
-              '<div class="tq" style="color:rgba(0,0,0,0.1);">"</div>' +
-              '<div class="stars" style="color:' + c.starsColor + ';">★★★★★</div>' +
-              '<p>' + g.testimonio + '</p>' +
-              '<div class="tauthor"><div class="ava" style="color:' + c.avaColor + ';">' + iniciales + '</div>' +
-              '<div><div class="aname">' + g.alias + '</div>' +
-              '<div class="ameta" style="color:' + c.metaColor + ';">Ganador J' + g.jornada + ' · $' + Number(g.premio).toLocaleString('es-MX') + ' MXN</div>' +
-              '</div></div></div>';
-          }).join('');
-        tgrid.innerHTML = testimosHTML;
-        document.querySelectorAll('.tcard.reveal').forEach(function(el){ io.observe(el); });
-      }
-
-    })
-    .catch(function(e) { console.warn('Ganadores: sin datos', e); });
+// ── HERO STAT CARDS ──
+var heroRight = document.querySelector('.hero-right');
+if (heroRight) {
+var anchorEl = heroRight.querySelector('.hero-stat-card');
+if (anchorEl) {
+gs.slice(0, 2).reverse().forEach(function(g) {
+var c = paleta[g.color] || paleta.verde;
+var h =
+'<div class="hero-stat-card" style="border-color:' + c.border + '">' +
+'<div class="hsc-icon">🏆</div>' +
+'<div><div class="hsc-label">Ganador J' + g.jornada + '</div>' +
+'<div class="hsc-val oro" style="font-size:1rem;color:' + c.ava + ';">' + g.alias + '</div></div>' +
+'</div>' +
+'<div class="hero-stat-card">' +
+'<div class="hsc-icon">💰</div>' +
+'<div><div class="hsc-label">Premio J' + g.jornada + '</div>' +
+'<div class="hsc-val oro">$' + Number(g.premio).toLocaleString('es-MX') + ' MXN</div></div>' +
+'</div>';
+anchorEl.insertAdjacentHTML('beforebegin', h);
+});
+}
 }
 
-// Llamar al cargar
+// ── GANADOR CARDS ──
+var grid = document.querySelector('.ganadores-grid');
+if (grid) {
+var vistos = {}, top = [];
+gs.forEach(function(g) {
+var k = g.alias + '_' + g.jornada;
+if (!vistos[k]) { vistos[k] = true; top.push(g); }
+});
+grid.innerHTML = top.slice(0, 4).map(function(g) {
+var c = paleta[g.color] || paleta.verde;
+var empate = gs.filter(function(x){ return x.jornada == g.jornada; }).length > 1;
+var badge = empate ? '🤝 JORNADA ' + g.jornada + ' — EMPATE' : '🏆 JORNADA ' + g.jornada;
+var meta = empate ? ' — Pozo dividido' : '';
+var pct = Math.round((g.aciertos / 15) * 100);
+return '<div class="ganador-card reveal" style="border-color:' + c.border + ';background:' + c.bg + ';">' +
+'<div class="ganador-badge" style="background:' + c.badgeBg + ';color:' + c.badgeColor + ';">' + badge + '</div>' +
+'<div class="ganador-trophy" style="filter:drop-shadow(0 4px 12px ' + c.glow + ');">🥇</div>' +
+'<div class="ganador-nombre" style="background:' + c.grad + ';-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">' + g.alias + '</div>' +
+'<div class="ganador-alias">' + g.nombre + ' · Ganador J' + g.jornada + '</div>' +
+'<div class="ganador-premio">$' + Number(g.premio).toLocaleString('es-MX') + '</div>' +
+'<div class="ganador-meta"><div class="ganador-dot" style="background:' + c.dot + ';box-shadow:0 0 8px ' + c.glow + ';"></div>' +
+g.aciertos + ' aciertos · ' + pct + '% efectividad · J' + g.jornada + meta + '</div>' +
+'</div>';
+}).join('');
+document.querySelectorAll('.ganador-card.reveal').forEach(function(el){ io.observe(el); });
+}
+
+// ── HISTORIAL ──
+var hist = document.querySelector('.historial');
+if (hist) {
+var hdr = '<div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>';
+var rows = gs.map(function(g) {
+var c = paleta[g.color] || paleta.verde;
+var ico = g.aciertos >= 12 ? '🎯' : '🥇';
+var extra = g.aciertos >= 12 ? ' 🏆 Récord' : '';
+return '<div class="historial-row">' +
+'<span class="h-pos">' + ico + '</span>' +
+'<span class="h-nombre">' + g.alias + ' <span style="color:#7A8B9A;font-size:0.78rem;font-weight:400;">· J' + g.jornada + extra + '</span></span>' +
+'<span class="h-aciertos" style="color:' + c.dot + ';border-color:' + c.border + ';">' + g.aciertos + '</span>' +
+'<span class="h-premio" style="color:' + c.dot + ';">$' + Number(g.premio).toLocaleString('es-MX') + '</span>' +
+'</div>';
+}).join('');
+var foot = '<div class="historial-row" style="opacity:0.4;"><span class="h-pos" style="color:#8A9BB0;">—</span><span class="h-nombre" style="color:#7A8B9A;">Próximo ganador... ¿serás tú?</span><span class="h-aciertos" style="background:rgba(255,255,255,0.04);color:#7A8B9A;">?</span><span class="h-premio" style="color:#00e87a;">$???</span></div>';
+hist.innerHTML = hdr + rows + foot;
+}
+
+// ── TESTIMONIOS ──
+var tgrid = document.querySelector('.tgrid');
+if (tgrid) {
+tgrid.innerHTML = gs.filter(function(g){ return g.testimonio && g.testimonio.length > 5; })
+.map(function(g) {
+var c = paleta[g.color] || paleta.verde;
+var ini = g.alias.replace(/[^A-Za-z0-9]/g,'').substring(0,2).toUpperCase();
+return '<div class="tcard reveal" style="border-color:' + c.border + ';background:linear-gradient(135deg,#0E1318 0%,rgba(0,0,0,0.03) 100%);">' +
+'<div class="tq">"</div>' +
+'<div class="stars" style="color:' + c.star + ';">★★★★★</div>' +
+'<p>' + g.testimonio + '</p>' +
+'<div class="tauthor">' +
+'<div class="ava" style="color:' + c.ava + ';">' + ini + '</div>' +
+'<div><div class="aname">' + g.alias + '</div>' +
+'<div class="ameta" style="color:' + c.ava + ';">Ganador J' + g.jornada + ' · $' + Number(g.premio).toLocaleString('es-MX') + ' MXN</div>' +
+'</div>' +
+'</div>' +
+'</div>';
+}).join('');
+document.querySelectorAll('.tcard.reveal').forEach(function(el){ io.observe(el); });
+}
+
+})
+.catch(function(e){ console.warn('QPF Ganadores: sin datos', e); });
+}
 cargarGanadoresDinamicos();
-  
 // Llamar al cargar
 cargarPartidosDinamicos();
 setTimeout(function(){if(!iframesLoaded.seguimiento){document.getElementById('iframe-seguimiento').src=URL_SEGUIMIENTO;iframesLoaded.seguimiento=true;}},1000);
