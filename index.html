@@ -210,10 +210,10 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <div class="hero-hex"></div>
 <div class="hero-grid">
 <div class="hero-content">
-<div class="hero-tag"><div class="pdot"></div>Jornada 22 — Inscripciones Abiertas</div>
+<div class="hero-tag"><div class="pdot"></div>Jornada 25 — Inscripciones Abiertas</div>
 <h1 class="hero-title"><span class="v">QUINIELA</span><br><span class="o">PRO</span> FUT</h1>
 <p class="hero-desc">Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.</p>
-<div class="hero-referido"><div class="ref-icon">🔥</div><div class="ref-text"><strong>Premio especial J22:</strong> <span>$2,000 si aciertas 15/15</span> · $1,200 si aciertas 14/15</div></div>
+<div class="hero-referido"><div class="ref-icon">🔥</div><div class="ref-text"><strong>Premio especial J25:</strong> <span>$2,000 si aciertas 15/15</span> </div>
 <div class="hero-btns" id="heroBtns">
 <button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100</button>
 <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
@@ -222,9 +222,9 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <div class="hero-right">
 <div class="hero-stat-card"><div class="hsc-icon">⚡</div><div><div class="hsc-label">Pagos en tiempo</div><div class="hsc-val">100%</div></div></div>
 <div class="hero-right-cta">
-<div class="hrc-title">⚽ Jornada 22 — 15 Partidos</div>
+<div class="hrc-title">⚽ Jornada 25 — 15 Partidos</div>
 <div class="hrc-ligas"><span class="hrc-liga">🇲🇽 Liga MX</span><span class="hrc-liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier</span><span class="hrc-liga">🇩🇪 Bundesliga</span><span class="hrc-liga">🇮🇹 Serie A</span><span class="hrc-liga">🇪🇸 LaLiga</span></div>
-<div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 22</div>
+<div class="hrc-live"><div class="ldot"></div>Ranking en vivo — jornada 25</div>
 </div>
 </div>
 </div>
@@ -248,7 +248,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 
 <div class="partidos-section ocultar-en-vivo" id="partidos-j22">
 <section class="sec">
-<span class="chip reveal">Jornada 22</span>
+<span class="chip reveal">Jornada 25</span>
 <h2 class="stitle reveal">Partidos a<br><span style="color:#00e87a">pronosticar</span></h2>
 <p class="sdesc reveal">15 partidos de las mejores ligas del mundo. ¿Cuántos puedes acertar?</p>
 <div class="pozo-preview reveal">
@@ -283,8 +283,16 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <span class="chip reveal">Ganadores Reales</span>
 <h2 class="stitle reveal">Jugadores que<br><span style="color:#FFD84D">ya cobraron</span></h2>
 <p class="sdesc reveal">Pagos reales, transferencias directas. Así se ve ganar en Quiniela Pro Fut.</p>
-<div class="ganadores-grid"></div>
-<div class="historial reveal" style="margin-top:2.5rem;"></div>
+<div class="ganadores-grid" id="ganadoresGrid">
+  <!-- Skeletons ganador cards -->
+  <div style="background:#0E1318;border:1px solid #1E2830;border-radius:20px;height:280px;animation:skPulse 1.4s infinite;"></div>
+  <div style="background:#0E1318;border:1px solid #1E2830;border-radius:20px;height:280px;animation:skPulse 1.4s infinite 0.15s;"></div>
+  <div style="background:#0E1318;border:1px solid #1E2830;border-radius:20px;height:280px;animation:skPulse 1.4s infinite 0.3s;"></div>
+</div>
+<div class="historial reveal" style="margin-top:2.5rem;" id="historialTabla">
+  <!-- Skeleton historial -->
+  <div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;height:300px;animation:skPulse 1.4s infinite;"></div>
+</div>
 </section>
 </div>
 
@@ -356,7 +364,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <div style="flex:1;min-width:220px;">
 <div class="promo-badge">EXCLUSIVO J22</div>
 <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#ff6b00;line-height:1.1;margin-bottom:0.5rem;">BOLSA ESPECIAL<br>ESTA JORNADA</div>
-<div style="font-size:0.9rem;color:#8A9BB0;line-height:1.7;"><strong style="color:#FFD84D;">15/15 aciertos → $2,000 MXN garantizados</strong><br><strong style="color:#F0F4F8;">14/15 aciertos → $1,200 MXN garantizados</strong></div>
+<div style="font-size:0.9rem;color:#8A9BB0;line-height:1.7;"><strong style="color:#FFD84D;">🏆 Quiniela Perfecta 15/15 → $2,000 MXN garantizados</strong>
 </div>
 <button class="btn-v ocultar-en-vivo" onclick="mostrarRegistro()" style="flex-shrink:0;background:#ff6b00;color:#fff;">⚽ Quiero ganar</button>
 </div>
@@ -372,37 +380,11 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 
 <div style="background:#0E1318;border-top:1px solid #1E2830;"><section class="sec" id="testimonios">
 <span class="chip reveal">La Comunidad Habla</span><h2 class="stitle reveal">Lo que dicen<br>los jugadores</h2>
-<div class="tgrid">
-
-<div class="tcard reveal" style="border-color:rgba(255,216,77,0.4);background:linear-gradient(135deg,#0E1318 0%,rgba(255,216,77,0.04) 100%);">
-<div class="tq" style="color:rgba(255,216,77,0.08);">"</div><div class="stars">★★★★★</div>
-<p>J22 fue mía también 🤝 Empaté con EL PAPI y cada quien se llevó $480. Esto apenas empieza, en la próxima me lo llevo solo 😤</p>
-<div class="tauthor"><div class="ava" style="color:#FFD84D;">X</div><div><div class="aname">MR HAPPY</div><div class="ameta" style="color:#FFD84D;">Ganador Jornada 22 · $480 MXN 🤝</div></div></div>
-</div>
-
-<div class="tcard reveal" style="border-color:rgba(255,216,77,0.4);background:linear-gradient(135deg,#0E1318 0%,rgba(255,216,77,0.04) 100%);">
-<div class="tq" style="color:rgba(255,216,77,0.08);">"</div><div class="stars">★★★★★</div>
-<p>Compartí el pozo en J22 con MR HAPPY, $480 para cada uno. La próxima jornada no comparto nada, el pozo completo es mío 🔥</p>
-<div class="tauthor"><div class="ava" style="color:#FFD84D;">EP</div><div><div class="aname">EL PAPI</div><div class="ameta" style="color:#FFD84D;">Ganador Jornada 22 · $480 MXN 🤝</div></div></div>
-</div>
-
-<div class="tcard reveal" style="border-color:rgba(255,107,0,0.3);background:linear-gradient(135deg,#0E1318 0%,rgba(255,107,0,0.04) 100%);">
-<div class="tq" style="color:rgba(255,107,0,0.08);">"</div><div class="stars" style="color:#ff6b00;">★★★★★</div>
-<p>J21 fue mía. $960 directo al bolsillo con 9 aciertos. El que crea que me puede quitar la corona en la J22... que lo intente 😤🔥</p>
-<div class="tauthor"><div class="ava" style="color:#ff6b00;">P</div><div><div class="aname">PUMA_POWER</div><div class="ameta" style="color:#ff6b00;">Ganador Jornada 21 · $960 MXN</div></div></div>
-</div>
-
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Jornada 20 fue mía. 10 aciertos, $880 al bolsillo. A ver quién me quita el título en la próxima 🔥</p><div class="tauthor"><div class="ava">C</div><div><div class="aname">CHECO10</div><div class="ameta">Ganador Jornada 20 · $880 MXN</div></div></div></div>
-
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Soy el mejor nadie me iguala en esta quiniela, intentenlo y les ira muy mal !!!</p><div class="tauthor"><div class="ava">K</div><div><div class="aname">KAKAROTTO</div><div class="ameta">Ganador Jornadas 17 y 15</div></div></div></div>
-
-<div class="tcard reveal"><div class="tq">"</div><div class="stars">★★★★★</div><p>Me encanta que se puede meter dobles o triples, me ayuda a asegurar mi victoria.</p><div class="tauthor"><div class="ava">Ap</div><div><div class="aname">A_P_E_X_</div><div class="ameta">Jugador recurrente con alto puntaje</div></div></div></div>
-
-</div>
+<div class="tgrid" id="tgrid"></div>
 </section></div>
 
 <div class="cta-wrap ocultar-en-vivo" id="registro-cta"><div class="cta-inner">
-<span class="chip reveal">¿Listo?</span><h2 class="stitle reveal">Únete a la<br><span style="color:#00e87a">Jornada 22</span></h2><p class="sdesc reveal">15 partidos. 1 ganador. El pozo completo.</p>
+<span class="chip reveal">¿Listo?</span><h2 class="stitle reveal">Únete a la<br><span style="color:#00e87a">Jornada 25</span></h2><p class="sdesc reveal">15 partidos. 1 ganador. El pozo completo.</p>
 <div class="cta-btns reveal"><button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button><button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button></div>
 <div style="margin-top:1.5rem;" class="reveal"><button onclick="abrirRemind()" style="background:none;border:1px solid rgba(0,232,122,0.25);color:#00e87a;padding:0.7rem 1.8rem;border-radius:8px;font-size:0.88rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.2s;">🔔 Avísame de la próxima jornada</button></div>
 <div class="trust reveal"><div class="ti"><span>🔒</span> Pago seguro</div><div class="ti"><span>⚡</span> Resultados en tiempo real</div><div class="ti"><span>🏆</span> Premios garantizados</div><div class="ti"><span>📱</span> 100% desde el celular</div></div>
@@ -467,7 +449,7 @@ bar.classList.add('cerrado');
 var lbl=bar.querySelector('.cd-label');if(lbl)lbl.innerHTML='<span>🏆</span> Jornada en curso — Inscripciones cerradas';
 var cta=bar.querySelector('.cd-cta');if(cta){cta.textContent='🔔 Apuntarme a la próxima';cta.onclick=function(){abrirRemind();};}
 document.body.classList.add('modo-envivo');
-var heroTag=document.querySelector('.hero-tag');if(heroTag)heroTag.innerHTML='<div class="pdot"></div>Jornada 22 — En Curso';
+var heroTag=document.querySelector('.hero-tag');if(heroTag)heroTag.innerHTML='<div class="pdot"></div>Jornada 25 — En Curso';
 var heroTitle=document.querySelector('.hero-title');if(heroTitle)heroTitle.innerHTML='<span class="o">Quiniela</span><br><span class="v">En Vivo</span>';
 var heroDesc=document.querySelector('.hero-desc');if(heroDesc)heroDesc.innerHTML='El pozo actual está en disputa <strong>ahora mismo</strong>. Mira el ranking en tiempo real y prepárate para la próxima jornada.';
 clearInterval(_countdownInterval);return;
@@ -678,7 +660,7 @@ anchorEl.insertAdjacentHTML('beforebegin', h);
 }
 
 // ── GANADOR CARDS ──
-var grid = document.querySelector('.ganadores-grid');
+var grid = document.getElementById('ganadoresGrid');
 if (grid) {
 var vistos = {}, top = [];
 gs.forEach(function(g) {
@@ -705,7 +687,7 @@ document.querySelectorAll('.ganador-card.reveal').forEach(function(el){ io.obser
 }
 
 // ── HISTORIAL ──
-var hist = document.querySelector('.historial');
+var hist = document.getElementById('historialTabla');
 if (hist) {
 var hdr = '<div class="historial-row hdr"><span>#</span><span>Jugador</span><span>Aciertos</span><span>Premio</span></div>';
 var rows = gs.map(function(g) {
@@ -724,7 +706,7 @@ hist.innerHTML = hdr + rows + foot;
 }
 
 // ── TESTIMONIOS ──
-var tgrid = document.querySelector('.tgrid');
+var tgrid = document.getElementById('tgrid');
 if (tgrid) {
 tgrid.innerHTML = gs.filter(function(g){ return g.testimonio && g.testimonio.length > 5; })
 .map(function(g) {
