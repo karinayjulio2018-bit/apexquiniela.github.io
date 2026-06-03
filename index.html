@@ -378,22 +378,6 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 
 <div style="background:#0E1318;border-top:1px solid #1E2830;border-bottom:1px solid #1E2830;"><section class="sec">
 <span class="chip reveal">En Tiempo Real</span><h2 class="stitle reveal">Sigue el ranking<br>mientras pasa</h2><p class="sdesc reveal">Cada resultado actualiza automáticamente puntos y posiciones.</p>
-<div class="tbox reveal">
-<div class="thead"><span class="thead-t">Jornada 22 — Resultado Final</span><span class="live"><div class="ldot"></div>Completada</span></div>
-<div class="trow hdr"><span>#</span><span>Jugador</span><span style="text-align:center">P1</span><span style="text-align:center">P2</span><span style="text-align:center">P3</span><span style="text-align:center">P4</span><span style="text-align:center">P5</span><span style="text-align:center">P6</span><span style="text-align:center">Pts</span></div>
-<div class="trow"><span class="rk r1">1</span><span class="pname">MR_HAPPY <span style="font-size:0.72rem;color:#FFD84D;">🤝</span></span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="pts">8</div></div>
-<div class="trow"><span class="rk r1">1</span><span class="pname">PAPI <span style="font-size:0.72rem;color:#FFD84D;">🤝</span></span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">8</div></div>
-<div class="trow"><span class="rk r3">3</span><span class="pname">CHECO10</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">7</div></div>
-<div class="trow"><span class="rk r3">3</span><span class="pname">CHINICU_</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">7</div></div>
-<div class="trow"><span class="rk r3">3</span><span class="pname">SAUL_MTZ</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">7</div></div>
-<div class="trow"><span class="rk r4">6</span><span class="pname">POR_VERGA_P</span><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">6</div></div>
-<div class="trow"><span class="rk r4">7</span><span class="pname">VJBA</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">5</div></div>
-<div class="trow"><span class="rk r4">7</span><span class="pname">NARANJA_MEC</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">5</div></div>
-<div class="trow"><span class="rk r4">7</span><span class="pname">DAN</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="pts">5</div></div>
-<div class="trow"><span class="rk r4">10</span><span class="pname">DIDIS</span><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="pts">4</div></div>
-<div class="trow"><span class="rk r4">10</span><span class="pname">CHRIS</span><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="pts">4</div></div>
-<div class="trow"><span class="rk r4">10</span><span class="pname">PASTOR_MILIT</span><div class="cell fail">✗</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell fail">✗</div><div class="cell ok">✓</div><div class="cell ok">✓</div><div class="pts">4</div></div>
-</div>
 <div style="text-align:center;margin-top:2rem;"><button class="btn-o" onclick="mostrarSeguimiento()" style="margin:0 auto;">📊 Ver Seguimiento Real en Vivo →</button></div>
 
 </section>
@@ -723,7 +707,7 @@ var h =
 '<div class="hero-stat-card" style="border-color:' + c.border + '">' +
 '<div class="hsc-icon">🏆</div>' +
 '<div><div class="hsc-label">Ganador J' + g.jornada + '</div>' +
-'<div class="hsc-val oro" style="font-size:1rem;color:' + c.ava + ';">' + g.alias + '</div></div>' +
+'<div class="hsc-val oro" style="color:' + c.ava + ';">' + g.alias + '</div></div>' +
 '</div>' +
 '<div class="hero-stat-card">' +
 '<div class="hsc-icon">💰</div>' +
