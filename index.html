@@ -255,7 +255,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <nav id="navPrincipal">
 <div class="logo" onclick="mostrarLanding()">Quiniela<em>Pro</em>Fut</div>
 <ul class="nav-links">
-<li><button onclick="irSeccion('partidos-j22')">Partidos J22</button></li>
+<li><button onclick="irSeccion('partidos-j25')">Partidos J25</button></li>
 <li><button onclick="irSeccion('ganadores')">Ganadores</button></li>
 <li><button onclick="irSeccion('como-funciona')">Cómo funciona</button></li>
 <li><button onclick="irSeccion('premios')">Premios</button></li>
@@ -268,7 +268,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 </nav>
 <div id="menuOverlay" onclick="cerrarMenu()"></div>
 <div class="nav-mobile" id="navMobile">
-<button onclick="irSeccion('partidos-j22');cerrarMenu()">⚽ Partidos J22</button>
+<button onclick="irSeccion('partidos-j25');cerrarMenu()">⚽ Partidos J25</button>
 <button onclick="irSeccion('ganadores');cerrarMenu()">🏆 Ganadores</button>
 <button onclick="irSeccion('como-funciona');cerrarMenu()">❓ Cómo funciona</button>
 <button onclick="irSeccion('premios');cerrarMenu()">💰 Premios</button>
@@ -291,8 +291,9 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <button class="btn-o" onclick="mostrarSeguimiento()">📊 Ver Ranking en Vivo</button>
 </div>
 </div>
+</div>  
 
-<!-- ── HERO RIGHT: Countdown + Features ── -->
+  <!-- ── HERO RIGHT: Countdown + Features ── -->
 <div class="hero-right">
 
   <!-- Countdown dinámico -->
@@ -357,12 +358,12 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 
 <div class="stats-bar" style="background:#0E1318!important;">
 <div class="stat" style="padding:2rem;text-align:center;border-right:1px solid #1E2830;"><span class="stat-n" data-to="21">0</span><span class="stat-l">Jornadas Jugadas</span></div>
-<div class="stat" style="padding:2rem;text-align:center;border-right:1px solid #1E2830;"><span class="stat-n" data-to="1200" style="color:#ff6b00">0</span><span class="stat-l">Pozo Estimado J22 $MXN</span></div>
+<div class="stat" style="padding:2rem;text-align:center;border-right:1px solid #1E2830;"><span class="stat-n" data-to="1200" style="color:#ff6b00">0</span><span class="stat-l">Pozo Estimado J25 $MXN</span></div>
 <div class="stat" style="padding:2rem;text-align:center;border-right:1px solid #1E2830;"><span class="stat-n" data-to="12">0</span><span class="stat-l">Jugadores J21</span></div>
 <div class="stat" style="padding:2rem;text-align:center;"><span class="stat-n" data-to="100">0</span><span class="stat-l">% Pagos Puntuales</span></div>
 </div>
 
-<div class="partidos-section ocultar-en-vivo" id="partidos-j22">
+<div class="partidos-section ocultar-en-vivo" id="partidos-j25">
 <section class="sec">
 <span class="chip reveal">Jornada 25</span>
 <h2 class="stitle reveal">Partidos a<br><span style="color:#00e87a">pronosticar</span></h2>
@@ -470,7 +471,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <div class="promo-referido reveal">
 <div style="font-size:3.5rem;flex-shrink:0;">🔥</div>
 <div style="flex:1;min-width:220px;">
-<div class="promo-badge">EXCLUSIVO J22</div>
+<div class="promo-badge">EXCLUSIVO J25</div>
 <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#ff6b00;line-height:1.1;margin-bottom:0.5rem;">BOLSA ESPECIAL<br>ESTA JORNADA</div>
 <div style="font-size:0.9rem;color:#8A9BB0;line-height:1.7;"><strong style="color:#FFD84D;">🏆 Quiniela Perfecta 15/15 → $2,000 MXN garantizados</strong>
 </div>
@@ -511,7 +512,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <div class="iframe-wrap"><div class="iframe-loading" id="loadingSeguimiento"><div class="il-icon">📊</div><div class="il-title">Cargando Ranking</div><div class="il-sub">Un momento...</div><div class="il-bar"><div class="il-fill"></div></div></div><iframe id="iframe-seguimiento" class="iframe-main" src="" title="Seguimiento en Vivo" allow="clipboard-write"></iframe></div>
 </div>
 
-<button id="btnFlotantePartidos" class="ocultar-en-vivo" onclick="irSeccion('partidos-j22')"><div class="fp-dot"></div>⚽ Ver Partidos J22<span class="fp-badge">15</span></button>
+<button id="btnFlotantePartidos" class="ocultar-en-vivo" onclick="irSeccion('partidos-j25')"><div class="fp-dot"></div>⚽ Ver Partidos J25<span class="fp-badge">15</span></button>
 
 <div class="remind-overlay" id="remindOverlay" onclick="cerrarRemindSiOverlay(event)">
 <div class="remind-modal">
@@ -713,7 +714,7 @@ var cio=new IntersectionObserver(function(entries){entries.forEach(function(e){i
 document.querySelectorAll('[data-to]').forEach(function(el){cio.observe(el);});
 document.querySelectorAll('.liga').forEach(function(c){c.addEventListener('click',function(){document.querySelectorAll('.liga').forEach(function(x){x.classList.remove('on');});c.classList.add('on');});});
 document.querySelectorAll('.ganador-card,.step,.tcard').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;card.style.transform='perspective(600px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg) translateY(-6px)';});card.addEventListener('mouseleave',function(){card.style.transform='';});});
-(function(){var btn=document.getElementById('btnFlotantePartidos'),sec=document.getElementById('partidos-j22');if(!btn||!sec)return;new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)btn.classList.add('oculto');else btn.classList.remove('oculto');});},{threshold:0.15}).observe(sec);})();
+(function(){var btn=document.getElementById('btnFlotantePartidos'),sec=document.getElementById('partidos-j25');if(!btn||!sec)return;new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)btn.classList.add('oculto');else btn.classList.remove('oculto');});},{threshold:0.15}).observe(sec);})();
 
 initRemind();
 
