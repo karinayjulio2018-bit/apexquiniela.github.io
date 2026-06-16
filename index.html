@@ -558,7 +558,11 @@ bar.classList.add('cerrado');
 ['cd-hrs','cd-min','cd-sec'].forEach(function(id){document.getElementById(id).textContent='00';});
 var lbl=bar.querySelector('.cd-label');if(lbl)lbl.innerHTML='<span>🏆</span> Jornada en curso — Inscripciones cerradas';
 var cta=bar.querySelector('.cd-cta');if(cta){cta.textContent='🔔 Apuntarme a la próxima';cta.onclick=function(){abrirRemind();};}
-document.body.classList.add('modo-envivo');
+if(!window.FECHA_APERTURA_NUEVA || Date.now() >= new Date(window.FECHA_APERTURA_NUEVA).getTime()){
+  document.body.classList.remove('modo-envivo');
+} else {
+  document.body.classList.add('modo-envivo');
+}
 var heroTag=document.querySelector('.hero-tag');if(heroTag)heroTag.innerHTML='<div class="pdot"></div>Jornada 25 — En Curso';
 var heroTitle=document.querySelector('.hero-title');if(heroTitle)heroTitle.innerHTML='<span class="o">Quiniela</span><br><span class="v">En Vivo</span>';
 var heroDesc=document.querySelector('.hero-desc');if(heroDesc)heroDesc.innerHTML='El pozo actual está en disputa <strong>ahora mismo</strong>. Mira el ranking en tiempo real y prepárate para la próxima jornada.';
@@ -614,11 +618,23 @@ iniciarCountdown(FECHA_CIERRE_FALLBACK);
 iniciarHeroCountdown(FECHA_CIERRE_FALLBACK, 'Jornada 25');
 fetch(URL_CONFIG,{mode:'cors',cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){
   var f=d&&(d.fechaCierre||d.FECHA_CIERRE||d.fecha_cierre);
+  var fa=d&&d.fechaApertura;
   var j=d&&(d.jornada||d.JORNADA||'Jornada 25');
-  if(f&&typeof f==='string'&&f.length>=10){
-    FECHA_CIERRE_JORNADA=f;
-    iniciarCountdown(FECHA_CIERRE_JORNADA);
-    iniciarHeroCountdown(FECHA_CIERRE_JORNADA, j);
+  if(fa&&typeof fa==='string'&&fa.length>=10){
+    window.FECHA_APERTURA_NUEVA=fa;
+  }
+  var fechaUsar=f;
+  if(fa&&typeof fa==='string'&&fa.length>=10){
+    fechaUsar=fa;
+  }
+  if(fechaUsar&&typeof fechaUsar==='string'&&fechaUsar.length>=10){
+    FECHA_CIERRE_JORNADA=fechaUsar;
+    iniciarCountdown(fechaUsar);
+    iniciarHeroCountdown(fechaUsar, j);
+  }
+  // Si ya pasó apertura nueva → quita modo-envivo y muestra botones
+  if(fa && Date.now() >= new Date(fa).getTime()){
+    document.body.classList.remove('modo-envivo');
   }
 }).catch(function(){}).finally(function(){document.body.classList.remove('cargando-fecha');});
 })();
