@@ -624,7 +624,9 @@ fetch(URL_CONFIG,{mode:'cors',cache:'no-cache'}).then(function(r){return r.json(
     window.FECHA_APERTURA_NUEVA=fa;
   }
   var fechaUsar=f;
-  if(fa&&typeof fa==='string'&&fa.length>=10){
+  var faFutura   = fa && typeof fa==='string' && fa.length>=10 && new Date(fa).getTime() > Date.now();
+  var cierrePaso = f  && typeof f==='string'  && f.length>=10  && new Date(f).getTime()  <= Date.now();
+  if(faFutura && cierrePaso){
     fechaUsar=fa;
   }
   if(fechaUsar&&typeof fechaUsar==='string'&&fechaUsar.length>=10){
