@@ -282,7 +282,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <div class="hero-hex"></div>
 <div class="hero-grid">
 <div class="hero-content">
-<div class="hero-tag"><div class="pdot"></div>Jornada 8avos del Mundial 2026 — Inscripciones Abiertas</div>
+<div class="hero-tag"><div class="pdot"></div>Jornada Cuartos de Final del Mundial 2026 — Inscripciones Abiertas</div>
 <h1 class="hero-title"><span class="v">QUINIELA</span><br><span class="o">PRO</span> FUT</h1>
 <p class="hero-desc">Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.</p>
 <div class="hero-referido"><div class="ref-icon">🔥</div><div class="ref-text"><strong>Premio especial J25:</strong> <span>$2,000 si aciertas 15/15</span> </div>
@@ -365,7 +365,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 
 <div class="partidos-section ocultar-en-vivo" id="partidos-j25">
 <section class="sec">
-<span class="chip reveal">Jornada 8avos del Mundial 2026</span>
+<span class="chip reveal">Jornada Cuartos de Final del Mundial 2026</span>
 <h2 class="stitle reveal">Partidos a<br><span style="color:#00e87a">pronosticar</span></h2>
 <p class="sdesc reveal">15 partidos de las mejores ligas del mundo. ¿Cuántos puedes acertar?</p>
 <div class="pozo-preview reveal">
@@ -493,7 +493,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 </section></div>
 
 <div class="cta-wrap ocultar-en-vivo" id="registro-cta"><div class="cta-inner">
-<span class="chip reveal">¿Listo?</span><h2 class="stitle reveal">Únete a la<br><span style="color:#00e87a">Jornada 8avos del Mundial</span></h2><p class="sdesc reveal">15 partidos. 1 ganador. El pozo completo.</p>
+<span class="chip reveal">¿Listo?</span><h2 class="stitle reveal">Únete a la<br><span style="color:#00e87a">Jornada Cuartos de Final del Mundial</span></h2><p class="sdesc reveal">15 partidos. 1 ganador. El pozo completo.</p>
 <div class="cta-btns reveal"><button class="btn-registro" onclick="mostrarRegistro()">⚽ Registrar mi Quiniela — $100 MXN</button><button class="btn-seguimiento" onclick="mostrarSeguimiento()">📊 Ver Seguimiento en Vivo</button></div>
 <div style="margin-top:1.5rem;" class="reveal"><button onclick="abrirRemind()" style="background:none;border:1px solid rgba(0,232,122,0.25);color:#00e87a;padding:0.7rem 1.8rem;border-radius:8px;font-size:0.88rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.2s;">🔔 Avísame de la próxima jornada</button></div>
 <div class="trust reveal"><div class="ti"><span>🔒</span> Pago seguro</div><div class="ti"><span>⚡</span> Resultados en tiempo real</div><div class="ti"><span>🏆</span> Premios garantizados</div><div class="ti"><span>📱</span> 100% desde el celular</div></div>
@@ -563,7 +563,7 @@ if(!window.FECHA_APERTURA_NUEVA || Date.now() >= new Date(window.FECHA_APERTURA_
 } else {
   document.body.classList.add('modo-envivo');
 }
-var heroTag=document.querySelector('.hero-tag');if(heroTag)heroTag.innerHTML='<div class="pdot"></div>Jornada 8avos del Mundial 2026 — En Curso';
+var heroTag=document.querySelector('.hero-tag');if(heroTag)heroTag.innerHTML='<div class="pdot"></div>Jornada Cuartos de Final del Mundial 2026 — En Curso';
 var heroTitle=document.querySelector('.hero-title');if(heroTitle)heroTitle.innerHTML='<span class="o">Quiniela</span><br><span class="v">En Vivo</span>';
 var heroDesc=document.querySelector('.hero-desc');if(heroDesc)heroDesc.innerHTML='El pozo actual está en disputa <strong>ahora mismo</strong>. Mira el ranking en tiempo real y prepárate para la próxima jornada.';
 clearInterval(_countdownInterval);return;
@@ -574,7 +574,7 @@ bar.style.background='';
 var lbl3=bar.querySelector('.cd-label');if(lbl3)lbl3.innerHTML='<span class="cd-blink">⏳</span> Cierre de jornada en:';
 var cta3=bar.querySelector('.cd-cta');if(cta3){cta3.textContent='⚽ Registrarme ahora';cta3.onclick=function(){mostrarRegistro();};}
 document.body.classList.remove('modo-envivo');
-var heroTag3=document.querySelector('.hero-tag');if(heroTag3)heroTag3.innerHTML='<div class="pdot"></div>Jornada 8avos del Mundial 2026 — Inscripciones Abiertas';
+var heroTag3=document.querySelector('.hero-tag');if(heroTag3)heroTag3.innerHTML='<div class="pdot"></div>Jornada Cuartos de Final del Mundial 2026 — Inscripciones Abiertas';
 var heroTitle3=document.querySelector('.hero-title');if(heroTitle3)heroTitle3.innerHTML='<span class="v">QUINIELA</span><br><span class="o">PRO</span> FUT';
 var heroDesc3=document.querySelector('.hero-desc');if(heroDesc3)heroDesc3.innerHTML='Predice los partidos, compite contra todos y <strong>gana el pozo completo</strong> cada jornada. Multi-liga, dobles, triples y seguimiento en tiempo real.';
 }
@@ -627,11 +627,11 @@ _heroInterval = setInterval(tick, 1000);
 
 (function(){
 iniciarCountdown(FECHA_CIERRE_FALLBACK);
-iniciarHeroCountdown(FECHA_CIERRE_FALLBACK, 'Jornada 8avos del Mundial 2026');
+iniciarHeroCountdown(FECHA_CIERRE_FALLBACK, 'Jornada Cuartos de Final del Mundial 2026');
 fetch(URL_CONFIG,{mode:'cors',cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){
   var f=d&&(d.fechaCierre||d.FECHA_CIERRE||d.fecha_cierre);
   var fa=d&&d.fechaApertura;
-  var j=d&&(d.jornada||d.JORNADA||'Jornada 8avos del Mundial 2026');
+  var j=d&&(d.jornada||d.JORNADA||'Jornada Cuartos de Final del Mundial 2026');
   if(fa&&typeof fa==='string'&&fa.length>=10){
     window.FECHA_APERTURA_NUEVA=fa;
   }
