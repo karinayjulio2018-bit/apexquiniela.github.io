@@ -544,6 +544,7 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 
 <script>
 var URL_REGISTRO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
+var URL_REGISTRO_PROPIA = 'https://quinielaprofut.com/registro.html';  
 var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
 var FECHA_CIERRE_FALLBACK = '2026-06-18T09:00:00';
@@ -733,7 +734,7 @@ window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generacion_l
 document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarRemind();});
 
 function mostrarLanding(){document.getElementById('vista-registro').style.display='none';document.getElementById('vista-seguimiento').style.display='none';if(!document.body.classList.contains('modo-envivo'))document.getElementById('btnFlotantePartidos').classList.remove('oculto');var vl=document.getElementById('vista-landing');vl.classList.add('activa');vl.style.display='block';document.getElementById('navPrincipal').style.display='flex';document.getElementById('countdownBar').style.display='flex';window.scrollTo(0,0);document.title='QuinielaPro Fut — La Quiniela Más Pro de México';}
-function mostrarRegistro(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_registro'});window.open(URL_REGISTRO,'_blank');}
+function mostrarRegistro(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_registro'});window.open(URL_REGISTRO_PROPIA,'_blank');}
 
 function _esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function _pagoBadge(estado){
