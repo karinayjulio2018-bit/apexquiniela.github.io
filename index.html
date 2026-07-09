@@ -733,7 +733,7 @@ window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generacion_l
 document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarRemind();});
 
 function mostrarLanding(){document.getElementById('vista-registro').style.display='none';document.getElementById('vista-seguimiento').style.display='none';if(!document.body.classList.contains('modo-envivo'))document.getElementById('btnFlotantePartidos').classList.remove('oculto');var vl=document.getElementById('vista-landing');vl.classList.add('activa');vl.style.display='block';document.getElementById('navPrincipal').style.display='flex';document.getElementById('countdownBar').style.display='flex';window.scrollTo(0,0);document.title='QuinielaPro Fut — La Quiniela Más Pro de México';}
-function mostrarRegistro(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_registro'});document.getElementById('btnFlotantePartidos').classList.add('oculto');document.getElementById('vista-landing').style.display='none';document.getElementById('vista-landing').classList.remove('activa');document.getElementById('navPrincipal').style.display='none';document.getElementById('countdownBar').style.display='none';document.getElementById('vista-registro').style.display='flex';document.title='QuinielaPro Fut — Registrar Quiniela';var loading=document.getElementById('loadingRegistro'),iframe=document.getElementById('iframe-registro');if(!iframesLoaded.registro){loading.classList.add('show');iframe.style.opacity='0';iframe.src=URL_REGISTRO;iframesLoaded.registro=true;iframe.onload=function(){loading.classList.remove('show');iframe.style.opacity='1';iframe.style.transition='opacity 0.3s';};setTimeout(function(){loading.classList.remove('show');iframe.style.opacity='1';},8000);}else{loading.classList.remove('show');iframe.style.opacity='1';}}
+function mostrarRegistro(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_registro'});window.open(URL_REGISTRO,'_blank');}
 
 function cargarSeguimientoFetch(){
   var cont = document.getElementById('seguimientoContenido');
@@ -793,7 +793,7 @@ function cargarSeguimientoFetch(){
   
 
 
-function mostrarSeguimiento(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_seguimiento'});document.getElementById('btnFlotantePartidos').classList.add('oculto');document.getElementById('vista-landing').style.display='none';document.getElementById('vista-landing').classList.remove('activa');document.getElementById('vista-registro').style.display='none';document.getElementById('navPrincipal').style.display='none';document.getElementById('countdownBar').style.display='none';document.getElementById('vista-seguimiento').style.display='flex';document.title='QuinielaPro Fut — Seguimiento en Vivo';cargarSeguimientoFetch();}
+function mostrarSeguimiento(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_seguimiento'});window.open(URL_SEGUIMIENTO,'_blank');}
 function irSeccion(id){mostrarLanding();setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},100);}
 
 var _menuAbierto=false;
@@ -964,8 +964,7 @@ document.querySelectorAll('.tcard.reveal').forEach(function(el){ io.observe(el);
 }
 cargarGanadoresDinamicos();
 cargarPartidosDinamicos();
-setTimeout(function(){if(!iframesLoaded.seguimiento){document.getElementById('iframe-seguimiento').src=URL_SEGUIMIENTO;iframesLoaded.seguimiento=true;}},1000);
-setTimeout(function(){if(!iframesLoaded.registro){document.getElementById('iframe-registro').src=URL_REGISTRO;iframesLoaded.registro=true;}},1000);
+
 </script>
 </body>
 </html>
