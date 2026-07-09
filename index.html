@@ -735,8 +735,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarRemind
 function mostrarLanding(){document.getElementById('vista-registro').style.display='none';document.getElementById('vista-seguimiento').style.display='none';if(!document.body.classList.contains('modo-envivo'))document.getElementById('btnFlotantePartidos').classList.remove('oculto');var vl=document.getElementById('vista-landing');vl.classList.add('activa');vl.style.display='block';document.getElementById('navPrincipal').style.display='flex';document.getElementById('countdownBar').style.display='flex';window.scrollTo(0,0);document.title='QuinielaPro Fut — La Quiniela Más Pro de México';}
 function mostrarRegistro(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_registro'});window.open(URL_REGISTRO,'_blank');}
 
+function _esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function _pagoBadge(estado){
+  if(estado==='confirmado') return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(0,232,122,.12);color:#00e87a;border:1px solid rgba(0,232,122,.3);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">✓ CONFIRMADO</span>';
+  if(estado==='revision') return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,216,77,.12);color:#FFD84D;border:1px solid rgba(255,216,77,.3);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">⏳ REVISIÓN</span>';
+  return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,77,106,.1);color:#FF8FA3;border:1px solid rgba(255,77,106,.25);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">• PENDIENTE</span>';
+}
 function cargarSeguimientoFetch(){
   var cont = document.getElementById('seguimientoContenido');
+  cont.innerHTML = '<div style="text-align:center;padding:4rem 1rem;color:#8A9BB0;"><div style="font-size:2.5rem;margin-bottom:1rem;">📊</div><div>Cargando ranking en vivo...</div></div>';
   fetch(URL_REGISTRO + '?action=json', {mode:'cors', cache:'no-cache'})
     .then(function(r){ return r.json(); })
     .then(function(d){
@@ -745,43 +752,95 @@ function cargarSeguimientoFetch(){
         return;
       }
       var partidos = d.partidos, jugadores = d.jugadores || [], matriz = d.matriz || [];
-      var abierta = matriz.length && matriz[0].pronos && matriz[0].pronos.some(function(p){return p==='🔒';});
+      var numPartidos = partidos.length;
+      var partidosDefinidos = partidos.filter(function(p){return !!p.resultado;}).length;
+      var bolsa = Math.round(d.bolsaReal || d.pozo || 0);
+      var lider = jugadores.length ? jugadores[0] : null;
 
-      var html = '<h2 style="font-family:\'Bebas Neue\',sans-serif;font-size:1.8rem;color:#00e87a;margin-bottom:1rem;">🎯 '+(d.jornada||'Jornada')+' — Pronósticos</h2>';
-      html += '<div style="overflow-x:auto;border:1px solid #1E2830;border-radius:12px;background:#0E1318;">';
-      html += '<table style="border-collapse:collapse;width:100%;min-width:'+(300+matriz.length*90)+'px;font-size:0.85rem;">';
+      var html = '';
 
-      // Encabezado con alias de jugadores
-      html += '<thead><tr style="background:#141A21;">';
-      html += '<th style="padding:0.6rem 1rem;text-align:left;color:#8A9BB0;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;position:sticky;left:0;background:#141A21;">Partido</th>';
-      matriz.forEach(function(m){
-        html += '<th style="padding:0.6rem 0.5rem;text-align:center;color:#00e87a;font-size:0.75rem;min-width:80px;">'+m.alias+'</th>';
-      });
-      html += '</tr></thead><tbody>';
+      // ── Header ──
+      html += '<div style="text-align:center;margin-bottom:2rem;">';
+      html += '<div class="logo" style="font-size:2.2rem;margin-bottom:0.25rem;">Quiniela<em>Pro</em>Fut</div>';
+      html += '<div style="font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:#8A9BB0;margin-bottom:0.75rem;">Tabla de Seguimiento en Vivo</div>';
+      html += '<div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.3);border-radius:100px;padding:6px 16px;color:#ff9966;font-size:0.75rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;"><span class="pdot" style="background:#ff6b00;"></span>'+_esc(d.jornada||'Jornada')+'</div>';
+      html += '</div>';
 
-      partidos.forEach(function(p, idx){
-        html += '<tr style="border-top:1px solid #1E2830;">';
-        html += '<td style="padding:0.6rem 1rem;color:#F0F4F8;font-weight:700;white-space:nowrap;position:sticky;left:0;background:#0E1318;">P'+(idx+1)+' '+p.local+' vs '+p.visitante+(p.resultado?' <span style="color:#FFD84D;font-size:0.7rem;">('+p.resultado+')</span>':'')+'</td>';
-        matriz.forEach(function(m){
-          var val = m.pronos[idx] || '';
-          var celda = val==='🔒' ? '🔒' : (val || '—');
-          html += '<td style="padding:0.6rem 0.5rem;text-align:center;color:#8A9BB0;">'+celda+'</td>';
+      // ── Stat cards ──
+      html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:2rem;">';
+      html += '<div class="hero-stat-card" style="justify-content:center;text-align:center;flex-direction:column;gap:0.3rem;"><span class="hsc-val">'+jugadores.length+'</span><span class="hsc-label">Quinielas</span></div>';
+      html += '<div class="hero-stat-card" style="justify-content:center;text-align:center;flex-direction:column;gap:0.3rem;"><span class="hsc-val oro">$'+bolsa.toLocaleString('es-MX')+'</span><span class="hsc-label">Bolsa</span></div>';
+      html += '<div class="hero-stat-card" style="justify-content:center;text-align:center;flex-direction:column;gap:0.3rem;"><span class="hsc-val">'+partidosDefinidos+'/'+numPartidos+'</span><span class="hsc-label">Partidos</span></div>';
+      html += '<div class="hero-stat-card" style="justify-content:center;text-align:center;flex-direction:column;gap:0.3rem;border-color:rgba(255,107,0,.3);"><span class="hsc-val" style="color:#ff6b00;">'+(lider?_esc(lider.alias):'—')+'</span><span class="hsc-label">Líder</span></div>';
+      html += '</div>';
+
+      // ── Podio ──
+      if(jugadores.length){
+        html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#FFD84D;display:flex;align-items:center;gap:8px;">🏆 Podio</div>';
+        html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2.5rem;align-items:end;">';
+        var medallas = ['🥈','🥇','🥉'], ordenPodio = [1,0,2]; // 2do, 1ro, 3ro visualmente
+        ordenPodio.forEach(function(idx){
+          var j = jugadores[idx]; if(!j) { html += '<div></div>'; return; }
+          var pct = numPartidos ? Math.round((j.aciertos/numPartidos)*100) : 0;
+          var esPrimero = idx===0;
+          html += '<div style="background:#0E1318;border:1px solid '+(esPrimero?'rgba(255,216,77,.5)':'#1E2830')+';border-radius:16px;padding:'+(esPrimero?'2rem 1rem':'1.5rem 1rem')+';text-align:center;'+(esPrimero?'transform:translateY(-10px);box-shadow:0 8px 30px rgba(255,216,77,.15);':'')+'">';
+          html += '<div style="font-size:'+(esPrimero?'2.5rem':'2rem')+';margin-bottom:0.5rem;">'+medallas[idx]+'</div>';
+          html += '<div style="font-size:0.68rem;color:#7A8B9A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:0.3rem;">'+(idx+1)+'er Lugar</div>';
+          html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;color:#F0F4F8;line-height:1.2;margin-bottom:0.5rem;">'+_esc(j.nombre||j.alias)+'</div>';
+          html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:'+(esPrimero?'#FFD84D':'#00e87a')+';">'+j.aciertos+'</div>';
+          html += '<div style="font-size:0.72rem;color:#7A8B9A;">'+pct+'% efectividad</div>';
+          html += '</div>';
         });
+        html += '</div>';
+      }
+
+      // ── Ranking completo ──
+      html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#00e87a;display:flex;align-items:center;gap:8px;">📊 Ranking Completo</div>';
+      html += '<div style="overflow-x:auto;border:1px solid #1E2830;border-radius:14px;background:#0E1318;margin-bottom:2.5rem;">';
+      html += '<table style="border-collapse:collapse;width:100%;min-width:520px;font-size:0.85rem;">';
+      html += '<thead><tr style="background:#141A21;"><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">#</th><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Jugador</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pts</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">%</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pago</th></tr></thead><tbody>';
+      jugadores.forEach(function(j, i){
+        var pct = numPartidos ? Math.round((j.aciertos/numPartidos)*100) : 0;
+        var colorPos = i===0?'#FFD84D':(i===1?'#C0C0C0':(i===2?'#CD7F32':'#8A9BB0'));
+        html += '<tr style="border-top:1px solid rgba(255,255,255,0.04);">';
+        html += '<td style="padding:0.65rem 1rem;"><span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,0.05);color:'+colorPos+';font-weight:900;font-size:0.8rem;">'+(i+1)+'</span></td>';
+        html += '<td style="padding:0.65rem 1rem;"><div style="color:#F0F4F8;font-weight:700;">'+_esc(j.nombre||j.alias)+'</div><div style="color:#7A8B9A;font-size:0.72rem;">@'+_esc(j.alias)+'</div></td>';
+        html += '<td style="padding:0.65rem 1rem;text-align:center;color:#00e87a;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">'+j.aciertos+'</td>';
+        html += '<td style="padding:0.65rem 1rem;text-align:center;color:#8A9BB0;">'+pct+'%</td>';
+        html += '<td style="padding:0.65rem 1rem;text-align:center;">'+_pagoBadge(j.pago)+'</td>';
         html += '</tr>';
       });
+      html += '</tbody></table></div>';
 
-      // Fila de aciertos
-      html += '<tr style="border-top:2px solid #00e87a;background:rgba(0,232,122,0.06);">';
-      html += '<td style="padding:0.6rem 1rem;color:#00e87a;font-weight:800;position:sticky;left:0;background:#0E1318;">✓ ACIERTOS</td>';
-      matriz.forEach(function(m){
-        var jugAlias = jugadores.find(function(j){return j.alias===m.alias;});
-        var ac = jugAlias ? jugAlias.aciertos : 0;
-        html += '<td style="padding:0.6rem 0.5rem;text-align:center;color:#00e87a;font-weight:900;font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;">'+ac+'</td>';
-      });
-      html += '</tr></tbody></table></div>';
+      // ── Matriz de pronósticos ──
+      if(matriz.length){
+        html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#00e87a;display:flex;align-items:center;gap:8px;">🎯 Pronósticos — Todos los Jugadores</div>';
+        html += '<div style="overflow-x:auto;border:1px solid #1E2830;border-radius:14px;background:#0E1318;">';
+        html += '<table style="border-collapse:collapse;width:100%;min-width:'+(280+matriz.length*90)+'px;font-size:0.82rem;">';
+        html += '<thead><tr style="background:#141A21;"><th style="padding:0.6rem 1rem;text-align:left;color:#8A9BB0;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;position:sticky;left:0;background:#141A21;">Partido</th>';
+        matriz.forEach(function(m){ html += '<th style="padding:0.6rem 0.5rem;text-align:center;color:#00e87a;font-size:0.72rem;min-width:80px;">'+_esc(m.alias)+'</th>'; });
+        html += '</tr></thead><tbody>';
+        partidos.forEach(function(p, idx){
+          html += '<tr style="border-top:1px solid #1E2830;">';
+          html += '<td style="padding:0.6rem 1rem;color:#F0F4F8;font-weight:700;white-space:nowrap;position:sticky;left:0;background:#0E1318;">P'+(idx+1)+' '+_esc(p.local)+' vs '+_esc(p.visitante)+(p.resultado?' <span style="color:#FFD84D;font-size:0.68rem;">('+_esc(p.resultado)+')</span>':'')+'</td>';
+          matriz.forEach(function(m){
+            var val = m.pronos[idx] || '';
+            var celda = val==='🔒' ? '🔒' : (_esc(val) || '—');
+            html += '<td style="padding:0.6rem 0.5rem;text-align:center;color:#8A9BB0;">'+celda+'</td>';
+          });
+          html += '</tr>';
+        });
+        html += '<tr style="border-top:2px solid #00e87a;background:rgba(0,232,122,0.06);"><td style="padding:0.6rem 1rem;color:#00e87a;font-weight:800;position:sticky;left:0;background:#0E1318;">✓ ACIERTOS</td>';
+        matriz.forEach(function(m){
+          var jugAlias = jugadores.find(function(j){return j.alias===m.alias;});
+          var ac = jugAlias ? jugAlias.aciertos : 0;
+          html += '<td style="padding:0.6rem 0.5rem;text-align:center;color:#00e87a;font-weight:900;font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;">'+ac+'</td>';
+        });
+        html += '</tr></tbody></table></div>';
+      }
 
       html += '<div style="text-align:center;margin-top:1.5rem;color:#7A8B9A;font-size:0.8rem;">Actualizado: '+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})+'</div>';
-      html += '<div style="text-align:center;margin-top:1rem;"><button class="btn-o" onclick="cargarSeguimientoFetch()">🔄 Actualizar</button></div>';
+      html += '<div style="text-align:center;margin-top:1rem;padding-bottom:2rem;"><button class="btn-o" onclick="cargarSeguimientoFetch()">🔄 Actualizar</button></div>';
 
       cont.innerHTML = html;
     })
@@ -793,7 +852,7 @@ function cargarSeguimientoFetch(){
   
 
 
-function mostrarSeguimiento(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_seguimiento'});window.open(URL_SEGUIMIENTO,'_blank');}
+function mostrarSeguimiento(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_seguimiento'});document.getElementById('btnFlotantePartidos').classList.add('oculto');document.getElementById('vista-landing').style.display='none';document.getElementById('vista-landing').classList.remove('activa');document.getElementById('vista-registro').style.display='none';document.getElementById('navPrincipal').style.display='none';document.getElementById('countdownBar').style.display='none';document.getElementById('vista-seguimiento').style.display='flex';window.scrollTo(0,0);document.title='QuinielaPro Fut — Seguimiento en Vivo';cargarSeguimientoFetch();}
 function irSeccion(id){mostrarLanding();setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},100);}
 
 var _menuAbierto=false;
