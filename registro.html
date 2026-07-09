@@ -469,7 +469,10 @@ function gasPost(action, datos){
     method:'POST', mode:'cors',
     headers:{'Content-Type':'text/plain;charset=utf-8'},
     body: JSON.stringify({action:action, datos:datos})
-  }).then(function(r){ return r.json(); });
+  }).then(function(r){ return r.text(); }).then(function(txt){
+    console.log('🔍 RESPUESTA ' + action + ':', txt);
+    try { return JSON.parse(txt); } catch(e){ console.error('❌ No es JSON válido:', txt); throw e; }
+  });
 }
 
 // ── INIT ──
