@@ -796,17 +796,25 @@ function cargarSeguimientoFetch(){
       }
 
       // ── Ranking completo ──
+      var maxAciertosRanking = jugadores.length ? jugadores[0].aciertos : 0;
       html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#00e87a;display:flex;align-items:center;gap:8px;">📊 Ranking Completo</div>';
       html += '<div style="overflow-x:auto;border:1px solid #1E2830;border-radius:14px;background:#0E1318;margin-bottom:2.5rem;">';
       html += '<table style="border-collapse:collapse;width:100%;min-width:520px;font-size:0.85rem;">';
       html += '<thead><tr style="background:#141A21;"><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">#</th><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Jugador</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pts</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">%</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pago</th></tr></thead><tbody>';
       jugadores.forEach(function(j, i){
         var pct = numPartidos ? Math.round((j.aciertos/numPartidos)*100) : 0;
-        var colorPos = i===0?'#FFD84D':(i===1?'#C0C0C0':(i===2?'#CD7F32':'#8A9BB0'));
-        html += '<tr style="border-top:1px solid rgba(255,255,255,0.04);">';
-        html += '<td style="padding:0.65rem 1rem;"><span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,0.05);color:'+colorPos+';font-weight:900;font-size:0.8rem;">'+(i+1)+'</span></td>';
-        html += '<td style="padding:0.65rem 1rem;"><div style="color:#F0F4F8;font-weight:700;">'+_esc(j.nombre||j.alias)+'</div><div style="color:#7A8B9A;font-size:0.72rem;">@'+_esc(j.alias)+'</div></td>';
-        html += '<td style="padding:0.65rem 1rem;text-align:center;color:#00e87a;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">'+j.aciertos+'</td>';
+        var esLiderRanking = j.aciertos===maxAciertosRanking && maxAciertosRanking>0;
+        var colorPos = esLiderRanking?'#06080A':(i===1?'#C0C0C0':(i===2?'#CD7F32':'#8A9BB0'));
+        var rowStyle = esLiderRanking
+          ? 'border-top:1px solid rgba(255,255,255,0.04);background:linear-gradient(90deg,rgba(255,216,77,.14),rgba(255,153,0,.05));'
+          : 'border-top:1px solid rgba(255,255,255,0.04);';
+        var badgeStyle = esLiderRanking
+          ? 'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#FFD84D,#ff9900);color:'+colorPos+';font-weight:900;font-size:0.8rem;box-shadow:0 0 12px rgba(255,216,77,.4);'
+          : 'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,0.05);color:'+colorPos+';font-weight:900;font-size:0.8rem;';
+        html += '<tr style="'+rowStyle+'">';
+        html += '<td style="padding:0.65rem 1rem;"><span style="'+badgeStyle+'">'+(i+1)+'</span></td>';
+        html += '<td style="padding:0.65rem 1rem;"><div style="color:'+(esLiderRanking?'#FFD84D':'#F0F4F8')+';font-weight:'+(esLiderRanking?'900':'700')+';">'+(esLiderRanking?'👑 ':'')+_esc(j.nombre||j.alias)+'</div><div style="color:#7A8B9A;font-size:0.72rem;">@'+_esc(j.alias)+'</div></td>';
+        html += '<td style="padding:0.65rem 1rem;text-align:center;color:'+(esLiderRanking?'#FFD84D':'#00e87a')+';font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">'+j.aciertos+'</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:#8A9BB0;">'+pct+'%</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;">'+_pagoBadge(j.pago)+'</td>';
         html += '</tr>';
@@ -814,28 +822,48 @@ function cargarSeguimientoFetch(){
       html += '</tbody></table></div>';
 
       // ── Matriz de pronósticos ──
+     // ── Matriz de pronósticos (ordenada por aciertos, con aciertos resaltados en dorado) ──
       if(matriz.length){
+        var matrizConAciertos = matriz.map(function(m){
+          var jugAlias = jugadores.find(function(j){return j.alias===m.alias;});
+          return { alias:m.alias, pronos:m.pronos, aciertos: jugAlias ? jugAlias.aciertos : 0 };
+        });
+        matrizConAciertos.sort(function(a,b){ return b.aciertos - a.aciertos; });
+        var maxAciertos = matrizConAciertos.length ? matrizConAciertos[0].aciertos : 0;
+
         html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#00e87a;display:flex;align-items:center;gap:8px;">🎯 Pronósticos — Todos los Jugadores</div>';
         html += '<div style="overflow-x:auto;border:1px solid #1E2830;border-radius:14px;background:#0E1318;">';
-        html += '<table style="border-collapse:collapse;width:100%;min-width:'+(280+matriz.length*90)+'px;font-size:0.82rem;">';
+        html += '<table style="border-collapse:collapse;width:100%;min-width:'+(280+matrizConAciertos.length*90)+'px;font-size:0.82rem;">';
         html += '<thead><tr style="background:#141A21;"><th style="padding:0.6rem 1rem;text-align:left;color:#8A9BB0;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;position:sticky;left:0;background:#141A21;">Partido</th>';
-        matriz.forEach(function(m){ html += '<th style="padding:0.6rem 0.5rem;text-align:center;color:#00e87a;font-size:0.72rem;min-width:80px;">'+_esc(m.alias)+'</th>'; });
+        matrizConAciertos.forEach(function(m,mi){
+          var esLider = m.aciertos===maxAciertos && maxAciertos>0;
+          var thStyle = esLider
+            ? 'padding:0.6rem 0.5rem;text-align:center;color:#06080A;font-size:0.72rem;min-width:80px;background:linear-gradient(135deg,#FFD84D,#ff9900);font-weight:900;border-radius:6px 6px 0 0;'
+            : 'padding:0.6rem 0.5rem;text-align:center;color:#00e87a;font-size:0.72rem;min-width:80px;';
+          html += '<th style="'+thStyle+'">'+(esLider?'👑 ':'')+_esc(m.alias)+'</th>';
+        });
         html += '</tr></thead><tbody>';
         partidos.forEach(function(p, idx){
           html += '<tr style="border-top:1px solid #1E2830;">';
           html += '<td style="padding:0.6rem 1rem;color:#F0F4F8;font-weight:700;white-space:nowrap;position:sticky;left:0;background:#0E1318;">P'+(idx+1)+' '+_esc(p.local)+' vs '+_esc(p.visitante)+(p.resultado?' <span style="color:#FFD84D;font-size:0.68rem;">('+_esc(p.resultado)+')</span>':'')+'</td>';
-          matriz.forEach(function(m){
+          matrizConAciertos.forEach(function(m){
             var val = m.pronos[idx] || '';
             var celda = val==='🔒' ? '🔒' : (_esc(val) || '—');
-            html += '<td style="padding:0.6rem 0.5rem;text-align:center;color:#8A9BB0;">'+celda+'</td>';
+            var acerto = p.resultado && val && val.split(',').map(function(x){return x.trim();}).indexOf(p.resultado) !== -1;
+            var tdStyle = acerto
+              ? 'padding:0.6rem 0.5rem;text-align:center;color:#06080A;font-weight:900;background:linear-gradient(135deg,rgba(255,216,77,.9),rgba(255,153,0,.85));'
+              : 'padding:0.6rem 0.5rem;text-align:center;color:#8A9BB0;';
+            html += '<td style="'+tdStyle+'">'+celda+'</td>';
           });
           html += '</tr>';
         });
         html += '<tr style="border-top:2px solid #00e87a;background:rgba(0,232,122,0.06);"><td style="padding:0.6rem 1rem;color:#00e87a;font-weight:800;position:sticky;left:0;background:#0E1318;">✓ ACIERTOS</td>';
-        matriz.forEach(function(m){
-          var jugAlias = jugadores.find(function(j){return j.alias===m.alias;});
-          var ac = jugAlias ? jugAlias.aciertos : 0;
-          html += '<td style="padding:0.6rem 0.5rem;text-align:center;color:#00e87a;font-weight:900;font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;">'+ac+'</td>';
+        matrizConAciertos.forEach(function(m){
+          var esLider = m.aciertos===maxAciertos && maxAciertos>0;
+          var tdStyle = esLider
+            ? 'padding:0.6rem 0.5rem;text-align:center;color:#06080A;font-weight:900;font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;background:linear-gradient(135deg,#FFD84D,#ff9900);'
+            : 'padding:0.6rem 0.5rem;text-align:center;color:#00e87a;font-weight:900;font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;';
+          html += '<td style="'+tdStyle+'">'+m.aciertos+'</td>';
         });
         html += '</tr></tbody></table></div>';
       }
