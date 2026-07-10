@@ -785,7 +785,7 @@ function cargarSeguimientoFetch(){
           var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
           var esPrimero = idx===0;
           html += '<div style="background:#0E1318;border:1px solid '+(esPrimero?'rgba(255,216,77,.5)':'#1E2830')+';border-radius:16px;padding:'+(esPrimero?'2rem 1rem':'1.5rem 1rem')+';text-align:center;'+(esPrimero?'transform:translateY(-10px);box-shadow:0 8px 30px rgba(255,216,77,.15);':'')+'">';
-          html += '<div style="font-size:'+(esPrimero?'2.5rem':'2rem')+';margin-bottom:0.5rem;">'+medallas[idx]+'</div>';
+          html += '<div style="font-size:'+(esPrimero?'2.5rem':'2rem')+';margin-bottom:0.5rem;">'+(esPrimero?'🥇':(idx===2?'🥉':'🥈'))+'</div>';
           html += '<div style="font-size:0.68rem;color:#7A8B9A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:0.3rem;">'+(idx+1)+'er Lugar</div>';
           html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;color:#F0F4F8;line-height:1.2;margin-bottom:0.5rem;">'+_esc(j.nombre||j.alias)+'</div>';
           html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:'+(esPrimero?'#FFD84D':'#00e87a')+';">'+j.aciertos+'</div>';
