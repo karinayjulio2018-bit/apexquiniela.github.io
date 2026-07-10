@@ -782,7 +782,7 @@ function cargarSeguimientoFetch(){
         var medallas = ['🥈','🥇','🥉'], ordenPodio = [1,0,2]; // 2do, 1ro, 3ro visualmente
         ordenPodio.forEach(function(idx){
           var j = jugadores[idx]; if(!j) { html += '<div></div>'; return; }
-          var pct = numPartidos ? Math.round((j.aciertos/numPartidos)*100) : 0;
+          var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
           var esPrimero = idx===0;
           html += '<div style="background:#0E1318;border:1px solid '+(esPrimero?'rgba(255,216,77,.5)':'#1E2830')+';border-radius:16px;padding:'+(esPrimero?'2rem 1rem':'1.5rem 1rem')+';text-align:center;'+(esPrimero?'transform:translateY(-10px);box-shadow:0 8px 30px rgba(255,216,77,.15);':'')+'">';
           html += '<div style="font-size:'+(esPrimero?'2.5rem':'2rem')+';margin-bottom:0.5rem;">'+medallas[idx]+'</div>';
@@ -802,7 +802,7 @@ function cargarSeguimientoFetch(){
       html += '<table style="border-collapse:collapse;width:100%;min-width:520px;font-size:0.85rem;">';
       html += '<thead><tr style="background:#141A21;"><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">#</th><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Jugador</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pts</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">%</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pago</th></tr></thead><tbody>';
       jugadores.forEach(function(j, i){
-        var pct = numPartidos ? Math.round((j.aciertos/numPartidos)*100) : 0;
+        var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
         var esLiderRanking = j.aciertos===maxAciertosRanking && maxAciertosRanking>0;
         var colorPos = esLiderRanking?'#06080A':(i===1?'#C0C0C0':(i===2?'#CD7F32':'#8A9BB0'));
         var rowStyle = esLiderRanking
@@ -813,7 +813,7 @@ function cargarSeguimientoFetch(){
           : 'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,0.05);color:'+colorPos+';font-weight:900;font-size:0.8rem;';
         html += '<tr style="'+rowStyle+'">';
         html += '<td style="padding:0.65rem 1rem;"><span style="'+badgeStyle+'">'+(i+1)+'</span></td>';
-        html += '<td style="padding:0.65rem 1rem;"><div style="color:'+(esLiderRanking?'#FFD84D':'#F0F4F8')+';font-weight:'+(esLiderRanking?'900':'700')+';">'+(esLiderRanking?'👑 ':'')+_esc(j.nombre||j.alias)+'</div><div style="color:#7A8B9A;font-size:0.72rem;">@'+_esc(j.alias)+'</div></td>';
+        html += '<td style="padding:0.65rem 1rem;"><div style="color:'+(esLiderRanking?'#FFD84D':'#F0F4F8')+';font-weight:900;font-family:\'Bebas Neue\',sans-serif;font-size:1.05rem;letter-spacing:0.03em;">'+(esLiderRanking?'👑 ':'')+_esc(j.alias)+'</div><div style="color:#7A8B9A;font-size:0.7rem;">'+_esc(j.nombre||'')+'</div></td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:'+(esLiderRanking?'#FFD84D':'#00e87a')+';font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">'+j.aciertos+'</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:#8A9BB0;">'+pct+'%</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;">'+_pagoBadge(j.pago)+'</td>';
