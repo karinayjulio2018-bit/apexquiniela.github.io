@@ -810,6 +810,10 @@ function cargarSeguimientoFetch(){
           html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;color:#F0F4F8;line-height:1.2;margin-bottom:0.5rem;">'+_esc(j.nombre||j.alias)+'</div>';
           html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:'+(esPrimero?'#FFD84D':'#00e87a')+';">'+j.aciertos+'</div>';
           html += '<div style="font-size:0.72rem;color:#7A8B9A;">'+pct+'% efectividad</div>';
+          if(esPrimero){
+          var msjReto = 'Voy de líder indiscutible en la QuinielaPro con '+j.aciertos+' aciertos 🏆 ¿Tienen el valor de intentar bajarme o les da miedo? Entren aquí: https://quinielaprofut.com';
+          html += '<a href="https://wa.me/?text='+encodeURIComponent(msjReto)+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:0.75rem;background:#ff6b00;color:#fff;padding:6px 14px;border-radius:100px;font-size:0.72rem;font-weight:800;text-decoration:none;">🔥 Retar a mi oficina</a>';
+          }
           html += '</div>';
         });
         html += '</div>';
@@ -820,7 +824,7 @@ function cargarSeguimientoFetch(){
       html += '<div style="margin-bottom:0.75rem;font-family:\'Nunito\',sans-serif;font-weight:800;font-size:1.5rem;color:#00e87a;display:flex;align-items:center;gap:8px;">📊 Ranking Completo</div>';
       html += '<div style="overflow-x:auto;border:1px solid #1E2830;border-radius:14px;background:#0E1318;margin-bottom:2.5rem;">';
       html += '<table style="border-collapse:collapse;width:100%;min-width:520px;font-size:0.85rem;">';
-      html += '<thead><tr style="background:#141A21;"><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">#</th><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Jugador</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pts</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">%</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pago</th></tr></thead><tbody>';
+      html += '<thead><tr style="background:#141A21;"><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">#</th><th style="padding:0.7rem 1rem;text-align:left;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Jugador</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pts</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">%</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Pago</th><th style="padding:0.7rem 1rem;text-align:center;color:#7A8B9A;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">Compartir</th></tr></thead><tbody>';
       jugadores.forEach(function(j, i){
         var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
         var esLiderRanking = j.aciertos===maxAciertosRanking && maxAciertosRanking>0;
@@ -833,10 +837,12 @@ function cargarSeguimientoFetch(){
           : 'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,0.05);color:'+colorPos+';font-weight:900;font-size:0.8rem;';
         html += '<tr style="'+rowStyle+'">';
         html += '<td style="padding:0.65rem 1rem;"><span style="'+badgeStyle+'">'+(i+1)+'</span></td>';
-        html += '<td style="padding:0.65rem 1rem;"><div style="color:'+(esLiderRanking?'#FFD84D':'#F0F4F8')+';font-weight:900;font-family:\'Bebas Neue\',sans-serif;font-size:1.05rem;letter-spacing:0.03em;">'+(esLiderRanking?'👑 ':'')+_esc(j.alias)+'</div><div style="color:#7A8B9A;font-size:0.7rem;">'+_esc(j.nombre||'')+'</div></td>';
+        html += '<td style="padding:0.85rem 1rem;"><div style="color:'+(esLiderRanking?'#FFD84D':'#F0F4F8')+';font-weight:800;font-family:\'Nunito\',sans-serif;font-size:1rem;letter-spacing:0.02em;margin-bottom:5px;">'+(esLiderRanking?'👑 ':'')+_esc(j.alias)+'</div><div style="color:#7A8B9A;font-size:0.75rem;font-weight:600;">'+_esc(j.nombre||'')+'</div></td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:'+(esLiderRanking?'#FFD84D':'#00e87a')+';font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">'+j.aciertos+'</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:#8A9BB0;">'+pct+'%</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;">'+_pagoBadge(j.pago)+'</td>';
+        var msjPos = 'Voy en el lugar #'+(i+1)+' con '+j.aciertos+' aciertos en la QuinielaPro ⚽ ¿Me alcanzas? https://quinielaprofut.com';
+        html += '<td style="padding:0.65rem 1rem;text-align:center;"><a href="https://wa.me/?text='+encodeURIComponent(msjPos)+'" target="_blank" style="color:#00e87a;font-size:1.1rem;text-decoration:none;">📤</a></td>';
         html += '</tr>';
       });
       html += '</tbody></table></div>';
