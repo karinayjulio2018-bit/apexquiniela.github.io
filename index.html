@@ -762,6 +762,45 @@ function _pagoBadge(estado){
   if(estado==='revision') return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,216,77,.12);color:#FFD84D;border:1px solid rgba(255,216,77,.3);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">⏳ REVISIÓN</span>';
   return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,77,106,.1);color:#FF8FA3;border:1px solid rgba(255,77,106,.25);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">• PENDIENTE</span>';
 }
+
+// ── Genera tarjeta visual del líder (canvas) y comparte/descarga ──
+function generarTarjetaReto(alias, aciertos, pct){
+  var canvas = document.createElement('canvas');
+  canvas.width = 1080; canvas.height = 1080;
+  var ctx = canvas.getContext('2d');
+  var grad = ctx.createLinearGradient(0,0,1080,1080);
+  grad.addColorStop(0, '#06080A'); grad.addColorStop(1, '#0E1318');
+  ctx.fillStyle = grad; ctx.fillRect(0,0,1080,1080);
+  var glow = ctx.createRadialGradient(540,300,50,540,300,600);
+  glow.addColorStop(0, 'rgba(0,232,122,0.15)'); glow.addColorStop(1, 'rgba(0,232,122,0)');
+  ctx.fillStyle = glow; ctx.fillRect(0,0,1080,1080);
+  ctx.strokeStyle = '#ff6b00'; ctx.lineWidth = 6; ctx.strokeRect(40,40,1000,1000);
+  ctx.textAlign = 'center';
+  ctx.font = '700 42px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 150);
+  ctx.font = '900 42px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 200);
+  ctx.font = '160px serif'; ctx.fillText('🏆', 540, 420);
+  ctx.font = '700 30px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D'; ctx.fillText('1ER LUGAR', 540, 480);
+  ctx.font = '900 90px Nunito, sans-serif'; ctx.fillStyle = '#ff6b00'; ctx.fillText(String(alias).toUpperCase(), 540, 610);
+  ctx.font = '900 200px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText(String(aciertos), 540, 830);
+  ctx.font = '700 34px Nunito, sans-serif'; ctx.fillStyle = '#8A9BB0'; ctx.fillText('ACIERTOS · '+pct+'% EFECTIVIDAD', 540, 890);
+  ctx.font = '700 32px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('¿Tienes lo que se necesita?', 540, 970);
+  ctx.font = '800 32px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('quinielaprofut.com', 540, 1010);
+
+  canvas.toBlob(function(blob){
+    var mensaje = 'Voy de líder en la QuinielaPro con '+aciertos+' aciertos 🏆 ¿Te atreves a intentar bajarme? https://quinielaprofut.com';
+    var file = new File([blob], 'quinielapro-lider.png', {type:'image/png'});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      navigator.share({ files: [file], title: 'QuinielaPro Fut', text: mensaje }).catch(function(){});
+    } else {
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'quinielapro-lider.png';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ window.open('https://wa.me/?text='+encodeURIComponent(mensaje), '_blank'); }, 500);
+    }
+  }, 'image/png');
+}
+
 function cargarSeguimientoFetch(){
   var cont = document.getElementById('seguimientoContenido');
   cont.innerHTML = '<div style="text-align:center;padding:4rem 1rem;color:#8A9BB0;"><div style="font-size:2.5rem;margin-bottom:1rem;">📊</div><div>Cargando ranking en vivo...</div></div>';
@@ -799,7 +838,7 @@ function cargarSeguimientoFetch(){
       if(jugadores.length){
         html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#FFD84D;display:flex;align-items:center;gap:8px;">🏆 Podio</div>';
         html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2.5rem;align-items:end;">';
-        var medallas = ['🥈','🥇','🥉'], ordenPodio = [1,0,2]; // 2do, 1ro, 3ro visualmente
+        var ordenPodio = [1,0,2]; // 2do, 1ro, 3ro visualmente
         ordenPodio.forEach(function(idx){
           var j = jugadores[idx]; if(!j) { html += '<div></div>'; return; }
           var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
@@ -811,8 +850,7 @@ function cargarSeguimientoFetch(){
           html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:'+(esPrimero?'#FFD84D':'#00e87a')+';">'+j.aciertos+'</div>';
           html += '<div style="font-size:0.72rem;color:#7A8B9A;">'+pct+'% efectividad</div>';
           if(esPrimero){
-          var msjReto = 'Voy de líder indiscutible en la QuinielaPro con '+j.aciertos+' aciertos 🏆 ¿Tienen el valor de intentar bajarme o les da miedo? Entren aquí: https://quinielaprofut.com';
-          html += '<a href="https://wa.me/?text='+encodeURIComponent(msjReto)+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:0.75rem;background:#ff6b00;color:#fff;padding:6px 14px;border-radius:100px;font-size:0.72rem;font-weight:800;text-decoration:none;">🔥 Retar a mi oficina</a>';
+            html += '<button class="btn-reto-canvas" data-alias="'+_esc(j.alias)+'" data-aciertos="'+j.aciertos+'" data-pct="'+pct+'" style="display:inline-flex;align-items:center;gap:5px;margin-top:0.75rem;background:#ff6b00;color:#fff;padding:6px 14px;border-radius:100px;font-size:0.72rem;font-weight:800;border:none;cursor:pointer;">🔥 Retar a mi oficina</button>';
           }
           html += '</div>';
         });
@@ -847,8 +885,7 @@ function cargarSeguimientoFetch(){
       });
       html += '</tbody></table></div>';
 
-      // ── Matriz de pronósticos ──
-     // ── Matriz de pronósticos (ordenada por aciertos, con aciertos resaltados en dorado) ──
+      // ── Matriz de pronósticos (ordenada por aciertos, con aciertos resaltados en dorado) ──
       if(matriz.length){
         var matrizConAciertos = matriz.map(function(m){
           var jugAlias = jugadores.find(function(j){return j.alias===m.alias;});
@@ -898,6 +935,12 @@ function cargarSeguimientoFetch(){
       html += '<div style="text-align:center;margin-top:1rem;padding-bottom:2rem;"><button class="btn-o" onclick="cargarSeguimientoFetch()">🔄 Actualizar</button></div>';
 
       cont.innerHTML = html;
+
+      document.querySelectorAll('.btn-reto-canvas').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          generarTarjetaReto(btn.dataset.alias, parseInt(btn.dataset.aciertos), parseInt(btn.dataset.pct));
+        });
+      });
     })
     .catch(function(e){
       cont.innerHTML = '<div style="text-align:center;padding:3rem;color:#FF4D6A;">No se pudo cargar el ranking. <button class="btn-o" onclick="cargarSeguimientoFetch()" style="margin-top:1rem;">Reintentar</button></div>';
