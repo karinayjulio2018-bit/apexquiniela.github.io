@@ -879,7 +879,7 @@ function cargarSeguimientoFetch(){
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:'+(esLiderRanking?'#FFD84D':'#00e87a')+';font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">'+j.aciertos+'</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:#8A9BB0;">'+pct+'%</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;">'+_pagoBadge(j.pago)+'</td>';
-        var msjPos = 'Voy en el lugar #'+(i+1)+' con '+j.aciertos+' aciertos en la QuinielaPro ⚽ ¿Me alcanzas? https://quinielaprofut.com';
+        var msjPos = '🎯 *'+j.alias+'* — Lugar #'+(i+1)+' en la QuinielaPro\n✅ '+j.aciertos+' aciertos · '+pct+'% de efectividad\n\n¿Me alcanzas? ⚽ https://quinielaprofut.com';
         html += '<td style="padding:0.65rem 1rem;text-align:center;"><a href="https://wa.me/?text='+encodeURIComponent(msjPos)+'" target="_blank" style="color:#00e87a;font-size:1.1rem;text-decoration:none;">📤</a></td>';
         html += '</tr>';
       });
