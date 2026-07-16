@@ -860,7 +860,11 @@ function resetSimulador(){
 // Recalcula aciertos/ranking combinando resultados reales + elecciones simuladas, sin tocar SF_DATA
 function _datosConSimulacion(){
   if(!SIM.activo){
-    return { jugadores: SF_DATA.jugadores, matriz: SF_DATA.matriz, partidos: SF_DATA.partidos, partidosDefinidos: SF_DATA.partidosDefinidos };
+    var matrizReal = SF_DATA.matriz.map(function(m){
+      var jugAlias = SF_DATA.jugadores.find(function(j){return j.alias===m.alias;});
+      return { alias:m.alias, pronos:m.pronos, aciertos: jugAlias ? jugAlias.aciertos : 0 };
+    });
+    return { jugadores: SF_DATA.jugadores, matriz: matrizReal, partidos: SF_DATA.partidos, partidosDefinidos: SF_DATA.partidosDefinidos };
   }
   var partidosSim = SF_DATA.partidos.map(function(p, idx){
     var resSim = p.resultado || SIM.elecciones[idx] || null;
