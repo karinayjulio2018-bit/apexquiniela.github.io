@@ -839,13 +839,16 @@ function cargarSeguimientoFetch(){
         html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#FFD84D;display:flex;align-items:center;gap:8px;">🏆 Podio</div>';
         html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2.5rem;align-items:end;">';
         var ordenPodio = [1,0,2]; // 2do, 1ro, 3ro visualmente
+        var maxAciertosPodio = jugadores.length ? jugadores[0].aciertos : 0;
         ordenPodio.forEach(function(idx){
           var j = jugadores[idx]; if(!j) { html += '<div></div>'; return; }
           var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
-          var esPrimero = idx===0;
+          var rankReal = jugadores.filter(function(x){ return x.aciertos > j.aciertos; }).length + 1;
+          var esPrimero = j.aciertos === maxAciertosPodio && maxAciertosPodio > 0;
+          var medalla = esPrimero ? '🥇' : (rankReal===3 ? '🥉' : '🥈');
           html += '<div style="background:#0E1318;border:1px solid '+(esPrimero?'rgba(255,216,77,.5)':'#1E2830')+';border-radius:16px;padding:'+(esPrimero?'2rem 1rem':'1.5rem 1rem')+';text-align:center;'+(esPrimero?'transform:translateY(-10px);box-shadow:0 8px 30px rgba(255,216,77,.15);':'')+'">';
-          html += '<div style="font-size:'+(esPrimero?'2.5rem':'2rem')+';margin-bottom:0.5rem;">'+(esPrimero?'🥇':(idx===2?'🥉':'🥈'))+'</div>';
-          html += '<div style="font-size:0.68rem;color:#7A8B9A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:0.3rem;">'+(idx+1)+'er Lugar</div>';
+          html += '<div style="font-size:'+(esPrimero?'2.5rem':'2rem')+';margin-bottom:0.5rem;">'+medalla+'</div>';
+          html += '<div style="font-size:0.68rem;color:#7A8B9A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:0.3rem;">'+rankReal+'er Lugar</div>';
           html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;color:#F0F4F8;line-height:1.2;margin-bottom:0.5rem;">'+_esc(j.nombre||j.alias)+'</div>';
           html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:'+(esPrimero?'#FFD84D':'#00e87a')+';">'+j.aciertos+'</div>';
           html += '<div style="font-size:0.72rem;color:#7A8B9A;">'+pct+'% efectividad</div>';
@@ -866,7 +869,8 @@ function cargarSeguimientoFetch(){
       jugadores.forEach(function(j, i){
         var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
         var esLiderRanking = j.aciertos===maxAciertosRanking && maxAciertosRanking>0;
-        var colorPos = esLiderRanking?'#06080A':(i===1?'#C0C0C0':(i===2?'#CD7F32':'#8A9BB0'));
+        var rankReal = jugadores.filter(function(x){ return x.aciertos > j.aciertos; }).length + 1;
+        var colorPos = esLiderRanking?'#06080A':(rankReal===2?'#C0C0C0':(rankReal===3?'#CD7F32':'#8A9BB0'));
         var rowStyle = esLiderRanking
           ? 'border-top:1px solid rgba(255,255,255,0.04);background:linear-gradient(90deg,rgba(255,216,77,.14),rgba(255,153,0,.05));'
           : 'border-top:1px solid rgba(255,255,255,0.04);';
@@ -874,12 +878,12 @@ function cargarSeguimientoFetch(){
           ? 'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#FFD84D,#ff9900);color:'+colorPos+';font-weight:900;font-size:0.8rem;box-shadow:0 0 12px rgba(255,216,77,.4);'
           : 'display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,0.05);color:'+colorPos+';font-weight:900;font-size:0.8rem;';
         html += '<tr style="'+rowStyle+'">';
-        html += '<td style="padding:0.65rem 1rem;"><span style="'+badgeStyle+'">'+(i+1)+'</span></td>';
+        html += '<td style="padding:0.65rem 1rem;"><span style="'+badgeStyle+'">'+rankReal+'</span></td>';
         html += '<td style="padding:0.85rem 1rem;"><div style="color:'+(esLiderRanking?'#FFD84D':'#F0F4F8')+';font-weight:800;font-family:\'Nunito\',sans-serif;font-size:1rem;letter-spacing:0.02em;margin-bottom:5px;">'+(esLiderRanking?'👑 ':'')+_esc(j.alias)+'</div><div style="color:#7A8B9A;font-size:0.75rem;font-weight:600;">'+_esc(j.nombre||'')+'</div></td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:'+(esLiderRanking?'#FFD84D':'#00e87a')+';font-family:\'Bebas Neue\',sans-serif;font-size:1.2rem;">'+j.aciertos+'</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;color:#8A9BB0;">'+pct+'%</td>';
         html += '<td style="padding:0.65rem 1rem;text-align:center;">'+_pagoBadge(j.pago)+'</td>';
-        var msjPos = '🎯 *'+j.alias+'* — Lugar #'+(i+1)+' en la QuinielaPro\n✅ '+j.aciertos+' aciertos · '+pct+'% de efectividad\n\n¿Me alcanzas? ⚽ https://quinielaprofut.com';
+        var msjPos = '🎯 *'+j.alias+'* — Lugar #'+rankReal+' en la QuinielaPro\n✅ '+j.aciertos+' aciertos · '+pct+'% de efectividad\n\n¿Me alcanzas? ⚽ https://quinielaprofut.com';
         html += '<td style="padding:0.65rem 1rem;text-align:center;"><a href="https://wa.me/?text='+encodeURIComponent(msjPos)+'" target="_blank" style="color:#00e87a;font-size:1.1rem;text-decoration:none;">📤</a></td>';
         html += '</tr>';
       });
