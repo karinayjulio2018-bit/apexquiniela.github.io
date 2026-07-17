@@ -894,7 +894,7 @@ function _datosConSimulacion(){
   }
   var partidosSim = SF_DATA.partidos.map(function(p, idx){
     var resSim = p.resultado || SIM.elecciones[idx] || null;
-    return { local:p.local, visitante:p.visitante, resultado:resSim, _esReal: !!p.resultado };
+    return { local:p.local, visitante:p.visitante, fecha:p.fecha, resultado:resSim, _esReal: !!p.resultado };
   });
   var matrizSim = SF_DATA.matriz.map(function(m){
     var aciertos = 0;
