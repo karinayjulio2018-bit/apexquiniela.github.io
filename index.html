@@ -758,12 +758,21 @@ function mostrarRegistro(){window.dataLayer=window.dataLayer||[];window.dataLaye
 
 function _esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
-// El backend (getPartidosActuales) formatea fecha como 'dd-MM-yyyy HH:mm', ej: "16-07-2026 18:00"
+// El backend manda fecha como texto en español, ej: "Viernes 17 de Julio 2026 18:00 hrs."
+var _MESES_ES = {
+  enero:0, febrero:1, marzo:2, abril:3, mayo:4, junio:5,
+  julio:6, agosto:7, septiembre:8, octubre:9, noviembre:10, diciembre:11
+};
 function _parseFechaEs(fechaStr){
   if(!fechaStr) return null;
-  var m = String(fechaStr).match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
+  var m = String(fechaStr).match(/(\d{1,2})\s+de\s+([A-Za-zÁÉÍÓÚáéíóú]+)\s+(\d{4})/);
   if(!m) return null;
-  var dia = parseInt(m[1],10), mes = parseInt(m[2],10)-1, anio = parseInt(m[3],10);
+  var dia = parseInt(m[1],10);
+  var mesNombre = m[2].toLowerCase()
+    .replace('á','a').replace('é','e').replace('í','i').replace('ó','o').replace('ú','u');
+  var anio = parseInt(m[3],10);
+  var mes = _MESES_ES[mesNombre];
+  if(mes===undefined) return null;
   return new Date(anio, mes, dia);
 }
 function _esHoy(fechaStr){
