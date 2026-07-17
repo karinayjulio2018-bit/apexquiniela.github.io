@@ -757,6 +757,22 @@ function mostrarLanding(){document.getElementById('vista-registro').style.displa
 function mostrarRegistro(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'clic_registro'});window.open(URL_REGISTRO_PROPIA,'_blank');}
 
 function _esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+// El backend (getPartidosActuales) formatea fecha como 'dd-MM-yyyy HH:mm', ej: "16-07-2026 18:00"
+function _parseFechaEs(fechaStr){
+  if(!fechaStr) return null;
+  var m = String(fechaStr).match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
+  if(!m) return null;
+  var dia = parseInt(m[1],10), mes = parseInt(m[2],10)-1, anio = parseInt(m[3],10);
+  return new Date(anio, mes, dia);
+}
+function _esHoy(fechaStr){
+  var d = _parseFechaEs(fechaStr);
+  if(!d) return false;
+  var hoy = new Date();
+  return d.getFullYear()===hoy.getFullYear() && d.getMonth()===hoy.getMonth() && d.getDate()===hoy.getDate();
+}
+
 function _pagoBadge(estado){
   if(estado==='confirmado') return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(0,232,122,.12);color:#00e87a;border:1px solid rgba(0,232,122,.3);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">✓ CONFIRMADO</span>';
   if(estado==='revision') return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,216,77,.12);color:#FFD84D;border:1px solid rgba(255,216,77,.3);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">⏳ REVISIÓN</span>';
@@ -973,8 +989,26 @@ function renderSeguimiento(){
   html += '<div class="hero-stat-card" style="justify-content:center;text-align:center;flex-direction:column;gap:0.3rem;border-color:rgba(255,107,0,.3);"><span class="hsc-val" style="color:#ff6b00;">'+(lider?_esc(lider.alias):'—')+'</span><span class="hsc-label">Líder</span></div>';
   html += '</div>';
 
-  // ── Podio ──
-  if(jugadores.length){
+  // ── Partidos de Hoy (o Podio si no hay partidos hoy) ──
+  var partidosHoy = partidosVista.filter(function(p){ return _esHoy(p.fecha); });
+
+  if(partidosHoy.length){
+    html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#ff6b00;display:flex;align-items:center;gap:8px;">⚽ Partidos de Hoy</div>';
+    html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2.5rem;">';
+    partidosHoy.forEach(function(p){
+      var jugado = !!p.resultado;
+      html += '<div style="background:#0E1318;border:1px solid '+(jugado?'#1E2830':'rgba(255,107,0,.4)')+';border-radius:16px;padding:1.5rem 1.25rem;text-align:center;'+(jugado?'':'box-shadow:0 0 20px rgba(255,107,0,.08);')+'">';
+      html += '<div style="font-size:0.65rem;color:'+(jugado?'#7A8B9A':'#ff9966')+';text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:0.75rem;">'+(jugado?'✓ Finalizado':'⏳ Por jugarse')+'</div>';
+      html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#F0F4F8;line-height:1.25;">'+_esc(p.local)+'</div>';
+      html += '<div style="font-size:0.72rem;color:#7A8B9A;margin:0.4rem 0;">vs</div>';
+      html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#F0F4F8;line-height:1.25;">'+_esc(p.visitante)+'</div>';
+      if(jugado){
+        html += '<div style="margin-top:0.9rem;display:inline-block;background:rgba(0,232,122,.12);color:#00e87a;border:1px solid rgba(0,232,122,.3);border-radius:100px;padding:5px 16px;font-size:0.8rem;font-weight:800;">'+_esc(p.resultado)+'</div>';
+      }
+      html += '</div>';
+    });
+    html += '</div>';
+  } else if(jugadores.length){
     html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#FFD84D;display:flex;align-items:center;gap:8px;">🏆 Podio</div>';
     html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2.5rem;align-items:end;">';
     var ordenPodio = [1,0,2]; // 2do, 1ro, 3ro visualmente
