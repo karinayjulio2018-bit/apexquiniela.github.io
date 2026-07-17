@@ -844,14 +844,24 @@ function generarTarjetaPosicion(alias, aciertos, pct, rank){
 var SF_DATA = null;
 var SIM = { activo:false, elecciones:{} };
 
+function _conScrollPreservado(fn){
+  var y = window.scrollY;
+  fn();
+  requestAnimationFrame(function(){ window.scrollTo(0,y); });
+}  
+
 function toggleSimulador(){
   SIM.activo = !SIM.activo;
   renderSeguimiento();
 }
-function elegirSimulado(idx, opt){
-  SIM.elecciones[idx] = opt;
-  renderSeguimiento();
-}
+
+ function elegirSimulado(idx, opt){
+  _conScrollPreservado(function(){
+    SIM.elecciones[idx] = opt;
+    renderSeguimiento();
+  });
+} 
+  
 function resetSimulador(){
   SIM.elecciones = {};
   renderSeguimiento();
@@ -953,26 +963,6 @@ function renderSeguimiento(){
 
   if(SIM.activo){
     html += '<div style="text-align:center;margin-bottom:1rem;padding:0.75rem;border-radius:10px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.3);color:#ff9966;font-size:0.78rem;font-weight:800;letter-spacing:0.5px;">🎮 MODO SIMULADOR — estos resultados NO son reales, solo para practicar</div>';
-    var pendientes = [];
-    SF_DATA.partidos.forEach(function(p, idx){ if(!p.resultado) pendientes.push({p:p, idx:idx}); });
-    if(pendientes.length){
-      html += '<div style="border:1px solid #1E2830;border-radius:14px;background:#0E1318;padding:1rem;margin-bottom:1.5rem;">';
-      html += '<div style="font-size:0.75rem;color:#8A9BB0;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:0.75rem;">Elige un resultado para partidos pendientes</div>';
-      pendientes.forEach(function(x){
-        var p = x.p, idx = x.idx, sel = SIM.elecciones[idx];
-        html += '<div style="margin-bottom:0.4rem;font-size:0.8rem;color:#F0F4F8;font-weight:700;">P'+(idx+1)+' '+_esc(p.local)+' vs '+_esc(p.visitante)+'</div>';
-        html += '<div style="display:flex;gap:0.4rem;margin-bottom:0.9rem;">';
-        ['LOCAL','EMPATE','VISITANTE'].forEach(function(opt){
-          var activoOpt = sel===opt;
-          html += '<button onclick="elegirSimulado('+idx+',\'' + opt + '\')" style="flex:1;padding:0.5rem;border-radius:8px;border:1px solid '+(activoOpt?'#00e87a':'#1E2830')+';background:'+(activoOpt?'rgba(0,232,122,.15)':'transparent')+';color:'+(activoOpt?'#00e87a':'#8A9BB0')+';font-size:0.72rem;font-weight:800;cursor:pointer;">'+opt+'</button>';
-        });
-        html += '</div>';
-      });
-      html += '<button class="btn-o" onclick="resetSimulador()" style="width:100%;">↺ Restablecer simulación</button>';
-      html += '</div>';
-    } else {
-      html += '<div style="text-align:center;color:#7A8B9A;font-size:0.8rem;margin-bottom:1.5rem;">No hay partidos pendientes por simular — todos ya tienen resultado real.</div>';
-    }
   }
 
   // ── Stat cards ──
@@ -1046,7 +1036,13 @@ function renderSeguimiento(){
     var matrizConAciertos = matriz.slice().sort(function(a,b){ return b.aciertos - a.aciertos; });
     var maxAciertos = matrizConAciertos.length ? matrizConAciertos[0].aciertos : 0;
 
-    html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#00e87a;display:flex;align-items:center;gap:8px;">🎯 Pronósticos — Todos los Jugadores</div>';
+    html += '<div style="margin-bottom:0.75rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">';
+    html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#00e87a;display:flex;align-items:center;gap:8px;">🎯 Pronósticos — Todos los Jugadores</div>';
+    html += '<button class="btn-o" onclick="_conScrollPreservado(toggleSimulador)" style="font-size:0.7rem;padding:6px 14px;'+(SIM.activo?'background:#ff6b00;color:#fff;border-color:#ff6b00;':'')+'">'+(SIM.activo?'🎮 Salir simulador':'🎮 Simular aquí')+'</button>';
+    html += '</div>';
+    if(SIM.activo){
+      html += '<div style="text-align:center;margin-bottom:0.75rem;padding:0.6rem;border-radius:8px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.3);color:#ff9966;font-size:0.72rem;font-weight:800;">🎮 Toca L / E / V junto al partido pendiente para probar resultados &nbsp;·&nbsp; <button onclick="_conScrollPreservado(resetSimulador)" style="background:none;border:none;color:#ff6b00;text-decoration:underline;cursor:pointer;font-weight:800;font-size:0.72rem;">↺ Restablecer</button></div>';
+    }
     html += '<div style="overflow-x:auto;border:1px solid #1E2830;border-radius:14px;background:#0E1318;">';
     html += '<table style="border-collapse:collapse;width:100%;min-width:'+(280+matrizConAciertos.length*90)+'px;font-size:0.82rem;">';
     html += '<thead><tr style="background:#141A21;"><th style="padding:0.6rem 1rem;text-align:left;color:#8A9BB0;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;position:sticky;left:0;background:#141A21;">Partido</th>';
@@ -1060,8 +1056,22 @@ function renderSeguimiento(){
     html += '</tr></thead><tbody>';
     partidosVista.forEach(function(p, idx){
       var esSimulado = SIM.activo && !p._esReal && p.resultado;
+       
+      var partidoCelda;
+      if(SIM.activo && !p._esReal){
+        var sel = SIM.elecciones[idx] || '';
+        partidoCelda = 'P'+(idx+1)+' '+_esc(p.local)+' vs '+_esc(p.visitante)+'<div style="display:flex;gap:4px;margin-top:4px;">';
+        [['LOCAL','L'],['EMPATE','E'],['VISITANTE','V']].forEach(function(o){
+          var on = sel===o[0];
+          partidoCelda += '<button class="btn-sim-cell" data-idx="'+idx+'" data-opt="'+o[0]+'" style="padding:2px 9px;border-radius:5px;border:1px solid '+(on?'#ff6b00':'#26333D')+';background:'+(on?'rgba(255,107,0,.25)':'transparent')+';color:'+(on?'#ff9966':'#7A8B9A')+';font-size:0.65rem;font-weight:800;cursor:pointer;">'+o[1]+'</button>';
+        });
+        partidoCelda += '</div>';
+      } else {
+        partidoCelda = 'P'+(idx+1)+' '+_esc(p.local)+' vs '+_esc(p.visitante)+(p.resultado?' <span style="color:'+(esSimulado?'#ff6b00':'#FFD84D')+';font-size:0.68rem;">('+_esc(p.resultado)+(esSimulado?' sim':'')+')</span>':'');
+      }
       html += '<tr style="border-top:1px solid #1E2830;">';
-      html += '<td style="padding:0.6rem 1rem;color:#F0F4F8;font-weight:700;white-space:nowrap;position:sticky;left:0;background:#0E1318;">P'+(idx+1)+' '+_esc(p.local)+' vs '+_esc(p.visitante)+(p.resultado?' <span style="color:'+(esSimulado?'#ff6b00':'#FFD84D')+';font-size:0.68rem;">('+_esc(p.resultado)+(esSimulado?' sim':'')+')</span>':'')+'</td>';
+      html += '<td style="padding:0.6rem 1rem;color:#F0F4F8;font-weight:700;white-space:nowrap;position:sticky;left:0;background:#0E1318;">'+partidoCelda+'</td>';
+      
       matrizConAciertos.forEach(function(m){
         var val = m.pronos[idx] || '';
         var celda = val==='🔒' ? '🔒' : (_esc(val) || '—');
@@ -1097,6 +1107,11 @@ function renderSeguimiento(){
   document.querySelectorAll('.btn-share-pos').forEach(function(btn){
     btn.addEventListener('click', function(){
       generarTarjetaPosicion(btn.dataset.alias, parseInt(btn.dataset.aciertos), parseInt(btn.dataset.pct), parseInt(btn.dataset.rank));
+    });
+  });
+  document.querySelectorAll('.btn-sim-cell').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      elegirSimulado(parseInt(btn.dataset.idx), btn.dataset.opt);
     });
   });
 }
