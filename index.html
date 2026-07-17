@@ -929,7 +929,14 @@ function renderSeguimiento(){
   var numPartidos = SF_DATA.partidos.length;
   var bolsa = Math.round(SF_DATA.bolsaReal || SF_DATA.pozo || 0);
   var lider = jugadores.length ? jugadores[0] : null;
-
+  var _rankMap = {};
+  (function(){
+  var vistos = [];
+  jugadores.forEach(function(j){ if(vistos.indexOf(j.aciertos)===-1) vistos.push(j.aciertos); });
+  vistos.sort(function(a,b){return b-a;});
+  vistos.forEach(function(v,i){ _rankMap[v] = i+1; });
+  })();
+  
   var html = '';
 
   // ── Header ──
@@ -985,7 +992,7 @@ function renderSeguimiento(){
     ordenPodio.forEach(function(idx){
       var j = jugadores[idx]; if(!j) { html += '<div></div>'; return; }
       var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
-      var rankReal = jugadores.filter(function(x){ return x.aciertos > j.aciertos; }).length + 1;
+      var rankReal = _rankMap[j.aciertos];
       var esPrimero = j.aciertos === maxAciertosPodio && maxAciertosPodio > 0;
       var medalla = esPrimero ? '🥇' : (rankReal===3 ? '🥉' : '🥈');
       html += '<div style="background:#0E1318;border:1px solid '+(esPrimero?'rgba(255,216,77,.5)':'#1E2830')+';border-radius:16px;padding:'+(esPrimero?'2rem 1rem':'1.5rem 1rem')+';text-align:center;'+(esPrimero?'transform:translateY(-10px);box-shadow:0 8px 30px rgba(255,216,77,.15);':'')+'">';
@@ -1011,7 +1018,7 @@ function renderSeguimiento(){
   jugadores.forEach(function(j, i){
     var pct = partidosDefinidos ? Math.round((j.aciertos/partidosDefinidos)*100) : 0;
     var esLiderRanking = j.aciertos===maxAciertosRanking && maxAciertosRanking>0;
-    var rankReal = jugadores.filter(function(x){ return x.aciertos > j.aciertos; }).length + 1;
+    var rankReal = _rankMap[j.aciertos];
     var colorPos = esLiderRanking?'#06080A':(rankReal===2?'#C0C0C0':(rankReal===3?'#CD7F32':'#8A9BB0'));
     var rowStyle = esLiderRanking
       ? 'border-top:1px solid rgba(255,255,255,0.04);background:linear-gradient(90deg,rgba(255,216,77,.14),rgba(255,153,0,.05));'
