@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarjeta de Campeón — QuinielaPro Fut</title>
+<style>
+  :root{
+    --bg:#05100a;
+    --panel:#0a1d12;
+    --line:#12301e;
+    --verde:#00e87a;
+    --naranja:#ff6b00;
+    --oro:#ffd24a;
+    --texto:#eafff3;
+    --texto-dim:#7da893;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--texto);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    min-height:100vh;
+    padding:16px;
+  }
+  .app{max-width:960px;margin:0 auto;}
+  header{padding:8px 0 20px;}
+  .marca{
+    font-size:13px;letter-spacing:3px;font-weight:800;color:var(--verde);
+    text-transform:uppercase;
+  }
+  h1{font-size:22px;font-weight:900;margin-top:4px;}
+  .sub{color:var(--texto-dim);font-size:13px;margin-top:4px;}
+
+  .grid{display:grid;grid-template-columns:1fr;gap:20px;}
+  @media(min-width:820px){.grid{grid-template-columns:380px 1fr;align-items:start;}}
+
+  .form{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px;
+  }
+  label{
+    display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--texto-dim);margin:14px 0 6px;
+  }
+  label:first-child{margin-top:0;}
+  input,textarea,select{
+    width:100%;
+    background:#071409;
+    border:1px solid var(--line);
+    border-radius:8px;
+    color:var(--texto);
+    font-size:16px;
+    padding:10px 12px;
+    font-family:inherit;
+  }
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--verde);outline-offset:1px;border-color:transparent;}
+  textarea{resize:vertical;min-height:84px;}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+  .temas{display:flex;gap:8px;}
+  .tema{
+    flex:1;border:2px solid var(--line);border-radius:8px;
+    padding:10px 0;text-align:center;font-weight:800;font-size:12px;
+    letter-spacing:1px;cursor:pointer;background:#071409;color:var(--texto-dim);
+    transition:border-color .15s;
+  }
+  .tema.activo{color:#05100a;}
+  .tema[data-t="VERDE"].activo{background:var(--verde);border-color:var(--verde);}
+  .tema[data-t="NARANJA"].activo{background:var(--naranja);border-color:var(--naranja);}
+  .tema[data-t="ORO"].activo{background:var(--oro);border-color:var(--oro);}
+
+  .botones{display:flex;gap:10px;margin-top:20px;}
+  button{
+    flex:1;border:none;border-radius:10px;padding:14px;
+    font-size:15px;font-weight:900;cursor:pointer;font-family:inherit;
+    letter-spacing:.5px;
+  }
+  .btn-descargar{background:var(--verde);color:#05100a;}
+  .btn-compartir{background:transparent;color:var(--verde);border:2px solid var(--verde);}
+  button:active{transform:scale(.98);}
+
+  .preview-wrap{
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .preview-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--texto-dim);font-weight:700;}
+  canvas{
+    width:100%;
+    max-width:340px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    display:block;
+  }
+  .nota{
+    font-size:12px;color:var(--texto-dim);text-align:center;max-width:340px;line-height:1.5;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="marca">QuinielaPro Fut</div>
+    <h1>Tarjeta de Campeón 🏆</h1>
+    <div class="sub">Llena los datos, descarga la imagen y mándasela al ganador para sus estados de WhatsApp.</div>
+  </header>
+
+  <div class="grid">
+    <div class="form">
+      <label for="alias">Alias del campeón</label>
+      <input id="alias" type="text" placeholder="CHINO" value="CHINO" maxlength="30">
+
+      <label for="jornada">Jornada</label>
+      <input id="jornada" type="text" placeholder="FINAL DEL MUNDIAL 2026" value="FINAL DEL MUNDIAL 2026" maxlength="45">
+
+      <div class="fila">
+        <div>
+          <label for="aciertos">Aciertos</label>
+          <input id="aciertos" type="number" value="10" min="0" max="30">
+        </div>
+        <div>
+          <label for="total">De cuántos partidos</label>
+          <input id="total" type="number" value="12" min="1" max="30">
+        </div>
+      </div>
+
+      <label for="premio">Premio ganado ($)</label>
+      <input id="premio" type="number" value="960" min="0" step="10">
+
+      <label for="testimonio">Testimonio (su trash talk 🔥)</label>
+      <textarea id="testimonio" maxlength="180">Es mía de nuevo, soy el mejor, soy BICAMPEÓN</textarea>
+
+      <label>Tema del campeón</label>
+      <div class="temas" id="temas">
+        <div class="tema activo" data-t="VERDE">VERDE</div>
+        <div class="tema" data-t="NARANJA">NARANJA</div>
+        <div class="tema" data-t="ORO">ORO</div>
+      </div>
+
+      <div class="botones">
+        <button class="btn-descargar" id="btnDescargar">Descargar imagen</button>
+        <button class="btn-compartir" id="btnCompartir">Compartir</button>
+      </div>
+    </div>
+
+    <div class="preview-wrap">
+      <div class="preview-label">Vista previa · 1080 × 1920</div>
+      <canvas id="lienzo" width="1080" height="1920"></canvas>
+      <div class="nota">En celular, "Compartir" abre el menú del teléfono para mandarla directo por WhatsApp. Si no jala, usa "Descargar imagen".</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const canvas = document.getElementById('lienzo');
+  const ctx = canvas.getContext('2d');
+  const W = 1080, H = 1920;
+
+  const TEMAS = {
+    VERDE:   { acento:'#00e87a', glow:'rgba(0,232,122,0.28)' },
+    NARANJA: { acento:'#ff6b00', glow:'rgba(255,107,0,0.28)' },
+    ORO:     { acento:'#ffd24a', glow:'rgba(255,210,74,0.30)' }
+  };
+  let temaActual = 'VERDE';
+
+  const $ = id => document.getElementById(id);
+  const campos = ['alias','jornada','aciertos','total','premio','testimonio'];
+
+  function formatoDinero(n){
+    n = Number(n)||0;
+    return '$' + n.toLocaleString('es-MX');
+  }
+
+  // Ajusta tamaño de fuente para que el texto quepa en un ancho máximo
+  function fuenteQueQuepa(texto, pesoFamilia, maxPx, anchoMax){
+    let px = maxPx;
+    do {
+      ctx.font = '900 ' + px + 'px ' + pesoFamilia;
+      if (ctx.measureText(texto).width <= anchoMax) break;
+      px -= 4;
+    } while (px > 30);
+    return px;
+  }
+
+  function envolverTexto(texto, x, y, anchoMax, altoLinea, dibujar){
+    const palabras = texto.split(/\s+/);
+    let linea = '', lineas = [];
+    for (const p of palabras){
+      const prueba = linea ? linea + ' ' + p : p;
+      if (ctx.measureText(prueba).width > anchoMax && linea){
+        lineas.push(linea); linea = p;
+      } else { linea = prueba; }
+    }
+    if (linea) lineas.push(linea);
+    if (dibujar){
+      lineas.forEach((l,i)=> ctx.fillText(l, x, y + i*altoLinea));
+    }
+    return lineas.length;
+  }
+
+  function dibujar(){
+    const t = TEMAS[temaActual];
+    const alias = ($('alias').value || 'CAMPEÓN').toUpperCase().trim();
+    const jornada = ($('jornada').value || '').toUpperCase().trim();
+    const aciertos = $('aciertos').value || '0';
+    const total = $('total').value || '0';
+    const premio = formatoDinero($('premio').value);
+    const testimonio = ($('testimonio').value || '').trim();
+
+    // ---- Fondo
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = '#05100a';
+    ctx.fillRect(0,0,W,H);
+
+    // Resplandor superior
+    let g = ctx.createRadialGradient(W/2, 320, 60, W/2, 320, 700);
+    g.addColorStop(0, t.glow);
+    g.addColorStop(1, 'rgba(5,16,10,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,W,1000);
+
+    // Medio círculo de cancha (sutil, abajo)
+    ctx.strokeStyle = 'rgba(0,232,122,0.10)';
+    ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(W/2, H+180, 520, Math.PI, 2*Math.PI); ctx.stroke();
+    ctx.beginPath(); ctx.arc(W/2, H+180, 380, Math.PI, 2*Math.PI); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, H-330); ctx.lineTo(W, H-330);
+    ctx.strokeStyle = 'rgba(0,232,122,0.08)';
+    ctx.stroke();
+
+    // ---- Marca arriba
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#7da893';
+    ctx.font = '800 34px Arial, sans-serif';
+    // espaciado manual de letras
+    (function(txt,y){
+      const esp = 12;
+      let anchoTot = 0;
+      for (const c of txt) anchoTot += ctx.measureText(c).width + esp;
+      let x = (W - anchoTot + esp)/2;
+      ctx.textAlign='left';
+      for (const c of txt){ ctx.fillText(c, x, y); x += ctx.measureText(c).width + esp; }
+      ctx.textAlign='center';
+    })('QUINIELAPRO FUT', 120);
+
+    // ---- Trofeo
+    ctx.font = '160px Arial, sans-serif';
+    ctx.fillText('🏆', W/2, 350);
+
+    // ---- Etiqueta campeón
+    ctx.fillStyle = t.acento;
+    ctx.font = '900 44px Arial, sans-serif';
+    ctx.fillText('CAMPEÓN DE LA JORNADA', W/2, 450);
+
+    // Jornada
+    ctx.fillStyle = '#7da893';
+    ctx.font = '700 34px Arial, sans-serif';
+    envolverTexto(jornada, W/2, 510, 880, 44, true);
+
+    // ---- Líneas laurel a los lados del alias
+    const yAlias = 690;
+    ctx.strokeStyle = t.acento;
+    ctx.lineWidth = 6;
+    ctx.beginPath(); ctx.moveTo(90, yAlias-20); ctx.lineTo(240, yAlias-20); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W-240, yAlias-20); ctx.lineTo(W-90, yAlias-20); ctx.stroke();
+
+    // ---- ALIAS
+    ctx.fillStyle = '#ffffff';
+    const pxAlias = fuenteQueQuepa(alias, 'Arial, sans-serif', 150, 900);
+    ctx.font = '900 ' + pxAlias + 'px Arial, sans-serif';
+    ctx.shadowColor = t.glow;
+    ctx.shadowBlur = 40;
+    ctx.fillText(alias, W/2, yAlias + pxAlias*0.35);
+    ctx.shadowBlur = 0;
+
+    // ---- Píldora de aciertos
+    const yPill = 870;
+    const txtPill = aciertos + ' DE ' + total + ' ACIERTOS';
+    ctx.font = '900 42px Arial, sans-serif';
+    const wPill = ctx.measureText(txtPill).width + 100;
+    ctx.fillStyle = 'rgba(0,232,122,0.10)';
+    ctx.strokeStyle = t.acento;
+    ctx.lineWidth = 4;
+    roundRect(ctx, (W-wPill)/2, yPill-58, wPill, 92, 46);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = t.acento;
+    ctx.fillText(txtPill, W/2, yPill + 8);
+
+    // ---- PREMIO gigante
+    ctx.fillStyle = '#7da893';
+    ctx.font = '800 38px Arial, sans-serif';
+    ctx.fillText('SE LLEVÓ', W/2, 1050);
+
+    ctx.fillStyle = '#ff6b00';
+    const pxPremio = fuenteQueQuepa(premio, 'Arial, sans-serif', 220, 900);
+    ctx.font = '900 ' + pxPremio + 'px Arial, sans-serif';
+    ctx.shadowColor = 'rgba(255,107,0,0.45)';
+    ctx.shadowBlur = 60;
+    ctx.fillText(premio, W/2, 1050 + pxPremio*0.92);
+    ctx.shadowBlur = 0;
+
+    ctx.fillStyle = '#7da893';
+    ctx.font = '800 36px Arial, sans-serif';
+    ctx.fillText('EN EFECTIVO', W/2, 1330);
+
+    // ---- Testimonio
+    if (testimonio){
+      ctx.fillStyle = t.acento;
+      ctx.font = '900 90px Georgia, serif';
+      ctx.fillText('\u201C', W/2, 1440);
+      ctx.fillStyle = '#eafff3';
+      ctx.font = 'italic 700 44px Georgia, serif';
+      envolverTexto(testimonio, W/2, 1500, 860, 58, true);
+    }
+
+    // ---- Pie CTA
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '900 46px Arial, sans-serif';
+    ctx.fillText('¿CREES QUE LE GANAS?', W/2, H-190);
+
+    ctx.fillStyle = t.acento;
+    ctx.font = '800 38px Arial, sans-serif';
+    ctx.fillText('Juega la próxima jornada en', W/2, H-130);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '900 52px Arial, sans-serif';
+    ctx.fillText('quinielaprofut.com', W/2, H-60);
+  }
+
+  function roundRect(c,x,y,w,h,r){
+    c.beginPath();
+    c.moveTo(x+r,y);
+    c.arcTo(x+w,y,x+w,y+h,r);
+    c.arcTo(x+w,y+h,x,y+h,r);
+    c.arcTo(x,y+h,x,y,r);
+    c.arcTo(x,y,x+w,y,r);
+    c.closePath();
+  }
+
+  // ---- Eventos
+  campos.forEach(id => $(id).addEventListener('input', dibujar));
+
+  document.getElementById('temas').addEventListener('click', e=>{
+    const el = e.target.closest('.tema');
+    if(!el) return;
+    document.querySelectorAll('.tema').forEach(x=>x.classList.remove('activo'));
+    el.classList.add('activo');
+    temaActual = el.dataset.t;
+    dibujar();
+  });
+
+  function nombreArchivo(){
+    const alias = ($('alias').value||'campeon').trim().toLowerCase().replace(/[^a-z0-9]+/g,'_');
+    return 'campeon_' + alias + '.png';
+  }
+
+  $('btnDescargar').addEventListener('click', ()=>{
+    canvas.toBlob(blob=>{
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = nombreArchivo();
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    }, 'image/png');
+  });
+
+  $('btnCompartir').addEventListener('click', ()=>{
+    canvas.toBlob(async blob=>{
+      const file = new File([blob], nombreArchivo(), {type:'image/png'});
+      if (navigator.canShare && navigator.canShare({files:[file]})){
+        try{
+          await navigator.share({
+            files:[file],
+            title:'Campeón de la jornada',
+            text:'🏆 Campeón de la jornada en quinielaprofut.com'
+          });
+        }catch(err){ /* usuario canceló */ }
+      } else {
+        alert('Tu navegador no soporta compartir directo. Usa "Descargar imagen" y mándala por WhatsApp.');
+      }
+    }, 'image/png');
+  });
+
+  dibujar();
+})();
+</script>
+</body>
+</html>
