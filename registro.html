@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
@@ -32,8 +31,6 @@ repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,64,40,.5) 4
 .hidden{display:none!important;}
 .card{max-width:580px;margin:0 auto;padding:0 14px;}
 .panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 18px;margin-bottom:14px;box-shadow:var(--shadow);}
-
-/* ── HERO — badge SIEMPRE oculto ── */
 .hero{text-align:center;padding:28px 20px 20px;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(245,197,24,.06) 0%,transparent 60%);pointer-events:none;}
 #heroJornadaBadge{display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;visibility:hidden!important;}
@@ -46,8 +43,6 @@ repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,64,40,.5) 4
 .hero-sub strong{color:var(--green);}
 .hero-sub em{color:var(--gold);font-style:normal;}
 .hero-badge{display:inline-block;background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);font-size:10px;font-weight:800;letter-spacing:3px;padding:5px 14px;border-radius:999px;margin-bottom:16px;text-transform:uppercase;}
-
-/* ── FIELDS ── */
 .field-label{display:block;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;}
 .field-input{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:13px 15px;font-family:var(--font-body);font-size:15px;font-weight:700;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;}
 .field-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,197,24,.12);}
@@ -57,8 +52,6 @@ repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,64,40,.5) 4
 .alias-panel .alias-title{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px;}
 .alias-panel .alias-desc{font-size:11px;color:rgba(245,197,24,.7);margin-bottom:12px;line-height:1.5;font-weight:600;}
 .alias-panel .field-input{border-color:rgba(245,197,24,.4);}
-
-/* ── BOTONES ── */
 .btn{width:100%;padding:15px;border:none;border-radius:var(--radius);font-family:var(--font-head);font-size:20px;letter-spacing:2px;cursor:pointer;transition:transform .1s,box-shadow .1s,opacity .2s;text-transform:uppercase;position:relative;overflow:hidden;}
 .btn:active{transform:translateY(3px);box-shadow:none!important;}
 .btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important;}
@@ -69,14 +62,10 @@ repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,64,40,.5) 4
 .btn-sm{padding:13px 22px;font-size:16px;width:auto;min-width:130px;}
 .btn-cerrar{background:linear-gradient(135deg,#1a8a5a,#0f6640);border:none;color:#fff;font-family:var(--font-head);font-size:18px;letter-spacing:1.5px;cursor:pointer;border-radius:var(--radius);padding:14px;transition:.15s;box-shadow:0 4px 0 #0a4a2d;}
 .btn-cerrar:active{transform:translateY(3px);box-shadow:none;}
-
-/* ── AVISOS ── */
 .aviso{border-radius:var(--radius);padding:12px 14px;font-size:13px;font-weight:700;margin-bottom:14px;display:none;}
 .aviso.show-error{display:block;background:rgba(255,71,87,.1);border:1.5px solid var(--red);color:#ff8591;}
 .aviso.show-ok{display:block;background:rgba(1,224,143,.08);border:1.5px solid var(--green);color:var(--green);}
 .aviso.show-warn{display:block;background:rgba(245,197,24,.08);border:1.5px solid var(--gold);color:var(--gold);}
-
-/* ── PRECIOS CHIPS ── */
 .tabla-costos{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
 .tabla-costos-titulo{background:var(--gold-dim);border-bottom:1px solid var(--border);padding:12px 16px;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--gold);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:space-between;}
 .tabla-costos-titulo .tc-chevron{font-size:14px;transition:transform .25s ease;}
@@ -97,16 +86,11 @@ repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,64,40,.5) 4
 .pc-price.c3{color:var(--red);}
 .pc-formula{font-size:9px;color:var(--text-muted);font-weight:700;opacity:.7;}
 .precios-nota{padding:6px 12px 10px;font-size:10px;font-weight:700;color:var(--text-muted);text-align:center;line-height:1.5;}
-/* ids legacy que usa rellenarTablaPrecios — los mantenemos pero vacíos */
 #tablaMatrizBody,#tablaNotaPrecio{display:none!important;}
-
-/* ── STATS ── */
 .stats-row{display:flex;gap:8px;margin-bottom:14px;}
 .stat-box{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px;text-align:center;}
 .stat-val{font-family:var(--font-head);font-size:22px;color:var(--gold);letter-spacing:1px;}
 .stat-lbl{font-size:9px;font-weight:800;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;}
-
-/* ── TABS QUINIELAS ── */
 .quinielas-nav{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
 .q-tab{background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:8px 16px;font-family:var(--font-body);font-size:12px;font-weight:800;color:var(--text-muted);cursor:pointer;transition:.15s;white-space:nowrap;}
 .q-tab.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
@@ -115,16 +99,12 @@ repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,64,40,.5) 4
 .btn-add-q{background:var(--surface2);border:1.5px dashed var(--border);border-radius:var(--radius);padding:8px 14px;font-size:20px;color:var(--text-muted);cursor:pointer;line-height:1;transition:.15s;}
 .btn-add-q:hover{border-color:var(--gold);color:var(--gold);}
 .btn-remove-q{background:none;border:none;color:var(--red);cursor:pointer;font-size:15px;padding:0 0 0 4px;vertical-align:middle;opacity:.7;}
-
-/* ── PARTIDOS ── */
 .match-row{display:grid;grid-template-columns:22px 1fr;gap:6px;padding:11px 0;border-bottom:1px solid var(--border);align-items:center;}
 .match-row:last-child{border-bottom:none;padding-bottom:4px;}
 .match-num{font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-align:center;}
 .match-inner{display:grid;grid-template-columns:1fr 38px 38px 38px 1fr;gap:3px;align-items:center;}
 .team-name{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--text);line-height:1.2;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word;}
 .team-name.right{text-align:right;}
-
-/* Botones LEV — rápidos, sin delay Safari */
 .btn-opt{
 width:42px;height:46px;border:2px solid rgba(255,255,255,.12);
 background:rgba(255,255,255,.04);border-radius:8px;cursor:pointer;
@@ -141,8 +121,6 @@ touch-action:manipulation;
 .match-badge{display:inline-block;font-size:8px;font-weight:800;padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle;letter-spacing:1px;}
 .badge-doble{background:rgba(245,197,24,.15);color:var(--gold);border:1px solid rgba(245,197,24,.3);}
 .badge-triple{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);}
-
-/* ── BARRA INFERIOR — padding fijo 34px para Safari (no usa env() que falla en iframe GAS) ── */
 #barraCalc{
 position:fixed;bottom:0;left:0;right:0;
 background:rgba(5,16,10,.99);
@@ -157,8 +135,6 @@ z-index:999;box-shadow:0 -8px 30px rgba(0,0,0,.8);
 .barra-precio{font-family:var(--font-head);font-size:28px;letter-spacing:1px;color:var(--green);line-height:1;transition:color .2s;-webkit-font-smoothing:antialiased;}
 .barra-precio.incomplete{color:var(--text-muted);}
 .barra-detalle{font-size:10px;color:var(--text-muted);font-weight:600;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-
-/* ── PAGE 2 HEADER ── */
 .page2-sticky-header{position:sticky;top:0;z-index:200;background:var(--bg);border-bottom:2px solid var(--gold);box-shadow:0 4px 20px rgba(0,0,0,.4);padding:3px 0 0;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
 .p2h-top{display:flex;align-items:center;gap:6px;padding:0 0 3px;}
 .p2h-alias-wrap{flex-shrink:0;}
@@ -173,12 +149,8 @@ z-index:999;box-shadow:0 -8px 30px rgba(0,0,0,.8);
 .p2h-num{font-family:var(--font-head);font-size:20px;color:var(--text);line-height:1;flex-shrink:0;text-align:right;}
 .p2h-tabs{padding-bottom:2px;}
 .p2h-alerta{background:rgba(255,71,87,.12);border:1.5px solid var(--red);border-radius:var(--radius);padding:8px 12px;font-size:12px;font-weight:800;color:var(--red);margin-bottom:8px;text-align:center;letter-spacing:.3px;}
-
-/* ── BASURERO — solo ícono transparente ── */
 .btn-borrar-todo{background:transparent;border:none;color:var(--text-muted);font-size:18px;padding:6px 8px;border-radius:var(--radius);cursor:pointer;transition:.15s;flex-shrink:0;opacity:.5;touch-action:manipulation;}
 .btn-borrar-todo:hover{opacity:1;color:var(--red);}
-
-/* ── MISC ── */
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.2);border-top-color:currentColor;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .fade-in{animation:fadeIn .35s ease both;}
@@ -250,12 +222,10 @@ z-index:999;box-shadow:0 -8px 30px rgba(0,0,0,.8);
 .despedida-titulo{font-family:var(--font-head);font-size:38px;letter-spacing:3px;color:var(--green);margin-bottom:12px;}
 .despedida-msg{font-size:16px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:8px;}
 .despedida-sub{font-size:13px;color:var(--text-muted);font-weight:600;margin-bottom:24px;}
-
 @media(min-width:600px){.card{max-width:620px;padding:0 20px;}.hero{padding:40px 32px 28px;}.hero h1{font-size:clamp(40px,7vw,64px);letter-spacing:6px;}.btn{font-size:22px;padding:17px;}}
 @media(min-width:900px){.card{max-width:680px;}.panel{padding:26px 24px;}#barraCalc{padding:14px 32px 20px;}.barra-precio{font-size:32px;}}
 @media(min-width:1200px){body{padding-top:20px;}.card{max-width:700px;}}
 </style>
-
 </head>
 <body>
 
@@ -267,7 +237,6 @@ z-index:999;box-shadow:0 -8px 30px rgba(0,0,0,.8);
 
 <div id="page1" class="card fade-in">
 <div class="hero">
-<!-- Badge oculto por CSS + atributo inline doble seguro -->
 <div id="heroJornadaBadge" style="display:none!important;height:0!important;overflow:hidden!important;"></div>
 <h1>
 <span class="word-quiniela"><span class="emoji">⚽</span> QUINIELA</span>
@@ -374,6 +343,14 @@ oninput="this.value=this.value.toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0
 <div id="listaBoletas" style="display:none;"></div>
 </div>
 <div class="panel">
+<div class="section-title">😤 Reta a un amigo</div>
+<p style="font-size:13px;color:var(--text-muted);font-weight:700;margin-bottom:14px;line-height:1.6;">Ya armaste tu jugada. Mándale el reto antes de pagar.</p>
+<a id="btnWAPage3" class="btn-wa" href="#" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/></svg>
+ENVIAR RETO POR WHATSAPP
+</a>
+</div>
+<div class="panel">
 <div class="section-title">🏦 Datos de Pago</div>
 <div class="clabe-box">
 <div class="clabe-banco" id="clabeNombreBanco">BBVA</div>
@@ -436,6 +413,7 @@ ENVIAR RETO POR WHATSAPP
 <div class="boleta-img-wrap"><img id="boletaImgEl" src="" alt="Boleta"></div>
 <p class="boleta-hint">📱 Mantén presionada la imagen para guardarla</p>
 <a id="boletaDownloadLink" class="btn btn-gold" download="Boleta_QPF.png" style="display:block;text-align:center;text-decoration:none;padding:14px;font-size:18px;">💾 DESCARGAR IMAGEN</a>
+<button id="boletaShareLink" class="btn btn-wa" style="margin-top:8px;">📤 COMPARTIR / RETAR</button>
 <button class="btn btn-ghost" onclick="cerrarBoleta()" style="margin-top:8px;">✕ Cerrar</button>
 </div>
 </div>
@@ -457,13 +435,11 @@ var resultadoGuardado = null;
 var _partidosPrecargados = null;
 var _precargaEnCurso = false;
 
-// ── API GAS vía fetch (sin google.script.run — funciona fuera del sandbox de Google) ──
 var URL_API = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 
 function gasGet(qs){
   return fetch(URL_API + '?' + qs, {method:'GET', mode:'cors', cache:'no-cache'}).then(function(r){ return r.json(); });
 }
-// Content-Type "text/plain" evita el preflight OPTIONS que Apps Script no maneja.
 function gasPost(action, datos){
   return fetch(URL_API, {
     method:'POST', mode:'cors',
@@ -475,7 +451,6 @@ function gasPost(action, datos){
   });
 }
 
-// ── INIT ──
 gasGet('action=estadisticas').then(function(data){
 if (data) {
 if (data.boleto) PRECIO_BASE = Number(data.boleto) || 100;
@@ -501,7 +476,6 @@ body.classList.toggle('hidden');
 titulo.classList.toggle('abierto');
 });
 
-// ── MODAL ──
 function mostrarModal(opts) {
 var overlay = document.createElement('div');
 overlay.className = 'modal-overlay';
@@ -531,7 +505,6 @@ document.getElementById('mBC').onclick = cancel;
 overlay.onclick = function(e){ if(e.target===overlay) cancel(); };
 }
 
-// ── VALIDAR INGRESO ──
 function validarIngreso() {
 var n=document.getElementById('nombre').value.trim();
 var w=document.getElementById('whatsapp').value.trim();
@@ -578,7 +551,6 @@ gasGet('p=partidos').then(function(d){var p=(d&&d.partidos)||[];_partidosPrecarg
 .catch(function(){mostrarAviso(document.getElementById('aviso2'),'error','Error al cargar partidos.');});
 }
 
-// ── WHATSAPP ──
 var _waBuscado='',_waTimer=null,_waTimeout=null;
 function onWhatsappInput(val){
 var inp=document.getElementById('whatsapp'), hint=document.getElementById('waStatusHint');
@@ -602,7 +574,6 @@ var cn=document.getElementById('nombre');if(!cn.value.trim()) cn.value=j.nombre;
 },300);
 }
 
-// ── QUINIELAS ──
 function agregarQuiniela(){
 if(quinielas.length>0){
 mostrarModal({
@@ -639,7 +610,6 @@ var add=document.createElement('button');add.className='btn-add-q';add.textConte
 function getAliasQ(idx){if(quinielas[idx]&&quinielas[idx].alias)return quinielas[idx].alias;return quinielas.length===1?aliasBase:aliasBase+'-'+(idx+1);}
 function estaCompleta(qIdx){if(numPartidos===0)return false;var sel=quinielas[qIdx].selecciones;for(var i=0;i<numPartidos;i++)if(!sel[i]||sel[i].length===0)return false;return true;}
 
-// ── PARTIDOS ──
 function initPartidos(partidos){
 partidosGlobal=partidos||[];numPartidos=partidosGlobal.length;
 quinielas.forEach(function(_,i){inicializarSelecciones(i);});
@@ -667,7 +637,6 @@ container.appendChild(row);
 });
 }
 
-// Deseleccionar instantáneo — sin animación
 function toggleSel(qIdx,pIdx,resultado,btn){
 var arr=quinielas[qIdx].selecciones[pIdx];
 if(!arr)arr=quinielas[qIdx].selecciones[pIdx]=[];
@@ -689,7 +658,6 @@ var bw=rows[pidx].querySelector('.bw');
 if(bw)bw.innerHTML=arr.length===2?'<span class="match-badge badge-doble">DOBLE</span>':arr.length===3?'<span class="match-badge badge-triple">TRIPLE</span>':'';
 }
 
-// Basurero
 window.addEventListener('load',function(){_attachBorrarBtn();});
 function _attachBorrarBtn(){var b=document.getElementById('btnBorrarTodo');if(b)b.onclick=function(e){e.preventDefault();e.stopPropagation();borrarTodosPartidos();};}
 function borrarTodosPartidos(){
@@ -701,7 +669,6 @@ renderPartidos();actualizarBarraTotal();renderTabs();
 
 function contarCombos(qIdx){var d=0,t=0,sel=quinielas[qIdx].selecciones;for(var i=0;i<numPartidos;i++){var c=(sel[i]||[]).length;if(c===2)d++;if(c===3)t++;}return{dobles:d,triples:t};}
 
-// ── CALCULADORA ──
 function calcularCostoQuiniela(qIdx){var c=contarCombos(qIdx);return PRECIO_BASE*Math.pow(2,c.dobles)*Math.pow(3,c.triples);}
 function calcularTotalGeneral(){var t=0;quinielas.forEach(function(_,i){t+=calcularCostoQuiniela(i);});return t;}
 
@@ -746,7 +713,6 @@ btn.disabled=false;
 }
 }
 
-// ── ENVIAR ──
 function enviarQuinielas(){
 for(var i=0;i<quinielas.length;i++){
 if(!estaCompleta(i)){var av=document.getElementById('aviso2');mostrarAviso(av,'error','⚠️ "'+getAliasQ(i)+'" tiene partidos sin seleccionar.');activarTab(i);av.scrollIntoView({behavior:'smooth',block:'center'});return;}
@@ -786,6 +752,7 @@ if(boletas){var bBtn=document.createElement('button');bBtn.id='boletaBtn_'+i;bBt
 });
 var nQ=(res.aliasGuardados||[]).length;
 document.getElementById('totalDetalle').textContent=nQ+' quiniela'+(nQ>1?'s':'')+' registrada'+(nQ>1?'s':'');
+if(boletas) boletas.style.display='block';
 document.getElementById('page2').classList.add('hidden');
 document.getElementById('barraCalc').classList.add('hidden');
 document.getElementById('page3').classList.remove('hidden');
@@ -797,10 +764,13 @@ function activarRetoPage3(){
 var link='https://quinielaprofut.com';
 var alias=resultadoGuardado?(resultadoGuardado.aliasGuardados[0]||aliasBase):aliasBase;
 var jorn=document.getElementById('statJornada').textContent||'esta jornada';
-window._retoMsg='⚽ Le atino más que tú 😤\nYa registré mi quiniela *'+alias+'* en *'+jorn+'*\n¿Te atreves? 🏆\n📲 '+link;
+var jugEl=document.getElementById('statJugadores'),jugadores=jugEl?jugEl.textContent:'';
+var msg='⚽ Le atino más que tú 😤\nYa armé mi jugada *'+alias+'* en *'+jorn+'*'+(jugadores?'\nYa somos '+jugadores+' jugando 🔥':'')+'\n¿Te atreves? 🏆\n📲 '+link;
+window._retoMsg=msg;
+var btnP3=document.getElementById('btnWAPage3');
+if(btnP3) btnP3.href='https://wa.me/?text='+encodeURIComponent(msg);
 }
 
-// ── COMPROBANTE ──
 function subirComprobante(){
 var fi=document.getElementById('archivoPago'),av=document.getElementById('aviso3'),btn=document.getElementById('btnSubir');
 limpiarAviso(av);
@@ -833,7 +803,8 @@ if(res.estado!=='OK'){var btn=document.getElementById('btnSubir');btn.disabled=f
 var link='https://quinielaprofut.com';
 var alias=resultadoGuardado?(resultadoGuardado.aliasGuardados[0]||aliasBase):aliasBase;
 var jorn=document.getElementById('statJornada').textContent||'esta jornada';
-document.getElementById('btnWA').href='https://wa.me/?text='+encodeURIComponent('⚽ Le atino más que tú 😤\nYa registré *'+alias+'* en *'+jorn+'*\n¿Te atreves? 🏆\n📲 '+link);
+var jugEl2=document.getElementById('statJugadores'),jugadores2=jugEl2?jugEl2.textContent:'';
+document.getElementById('btnWA').href='https://wa.me/?text='+encodeURIComponent('⚽ Le atino más que tú 😤\nYa registré *'+alias+'* en *'+jorn+'*'+(jugadores2?'\nYa somos '+jugadores2+' jugando 🔥':'')+'\n¿Te atreves? 🏆\n📲 '+link);
 document.getElementById('page3').classList.add('hidden');
 document.getElementById('pageFinal').classList.remove('hidden');
 window.scrollTo(0,0);
@@ -850,7 +821,6 @@ div.appendChild(b);
 }
 }
 
-// ── REINICIAR ──
 function reiniciar(){
 userData={nombre:'',whatsapp:''};aliasBase='';quinielas=[];quinielaActiva=0;resultadoGuardado=null;
 ['nombre','whatsapp','alias','archivoPago'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
@@ -864,7 +834,6 @@ document.getElementById('page1').classList.remove('hidden');
 partidosGlobal=[];numPartidos=0;window.scrollTo(0,0);
 }
 
-// ── AGREGAR OTRA QUINIELA ──
 function agregarOtraQuiniela(){
 var ua=resultadoGuardado?(resultadoGuardado.aliasGuardados[resultadoGuardado.aliasGuardados.length-1]||aliasBase):aliasBase;
 mostrarModal({tipo:'input',title:'🎟️ NUEVA QUINIELA',msg:'Alias:',placeholder:ua+'_2',
@@ -883,21 +852,18 @@ renderTabs();renderPartidos();actualizarBarraTotal();window.scrollTo(0,0);
 });
 }
 
-// ── UTILIDADES ──
 function copiarClabe(){var clabe=(datosPago.clabe||document.getElementById('clabeNumero').textContent).replace(/\s/g,'');if(navigator.clipboard)navigator.clipboard.writeText(clabe).then(function(){var b=document.querySelector('.btn-copy');b.textContent='✅ ¡Copiado!';setTimeout(function(){b.textContent='📋 Copiar CLABE';},2000);});}
 function formatClabe(c){return c.replace(/(\d{4})(?=\d)/g,'$1 ').trim();}
 function escapeHtml(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''}
 function mostrarAviso(el,t,m){el.textContent=m;el.className='aviso show-'+t;}
 function limpiarAviso(el){el.textContent='';el.className='aviso';}
 
-// ── TABLA PRECIOS — chips ──
 function rellenarTablaPrecios(base){
 var tit=document.getElementById('tituloPrecioBase');
 if(tit) tit.textContent='$'+base.toLocaleString('es-MX');
 var grid=document.getElementById('preciosGrid');
 if(!grid) return;
 
-// 12 combinaciones: d=0..3, t=0..2 — ordenadas de menor a mayor precio
 var chips=[
 {d:0,t:0},{d:1,t:0},{d:0,t:1},{d:2,t:0},
 {d:1,t:1},{d:0,t:2},{d:3,t:0},{d:2,t:1},
@@ -928,7 +894,7 @@ var nota=document.getElementById('preciosNota');
 if(nota) nota.innerHTML='⚡ BASE <strong style="color:var(--gold)">$'+base.toLocaleString('es-MX')+'</strong> × 2<sup>D</sup> × 3<sup>T</sup> &nbsp;·&nbsp; Máx <strong>3D + 2T</strong>';
 }
 
-// ── BOLETA ──
+// ── BOLETA (legacy, ya no se usa para el render, se deja por compatibilidad) ──
 function buildTicketHTML(qIdx){
 var q=quinielas[qIdx],combos=contarCombos(qIdx),costo=calcularCostoQuiniela(qIdx);
 var total=calcularTotalGeneral(),alias=getAliasQ(qIdx),numQ=quinielas.length,qNum=qIdx+1;
@@ -960,26 +926,95 @@ rows+
 '<div style="padding:5px 14px;text-align:center;border-top:1px solid #1e2740;"><div style="font-size:7px;color:#3a4a60;letter-spacing:2px;text-transform:uppercase;">✅ CONSERVA TU BOLETA · quinielaprofut.com</div></div>'+
 '</div>';
 }
+
+// ── TARJETA CANVAS (nueva, compartible) ──
+function generarTarjetaBoleta(qIdx){
+var alias=getAliasQ(qIdx);
+var costo=calcularCostoQuiniela(qIdx);
+var combos=contarCombos(qIdx);
+var jornEl=document.getElementById('statJornada'),jorn=jornEl?jornEl.textContent:'esta jornada';
+var jugEl=document.getElementById('statJugadores'),jugadores=jugEl?jugEl.textContent:'';
+
+var canvas=document.createElement('canvas');
+canvas.width=1080;canvas.height=1080;
+var ctx=canvas.getContext('2d');
+
+var grad=ctx.createLinearGradient(0,0,1080,1080);
+grad.addColorStop(0,'#06080A');grad.addColorStop(1,'#0E1318');
+ctx.fillStyle=grad;ctx.fillRect(0,0,1080,1080);
+
+var glow=ctx.createRadialGradient(540,260,50,540,260,600);
+glow.addColorStop(0,'rgba(0,232,122,0.15)');glow.addColorStop(1,'rgba(0,232,122,0)');
+ctx.fillStyle=glow;ctx.fillRect(0,0,1080,1080);
+
+ctx.strokeStyle='#ff6b00';ctx.lineWidth=6;ctx.strokeRect(40,40,1000,1000);
+ctx.textAlign='center';
+
+ctx.font='700 40px Nunito, sans-serif';ctx.fillStyle='#F0F4F8';ctx.fillText('QUINIELA',540,150);
+ctx.font='900 40px Nunito, sans-serif';ctx.fillStyle='#00e87a';ctx.fillText('PRO FUT',540,198);
+ctx.font='700 26px Nunito, sans-serif';ctx.fillStyle='#FFD84D';ctx.fillText(String(jorn).toUpperCase(),540,250);
+
+ctx.font='160px serif';ctx.fillText('🎟️',540,440);
+
+ctx.font='700 30px Nunito, sans-serif';ctx.fillStyle='#8A9BB0';ctx.fillText('YA ESTOY DENTRO CON',540,500);
+ctx.font='900 90px Nunito, sans-serif';ctx.fillStyle='#ff6b00';ctx.fillText(String(alias).toUpperCase(),540,610);
+
+var comboTxt=[];
+if(combos.dobles>0)comboTxt.push(combos.dobles+' doble'+(combos.dobles!==1?'s':''));
+if(combos.triples>0)comboTxt.push(combos.triples+' triple'+(combos.triples!==1?'s':''));
+ctx.font='700 30px Nunito, sans-serif';ctx.fillStyle='#F0F4F8';
+ctx.fillText(comboTxt.length?comboTxt.join(' · '):'Quiniela sencilla',540,700);
+
+ctx.font='900 70px Nunito, sans-serif';ctx.fillStyle='#00e87a';ctx.fillText('$'+costo.toLocaleString('es-MX'),540,800);
+ctx.font='700 26px Nunito, sans-serif';ctx.fillStyle='#8A9BB0';ctx.fillText('EN JUEGO',540,840);
+
+if(jugadores){
+ctx.font='700 30px Nunito, sans-serif';ctx.fillStyle='#F0F4F8';
+ctx.fillText('Ya somos '+jugadores+' jugando 🔥',540,920);
+}
+
+ctx.font='700 32px Nunito, sans-serif';ctx.fillStyle='#F0F4F8';ctx.fillText('¿Te atreves?',540,970);
+ctx.font='800 32px Nunito, sans-serif';ctx.fillStyle='#00e87a';ctx.fillText('quinielaprofut.com',540,1010);
+
+return canvas;
+}
+
+function compartirTarjeta(canvas,alias){
+canvas.toBlob(function(blob){
+var jugEl=document.getElementById('statJugadores'),jugadores=jugEl?jugEl.textContent:'';
+var mensaje='⚽ Le atino más que tú 😤 Ya armé mi jugada *'+alias+'* en QuinielaPro Fut.'+(jugadores?' Ya somos '+jugadores+' jugando 🔥':'')+' ¿Te atreves? 🏆 quinielaprofut.com';
+var file=new File([blob],'Boleta_'+alias+'_QPF.png',{type:'image/png'});
+if(navigator.canShare&&navigator.canShare({files:[file]})){
+navigator.share({files:[file],title:'QuinielaPro Fut',text:mensaje}).catch(function(){});
+}else{
+var url=URL.createObjectURL(blob);
+var a=document.createElement('a');
+a.href=url;a.download='Boleta_'+alias+'_QPF.png';
+document.body.appendChild(a);a.click();document.body.removeChild(a);
+setTimeout(function(){window.open('https://wa.me/?text='+encodeURIComponent(mensaje),'_blank');},500);
+}
+},'image/png');
+}
+
 function verBoleta(qIdx){
 var btn=document.getElementById('boletaBtn_'+qIdx);
 if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Generando...';}
-var container=document.getElementById('boletaRenderContainer');
-container.innerHTML=buildTicketHTML(qIdx);container.style.display='block';
 setTimeout(function(){
-html2canvas(container.firstChild,{scale:2,useCORS:false,allowTaint:true,backgroundColor:'#0f172a',logging:false})
-.then(function(canvas){
-var url=canvas.toDataURL('image/png'),al=getAliasQ(qIdx);
+try{
+var canvas=generarTarjetaBoleta(qIdx);
+var al=getAliasQ(qIdx);
+var url=canvas.toDataURL('image/png');
 document.getElementById('boletaImgEl').src=url;
 var dl=document.getElementById('boletaDownloadLink');dl.href=url;dl.download='Boleta_'+al+'_QPF.png';
+var btnShare=document.getElementById('boletaShareLink');
+if(btnShare)btnShare.onclick=function(){compartirTarjeta(canvas,al);};
 document.getElementById('boletaModal').classList.remove('hidden');
-container.style.display='none';
 if(btn){btn.disabled=false;btn.innerHTML='📄 VER Y GUARDAR BOLETA — '+escapeHtml(al)+' · $'+calcularCostoQuiniela(qIdx).toLocaleString('es-MX');}
-}).catch(function(){container.style.display='none';if(btn){btn.disabled=false;btn.innerHTML='📄 VER Y GUARDAR BOLETA';}alert('Error al generar imagen.');});
-},150);
+}catch(e){if(btn){btn.disabled=false;btn.innerHTML='📄 VER Y GUARDAR BOLETA';}alert('Error al generar imagen.');}
+},50);
 }
 function cerrarBoleta(){document.getElementById('boletaModal').classList.add('hidden');document.getElementById('boletaImgEl').src='';}
 
-// ── COMPROBANTE PREVIEW ──
 function onArchivoSeleccionado(input){
 if(!input.files||!input.files[0])return;
 var file=input.files[0],av=document.getElementById('aviso3');limpiarAviso(av);
@@ -995,7 +1030,6 @@ btn.disabled=false;btn.style.opacity='1';btn.textContent='📤 SUBIR COMPROBANTE
 reader.readAsDataURL(file);
 }
 
-// ── DESPEDIDA ──
 function mostrarDespedida(){
 var alias=userData.nombre||aliasBase||'Jugador';
 var panel=document.getElementById('pageFinal');if(!panel)return;
