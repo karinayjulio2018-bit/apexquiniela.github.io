@@ -90,6 +90,10 @@ nav{position:sticky;top:0;left:0;right:0;z-index:999;display:flex;align-items:ce
 .partido-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#00e87a;opacity:0;transition:opacity 0.2s;}.partido-card:hover{border-color:rgba(0,232,122,0.3);transform:translateX(4px);box-shadow:0 4px 20px rgba(0,0,0,0.3);}.partido-card:hover::before{opacity:1;}
 .partido-liga-icon{font-size:1.4rem;flex-shrink:0;}.partido-info{flex:1;min-width:0;}.partido-equipos{font-size:0.85rem;font-weight:700;color:#F0F4F8;white-space:normal;line-height:1.3;word-break:break-word;}.partido-equipos .vs{color:#7A8B9A;font-weight:400;margin:0 0.3rem;}.partido-liga-tag{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#7A8B9A;margin-top:0.15rem;}
 .partido-destacado{border-color:rgba(255,107,0,0.3)!important;background:linear-gradient(135deg,#0E1318 0%,rgba(255,107,0,0.04) 100%)!important;}.partido-destacado::before{background:#ff6b00!important;}.partido-destacado .partido-equipos{color:#ff6b00;}
+.card-hoy-envivo{border-color:rgba(255,77,106,.5)!important;box-shadow:0 0 24px rgba(255,77,106,.15);animation:pulsoVivoCard 1.8s ease-in-out infinite;}
+@keyframes pulsoVivoCard{0%,100%{box-shadow:0 0 20px rgba(255,77,106,.12);}50%{box-shadow:0 0 28px rgba(255,77,106,.28);}}
+.card-hoy-finalizado{opacity:.55;filter:grayscale(.25);}
+.badge-envivo .dot-envivo{width:6px;height:6px;background:#FF4D6A;border-radius:50%;display:inline-block;margin-right:5px;animation:pulseAnim 1s infinite;}
 .partido-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#7A8B9A;flex-shrink:0;width:1.8rem;text-align:center;}.partidos-cta{text-align:center;margin-top:2.5rem;}
 .pozo-preview{display:inline-flex;align-items:center;gap:1rem;background:linear-gradient(135deg,rgba(255,107,0,0.08),rgba(255,107,0,0.04));border:2px solid rgba(255,107,0,0.4);border-radius:14px;padding:1.25rem 2rem;margin-bottom:1.5rem;}
 .pozo-preview-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:#ff6b00;line-height:1;}.pozo-preview-label{font-size:0.8rem;color:#8A9BB0;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;}
@@ -765,7 +769,17 @@ var _MESES_ES = {
 };
 function _parseFechaEs(fechaStr){
   if(!fechaStr) return null;
-  var m = String(fechaStr).match(/(\d{1,2})\s+de\s+([A-Za-zÁÉÍÓÚáéíóú]+)\s+(\d{4})/);
+  var s = String(fechaStr);
+  // Formato "dd-MM-yyyy HH:mm" (el que realmente manda getPartidosActuales en Codigo.gs)
+  var mNum = s.match(/(\d{2})-(\d{2})-(\d{4})(?:\s+(\d{2}):(\d{2}))?/);
+  if(mNum){
+    var dd = parseInt(mNum[1],10), mm = parseInt(mNum[2],10)-1, yy = parseInt(mNum[3],10);
+    var hh = mNum[4]!==undefined ? parseInt(mNum[4],10) : null;
+    var mi = mNum[5]!==undefined ? parseInt(mNum[5],10) : null;
+    return { fecha: new Date(yy, mm, dd), hora: hh, min: mi };
+  }
+  // Formato texto en español "17 de Julio 2026 18:00 hrs."
+  var m = s.match(/(\d{1,2})\s+de\s+([A-Za-zÁÉÍÓÚáéíóú]+)\s+(\d{4})/);
   if(!m) return null;
   var dia = parseInt(m[1],10);
   var mesNombre = m[2].toLowerCase()
@@ -773,16 +787,31 @@ function _parseFechaEs(fechaStr){
   var anio = parseInt(m[3],10);
   var mes = _MESES_ES[mesNombre];
   if(mes===undefined) return null;
-  return new Date(anio, mes, dia);
+  var mHora = s.match(/(\d{1,2}):(\d{2})/);
+  return {
+    fecha: new Date(anio, mes, dia),
+    hora: mHora ? parseInt(mHora[1],10) : null,
+    min:  mHora ? parseInt(mHora[2],10) : null
+  };
 }
 function _esHoy(fechaStr){
-  var d = _parseFechaEs(fechaStr);
-  if(!d) return false;
+  var p = _parseFechaEs(fechaStr);
+  if(!p) return false;
   var hoy = new Date();
-  return d.getFullYear()===hoy.getFullYear() && d.getMonth()===hoy.getMonth() && d.getDate()===hoy.getDate();
+  return p.fecha.getFullYear()===hoy.getFullYear() && p.fecha.getMonth()===hoy.getMonth() && p.fecha.getDate()===hoy.getDate();
 }
-
-function _pagoBadge(estado){
+function _formatHoraPartido(fechaStr){
+  var p = _parseFechaEs(fechaStr);
+  if(!p || p.hora===null) return '';
+  return String(p.hora).padStart(2,'0')+':'+String(p.min||0).padStart(2,'0');
+}
+function _esEnVivoAuto(fechaStr){
+  var p = _parseFechaEs(fechaStr);
+  if(!p || p.hora===null) return false;
+  var kickoff = new Date(p.fecha.getFullYear(), p.fecha.getMonth(), p.fecha.getDate(), p.hora, p.min||0);
+  return Date.now() >= kickoff.getTime();
+}
+  function _pagoBadge(estado){
   if(estado==='confirmado') return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(0,232,122,.12);color:#00e87a;border:1px solid rgba(0,232,122,.3);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">✓ CONFIRMADO</span>';
   if(estado==='revision') return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,216,77,.12);color:#FFD84D;border:1px solid rgba(255,216,77,.3);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">⏳ REVISIÓN</span>';
   return '<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,77,106,.1);color:#FF8FA3;border:1px solid rgba(255,77,106,.25);border-radius:100px;padding:4px 12px;font-size:.72rem;font-weight:800;">• PENDIENTE</span>';
@@ -999,15 +1028,38 @@ function renderSeguimiento(){
   html += '</div>';
 
   // ── Partidos de Hoy (o Podio si no hay partidos hoy) ──
+    // ── Partidos de Hoy (o Podio si no hay partidos hoy) ──
   var partidosHoy = partidosVista.filter(function(p){ return _esHoy(p.fecha); });
+  // EN VIVO primero, luego por jugarse, luego finalizados
+  partidosHoy.sort(function(a,b){
+    var rank = function(p){ if(_esEnVivoAuto(p.fecha) && !p.resultado) return 0; if(!p.resultado) return 1; return 2; };
+    return rank(a)-rank(b);
+  });
 
   if(partidosHoy.length){
     html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#ff6b00;display:flex;align-items:center;gap:8px;">⚽ Partidos de Hoy</div>';
     html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2.5rem;">';
     partidosHoy.forEach(function(p){
       var jugado = !!p.resultado;
-      html += '<div style="background:#0E1318;border:1px solid '+(jugado?'#1E2830':'rgba(255,107,0,.4)')+';border-radius:16px;padding:1.5rem 1.25rem;text-align:center;'+(jugado?'':'box-shadow:0 0 20px rgba(255,107,0,.08);')+'">';
-      html += '<div style="font-size:0.65rem;color:'+(jugado?'#7A8B9A':'#ff9966')+';text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:0.75rem;">'+(jugado?'✓ Finalizado':'⏳ Por jugarse')+'</div>';
+      var enVivo = _esEnVivoAuto(p.fecha) && !jugado;
+      var hora = _formatHoraPartido(p.fecha);
+      var cardCls = enVivo ? 'card-hoy-envivo' : (jugado ? 'card-hoy-finalizado' : '');
+      var badgeTxt, badgeStyle;
+      if(enVivo){
+        badgeTxt = '<span class="dot-envivo"></span>EN VIVO';
+        badgeStyle = 'display:inline-flex;align-items:center;text-transform:uppercase;letter-spacing:1.5px;font-weight:900;font-size:0.65rem;padding:4px 12px;border-radius:100px;background:rgba(255,77,106,.14);color:#FF8FA3;border:1px solid rgba(255,77,106,.4);';
+      } else if(jugado){
+        badgeTxt = '✓ Finalizado';
+        badgeStyle = 'font-size:0.65rem;color:#7A8B9A;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;';
+      } else {
+        badgeTxt = '⏳ Por jugarse'+(hora?' · '+hora:'');
+        badgeStyle = 'font-size:0.65rem;color:#ff9966;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;';
+      }
+      html += '<div class="'+cardCls+'" style="background:#0E1318;border:1px solid '+(enVivo?'rgba(255,77,106,.5)':(jugado?'#1E2830':'rgba(255,107,0,.4)'))+';border-radius:16px;padding:1.5rem 1.25rem;text-align:center;'+(!jugado&&!enVivo?'box-shadow:0 0 20px rgba(255,107,0,.08);':'')+'">';
+      html += '<div style="margin-bottom:0.75rem;"><span style="'+badgeStyle+'">'+badgeTxt+'</span></div>';
+      if(hora && !enVivo){
+        html += '<div style="font-family:\'Nunito\',sans-serif;font-variant-numeric:tabular-nums;font-size:0.72rem;color:#7A8B9A;font-weight:700;margin-bottom:0.5rem;">🕐 '+hora+' hrs</div>';
+      }
       html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#F0F4F8;line-height:1.25;">'+_esc(p.local)+'</div>';
       html += '<div style="font-size:0.72rem;color:#7A8B9A;margin:0.4rem 0;">vs</div>';
       html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#F0F4F8;line-height:1.25;">'+_esc(p.visitante)+'</div>';
