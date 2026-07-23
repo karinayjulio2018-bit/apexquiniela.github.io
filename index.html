@@ -822,41 +822,33 @@ function generarTarjetaReto(alias, aciertos, pct){
   var canvas = document.createElement('canvas');
   canvas.width = 1080; canvas.height = 1920;
   var ctx = canvas.getContext('2d');
- 
-  // Fondo
+
   var grad = ctx.createLinearGradient(0,0,1080,1920);
   grad.addColorStop(0, '#06080A'); grad.addColorStop(1, '#0E1318');
   ctx.fillStyle = grad; ctx.fillRect(0,0,1080,1920);
- 
-  // Glow central (ajustado al nuevo centro vertical ~640)
+
   var glow = ctx.createRadialGradient(540,640,80,540,640,750);
   glow.addColorStop(0, 'rgba(0,232,122,0.15)'); glow.addColorStop(1, 'rgba(0,232,122,0)');
   ctx.fillStyle = glow; ctx.fillRect(0,0,1080,1920);
- 
-  // Marco — con margen de seguridad para no chocar con UI de Stories arriba/abajo
+
   ctx.strokeStyle = '#ff6b00'; ctx.lineWidth = 6; ctx.strokeRect(40,180,1000,1560);
- 
+
   ctx.textAlign = 'center';
- 
-  // Header
+
   ctx.font = '700 46px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 320);
   ctx.font = '900 46px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 380);
- 
-  // Trofeo grande — zona segura central
+
   ctx.font = '220px serif'; ctx.fillText('🏆', 540, 700);
   ctx.font = '700 36px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D'; ctx.fillText('1ER LUGAR', 540, 780);
- 
-  // Alias
+
   ctx.font = '900 100px Nunito, sans-serif'; ctx.fillStyle = '#ff6b00'; ctx.fillText(String(alias).toUpperCase(), 540, 930);
- 
-  // Aciertos — número protagonista
+
   ctx.font = '900 260px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText(String(aciertos), 540, 1220);
   ctx.font = '700 38px Nunito, sans-serif'; ctx.fillStyle = '#8A9BB0'; ctx.fillText('ACIERTOS · '+pct+'% EFECTIVIDAD', 540, 1290);
- 
-  // CTA inferior
+
   ctx.font = '700 38px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('¿Tienes lo que se necesita?', 540, 1560);
   ctx.font = '800 42px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('quinielaprofut.com', 540, 1620);
- 
+
   canvas.toBlob(function(blob){
     var mensaje = 'Voy de líder en la QuinielaPro con '+aciertos+' aciertos 🏆 ¿Te atreves a intentar bajarme? https://quinielaprofut.com';
     var file = new File([blob], 'quinielapro-lider.png', {type:'image/png'});
@@ -871,39 +863,41 @@ function generarTarjetaReto(alias, aciertos, pct){
     }
   }, 'image/png');
 }
+
+  
 // ── Genera tarjeta visual de CUALQUIER posición (canvas) y comparte/descarga ──
 function generarTarjetaPosicion(alias, aciertos, pct, rank){
   var canvas = document.createElement('canvas');
   canvas.width = 1080; canvas.height = 1920;
   var ctx = canvas.getContext('2d');
- 
+
   var grad = ctx.createLinearGradient(0,0,1080,1920);
   grad.addColorStop(0, '#06080A'); grad.addColorStop(1, '#0E1318');
   ctx.fillStyle = grad; ctx.fillRect(0,0,1080,1920);
- 
+
   var glow = ctx.createRadialGradient(540,640,80,540,640,750);
   glow.addColorStop(0, 'rgba(0,232,122,0.15)'); glow.addColorStop(1, 'rgba(0,232,122,0)');
   ctx.fillStyle = glow; ctx.fillRect(0,0,1080,1920);
- 
+
   ctx.strokeStyle = '#ff6b00'; ctx.lineWidth = 6; ctx.strokeRect(40,180,1000,1560);
- 
+
   ctx.textAlign = 'center';
- 
+
   ctx.font = '700 46px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 320);
   ctx.font = '900 46px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 380);
- 
+
   var medalla = rank===1?'🥇':(rank===2?'🥈':(rank===3?'🥉':'⚽'));
   ctx.font = '220px serif'; ctx.fillText(medalla, 540, 700);
   ctx.font = '700 36px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D'; ctx.fillText(rank+'° LUGAR', 540, 780);
- 
+
   ctx.font = '900 100px Nunito, sans-serif'; ctx.fillStyle = '#ff6b00'; ctx.fillText(String(alias).toUpperCase(), 540, 930);
- 
+
   ctx.font = '900 260px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText(String(aciertos), 540, 1220);
   ctx.font = '700 38px Nunito, sans-serif'; ctx.fillStyle = '#8A9BB0'; ctx.fillText('ACIERTOS · '+pct+'% EFECTIVIDAD', 540, 1290);
- 
+
   ctx.font = '700 38px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('¿Me alcanzas?', 540, 1560);
   ctx.font = '800 42px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('quinielaprofut.com', 540, 1620);
- 
+
   canvas.toBlob(function(blob){
     var mensaje = 'Voy en el lugar #'+rank+' de la QuinielaPro con '+aciertos+' aciertos 🏆 ¿Me alcanzas? https://quinielaprofut.com';
     var file = new File([blob], 'quinielapro-posicion.png', {type:'image/png'});
@@ -919,6 +913,67 @@ function generarTarjetaPosicion(alias, aciertos, pct, rank){
   }, 'image/png');
 }
  
+function generarTarjetaRanking(jugadores, jornada){
+  var canvas = document.createElement('canvas');
+  canvas.width = 1080; canvas.height = 1920;
+  var ctx = canvas.getContext('2d');
+
+  var grad = ctx.createLinearGradient(0,0,1080,1920);
+  grad.addColorStop(0, '#06080A'); grad.addColorStop(1, '#0E1318');
+  ctx.fillStyle = grad; ctx.fillRect(0,0,1080,1920);
+
+  var glow = ctx.createRadialGradient(540,300,80,540,300,600);
+  glow.addColorStop(0, 'rgba(0,232,122,0.13)'); glow.addColorStop(1, 'rgba(0,232,122,0)');
+  ctx.fillStyle = glow; ctx.fillRect(0,0,1080,1920);
+
+  ctx.strokeStyle = '#ff6b00'; ctx.lineWidth = 6; ctx.strokeRect(40,40,1000,1840);
+
+  ctx.textAlign = 'center';
+
+  ctx.font = '700 42px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 140);
+  ctx.font = '900 42px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 190);
+  ctx.font = '700 30px Nunito, sans-serif'; ctx.fillStyle = '#ff9966'; ctx.fillText((jornada||'JORNADA ACTUAL').toUpperCase(), 540, 240);
+
+  ctx.font = '900 54px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D'; ctx.fillText('🏆 RANKING', 540, 330);
+
+  var top = jugadores.slice(0, 10);
+  var startY = 430;
+  var rowH = 118;
+  var maxPts = top.length ? top[0].aciertos : 0;
+
+  top.forEach(function(j, i){
+    var y = startY + i*rowH;
+    var esLider = j.aciertos === maxPts && maxPts > 0;
+
+    ctx.fillStyle = esLider ? 'rgba(255,216,77,0.12)' : (i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent');
+    ctx.fillRect(70, y - 60, 940, 96);
+
+    ctx.textAlign = 'left';
+    ctx.font = '900 44px Bebas Neue, sans-serif';
+    ctx.fillStyle = esLider ? '#FFD84D' : '#8A9BB0';
+    ctx.fillText('#'+(i+1), 100, y);
+
+    ctx.font = '800 40px Nunito, sans-serif';
+    ctx.fillStyle = esLider ? '#FFD84D' : '#F0F4F8';
+    var alias = String(j.alias).toUpperCase();
+    if(alias.length > 16) alias = alias.slice(0,15)+'…';
+    ctx.fillText((esLider ? '👑 ' : '') + alias, 220, y);
+
+    ctx.textAlign = 'right';
+    ctx.font = '900 46px Bebas Neue, sans-serif';
+    ctx.fillStyle = esLider ? '#FFD84D' : '#00e87a';
+    ctx.fillText(j.aciertos + ' pts', 970, y);
+
+    ctx.textAlign = 'center';
+  });
+
+  var footerY = startY + top.length*rowH + 60;
+  ctx.font = '700 36px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('¿Entrarías a competir?', 540, footerY);
+  ctx.font = '800 44px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('quinielaprofut.com', 540, footerY + 60);
+
+  canvas.toBlob(function(blob){
+    var mensaje = 'Así va el ranking de la QuinielaPro esta jornada 🏆 ¿Te apuntas? https://quinielaprofut.com';
+    var file = new File([blob], 'quinielapro-ranking.png',
 
 // ── Estado de datos reales + simulador (100% local, nunca toca el backend) ──
 var SF_DATA = null;
