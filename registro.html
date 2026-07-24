@@ -665,7 +665,8 @@ var s=sel[i]||[];
 var badge=s.length===2?'<span class="match-badge badge-doble">DOBLE</span>':s.length===3?'<span class="match-badge badge-triple">TRIPLE</span>':'';
 var loc=p.local.length>14?p.local.substring(0,13)+'.':p.local;
 var vis=p.visitante.length>14?p.visitante.substring(0,13)+'.':p.visitante;
-row.innerHTML='<div class="match-num">'+(i+1)+'</div><div><div class="match-inner">'+
+var flagReñido = p.destacado ? '<div style="font-size:9px;font-weight:900;color:var(--gold);margin-bottom:3px;">🔥 PARTIDO REÑIDO — aquí muchos ponen doble</div>' : '';
+row.innerHTML='<div class="match-num">'+(i+1)+'</div><div>'+flagReñido+'<div class="match-inner">'+
 '<div class="team-name" title="'+escapeHtml(p.local)+'">'+escapeHtml(loc)+'</div>'+
 '<button class="btn-opt'+(s.indexOf('LOCAL')>-1?' sel-L':'')+'" onclick="toggleSel('+quinielaActiva+','+i+',\'LOCAL\',this)">L</button>'+
 '<button class="btn-opt'+(s.indexOf('EMPATE')>-1?' sel-E':'')+'" onclick="toggleSel('+quinielaActiva+','+i+',\'EMPATE\',this)">E</button>'+
