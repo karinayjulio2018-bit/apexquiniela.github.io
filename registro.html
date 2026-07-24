@@ -85,7 +85,6 @@ repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,64,40,.5) 4
 .pc-price.c3{color:var(--red);}
 .pc-formula{font-size:9px;color:var(--text-muted);font-weight:700;opacity:.7;}
 .precios-nota{padding:6px 12px 10px;font-size:10px;font-weight:700;color:var(--text-muted);text-align:center;line-height:1.5;}
-#tablaMatrizBody,#tablaNotaPrecio{display:none!important;}
 .stats-row{display:flex;gap:8px;margin-bottom:14px;}
 .stat-box{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px;text-align:center;}
 .stat-val{font-family:var(--font-head);font-size:22px;color:var(--gold);letter-spacing:1px;}
@@ -254,11 +253,6 @@ z-index:999;box-shadow:0 -8px 30px rgba(0,0,0,.8);
 <div class="precios-grid" id="preciosGrid"></div>
 <div class="precios-nota" id="preciosNota">⚡ BASE × 2<sup>D</sup> × 3<sup>T</sup> &nbsp;·&nbsp; Máx <strong>3 Dobles + 2 Triples</strong></div>
 </div>
-<tbody id="tablaMatrizBody" style="display:none"></tbody>
-<div id="tablaNotaPrecio" style="display:none"></div>
-</div>
-<tbody id="tablaMatrizBody" style="display:none"></tbody>
-<div id="tablaNotaPrecio" style="display:none"></div>
 </div>
 <div class="panel">
 <div class="section-title">👤 Tus Datos</div>
@@ -402,7 +396,8 @@ ENVIAR RETO POR WHATSAPP
 </div>
 <div class="panel" id="boletasGuardadas" style="display:none;"><div class="section-title">🎟️ Tus Boletas</div></div>
 <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
-<button class="btn btn-ghost" onclick="reiniciar()" style="flex:1;min-width:140px;">🔄 NUEVA JUGADA</button>
+<button class="btn btn-ghost" onclick="agregarOtraQuiniela()" style="flex:1;min-width:140px;">➕ OTRA QUINIELA</button>
+<button class="btn btn-ghost" onclick="reiniciar()" style="flex:1;min-width:140px;">🔄 NUEVA JUGADA (otro jugador)</button>
 <button class="btn btn-cerrar" onclick="mostrarDespedida()" style="flex:1;min-width:140px;">✅ FINALIZAR</button>
 </div>
 </div>
@@ -422,7 +417,7 @@ ENVIAR RETO POR WHATSAPP
 
 <script>
 // ════════════════════════════════════
-// QUINIELA PRO FUT — Index.html v6
+// QUINIELA PRO FUT — Index.html v7 (corregido)
 // ════════════════════════════════════
 
 var PRECIO_BASE = 100;
@@ -870,6 +865,7 @@ userData={nombre:'',whatsapp:''};aliasBase='';quinielas=[];quinielaActiva=0;resu
 var inp=document.getElementById('whatsapp');inp.style.borderColor='';inp.style.boxShadow='';
 var hint=document.getElementById('waStatusHint');if(hint){hint.textContent='';hint.className='wa-status-hint';}
 _waBuscado='';clearTimeout(_waTimer);clearTimeout(_waTimeout);
+_leadEnviado=false;clearTimeout(_leadTimer);_esJugadorConocido=false;
 var btn=document.getElementById('btnIniciar');btn.disabled=false;btn.textContent='ARMAR MI JUGADA ⚽';
 limpiarAviso(document.getElementById('aviso1'));
 ['pageFinal','page3','page2','barraCalc'].forEach(function(id){document.getElementById(id).classList.add('hidden');});
