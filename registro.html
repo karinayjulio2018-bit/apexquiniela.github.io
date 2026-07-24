@@ -268,7 +268,7 @@ oninput="this.value=this.value.replace(/\D/g,'').substring(0,10);onWhatsappInput
 </div>
 <div class="field-group">
 <label class="field-label">Nombre completo</label>
-<input class="field-input" type="text" id="nombre" placeholder="Ej. Julio César" autocomplete="name">
+<input class="field-input" type="text" id="nombre" placeholder="Ej. Julio César" autocomplete="name" oninput="intentarCapturarLead()">
 </div>
 <div class="alias-panel">
 <div class="alias-title">🎟️ Alias de Jugador</div>
@@ -480,15 +480,17 @@ var overlay = document.createElement('div');
 overlay.className = 'modal-overlay';
 var esInput = opts.tipo === 'input';
 var iid = 'mi_' + Date.now();
+var okTxt = opts.okLabel || (esInput?'✓ Aceptar':'✓ Sí, confirmar');
 overlay.innerHTML =
 '<div class="modal-box">' +
 '<div class="modal-title">' + (opts.title||'⚽ Confirmar') + '</div>' +
 '<div class="modal-msg">' + (opts.msg||'') + '</div>' +
 (esInput ? '<input class="modal-input" id="'+iid+'" type="text" maxlength="20" placeholder="'+(opts.placeholder||'')+'" autocomplete="off" autocorrect="off" spellcheck="false">' : '') +
 '<div class="modal-btns">' +
-'<button class="btn btn-ghost" id="mBC">✕ Cancelar</button>' +
-'<button class="btn btn-green" id="mBO">'+(esInput?'✓ Aceptar':'✓ Sí, confirmar')+'</button>' +
-'</div></div>';
+(opts.soloOk ? '' : '<button class="btn btn-ghost" id="mBC">✕ Cancelar</button>') +
+'<button class="btn btn-green" id="mBO">'+okTxt+'</button>' +
+'</div></div>';  
+
 document.body.appendChild(overlay);
 var inp = esInput ? document.getElementById(iid) : null;
 if (inp) {
@@ -500,7 +502,7 @@ inp.addEventListener('keydown', function(e){ if(e.key==='Enter') ok(); });
 function ok() { var v = esInput?(inp?inp.value.trim():''):true; overlay.remove(); if(opts.onOk) opts.onOk(v); }
 function cancel() { overlay.remove(); if(opts.onCancel) opts.onCancel(); }
 document.getElementById('mBO').onclick = ok;
-document.getElementById('mBC').onclick = cancel;
+var mbc = document.getElementById('mBC'); if(mbc) mbc.onclick = cancel;
 overlay.onclick = function(e){ if(e.target===overlay) cancel(); };
 }
 
@@ -524,7 +526,18 @@ gasGet('action=verificarAlias&alias='+encodeURIComponent(al)+'&whatsapp='+encode
 function resultadoVerificacion(res) {
 var av=document.getElementById('aviso1'), btn=document.getElementById('btnIniciar');
 if(res.estado==='ALIAS_DUPLICADO'){btn.disabled=false;btn.textContent='ARMAR MI JUGADA ⚽';mostrarAviso(av,'error','❌ Ese alias ya está en uso. Elige otro.');return;}
-if(res.estado==='CERRADO'){btn.disabled=false;btn.textContent='ARMAR MI JUGADA ⚽';mostrarAviso(av,'error','🔒 La quiniela está cerrada.');return;}
+if(res.estado==='CERRADO'){
+btn.disabled=false;btn.textContent='ARMAR MI JUGADA ⚽';
+intentarCapturarLead(true);
+mostrarModal({
+title:'🔒 ¡JORNADA CERRADA!',
+msg:(_esJugadorConocido?'Ya te tenemos registrado antes 💪<br><br>':'')+'Pero no te quedes fuera 🔥<br><br>Ya te anotamos'+(userData.nombre?', <strong>'+escapeHtml(userData.nombre)+'</strong>':'')+'. Te avisamos por WhatsApp en cuanto abra la próxima jornada.',
+okLabel:'✓ ¡Perfecto, avísenme!',
+soloOk:true,
+onOk:function(){}
+});
+return;
+}
 document.getElementById('page1').classList.add('hidden');
 document.getElementById('page2').classList.remove('hidden');
 document.getElementById('barraCalc').classList.remove('hidden');
@@ -550,9 +563,35 @@ gasGet('p=partidos').then(function(d){var p=(d&&d.partidos)||[];_partidosPrecarg
 .catch(function(){mostrarAviso(document.getElementById('aviso2'),'error','Error al cargar partidos.');});
 }
 
+var _leadEnviado = false;
+var _leadTimer = null;
+var _esJugadorConocido = false;
+
+function intentarCapturarLead(forzar){
+  if(_leadEnviado) return;
+  var n = document.getElementById('nombre').value.trim();
+  var w = document.getElementById('whatsapp').value.trim();
+  if(!n || w.length!==10) return;
+  clearTimeout(_leadTimer);
+  var enviar = function(){
+    if(_leadEnviado) return;
+    _leadEnviado = true;
+    fetch(URL_API, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify({nombre:n, whatsapp:w, fuente:'registro_intento', email:'', notif:true})
+    }).catch(function(){});
+  };
+  if(forzar) enviar(); else _leadTimer = setTimeout(enviar, 1200);
+}  
+
+
+
+  
 var _waBuscado='',_waTimer=null,_waTimeout=null;
 function onWhatsappInput(val){
-var inp=document.getElementById('whatsapp'), hint=document.getElementById('waStatusHint');
+intentarCapturarLead();
+var inp=document.getElementById('whatsapp'), hint=document.getElementById('waStatusHint');  
 if(val.length!==10){inp.style.borderColor='';inp.style.boxShadow='';if(hint){hint.textContent='';hint.className='wa-status-hint';}return;}
 if(val===_waBuscado) return;
 inp.style.borderColor='var(--gold)';inp.style.boxShadow='0 0 0 3px rgba(255,107,0,.15)';
@@ -565,7 +604,8 @@ clearTimeout(_waTimeout);
 _waTimeout=setTimeout(function(){inp.style.borderColor='';inp.style.boxShadow='';if(hint){hint.textContent='';hint.className='wa-status-hint';}},3000);
 gasGet('action=buscarJugador&whatsapp='+encodeURIComponent(val)).then(function(j){
 clearTimeout(_waTimeout);
-if(!j || !j.nombre){inp.style.borderColor='';inp.style.boxShadow='';if(hint){hint.textContent='';hint.className='wa-status-hint';}return;}
+if(!j || !j.nombre){_esJugadorConocido=false;inp.style.borderColor='';inp.style.boxShadow='';if(hint){hint.textContent='';hint.className='wa-status-hint';}return;}
+_esJugadorConocido=true;
 inp.style.borderColor='var(--green)';inp.style.boxShadow='0 0 0 3px rgba(0,232,122,.12)';
 if(hint){hint.textContent='✅ ¡Jugador reconocido!';hint.className='wa-status-hint encontrado';}
 var cn=document.getElementById('nombre');if(!cn.value.trim()) cn.value=j.nombre;
