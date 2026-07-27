@@ -990,6 +990,144 @@ function generarTarjetaRanking(jugadores, jornada){
   }, 'image/png');
 }
 
+// ── NUEVO: abrevia pronósticos para la tarjeta (LOCAL→L, EMPATE→E, VISITANTE→V) ──
+function _abrevPronostico(val){
+  if(!val) return '—';
+  if(val==='🔒') return '🔒';
+  var map={LOCAL:'L',EMPATE:'E',VISITANTE:'V'};
+  return String(val).split(',').map(function(x){
+    x=x.trim().toUpperCase();
+    return map[x]||x.charAt(0);
+  }).join('/');
+}
+
+// ── NUEVO: tarjeta compartible de la MATRIZ DE PRONÓSTICOS (canvas) ──
+function generarTarjetaPronosticos(matriz, partidos, jornada){
+  if(!matriz || !matriz.length || !partidos || !partidos.length) return;
+
+  var TOPE = 12;
+  var todos = matriz.slice().sort(function(a,b){ return b.aciertos - a.aciertos; });
+  var lista = todos.slice(0, TOPE);
+  var ocultos = todos.length - lista.length;
+  var maxAciertos = lista[0].aciertos;
+
+  var colW   = lista.length > 10 ? 118 : 150;
+  var firstW = 430, padX = 40;
+  var rowH = 68, headH = 300, thH = 80, footH = 240;
+  var tblW = firstW + lista.length*colW;
+  var W = Math.max(1080, padX*2 + tblW);
+  var H = headH + thH + (partidos.length+1)*rowH + footH;
+
+  var canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  var ctx = canvas.getContext('2d');
+
+  var grad = ctx.createLinearGradient(0,0,W,H);
+  grad.addColorStop(0,'#06080A'); grad.addColorStop(1,'#0E1318');
+  ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  var glow = ctx.createRadialGradient(W/2,220,60,W/2,220,W*0.6);
+  glow.addColorStop(0,'rgba(0,232,122,0.12)'); glow.addColorStop(1,'rgba(0,232,122,0)');
+  ctx.fillStyle = glow; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='#ff6b00'; ctx.lineWidth=6; ctx.strokeRect(20,20,W-40,H-40);
+
+  ctx.textAlign='center';
+  ctx.font='700 44px Nunito, sans-serif'; ctx.fillStyle='#F0F4F8'; ctx.fillText('QUINIELA', W/2, 120);
+  ctx.font='900 44px Nunito, sans-serif'; ctx.fillStyle='#00e87a'; ctx.fillText('PRO FUT', W/2, 172);
+  ctx.font='700 30px Nunito, sans-serif'; ctx.fillStyle='#ff9966';
+  ctx.fillText((jornada||'JORNADA ACTUAL').toUpperCase(), W/2, 222);
+  ctx.font='900 52px Nunito, sans-serif'; ctx.fillStyle='#FFD84D';
+  ctx.fillText(ocultos>0 ? '🎯 TOP '+TOPE+' PRONÓSTICOS' : '🎯 PRONÓSTICOS', W/2, 288);
+
+  var x0 = (W - tblW)/2, y = headH;
+
+  ctx.fillStyle='#141A21'; ctx.fillRect(x0, y, tblW, thH);
+  ctx.textAlign='left'; ctx.font='800 26px Nunito, sans-serif'; ctx.fillStyle='#8A9BB0';
+  ctx.fillText('PARTIDO', x0+24, y+thH/2+9);
+  lista.forEach(function(m,i){
+    var esLider = m.aciertos===maxAciertos && maxAciertos>0;
+    var cellX = x0+firstW+i*colW;
+    if(esLider){ ctx.fillStyle='#FFD84D'; ctx.fillRect(cellX+4, y+8, colW-8, thH-8); }
+    var al = String(m.alias).toUpperCase();
+    if(al.length>9) al = al.slice(0,8)+'…';
+    ctx.textAlign='center'; ctx.font='900 25px Nunito, sans-serif';
+    ctx.fillStyle = esLider ? '#06080A' : '#00e87a';
+    ctx.fillText(al, cellX+colW/2, y+thH/2+9);
+  });
+
+  y += thH;
+  partidos.forEach(function(p, idx){
+    var rowY = y + idx*rowH;
+    if(idx%2===0){ ctx.fillStyle='rgba(255,255,255,0.02)'; ctx.fillRect(x0,rowY,tblW,rowH); }
+
+    var t = 'P'+(idx+1)+' '+p.local+' vs '+p.visitante;
+    if(t.length>28) t = t.slice(0,27)+'…';
+    ctx.textAlign='left'; ctx.font='700 24px Nunito, sans-serif'; ctx.fillStyle='#F0F4F8';
+    ctx.fillText(t, x0+24, rowY+rowH/2+8);
+
+    if(p.resultado){
+      ctx.textAlign='right'; ctx.font='900 24px Nunito, sans-serif'; ctx.fillStyle='#FFD84D';
+      ctx.fillText(_abrevPronostico(p.resultado), x0+firstW-22, rowY+rowH/2+8);
+    }
+
+    lista.forEach(function(m,i){
+      var val = m.pronos[idx] || '';
+      var acerto = p.resultado && val &&
+        val.split(',').map(function(x){return x.trim();}).indexOf(p.resultado) !== -1;
+      var cellX = x0+firstW+i*colW;
+      if(acerto){ ctx.fillStyle='#FFD84D'; ctx.fillRect(cellX+4, rowY+6, colW-8, rowH-12); }
+      ctx.textAlign='center';
+      ctx.font = (acerto?'900 26px':'700 24px')+' Nunito, sans-serif';
+      ctx.fillStyle = acerto ? '#06080A' : '#8A9BB0';
+      ctx.fillText(_abrevPronostico(val), cellX+colW/2, rowY+rowH/2+9);
+    });
+
+    ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(x0,rowY+rowH); ctx.lineTo(x0+tblW,rowY+rowH); ctx.stroke();
+  });
+
+  var totY = y + partidos.length*rowH;
+  ctx.fillStyle='rgba(0,232,122,0.08)'; ctx.fillRect(x0,totY,tblW,rowH);
+  ctx.strokeStyle='#00e87a'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(x0,totY); ctx.lineTo(x0+tblW,totY); ctx.stroke();
+  ctx.textAlign='left'; ctx.font='900 26px Nunito, sans-serif'; ctx.fillStyle='#00e87a';
+  ctx.fillText('✓ ACIERTOS', x0+24, totY+rowH/2+9);
+  lista.forEach(function(m,i){
+    var esLider = m.aciertos===maxAciertos && maxAciertos>0;
+    var cellX = x0+firstW+i*colW;
+    if(esLider){ ctx.fillStyle='#FFD84D'; ctx.fillRect(cellX+4, totY+6, colW-8, rowH-12); }
+    ctx.textAlign='center'; ctx.font='900 30px Nunito, sans-serif';
+    ctx.fillStyle = esLider ? '#06080A' : '#00e87a';
+    ctx.fillText(String(m.aciertos), cellX+colW/2, totY+rowH/2+10);
+  });
+
+  var fy = totY + rowH + 70;
+  ctx.textAlign='center';
+  if(ocultos>0){
+    ctx.font='800 26px Nunito, sans-serif'; ctx.fillStyle='#ff9966';
+    ctx.fillText('+ '+ocultos+' jugador'+(ocultos>1?'es':'')+' más en quinielaprofut.com', W/2, fy);
+  }
+  ctx.font='700 28px Nunito, sans-serif'; ctx.fillStyle='#8A9BB0';
+  ctx.fillText('L = Local  ·  E = Empate  ·  V = Visitante', W/2, fy+46);
+  ctx.font='700 36px Nunito, sans-serif'; ctx.fillStyle='#F0F4F8';
+  ctx.fillText('¿Le atinas más que ellos?', W/2, fy+106);
+  ctx.font='900 46px Nunito, sans-serif'; ctx.fillStyle='#00e87a';
+  ctx.fillText('quinielaprofut.com', W/2, fy+164);
+
+  canvas.toBlob(function(blob){
+    var mensaje = 'Así van los pronósticos de la QuinielaPro 🎯 ¿Le atinas más que ellos? https://quinielaprofut.com';
+    var file = new File([blob], 'quinielapro-pronosticos.png', {type:'image/png'});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      navigator.share({ files:[file], title:'QuinielaPro Fut — Pronósticos', text: mensaje }).catch(function(){});
+    } else {
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'quinielapro-pronosticos.png';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ window.open('https://wa.me/?text='+encodeURIComponent(mensaje),'_blank'); }, 500);
+    }
+  }, 'image/png');
+}
+
 // ── Estado de datos reales + simulador (100% local, nunca toca el backend) ──
 var SF_DATA = null;
 var SIM = { activo:false, elecciones:{} };
@@ -1124,7 +1262,6 @@ function renderSeguimiento(){
   html += '</div>';
 
   // ── Partidos de Hoy (o Podio si no hay partidos hoy) ──
-    // ── Partidos de Hoy (o Podio si no hay partidos hoy) ──
   var partidosHoy = partidosVista.filter(function(p){ return _esHoy(p.fecha); });
   // EN VIVO primero, luego por jugarse, luego finalizados
   partidosHoy.sort(function(a,b){
@@ -1234,7 +1371,12 @@ function renderSeguimiento(){
 
     html += '<div style="margin-bottom:0.75rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">';
     html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#00e87a;display:flex;align-items:center;gap:8px;">🎯 Pronósticos — Todos los Jugadores</div>';
+    html += '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;">';
+    if(!SIM.activo){
+      html += '<button id="btnCompartirPronos" class="btn-o" style="font-size:0.7rem;padding:6px 14px;">📤 Compartir pronósticos</button>';
+    }
     html += '<button class="btn-o" onclick="_conScrollPreservado(toggleSimulador)" style="font-size:0.7rem;padding:6px 14px;'+(SIM.activo?'background:#ff6b00;color:#fff;border-color:#ff6b00;':'')+'">'+(SIM.activo?'🎮 Salir simulador':'🎮 Simular aquí')+'</button>';
+    html += '</div>';
     html += '</div>';
     if(SIM.activo){
       html += '<div style="text-align:center;margin-bottom:0.75rem;padding:0.6rem;border-radius:8px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.3);color:#ff9966;font-size:0.72rem;font-weight:800;">🎮 Toca L / E / V junto al partido pendiente para probar resultados &nbsp;·&nbsp; <button onclick="_conScrollPreservado(resetSimulador)" style="background:none;border:none;color:#ff6b00;text-decoration:underline;cursor:pointer;font-weight:800;font-size:0.72rem;">↺ Restablecer</button></div>';
@@ -1314,6 +1456,13 @@ function renderSeguimiento(){
   if(btnRk){
     btnRk.addEventListener('click', function(){
       generarTarjetaRanking(jugadores, SF_DATA.jornada);
+    });
+  }
+  // ── NUEVO: compartir la matriz de pronósticos como imagen ──
+  var btnPr = document.getElementById('btnCompartirPronos');
+  if(btnPr){
+    btnPr.addEventListener('click', function(){
+      generarTarjetaPronosticos(matriz, partidosVista, SF_DATA.jornada);
     });
   }
 }
