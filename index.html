@@ -578,7 +578,7 @@ var URL_REGISTRO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6g
 var URL_REGISTRO_PROPIA = 'https://quinielaprofut.com/registro.html';  
 var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
-var FECHA_CIERRE_FALLBACK = '2026-06-18T09:00:00';
+var FECHA_CIERRE_FALLBACK = '2026-07-31T19:00:00';
 var URL_CONFIG = URL_REGISTRO + '?p=config';
 var iframesLoaded = {registro:false,seguimiento:false};
 var FECHA_CIERRE_JORNADA = FECHA_CIERRE_FALLBACK;
@@ -891,7 +891,10 @@ function generarPosterJornada(){
   try{
     var fc = new Date(FECHA_CIERRE_JORNADA);
     if(!isNaN(fc.getTime())){
-      cierreTxt = fc.toLocaleDateString('es-MX', {day:'numeric', month:'long'});
+      var MESES_NOMBRE = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+      var hh = String(fc.getHours()).padStart(2,'0');
+      var mm = String(fc.getMinutes()).padStart(2,'0');
+      cierreTxt = fc.getDate()+' de '+MESES_NOMBRE[fc.getMonth()]+' '+fc.getFullYear()+' a las '+hh+':'+mm+' hrs';
     }
   }catch(e){}
 
