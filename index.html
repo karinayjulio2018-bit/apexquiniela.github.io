@@ -887,20 +887,21 @@ function generarPosterJornada(){
     return;
   }
   var jornada = window.JORNADA_NOMBRE || 'Nueva Jornada';
-  var cierreTxt = '';
+  var cierreLinea1 = '', cierreLinea2 = '';
   try{
     var fc = new Date(FECHA_CIERRE_JORNADA);
     if(!isNaN(fc.getTime())){
       var MESES_NOMBRE = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
       var hh = String(fc.getHours()).padStart(2,'0');
       var mm = String(fc.getMinutes()).padStart(2,'0');
-      cierreTxt = fc.getDate()+' de '+MESES_NOMBRE[fc.getMonth()]+' '+fc.getFullYear()+' a las '+hh+':'+mm+' hrs';
+      cierreLinea1 = 'Cierra el '+fc.getDate()+' de '+MESES_NOMBRE[fc.getMonth()]+' '+fc.getFullYear();
+      cierreLinea2 = 'a las '+hh+':'+mm+' hrs — ¡no te quedes fuera!';
     }
   }catch(e){}
 
-  var filaAlto = 62;
-  var altoHeader = 300;
-  var altoFooter = cierreTxt ? 260 : 210;
+  var filaAlto = 88;
+  var altoHeader = 460;
+  var altoFooter = cierreLinea1 ? 360 : 280;
   var canvas = document.createElement('canvas');
   canvas.width = 1080;
   canvas.height = altoHeader + partidos.length*filaAlto + altoFooter;
@@ -910,50 +911,71 @@ function generarPosterJornada(){
   grad.addColorStop(0, '#06080A'); grad.addColorStop(1, '#0E1318');
   ctx.fillStyle = grad; ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  var glow = ctx.createRadialGradient(540,180,50,540,180,500);
-  glow.addColorStop(0, 'rgba(0,232,122,0.15)'); glow.addColorStop(1, 'rgba(0,232,122,0)');
+  var glow = ctx.createRadialGradient(540,220,60,540,220,600);
+  glow.addColorStop(0, 'rgba(0,232,122,0.18)'); glow.addColorStop(1, 'rgba(0,232,122,0)');
   ctx.fillStyle = glow; ctx.fillRect(0,0,canvas.width,altoHeader);
 
-  ctx.strokeStyle = '#ff6b00'; ctx.lineWidth = 6;
-  ctx.strokeRect(30,30,canvas.width-60,canvas.height-60);
+  ctx.strokeStyle = '#ff6b00'; ctx.lineWidth = 8;
+  ctx.strokeRect(26,26,canvas.width-52,canvas.height-52);
 
+  // ── Logo ──
   ctx.textAlign = 'center';
-  ctx.font = '700 40px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 110);
-  ctx.font = '900 40px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 158);
-  ctx.font = '800 28px Nunito, sans-serif'; ctx.fillStyle = '#ff6b00'; ctx.fillText(String(jornada).toUpperCase(), 540, 210);
-  ctx.font = '700 24px Nunito, sans-serif'; ctx.fillStyle = '#8A9BB0'; ctx.fillText('⚽ Partidos a pronosticar ⚽', 540, 252);
+  ctx.font = '800 58px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 130);
+  ctx.font = '900 58px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 195);
 
+  // ── Nombre de jornada ──
+  ctx.font = '800 36px Nunito, sans-serif'; ctx.fillStyle = '#ff9966';
+  ctx.fillText(String(jornada).toUpperCase(), 540, 250);
+
+  // ── Badge de premio (marketing) ──
+  var pillW = 640, pillH = 84, pillY = 285;
+  var pillGrad = ctx.createLinearGradient(540-pillW/2, 0, 540+pillW/2, 0);
+  pillGrad.addColorStop(0, '#FFD84D'); pillGrad.addColorStop(1, '#ff9900');
+  ctx.fillStyle = pillGrad;
+  ctx.beginPath();
+  ctx.roundRect(540-pillW/2, pillY, pillW, pillH, 100);
+  ctx.fill();
+  ctx.font = '900 40px Nunito, sans-serif'; ctx.fillStyle = '#06080A';
+  ctx.fillText('🏆 GANA $2,000 MXN', 540, pillY+56);
+
+  // ── Subtítulo ──
+  ctx.font = '700 32px Nunito, sans-serif'; ctx.fillStyle = '#C4CDD6';
+  ctx.fillText('⚽ Partidos a pronosticar', 540, 420);
+
+  // ── Filas de partidos ──
   ctx.textAlign = 'left';
   var y = altoHeader;
   partidos.forEach(function(p){
     var esDestacado = p.liga === 'Liga MX';
-    ctx.fillStyle = 'rgba(255,255,255,0.025)';
-    ctx.fillRect(60, y, canvas.width-120, filaAlto-8);
-    if(esDestacado){ ctx.fillStyle = '#ff6b00'; ctx.fillRect(60, y, 5, filaAlto-8); }
-    ctx.font = '700 22px Nunito, sans-serif';
-    ctx.fillStyle = esDestacado ? '#ff9966' : '#7A8B9A';
-    ctx.fillText('P'+p.id, 85, y+26);
-    ctx.font = '800 25px Nunito, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    ctx.fillRect(50, y, canvas.width-100, filaAlto-10);
+    if(esDestacado){ ctx.fillStyle = '#ff6b00'; ctx.fillRect(50, y, 7, filaAlto-10); }
+    ctx.font = '800 30px Nunito, sans-serif';
+    ctx.fillStyle = esDestacado ? '#ff9966' : '#8A9BB0';
+    ctx.fillText('P'+p.id, 78, y+38);
+    ctx.font = '800 38px Nunito, sans-serif';
     ctx.fillStyle = '#F0F4F8';
     var equipos = (p.local||'')+' vs '+(p.visitante||'');
-    if(equipos.length>40) equipos = equipos.slice(0,38)+'…';
-    ctx.fillText(equipos, 130, y+26);
-    ctx.font = '700 19px Nunito, sans-serif';
-    ctx.fillStyle = '#7A8B9A';
-    ctx.fillText((p.liga||'')+' · '+_fechaCortaPoster(p.fecha), 130, y+50);
+    if(equipos.length>30) equipos = equipos.slice(0,28)+'…';
+    ctx.fillText(equipos, 150, y+38);
+    ctx.font = '700 26px Nunito, sans-serif';
+    ctx.fillStyle = '#8A9BB0';
+    ctx.fillText((p.liga||'')+' · '+_fechaCortaPoster(p.fecha), 150, y+72);
     y += filaAlto;
   });
 
+  // ── Footer / CTA ──
   ctx.textAlign = 'center';
-  var yFooter = y + 55;
-  ctx.font = '800 34px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D';
+  var yFooter = y + 65;
+  ctx.font = '900 48px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D';
   ctx.fillText('¿Ya te apuntaste?', 540, yFooter);
-  if(cierreTxt){
-    ctx.font = '700 25px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8';
-    ctx.fillText('Cierra el '+cierreTxt+' — ¡no te quedes fuera!', 540, yFooter+46);
+  if(cierreLinea1){
+    ctx.font = '700 32px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8';
+    ctx.fillText(cierreLinea1, 540, yFooter+56);
+    ctx.fillText(cierreLinea2, 540, yFooter+98);
   }
-  ctx.font = '900 36px Nunito, sans-serif'; ctx.fillStyle = '#00e87a';
-  ctx.fillText('quinielaprofut.com', 540, yFooter + (cierreTxt?96:56));
+  ctx.font = '900 50px Nunito, sans-serif'; ctx.fillStyle = '#00e87a';
+  ctx.fillText('quinielaprofut.com', 540, yFooter + (cierreLinea1?166:70));
 
   canvas.toBlob(function(blob){
     var mensaje = '🔥 ¡Ya está armada la nueva jornada de la QuinielaPro Fut! Ven, arma tu quiniela y diviértete con los cuates 😄⚽ Entra aquí antes de que cierre 👉 https://quinielaprofut.com';
