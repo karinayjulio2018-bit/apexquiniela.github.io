@@ -340,6 +340,11 @@ oninput="this.value=this.value.toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0
 <div id="resumenLista" class="resumen-lista"></div>
 <div class="total-box"><div class="tl">Total a Depositar</div><div class="tv" id="totalAPagar">$0</div><div class="ts" id="totalDetalle">—</div></div>
 <div id="listaBoletas" style="display:none;"></div>
+<button id="btnRespaldoWA" class="btn btn-green" onclick="enviarRespaldoWhatsApp()" style="width:100%;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;">📲 Enviarme mis pronósticos por WhatsApp</button>
+<div style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:6px;">✅ Guárdalo como respaldo — por si las dudas.</div>
+</div>
+<div class="panel">
+<div class="section-title">🏦 Datos de Pago</div>
 </div>
 <div class="panel">
 <div class="section-title">😤 Reta a un amigo</div>
@@ -799,17 +804,43 @@ document.getElementById('barraCalc').classList.add('hidden');
 document.getElementById('page3').classList.remove('hidden');
 window.scrollTo(0,0);
 activarRetoPage3();
+try{ enviarRespaldoWhatsApp(); }catch(e){}
 }
 
 function activarRetoPage3(){
 var link='https://quinielaprofut.com';
 var alias=resultadoGuardado?(resultadoGuardado.aliasGuardados[0]||aliasBase):aliasBase;
 var jorn=document.getElementById('statJornada').textContent||'esta jornada';
-var jugEl=document.getElementById('statJugadores'),jugadores=jugEl?jugEl.textContent:'';
-var msg='⚽ Le atino más que tú 😤\nYa armé mi jugada *'+alias+'* en *'+jorn+'*'+(jugadores?'\nYa somos '+jugadores+' jugando 🔥':'')+'\n¿Te atreves? 🏆\n📲 '+link;
-window._retoMsg=msg;
-var btnP3=document.getElementById('btnWAPage3');
-if(btnP3) btnP3.href='https://wa.me/?text='+encodeURIComponent(msg);
+window._retoMsg='⚽ Le atino más que tú 😤\nYa registré mi quiniela *'+alias+'* en *'+jorn+'*\n¿Te atreves? 🏆\n📲 '+link;
+}
+
+// ── RESPALDO DE PRONÓSTICOS por WhatsApp ──
+function _construirMensajeRespaldo(){
+if(!resultadoGuardado) return '';
+var jorn=document.getElementById('statJornada').textContent||'esta jornada';
+var fecha=new Date().toLocaleString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+var msg='🎟️ *RESPALDO DE PRONÓSTICOS*\n⚽ Quiniela Pro Fut — '+jorn+'\n📅 '+fecha+'\n';
+var aliases=resultadoGuardado.aliasGuardados||[];
+aliases.forEach(function(al,qi){
+var q=quinielas[qi];
+var costo=(resultadoGuardado.desglose[qi]||{}).costo||0;
+msg+='\n👤 *'+al+'*  ($'+costo.toLocaleString('es-MX')+')\n';
+for(var i=0;i<partidosGlobal.length;i++){
+var p=partidosGlobal[i];
+var ops=(q&&q.selecciones[i])||[];
+var letras=ops.map(function(o){return o==='LOCAL'?'L':o==='EMPATE'?'E':'V';}).join('/');
+msg+=(i+1)+'. '+p.local+' vs '+p.visitante+': '+(letras||'—')+'\n';
+}
+});
+var total=resultadoGuardado.costoTotal||calcularTotalGeneral();
+msg+='\n💰 Total a pagar: $'+total.toLocaleString('es-MX')+' MXN';
+msg+='\n✅ Guarda este mensaje como respaldo de tus pronósticos.';
+return msg;
+}
+function enviarRespaldoWhatsApp(){
+var msg=_construirMensajeRespaldo();
+if(!msg) return;
+window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
 }
 
 function subirComprobante(){
