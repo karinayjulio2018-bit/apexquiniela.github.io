@@ -432,13 +432,31 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
   <div style="background:#0E1318;border:1px solid #1E2830;border-radius:20px;height:280px;animation:skPulse 1.4s infinite 0.15s;"></div>
   <div style="background:#0E1318;border:1px solid #1E2830;border-radius:20px;height:280px;animation:skPulse 1.4s infinite 0.3s;"></div>
 </div>
+
 <div class="historial reveal" style="margin-top:2.5rem;" id="historialTabla">
-  <div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;height:300px;animation:skPulse 1.4s infinite;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;height:300px;animation:skPulse 1.4s infinite;"></div>
 </div>
 </section>
 </div>
 
-<div style="background:#06080A;"><section class="sec" id="como-funciona">
+<div style="background:linear-gradient(180deg,#0E1318 0%,#06080A 100%);border-top:1px solid #1E2830;border-bottom:1px solid #1E2830;" id="salonfama">
+<section class="sec">
+<span class="chip reveal">Estadísticas Históricas</span>
+<h2 class="stitle reveal">Salón de la<br><span style="color:#FFD84D">Fama</span></h2>
+<p class="sdesc reveal">Los números no mienten. Así va la historia completa de QuinielaPro Fut.</p>
+<div id="salonFamaGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;margin-top:2.5rem;">
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;height:180px;animation:skPulse 1.4s infinite;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;height:180px;animation:skPulse 1.4s infinite 0.15s;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;height:180px;animation:skPulse 1.4s infinite 0.3s;"></div>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;height:180px;animation:skPulse 1.4s infinite 0.45s;"></div>
+</div>
+</section>
+</div>
+
+<div style="background:#06080A;"><section class="sec" id="como-funciona"> 
+  
+
+  
 <span class="chip reveal">El Proceso</span><h2 class="stitle reveal">Así de fácil<br>es participar</h2><p class="sdesc reveal">Sin apps ni registros eternos. Solo entra, predice y gana.</p>
 <div class="steps">
 <div class="step reveal"><div class="step-bg">01</div><div class="step-icon">⚽</div><h3>Entra al formulario</h3><p>Da clic en "Registrar mi Quiniela", elige tu alias y llena tus pronósticos directo aquí.</p></div>
@@ -1785,8 +1803,36 @@ document.querySelectorAll('.tcard.reveal').forEach(function(el){ io.observe(el);
 })
 .catch(function(e){ console.warn('QPF Ganadores: sin datos', e); });
 }
+
+function _cardFama(icon,label,data,valTxt,color){
+  if(!data) return '<div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;padding:2rem 1.5rem;text-align:center;"><div style="font-size:2.5rem;margin-bottom:0.5rem;">'+icon+'</div><div style="font-size:0.7rem;color:#7A8B9A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:0.5rem;">'+label+'</div><div style="color:#7A8B9A;font-size:0.85rem;">Aún sin datos</div></div>';
+  return '<div style="background:linear-gradient(135deg,#0E1318 0%,rgba('+color+',0.06) 100%);border:1px solid rgba('+color+',0.35);border-radius:16px;padding:2rem 1.5rem;text-align:center;">'+
+  '<div style="font-size:2.5rem;margin-bottom:0.5rem;">'+icon+'</div>'+
+  '<div style="font-size:0.7rem;color:#7A8B9A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:0.6rem;">'+label+'</div>'+
+  '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.7rem;color:#F0F4F8;line-height:1.1;margin-bottom:0.4rem;">'+_esc(data.alias)+'</div>'+
+  '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2.2rem;color:rgb('+color+');">'+valTxt+'</div>'+
+  '</div>';
+}
+function cargarSalonFama(){
+  fetch(URL_REGISTRO+'?p=salonfama')
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var grid=document.getElementById('salonFamaGrid');
+    if(!grid) return;
+    if(!d||d.error||!d.totalJugadores){ grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:2rem;color:#8A9BB0;">Aún no hay suficiente historial para mostrar estadísticas.</div>'; return; }
+    var html='';
+    html+=_cardFama('👑','Más Veces Ganador', d.topGanador, d.topGanador?(d.topGanador.victorias+' victoria'+(d.topGanador.victorias!==1?'s':'')):'', '255,216,77');
+    html+=_cardFama('💰','Mayor Ganancia Neta', d.topDinero, d.topDinero?('$'+Math.round(d.topDinero.neto).toLocaleString('es-MX')):'', '0,232,122');
+    html+=_cardFama('🔥','Socio Más Fiel', d.topFiel, d.topFiel?(d.topFiel.participaciones+' jornadas'):'', '255,107,0');
+    html+=_cardFama('🎯','Mejor Puntería', d.topEfectividad, d.topEfectividad?(d.topEfectividad.efectividadProm+' aciertos/jornada'):'', '96,165,250');
+    grid.innerHTML=html;
+    document.querySelectorAll('#salonfama .reveal').forEach(function(el){ io.observe(el); });
+  })
+  .catch(function(){});
+}
+cargarSalonFama();
 cargarGanadoresDinamicos();
-cargarPartidosDinamicos();
+cargarPartidosDinamicos();  
 
 </script>
 </body>
