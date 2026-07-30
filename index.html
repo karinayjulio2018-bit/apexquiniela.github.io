@@ -492,12 +492,42 @@ footer{background:#06080A;border-top:1px solid #1E2830;padding:3rem 2rem;text-al
 <div class="lead-social-proof" id="leadSocialProof">
 <div class="lsp-avatars"><div class="lsp-ava">J</div><div class="lsp-ava">C</div><div class="lsp-ava">A</div><div class="lsp-ava">+</div></div>
 <div class="lsp-text"><strong>+12 jugadores activos</strong> en LIGA MX.<br> CHINO ganó $960 con 10 aciertos Y ES BICAMPEON 🏆</div>
+
 </div>
 </div>
 </div>
 </div>
 
-<section class="sec" id="ligas">
+<div style="background:#06080A;padding:5rem 2rem;" id="miBoleta">
+<div style="max-width:480px;margin:0 auto;text-align:center;">
+<span class="chip reveal">Autoservicio</span>
+<h2 class="stitle reveal">¿Ya jugaste?<br>Descarga tu boleta</h2>
+<p class="sdesc reveal">Escribe el WhatsApp con el que te registraste y te mostramos tu boleta en imagen, lista para guardar.</p>
+<div style="background:#0E1318;border:1px solid #1E2830;border-radius:16px;padding:1.5rem;margin-top:2rem;">
+<input type="tel" id="mbWhats" maxlength="10" inputmode="numeric" placeholder="10 dígitos — Ej. 5512345678"
+style="width:100%;padding:14px;border-radius:10px;border:1px solid #26333D;background:#141A21;color:#F0F4F8;font-size:16px;text-align:center;font-weight:700;letter-spacing:1px;box-sizing:border-box;"
+oninput="this.value=this.value.replace(/\D/g,'').substring(0,10)">
+<button class="lead-btn" id="mbBtn" style="width:100%;margin-top:12px;" onclick="buscarMiBoleta()">🎟️ Buscar mi boleta</button>
+<div id="mbMsg" style="margin-top:10px;font-size:0.82rem;font-weight:700;"></div>
+</div>
+</div>
+</div>
+
+<div id="mbModal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:20px;">
+<div style="position:absolute;inset:0;background:rgba(0,0,0,.75);" onclick="cerrarMiBoleta()"></div>
+<div style="position:relative;background:#0E1318;border:1px solid #1E2830;border-radius:16px;padding:20px;max-width:420px;width:100%;text-align:center;">
+<button onclick="cerrarMiBoleta()" style="position:absolute;top:10px;right:14px;background:none;border:none;color:#8A9BB0;font-size:20px;cursor:pointer;">✕</button>
+<div style="font-weight:900;color:#00e87a;margin-bottom:12px;">🎟️ TU BOLETA</div>
+<img id="mbImg" src="" style="width:100%;border-radius:12px;">
+<p style="font-size:12px;color:#8A9BB0;margin:10px 0;">📱 Mantén presionada la imagen para guardarla</p>
+<a id="mbDownload" download="Boleta_QPF.png" style="display:block;background:#00e87a;color:#06080A;font-weight:900;padding:14px;border-radius:10px;text-decoration:none;">💾 DESCARGAR IMAGEN</a>
+</div>
+</div>
+
+<section class="sec" id="ligas">  
+  
+  
+  
 <span class="chip reveal">Cobertura</span><h2 class="stitle reveal">Todas las ligas<br>que importan</h2><p class="sdesc reveal">Cada jornada incluye los mejores partidos de las competencias más importantes.</p>
 <div class="ligas reveal"><div class="liga on">🇲🇽 Liga MX</div><div class="liga">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</div><div class="liga">🌍 Champions League</div><div class="liga">🇪🇸 LaLiga</div><div class="liga">🇩🇪 Bundesliga</div><div class="liga">🌎 Copa MX</div></div>
 </section>
@@ -597,7 +627,68 @@ var URL_REGISTRO_PROPIA = 'https://quinielaprofut.com/registro.html';
 var WEBHOOK_LEADS = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec';
 var URL_SEGUIMIENTO = 'https://script.google.com/macros/s/AKfycbx2v1yjYaPe__vCQ_C6gAwaBWOhibhqKld05M1mRxoeAU9iCak_DPqVkL_Yqgw0NBMKog/exec?p=seguimiento';
 var FECHA_CIERRE_FALLBACK = '2026-07-31T19:00:00';
+
 var URL_CONFIG = URL_REGISTRO + '?p=config';
+
+// ── MI BOLETA (autoservicio) ──
+function buscarMiBoleta(){
+  var wa = document.getElementById('mbWhats').value;
+  var msg = document.getElementById('mbMsg'), btn = document.getElementById('mbBtn');
+  if(wa.length!==10){ msg.style.color='#FF8FA3'; msg.textContent='Escribe tu WhatsApp a 10 dígitos.'; return; }
+  msg.style.color='#8A9BB0'; msg.textContent='🔍 Buscando...';
+  btn.disabled = true;
+  fetch(URL_REGISTRO+'?action=miBoleta&whatsapp='+encodeURIComponent(wa),{mode:'cors',cache:'no-cache'})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      btn.disabled=false;
+      if(!d || d.estado!=='OK'){ msg.style.color='#FF8FA3'; msg.textContent='No encontramos boleta con ese WhatsApp.'; return; }
+      msg.style.color='#00e87a'; msg.textContent='✅ ¡Encontrada!';
+      renderMiBoleta(d);
+    })
+    .catch(function(){ btn.disabled=false; msg.style.color='#FF8FA3'; msg.textContent='Error al buscar. Intenta de nuevo.'; });
+}
+
+function renderMiBoleta(d){
+  var q = d.quinielas[0];
+  var canvas = document.createElement('canvas');
+  canvas.width = 1080; canvas.height = 1080;
+  var ctx = canvas.getContext('2d');
+  var grad = ctx.createLinearGradient(0,0,1080,1080);
+  grad.addColorStop(0,'#05100a'); grad.addColorStop(1,'#0E1318');
+  ctx.fillStyle = grad; ctx.fillRect(0,0,1080,1080);
+  ctx.strokeStyle = '#00e87a'; ctx.lineWidth = 6; ctx.strokeRect(30,30,1020,1020);
+  ctx.textAlign = 'center';
+  ctx.font = '900 46px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('QUINIELA PRO FUT', 540, 110);
+  ctx.font = '700 26px Nunito, sans-serif'; ctx.fillStyle = '#8A9BB0'; ctx.fillText(String(d.jornada||'').toUpperCase(), 540, 150);
+  ctx.font = '900 54px Nunito, sans-serif'; ctx.fillStyle = '#ff6b00'; ctx.fillText(q.alias, 540, 220);
+
+  var startY = 280, rowH = Math.min(700/Math.max(d.partidos.length,1), 60);
+  d.partidos.forEach(function(p, i){
+    var y = startY + i*rowH;
+    var opciones = (q.pronos[i]||'').split(',').map(function(x){return x.trim();}).filter(Boolean);
+    var lbl = opciones.map(function(o){return o==='LOCAL'?'L':o==='EMPATE'?'E':o==='VISITANTE'?'V':'';}).join('/') || '—';
+    ctx.textAlign = 'left'; ctx.font = '700 24px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8';
+    ctx.fillText((i+1)+'. '+p.local.substring(0,14)+' vs '+p.visitante.substring(0,14), 90, y);
+    ctx.textAlign = 'right'; ctx.fillStyle = '#00e87a'; ctx.font = '900 26px Nunito, sans-serif';
+    ctx.fillText(lbl, 990, y);
+  });
+
+  ctx.textAlign = 'center';
+  ctx.font = '800 30px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('quinielaprofut.com', 540, 1030);
+
+  canvas.toBlob(function(blob){
+    var url = URL.createObjectURL(blob);
+    document.getElementById('mbImg').src = url;
+    document.getElementById('mbDownload').href = url;
+    document.getElementById('mbModal').style.display='flex';
+  }, 'image/png');
+}
+
+function cerrarMiBoleta(){
+  document.getElementById('mbModal').style.display='none';
+}  
+
+  
 var iframesLoaded = {registro:false,seguimiento:false};
 var FECHA_CIERRE_JORNADA = FECHA_CIERRE_FALLBACK;
 
@@ -927,21 +1018,34 @@ function generarPosterJornada(){
     return;
   }
   var jornada = window.JORNADA_NOMBRE || 'Nueva Jornada';
-  var cierreLinea1 = '', cierreLinea2 = '';
-  try{
-    var fc = new Date(FECHA_CIERRE_JORNADA);
-    if(!isNaN(fc.getTime())){
-      var MESES_NOMBRE = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-      var hh = String(fc.getHours()).padStart(2,'0');
-      var mm = String(fc.getMinutes()).padStart(2,'0');
-      cierreLinea1 = 'Cierra el '+fc.getDate()+' de '+MESES_NOMBRE[fc.getMonth()]+' '+fc.getFullYear();
-      cierreLinea2 = 'a las '+hh+':'+mm+' hrs — ¡no te quedes fuera!';
-    }
-  }catch(e){}
 
-  var filaAlto = 88;
-  var altoHeader = 460;
-  var altoFooter = cierreLinea1 ? 360 : 280;
+  // ── Countdown dinámico: usa las mismas fechas que la barra de arriba ──
+  var ahora = Date.now();
+  var tsCierre = new Date(FECHA_CIERRE_JORNADA).getTime();
+  var tsApertura = window.FECHA_APERTURA_NUEVA ? new Date(window.FECHA_APERTURA_NUEVA).getTime() : null;
+  var abierta = !isNaN(tsCierre) && tsCierre > ahora;
+  var tsObjetivo = null, etiquetaCd = '';
+  if(abierta){
+    tsObjetivo = tsCierre; etiquetaCd = '⏳ CIERRA EN';
+  } else if(tsApertura && tsApertura > ahora){
+    tsObjetivo = tsApertura; etiquetaCd = '🚀 INICIA EN';
+  }
+  var cdTexto = '';
+  if(tsObjetivo){
+    var totalMin = Math.floor((tsObjetivo - ahora) / 60000);
+    var dias = Math.floor(totalMin / 1440);
+    var horas = Math.floor((totalMin % 1440) / 60);
+    var mins = totalMin % 60;
+    var partes = [];
+    if(dias > 0) partes.push(dias + 'd');
+    if(dias > 0 || horas > 0) partes.push(horas + 'h');
+    partes.push(mins + 'm');
+    cdTexto = partes.join(' ');
+  }
+
+  var filaAlto = 100;
+  var altoHeader = 520;
+  var altoFooter = cdTexto ? 380 : 260;
   var canvas = document.createElement('canvas');
   canvas.width = 1080;
   canvas.height = altoHeader + partidos.length*filaAlto + altoFooter;
@@ -960,27 +1064,27 @@ function generarPosterJornada(){
 
   // ── Logo ──
   ctx.textAlign = 'center';
-  ctx.font = '800 58px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 130);
-  ctx.font = '900 58px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 195);
+  ctx.font = '800 66px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 140);
+  ctx.font = '900 66px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 210);
 
   // ── Nombre de jornada ──
-  ctx.font = '800 36px Nunito, sans-serif'; ctx.fillStyle = '#ff9966';
-  ctx.fillText(String(jornada).toUpperCase(), 540, 250);
+  ctx.font = '800 40px Nunito, sans-serif'; ctx.fillStyle = '#ff9966';
+  ctx.fillText(String(jornada).toUpperCase(), 540, 268);
 
   // ── Badge de premio (marketing) ──
-  var pillW = 640, pillH = 84, pillY = 285;
+  var pillW = 680, pillH = 92, pillY = 300;
   var pillGrad = ctx.createLinearGradient(540-pillW/2, 0, 540+pillW/2, 0);
   pillGrad.addColorStop(0, '#FFD84D'); pillGrad.addColorStop(1, '#ff9900');
   ctx.fillStyle = pillGrad;
   ctx.beginPath();
   ctx.roundRect(540-pillW/2, pillY, pillW, pillH, 100);
   ctx.fill();
-  ctx.font = '900 40px Nunito, sans-serif'; ctx.fillStyle = '#06080A';
-  ctx.fillText('🏆 GANA $2,000 MXN', 540, pillY+56);
+  ctx.font = '900 44px Nunito, sans-serif'; ctx.fillStyle = '#06080A';
+  ctx.fillText('🏆 GANA $2,000 MXN', 540, pillY+62);
 
   // ── Subtítulo ──
-  ctx.font = '700 32px Nunito, sans-serif'; ctx.fillStyle = '#C4CDD6';
-  ctx.fillText('⚽ Partidos a pronosticar', 540, 420);
+  ctx.font = '700 36px Nunito, sans-serif'; ctx.fillStyle = '#C4CDD6';
+  ctx.fillText('⚽ Partidos a pronosticar', 540, 465);
 
   // ── Filas de partidos ──
   ctx.textAlign = 'left';
@@ -990,32 +1094,33 @@ function generarPosterJornada(){
     ctx.fillStyle = 'rgba(255,255,255,0.03)';
     ctx.fillRect(50, y, canvas.width-100, filaAlto-10);
     if(esDestacado){ ctx.fillStyle = '#ff6b00'; ctx.fillRect(50, y, 7, filaAlto-10); }
-    ctx.font = '800 30px Nunito, sans-serif';
+    ctx.font = '800 32px Nunito, sans-serif';
     ctx.fillStyle = esDestacado ? '#ff9966' : '#8A9BB0';
-    ctx.fillText('P'+p.id, 78, y+38);
-    ctx.font = '800 38px Nunito, sans-serif';
+    ctx.fillText('P'+p.id, 78, y+42);
+    ctx.font = '800 44px Nunito, sans-serif';
     ctx.fillStyle = '#F0F4F8';
     var equipos = (p.local||'')+' vs '+(p.visitante||'');
-    if(equipos.length>30) equipos = equipos.slice(0,28)+'…';
-    ctx.fillText(equipos, 150, y+38);
-    ctx.font = '700 26px Nunito, sans-serif';
+    if(equipos.length>26) equipos = equipos.slice(0,24)+'…';
+    ctx.fillText(equipos, 150, y+42);
+    ctx.font = '700 28px Nunito, sans-serif';
     ctx.fillStyle = '#8A9BB0';
-    ctx.fillText((p.liga||'')+' · '+_fechaCortaPoster(p.fecha), 150, y+72);
+    ctx.fillText((p.liga||'')+' · '+_fechaCortaPoster(p.fecha), 150, y+82);
     y += filaAlto;
   });
 
-  // ── Footer / CTA ──
+  // ── Footer / Countdown / CTA ──
   ctx.textAlign = 'center';
-  var yFooter = y + 65;
-  ctx.font = '900 48px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D';
+  var yFooter = y + 70;
+  ctx.font = '900 52px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D';
   ctx.fillText('¿Ya te apuntaste?', 540, yFooter);
-  if(cierreLinea1){
-    ctx.font = '700 32px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8';
-    ctx.fillText(cierreLinea1, 540, yFooter+56);
-    ctx.fillText(cierreLinea2, 540, yFooter+98);
+  if(cdTexto){
+    ctx.font = '800 34px Nunito, sans-serif'; ctx.fillStyle = '#8A9BB0';
+    ctx.fillText(etiquetaCd, 540, yFooter+60);
+    ctx.font = '900 76px Nunito, sans-serif'; ctx.fillStyle = abierta ? '#ff6b00' : '#00e87a';
+    ctx.fillText(cdTexto, 540, yFooter+130);
   }
-  ctx.font = '900 50px Nunito, sans-serif'; ctx.fillStyle = '#00e87a';
-  ctx.fillText('quinielaprofut.com', 540, yFooter + (cierreLinea1?166:70));
+  ctx.font = '900 54px Nunito, sans-serif'; ctx.fillStyle = '#00e87a';
+  ctx.fillText('quinielaprofut.com', 540, yFooter + (cdTexto?196:70));
 
   canvas.toBlob(function(blob){
     var mensaje = '🔥 ¡Ya está armada la nueva jornada de la QuinielaPro Fut! Ven, arma tu quiniela y diviértete con los cuates 😄⚽ Entra aquí antes de que cierre 👉 https://quinielaprofut.com';
