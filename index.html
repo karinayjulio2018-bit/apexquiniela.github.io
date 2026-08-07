@@ -1017,6 +1017,7 @@ function generarPosterJornada(){
     alert('Los partidos aún están cargando, dale un segundo e inténtalo de nuevo 🙏');
     return;
   }
+  
   var jornada = window.JORNADA_NOMBRE || 'Nueva Jornada';
 
   // ── Countdown dinámico: usa las mismas fechas que la barra de arriba ──
@@ -1131,6 +1132,117 @@ function generarPosterJornada(){
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');
       a.href = url; a.download = 'quinielapro-jornada.png';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ window.open('https://wa.me/?text='+encodeURIComponent(mensaje), '_blank'); }, 500);
+    }
+  }, 'image/png');
+}
+
+// ── Genera póster de los PARTIDOS DE HOY (canvas) y comparte/descarga ──
+function generarTarjetaPartidosHoy(partidos, jornada){
+  if(!partidos || !partidos.length){
+    alert('No hay partidos programados para hoy ⚽');
+    return;
+  }
+
+  var filaAlto   = 150;
+  var altoHeader = 430;
+  var altoFooter = 260;
+
+  var canvas = document.createElement('canvas');
+  canvas.width  = 1080;
+  canvas.height = altoHeader + partidos.length*filaAlto + altoFooter;
+  var ctx = canvas.getContext('2d');
+
+  var grad = ctx.createLinearGradient(0,0,0,canvas.height);
+  grad.addColorStop(0, '#06080A'); grad.addColorStop(1, '#0E1318');
+  ctx.fillStyle = grad; ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  var glow = ctx.createRadialGradient(540,200,60,540,200,600);
+  glow.addColorStop(0, 'rgba(255,107,0,0.18)'); glow.addColorStop(1, 'rgba(255,107,0,0)');
+  ctx.fillStyle = glow; ctx.fillRect(0,0,canvas.width,altoHeader);
+
+  ctx.strokeStyle = '#ff6b00'; ctx.lineWidth = 8;
+  ctx.strokeRect(26,26,canvas.width-52,canvas.height-52);
+
+  ctx.textAlign = 'center';
+  ctx.font = '800 66px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8'; ctx.fillText('QUINIELA', 540, 140);
+  ctx.font = '900 66px Nunito, sans-serif'; ctx.fillStyle = '#00e87a'; ctx.fillText('PRO FUT', 540, 210);
+
+  ctx.font = '800 36px Nunito, sans-serif'; ctx.fillStyle = '#8A9BB0';
+  ctx.fillText(String(jornada||'').toUpperCase(), 540, 268);
+
+  ctx.font = '900 62px Nunito, sans-serif'; ctx.fillStyle = '#ff6b00';
+  ctx.fillText('⚽ PARTIDOS DE HOY', 540, 350);
+
+  var hoyTxt = new Date().toLocaleDateString('es-MX',{weekday:'long', day:'numeric', month:'long'});
+  ctx.font = '700 32px Nunito, sans-serif'; ctx.fillStyle = '#C4CDD6';
+  ctx.fillText(hoyTxt.charAt(0).toUpperCase()+hoyTxt.slice(1), 540, 400);
+
+  var y = altoHeader;
+  partidos.forEach(function(p){
+    var jugado  = !!p.resultado;
+    var enVivo  = _esEnVivoAuto(p.fecha) && !jugado;
+    var hora    = _formatHoraPartido(p.fecha);
+
+    var colorAcento = enVivo ? '#FF4D6A' : (jugado ? '#7A8B9A' : '#ff6b00');
+    var etiqueta    = enVivo ? '● EN VIVO' : (jugado ? '✓ FINALIZADO' : 'POR JUGARSE');
+
+    ctx.fillStyle = enVivo ? 'rgba(255,77,106,0.07)' : 'rgba(255,255,255,0.03)';
+    ctx.beginPath();
+    ctx.roundRect(50, y, canvas.width-100, filaAlto-14, 16);
+    ctx.fill();
+
+    ctx.fillStyle = colorAcento;
+    ctx.beginPath();
+    ctx.roundRect(50, y, 8, filaAlto-14, 4);
+    ctx.fill();
+
+    ctx.textAlign = 'left';
+    ctx.font = '900 40px Nunito, sans-serif'; ctx.fillStyle = colorAcento;
+    ctx.fillText(hora || '--:--', 90, y+62);
+    ctx.font = '800 20px Nunito, sans-serif'; ctx.fillStyle = '#8A9BB0';
+    ctx.fillText(etiqueta, 90, y+100);
+
+    var equipos = (p.local||'')+'  vs  '+(p.visitante||'');
+    if(equipos.length > 30) equipos = equipos.slice(0,28)+'…';
+    ctx.font = '800 44px Nunito, sans-serif'; ctx.fillStyle = '#F0F4F8';
+    ctx.fillText(equipos, 300, y+80);
+
+    if(jugado){
+      ctx.textAlign = 'right';
+      ctx.font = '900 46px Nunito, sans-serif'; ctx.fillStyle = '#00e87a';
+      ctx.fillText(String(p.resultado), canvas.width-95, y+82);
+    }
+
+    ctx.textAlign = 'left';
+    y += filaAlto;
+  });
+
+  ctx.textAlign = 'center';
+  var yFooter = y + 80;
+  ctx.font = '900 48px Nunito, sans-serif'; ctx.fillStyle = '#FFD84D';
+  ctx.fillText('Sigue la tabla en vivo 📊', 540, yFooter);
+  ctx.font = '900 54px Nunito, sans-serif'; ctx.fillStyle = '#00e87a';
+  ctx.fillText('quinielaprofut.com', 540, yFooter+80);
+
+  canvas.toBlob(function(blob){
+    var lineas = partidos.map(function(p){
+      var h = _formatHoraPartido(p.fecha);
+      var estado = p.resultado ? ' → '+p.resultado : (_esEnVivoAuto(p.fecha) ? ' 🔴 EN VIVO' : '');
+      return '🕐 '+(h||'--:--')+'  '+(p.local||'')+' vs '+(p.visitante||'')+estado;
+    }).join('\n');
+
+    var mensaje = '⚽ PARTIDOS DE HOY — QuinielaPro Fut\n\n'+lineas+
+                  '\n\nSigue la tabla en vivo 👉 https://quinielaprofut.com';
+
+    var file = new File([blob], 'quinielapro-partidos-hoy.png', {type:'image/png'});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      navigator.share({ files:[file], title:'QuinielaPro Fut — Partidos de Hoy', text: mensaje }).catch(function(){});
+    } else {
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'quinielapro-partidos-hoy.png';
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(function(){ window.open('https://wa.me/?text='+encodeURIComponent(mensaje), '_blank'); }, 500);
     }
@@ -1539,7 +1651,12 @@ function renderSeguimiento(){
   });
 
   if(partidosHoy.length){
-    html += '<div style="margin-bottom:0.75rem;font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#ff6b00;display:flex;align-items:center;gap:8px;">⚽ Partidos de Hoy</div>';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;">';
+    html += '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;color:#ff6b00;display:flex;align-items:center;gap:8px;">⚽ Partidos de Hoy</div>';
+    if(!SIM.activo){
+     html += '<button id="btnCompartirHoy" class="btn-o" style="font-size:0.8rem;padding:11px 18px;min-height:44px;white-space:nowrap;">📤 Compartir partidos</button>';
+     }
+     html += '</div>';
     html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2.5rem;">';
     partidosHoy.forEach(function(p){
       var jugado = !!p.resultado;
@@ -1732,6 +1849,12 @@ function renderSeguimiento(){
   if(btnPr){
     btnPr.addEventListener('click', function(){
       generarTarjetaPronosticos(matriz, partidosVista, SF_DATA.jornada);
+    });
+  }
+  var btnHoy = document.getElementById('btnCompartirHoy');
+  if(btnHoy){
+    btnHoy.addEventListener('click', function(){
+      generarTarjetaPartidosHoy(partidosHoy, SF_DATA.jornada);
     });
   }
 }
